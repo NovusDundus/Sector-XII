@@ -5140,7 +5140,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-2452128
+  m_Name: pb_Mesh15374
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -9267,7 +9267,7 @@ GameObject:
   - component: {fileID: 661658041}
   - component: {fileID: 661658040}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Enemy_Large
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13215,7 +13215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1063257563
 Transform:
   m_ObjectHideFlags: 0
@@ -16844,7 +16844,7 @@ GameObject:
   - component: {fileID: 1343159385}
   - component: {fileID: 1343159384}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17228,7 +17228,7 @@ GameObject:
   - component: {fileID: 1357149880}
   - component: {fileID: 1357149879}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Enemy_Small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22057,7 +22057,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-2408746
+  m_Name: pb_Mesh15630
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -28163,7 +28163,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-2428624
+  m_Name: pb_Mesh15644
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
