@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 23884832043512732}
   - component: {fileID: 199034765027935464}
   - component: {fileID: 198466766939258794}
+  - component: {fileID: 114493224299727814}
   m_Layer: 9
   m_Name: FireballProj
   m_TagString: Fireball
@@ -39,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1058440031479590}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.353249, y: 10.33, z: -12.01}
+  m_LocalPosition: {x: -13.646744, y: 4.83, z: -30.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -99,6 +100,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &114493224299727814
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1058440031479590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38098ac1714b6574fae2c29837f978c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxTimeAlive: 5
 --- !u!135 &135681430934961368
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -170,7 +183,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -316590349
+  randomSeed: -1869022430
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -632,7 +645,7 @@ ParticleSystem:
     m_UseMeshColors: 1
     alignToDirection: 0
     randomDirectionAmount: 0
-    sphericalDirectionAmount: 0
+    sphericalDirectionAmount: 0.1
     randomPositionAmount: 0
     radius:
       value: 0.25
