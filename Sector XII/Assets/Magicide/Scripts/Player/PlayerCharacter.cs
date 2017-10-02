@@ -76,4 +76,17 @@ public class PlayerCharacter : MonoBehaviour {
         // Set the character's active state based on the parameter
         _pActive = active;
     }
+
+    public void Damage(int amount) {
+
+        // Damage character based on amount passed through
+        _Health -= amount;
+
+        // Check if character is no health
+        if (_Health <= 0) {
+
+            // Character has died
+            OnDeath();
+        }
+    }
 }
