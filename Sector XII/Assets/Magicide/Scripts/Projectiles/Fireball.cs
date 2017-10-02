@@ -47,6 +47,7 @@ public class Fireball : Projectile {
 
                 // Hide minion
                 minion.GetComponent<Renderer>().enabled = false;
+                minion.transform.position = new Vector3(1000,0,1000);
                 break;
             }    
         }
