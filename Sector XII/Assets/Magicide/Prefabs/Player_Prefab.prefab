@@ -69,7 +69,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4978353605761710}
-  - component: {fileID: 114249342390279850}
   - component: {fileID: 54587156592676682}
   m_Layer: 0
   m_Name: Player_Prefab
@@ -302,26 +301,6 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 0}
---- !u!114 &114249342390279850
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1715710920169328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd2f0a5b2dc5e7f42b77462462ea3427, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: 0
-  movementSpeed: 60
-  maxSpeed: 5
-  previousRotationDirection: {x: 0, y: 0, z: 1}
-  bulletSpawnPosition: {fileID: 1372601850115796}
-  bulletPrefab: {fileID: 1058440031479590, guid: 6b9830afc33b6464294406a48fab9bb2,
-    type: 2}
-  timeBetweenShots: 0.15
-  maxBulletTimeAlive: 5
 --- !u!114 &114296194984285466
 MonoBehaviour:
   m_ObjectHideFlags: 1
