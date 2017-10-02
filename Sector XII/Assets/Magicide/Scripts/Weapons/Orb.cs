@@ -107,7 +107,5 @@ public class Orb : Weapon {
             ///_POOL_INACTIVE.AddLast(proj);
         }
     }
-
-
     
 }

@@ -34,7 +34,6 @@ public class Fireball : Projectile {
     public override void FixedUpdate() {
 
         // Continuously move forward at a set speed
-        ///transform.position = transform.forward * Time.deltaTime * _TravelSpeed;
         StartCoroutine(SmoothMove(transform.forward, _TravelSpeed));
 
         // Test collision
