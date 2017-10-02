@@ -55,7 +55,6 @@ public class Orb : Weapon {
         if (_CanFire == true) {
 
             // Create fireball
-            Debug.Log("Shoot fireball!");
             Instantiate(GameObject.FindGameObjectWithTag("P" + _Owner._Player._pPlayerID + "_FireBall"), transform.position, transform.rotation);
 
             // Reset firing delay

@@ -9,6 +9,8 @@ public class Fireball : Projectile {
 
     private int _ImpactDamage;
     private float _TravelSpeed;
+    private bool _Active = true;
+    private SphereCollider _collider;
 
     //--------------------------------------
     // FUNCTIONS
@@ -20,6 +22,9 @@ public class Fireball : Projectile {
 
         // Set travel speed for the projectile
         _TravelSpeed = PlayerManager._pInstance._pFireballSpeed;
+
+        // Get referenece to projectile collision
+        _collider = GetComponent<SphereCollider>();
     }
 
     public override void Update() {
@@ -31,6 +36,24 @@ public class Fireball : Projectile {
         // Continuously move forward at a set speed
         ///transform.position = transform.forward * Time.deltaTime * _TravelSpeed;
         StartCoroutine(SmoothMove(transform.forward, _TravelSpeed));
+
+        // Test collision
+        foreach (var minion in WavesManager._pInstance.GetActiveAI())
+        {
+            // if projectile collides wuith minion collision bounds
+            if (_collider.bounds.Intersects(minion.GetComponent<CapsuleCollider>().bounds))
+            {
+                // destroy
+                _Active = false;
+
+                // Hide minion
+                minion.GetComponent<Renderer>().enabled = false;
+                break;
+            }    
+        }
+
+        // Draw if active
+        GetComponent<Renderer>().enabled = _Active;
     }
 
     IEnumerator SmoothMove(Vector3 direction, float speed) {

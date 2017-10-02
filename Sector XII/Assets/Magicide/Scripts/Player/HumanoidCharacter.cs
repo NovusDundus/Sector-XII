@@ -64,13 +64,11 @@ public class HumanoidCharacter : PlayerCharacter {
             if (GetRotationInput != new Vector3(0, 0, 0)) {
 
                 transform.SetPositionAndRotation(transform.position + GetMovementInput / 4, Quaternion.Euler(GetRotationInput));
-
             }
                         
             else { // GetRotationInput == new Vector3(0, 0, 0)
 
                 transform.SetPositionAndRotation(transform.position + GetMovementInput / 4, transform.rotation);
-
             }
         }
     }
