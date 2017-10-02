@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1087329879016264}
+  m_IsPrefabParent: 1
+--- !u!1 &1087329879016264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4818791142805520}
+  - component: {fileID: 114569022355224596}
+  - component: {fileID: 114368871118692740}
+  - component: {fileID: 114098124434377362}
+  - component: {fileID: 114469748873412128}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4818791142805520
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087329879016264}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.222464, y: 4.4266467, z: -9.532595}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114098124434377362
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087329879016264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f606b9c4b83287f4ab9411ee5571e4d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pGruntMinionSpeed: 0
+  _pGruntHealth: 20
+  _pGruntAttackDamage: 20
+  _pBruteMinionSpeed: 0
+  _pBruteHealth: 40
+  _pBruteAttackDamage: 20
+--- !u!114 &114368871118692740
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087329879016264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12cc832d57efdfe419a30011b6244420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pInitialGruntAmount: 30
+  _pInitialBruteAmount: 15
+  _pGruntIncrement: 2
+  _pBruteIncrement: 1
+  _pGruntRespawnTime: 3
+  _pBruteRespawnTime: 3
+--- !u!114 &114469748873412128
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087329879016264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5323742fbae3690439e94fecd1eee162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pHumanoidSpeed: 50
+  _pHumanoidRotationRate: 20
+  _pHumanoidStartingHealth: 100
+  _pOrbFiringRate: 0.5
+  _pFireballSpeed: 10
+  _pFireballDamage: 100
+  _pEtherealSpeed: 20
+  _pEtherealRotationRate: 20
+  _pEtherealStartingHealth: 100
+  _pAuraMinionCount: 6
+  _pAuraMinionSpacing: 5
+  _pAuraOrbitSpeed: 1
+  _pAuraMinionFiringRate: 3
+  _pAuraMinionSpeed: 10
+  _pAuraMinionStunTime: 2
+--- !u!114 &114569022355224596
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087329879016264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54dd93656b2f2940a229b11df00f869, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
