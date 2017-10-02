@@ -38,7 +38,7 @@ public class AuraPool : Weapon {
     public override void FixedUpdate() {
 
         // Continuously rotate the aura minions around the owner of this weapon         
-        transform.Rotate(0f, transform.parent.rotation.y + _OrbitSpeed, 0f);
+        transform.Rotate(0f, /*transform.parent.rotation.y + */_OrbitSpeed, 0f);
 
         // Update position based of the character's (that owns this weapon) position
         if (_Owner != null)

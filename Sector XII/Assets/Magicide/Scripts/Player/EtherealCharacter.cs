@@ -30,7 +30,7 @@ public class EtherealCharacter : PlayerCharacter {
         _Weapon.Init(); /// Create minions
 
         // Inactive by default
-        SetActive(true);
+        SetActive(false);
     }
 
     public override void Update() {

@@ -30,7 +30,7 @@ public class HumanoidCharacter : PlayerCharacter {
         _Weapon.Init(); /// Create fireball object pool
 
         // Active by default
-        SetActive(false);
+        SetActive(true);
     }
 
     public override void Update() {

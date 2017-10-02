@@ -26,6 +26,9 @@ public class Weapon : MonoBehaviour {
 
     public virtual void FixedUpdate() {
 
+        // Deduct from the firing delay
+        _FiringDelay -= Time.deltaTime;
+
         // enable OR disable firing sequence
         _CanFire = _FiringDelay <= 0f;
     }
