@@ -8,7 +8,7 @@ public class PlayerCharacter : MonoBehaviour {
     [HideInInspector]
     public Player _Player;                                  // Reference to the player controller that controls this character.
 
-    protected bool _pActive;                                // Represents if the character is current being controller by its player controller.
+    protected bool _pActive = true;                                // Represents if the character is current being controller by its player controller.
     protected int _Health;                                  // Current health of the character.
     protected Weapon _Weapon;                               // Current weapon being instigated by the character.
     protected float _MovementSpeed;                         // The walking speed of the character.
