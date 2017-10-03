@@ -49,6 +49,8 @@ public class PlayerManager : MonoBehaviour {
     public float _pAuraMinionStunTime = 2f;                 // The stun time (seconds) of a successful hit on a humanoid character.
     [Tooltip("The stun aoe around the minion when it collides with a valid object.")]
     public float _pAuraMinionImpactRadius = 5f;             // The stun aoe around the minion when it collides with a valid object.
+    [Tooltip("The speed in which an ethereal minion will rotate on its own axis.")]
+    public float _pAuraMinionRotationSpeed = 5f;            // The speed in which an ethereal minion will rotate on its own axis.
 
     //--------------------------------------
     // FUNCTIONS
