@@ -26,7 +26,7 @@ public class WavesManager : MonoBehaviour {
     [Tooltip("the delay (seconds) between death and respawning of a brute minion.")]
     public float _pBruteRespawnTime = 3f;                   // the delay (seconds) between death and respawning of a brute minion.
 
-    private LinkedList<GameObject> _POOL_INACTIVE_AI;
+    private List<GameObject> _POOL_INACTIVE_AI;
     private List<GameObject> _POOL_ACTIVE_AI;
 
     //--------------------------------------
