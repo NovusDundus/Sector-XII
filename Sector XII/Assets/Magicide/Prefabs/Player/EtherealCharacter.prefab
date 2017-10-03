@@ -72,9 +72,10 @@ GameObject:
   - component: {fileID: 33440318119238944}
   - component: {fileID: 136927854694283386}
   - component: {fileID: 23296979490936648}
+  - component: {fileID: 114161633952988096}
   m_Layer: 0
   m_Name: AuraMinion
-  m_TagString: P4_AuraMinion
+  m_TagString: P2_AuraMinion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,7 +92,7 @@ GameObject:
   - component: {fileID: 114642651248460458}
   m_Layer: 0
   m_Name: EtherealCharacter
-  m_TagString: P4_Ethereal
+  m_TagString: P2_Ethereal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,7 +111,7 @@ GameObject:
   - component: {fileID: 114725534300499694}
   m_Layer: 0
   m_Name: AuraPool
-  m_TagString: P4_AuraPool
+  m_TagString: P2_AuraPool
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,7 +124,7 @@ Transform:
   m_GameObject: {fileID: 1591804893426928}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.8, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4218963899529368}
   m_Father: {fileID: 4649735135061198}
@@ -162,7 +163,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1698163562130134}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -8.57, y: 1.63, z: -15.400001}
+  m_LocalPosition: {x: -8.58, y: 1.63, z: 15.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4245417074191434}
@@ -427,6 +428,17 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114161633952988096
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1591804893426928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cd6b65603489f9489de43ed24e26e48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114642651248460458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -450,7 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8fdab224d1fde4dbf25e89fc59d8a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 1591804893426928}
 --- !u!114 &114991442402236832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -462,7 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba6832de88226f43832a08d6ec939c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pPlayerID: 4
+  _pPlayerID: 2
   _pPlayerColour: {r: 1, g: 0, b: 0.8896551, a: 0}
 --- !u!136 &136569230663629944
 CapsuleCollider:
