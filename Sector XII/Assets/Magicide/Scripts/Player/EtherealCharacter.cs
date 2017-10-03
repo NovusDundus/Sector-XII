@@ -12,8 +12,8 @@ public class EtherealCharacter : PlayerCharacter {
     //--------------------------------------
     // FUNCTIONS
 
-    public override void Start() {
-
+    public override void Start() { 
+        
         // Stores reference to the player controller
         _Player = GetComponent<Player>();
 
@@ -22,7 +22,8 @@ public class EtherealCharacter : PlayerCharacter {
         _RotationSpeed = PlayerManager._pInstance._pEtherealRotationRate;
 
         // Set character's health
-        _Health = PlayerManager._pInstance._pEtherealStartingHealth;
+        _StartingHealth = PlayerManager._pInstance._pEtherealStartingHealth;
+        base.Start();
 
         // Create character's weapon
         _Weapon = GameObject.FindGameObjectWithTag("P" + _Player._pPlayerID + "_AuraPool").GetComponent<Weapon>();
@@ -30,7 +31,10 @@ public class EtherealCharacter : PlayerCharacter {
         _Weapon.Init(); /// Create minions
 
         // Inactive by default
-        SetActive(false);
+        SetActive(true);
+
+        // Add to object pool
+        PlayerManager._pInstance.GetActiveEthereals().Add(this.gameObject);
     }
 
     public override void Update() {

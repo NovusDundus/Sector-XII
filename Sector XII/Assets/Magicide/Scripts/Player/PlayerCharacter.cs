@@ -9,6 +9,7 @@ public class PlayerCharacter : MonoBehaviour {
     public Player _Player;                                  // Reference to the player controller that controls this character.
 
     protected bool _pActive;                                // Represents if the character is current being controller by its player controller.
+    protected int _StartingHealth;                          // The health of the character upon Startup().
     protected int _Health;                                  // Current health of the character.
     protected Weapon _Weapon;                               // Current weapon being instigated by the character.
     protected float _MovementSpeed;                         // The walking speed of the character.
@@ -21,6 +22,8 @@ public class PlayerCharacter : MonoBehaviour {
 
     public virtual void Start() {
 
+        // Set the starting health for the character
+        _Health = _StartingHealth;
     }
 
     public virtual void Update() {
@@ -41,6 +44,10 @@ public class PlayerCharacter : MonoBehaviour {
 
         // Get reference to character's death location in the world
         _DeathPosition = transform.position;
+
+        // hide character
+        GetComponentInChildren<Renderer>().enabled = false;
+        transform.position = new Vector3(1000, 0, 1000);
     }
 
     public virtual void FireInput() {
@@ -88,5 +95,17 @@ public class PlayerCharacter : MonoBehaviour {
             // Character has died
             OnDeath();
         }
+    }
+
+    public int GetStartingHealth() {
+
+        // Returns the starting health associated with the character
+        return _StartingHealth;
+    }
+
+    public int GetHealth() {
+
+        // Returns the current amount of health associated with the character
+        return _Health;
     }
 }

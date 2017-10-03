@@ -13,7 +13,7 @@ public class HumanoidCharacter : PlayerCharacter {
     // FUNCTIONS
 
     public override void Start() {
-
+        
         // Stores reference to the player controller
         _Player = GetComponent<Player>();
 
@@ -22,7 +22,8 @@ public class HumanoidCharacter : PlayerCharacter {
         _RotationSpeed = PlayerManager._pInstance._pHumanoidRotationRate;
 
         // Set character's health
-        _Health = PlayerManager._pInstance._pHumanoidStartingHealth;
+        _StartingHealth = PlayerManager._pInstance._pHumanoidStartingHealth;
+        base.Start();
 
         // Create character's weapon
         _Weapon = GameObject.FindGameObjectWithTag("P" + _Player._pPlayerID + "_Orb").GetComponent<Weapon>();
@@ -98,12 +99,16 @@ public class HumanoidCharacter : PlayerCharacter {
     }
 
     public override void FireInput() {
-        
-        // Only initiate if there is a valid weapon attached to the character
-        if (_Weapon != null) {
 
-            // Shoot weapon
-            _Weapon.Fire();
+        // Only proceed if the character is actively being controller in the world
+        if (_pActive == true) {
+
+            // Only initiate if there is a valid weapon attached to the character
+            if (_Weapon != null) {
+
+                // Shoot weapon
+                _Weapon.Fire();
+            }
         }
     }
 }
