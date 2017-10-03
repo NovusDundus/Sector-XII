@@ -36,12 +36,12 @@ public class Fireball : Projectile {
         // Continuously move forward at a set speed
         StartCoroutine(SmoothMove(transform.forward, _TravelSpeed));
 
-        // Test collision
-        foreach (var minion in WavesManager._pInstance.GetActiveAI())
-        {
-            // if projectile collides wuith minion collision bounds
-            if (_collider.bounds.Intersects(minion.GetComponent<CapsuleCollider>().bounds))
-            {
+        // Test collision against minions
+        foreach (var minion in WavesManager._pInstance.GetActiveAI()) {
+
+            // if projectile collides with minion collision bounds
+            if (_collider.bounds.Intersects(minion.GetComponent<CapsuleCollider>().bounds)) {
+
                 // destroy
                 _Active = false;
 
@@ -52,10 +52,41 @@ public class Fireball : Projectile {
             }    
         }
 
+        // Test collision against ethereal
+        foreach (var ethereal in PlayerManager._pInstance.GetActiveEthereals()) {
+
+            // if projectile collides with ethereal collision bounds
+            if (_collider.bounds.Intersects(ethereal.GetComponentInChildren<CapsuleCollider>().bounds)) {
+
+                // destroy fireball
+                _Active = false;
+
+                // damage ethereal
+                ///ethereal.GetComponent<PlayerCharacter>().Damage(_ImpactDamage);
+                break;
+            }
+        }
+
+        // Test collision against aura minions
+        foreach (var auraMinion in PlayerManager._pInstance.GetActiveAuraMinions()) {
+
+            // if projectile collides with auraminions collision bounds
+            if (_collider.bounds.Intersects(auraMinion.GetComponentInChildren<CapsuleCollider>().bounds)) {
+
+                // destroy fireball
+                _Active = false;
+
+                // damage minion
+                auraMinion.GetComponent<AuraMinion>().Damage(_ImpactDamage);
+                break;
+            }
+        }
+
         // Draw if active
         GetComponent<Renderer>().enabled = _Active;
     }
 
+    // Coroutine to move the gameObjects.transform in a direction X speed
     IEnumerator SmoothMove(Vector3 direction, float speed) {
 
         float startTime = Time.time;
