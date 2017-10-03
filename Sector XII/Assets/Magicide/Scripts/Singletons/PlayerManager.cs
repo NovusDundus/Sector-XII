@@ -52,6 +52,11 @@ public class PlayerManager : MonoBehaviour {
     [Tooltip("The speed in which an ethereal minion will rotate on its own axis.")]
     public float _pAuraMinionRotationSpeed = 5f;            // The speed in which an ethereal minion will rotate on its own axis.
 
+    private List<GameObject> _POOL_ACTIVE_ETHEREALS;
+    private List<GameObject> _POOL_ACTIVE_AURAMINIONS;
+    private List<GameObject> _POOL_INACTIVE_ETHEREALS;
+    private List<GameObject> _POOL_INACTIVE_AURAMINIONS;
+
     //--------------------------------------
     // FUNCTIONS
 
@@ -65,6 +70,10 @@ public class PlayerManager : MonoBehaviour {
         }
 
         _pInstance = this;
+        
+        // Create object pools
+        _POOL_ACTIVE_ETHEREALS = new List<GameObject>();
+        _POOL_ACTIVE_AURAMINIONS = new List<GameObject>();
     }
 
     void Update() {
@@ -73,5 +82,15 @@ public class PlayerManager : MonoBehaviour {
 
     private void FixedUpdate() {
 
+    }
+
+    public List<GameObject> GetActiveEthereals() {
+
+        return _POOL_ACTIVE_ETHEREALS;
+    }
+
+    public List<GameObject> GetActiveAuraMinions() {
+
+        return _POOL_ACTIVE_AURAMINIONS;
     }
 }
