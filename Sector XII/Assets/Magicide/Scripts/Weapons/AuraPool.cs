@@ -9,9 +9,9 @@ public class AuraPool : Weapon {
 
     public GameObject prefab;
 
-    private int _MinionCount;                               // Amount of aura minions that composes the weapon.
-    private float _MinionSpacing;                           // Unit of space between each minion.
-    private float _OrbitSpeed;                              // The speed in which the minions rotate around the character that owns this weapon.
+    private int _MinionCount = 8;                               // Amount of aura minions that composes the weapon.
+    private float _MinionSpacing = 4f;                           // Unit of space between each minion.
+    private float _OrbitSpeed = 3f;                              // The speed in which the minions rotate around the character that owns this weapon.
 
     //--------------------------------------
     // FUNCTIONS
@@ -68,9 +68,10 @@ public class AuraPool : Weapon {
 
                 // Create the minion prefab
                 var minion = Instantiate(GameObject.FindGameObjectWithTag("P" + _Owner._Player._pPlayerID + "_AuraMinion"), pos, Quaternion.identity, gameObject.transform).GetComponent<AuraMinion>();
+                minion.GetComponentInChildren<Projectile>().Init();
 
-                // Set the tag of the newly created minion (player 1 = 'P1_AuraMinion1', 'P1_AuraMinion2', 'P1_AuraMinion3' etc...)
-                ///minion.tag = string.Concat("P" + _Owner._Player._pPlayerID + "_AuraMinion" + (i + 1));
+                // Set owner for the aura minion
+                minion.GetComponentInChildren<Projectile>().SetOwner(_Owner);
             }
 
             // Hide the templated minion prefab

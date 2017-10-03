@@ -55,7 +55,8 @@ public class Orb : Weapon {
         if (_CanFire == true) {
 
             // Create fireball
-            Instantiate(GameObject.FindGameObjectWithTag("P" + _Owner._Player._pPlayerID + "_FireBall"), transform.position, transform.rotation);
+            var proj = Instantiate(GameObject.FindGameObjectWithTag("P" + _Owner._Player._pPlayerID + "_FireBall"), transform.position, transform.rotation);
+            proj.GetComponentInChildren<Projectile>().Init();
 
             // Reset firing delay
             base.Fire();
@@ -99,9 +100,10 @@ public class Orb : Weapon {
         {
             // instantiate projectile
             var proj = Instantiate(GameObject.FindGameObjectWithTag("P" + _Owner._Player._pPlayerID + "_FireBall").GetComponent<Fireball>(), new Vector3(), Quaternion.identity);
+            proj.GetComponentInChildren<Projectile>().Init();
 
-            // Set projectile's tag (player 1 = 'P1_fireball1', 'P1_fireball2', 'P1_fireball3', etc...)
-            ///proj.tag = string.Concat("P" + _Owner._Player._pPlayerID + "_FireBall" + (i + 1));
+            // Set owner for the projectile
+            proj.GetComponentInChildren<Projectile>().SetOwner(_Owner);
 
             // Add projectile to the end of the inactive object pool
             ///_POOL_INACTIVE.AddLast(proj);
