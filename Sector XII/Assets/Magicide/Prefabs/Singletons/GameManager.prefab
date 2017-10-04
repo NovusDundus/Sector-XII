@@ -19,13 +19,15 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4818791142805520}
-  - component: {fileID: 114569022355224596}
-  - component: {fileID: 114368871118692740}
-  - component: {fileID: 114098124434377362}
-  - component: {fileID: 114469748873412128}
+  - component: {fileID: 114944523794425134}
+  - component: {fileID: 114678055456776600}
+  - component: {fileID: 114256192889013498}
+  - component: {fileID: 114508586321138280}
+  - component: {fileID: 114973976100088120}
+  - component: {fileID: 114434580830293508}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,7 +45,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114098124434377362
+--- !u!114 &114256192889013498
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -54,13 +56,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f606b9c4b83287f4ab9411ee5571e4d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pGruntMinionSpeed: 0
-  _pGruntHealth: 20
-  _pGruntAttackDamage: 20
-  _pBruteMinionSpeed: 0
-  _pBruteHealth: 40
-  _pBruteAttackDamage: 20
---- !u!114 &114368871118692740
+--- !u!114 &114434580830293508
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -68,16 +64,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1087329879016264}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12cc832d57efdfe419a30011b6244420, type: 3}
+  m_Script: {fileID: 11500000, guid: 5cbcfc139f93d9740bdaf99a6cbb2567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pInitialGruntAmount: 30
-  _pInitialBruteAmount: 15
-  _pGruntIncrement: 2
-  _pBruteIncrement: 1
-  _pGruntRespawnTime: 3
-  _pBruteRespawnTime: 3
---- !u!114 &114469748873412128
+--- !u!114 &114508586321138280
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -85,26 +75,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1087329879016264}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5323742fbae3690439e94fecd1eee162, type: 3}
+  m_Script: {fileID: 11500000, guid: afe1339e1a23a9b4a95bd4c6240bb02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pHumanoidSpeed: 50
-  _pHumanoidRotationRate: 20
-  _pHumanoidStartingHealth: 100
-  _pOrbFiringRate: 0.5
-  _pFireballSpeed: 10
-  _pFireballDamage: 100
-  _pEtherealSpeed: 20
-  _pEtherealRotationRate: 20
-  _pEtherealStartingHealth: 100
-  _pAuraMinionCount: 6
-  _pAuraMinionSpacing: 5
-  _pAuraOrbitSpeed: 1
-  _pAuraMinionFiringRate: 3
-  _pAuraMinionSpeed: 10
-  _pAuraMinionStunTime: 2
-  _pAuraMinionImpactRadius: 5
---- !u!114 &114569022355224596
+  _NecromancerStartingHealth: 100
+  _NecromancerMovementSpeed: 10
+  _NecromancerRotationSpeed: 2
+--- !u!114 &114678055456776600
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -115,3 +92,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d54dd93656b2f2940a229b11df00f869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _Phase1Length: 30
+  _Phase2Timer: 0
+  _Phase2Length: 120
+--- !u!114 &114944523794425134
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087329879016264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 702b879b3a5403e4f9fc26091b3be97a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114973976100088120
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087329879016264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 644b168221e562842ba6d16853ef85f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _OrbFireDelay: 0.05
+  _FireballHeatCost: 0.1
+  _OrbCooldownRateStable: 0.025
+  _OrbCooldownRateOverheated: 0.01
+  _ImpactDamage: 100
+  _FireballSpeed: 40
+  _FireballRange: 100
+  _MaxSize: 14
