@@ -4,21 +4,46 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour {
 
-    //--------------------------------------
+    ///--------------------------------------///
+    /// Created by: Daniel Marton
+    /// Created on: 4.10.2017
+    ///--------------------------------------///
+
+    //----------------------------------------------------------------------------------
     // VARIABLES
 
-    protected float _FiringRate = 1;                        // The amount of time between shots.
-    protected PlayerCharacter _Owner;                       // Current instigator assosiated with the weapon.
+    // Protected
+    protected Character _Owner;                                     // Reference to the current owner assosiated with the weapon.
+    protected float _FiringRate = 1;                                // The amount of time between shots.
+    protected float _FiringDelay = 0;                               // Current amount of time left till it can fire a projectile.
+    protected bool _CanFire = true;                                 // Returns true if the weapon is allowed to successfully fire a projectile.
+    protected bool _HeatedWeapon = false;
+    protected bool _Overheated = false;
+    protected bool _CoolingDown;
+    protected float _CurrentHeat = 0f;
+    protected float _FiringHeatCost;
+    protected float _CooldownRateStable;
+    protected float _CooldownRateOverheated;
 
-    protected float _FiringDelay = 0;                       // Current amount of time left till it can fire a projectile.
-    protected bool _CanFire = true;                         // Returns true if the weapon is allowed to successfully fire a projectile.
-
-    //--------------------------------------
-    // FUNCTIONS
+    //--------------------------------------------------------------
+    // CONSTRUCTORS
 
     public virtual void Start() {
-		
-	}
+
+    }
+
+    public virtual void Init() {
+
+    }
+
+    public void SetOwner(Character a_Owner) {
+
+        // Set the new owner for this weapon
+        _Owner = a_Owner;
+    }
+
+    //--------------------------------------------------------------
+    // FRAME
 
     public virtual void Update() {
 
@@ -26,12 +51,68 @@ public class Weapon : MonoBehaviour {
 
     public virtual void FixedUpdate() {
 
-        // Deduct from the firing delay
+        // Deduct from the firing delay timer
         _FiringDelay -= Time.deltaTime;
 
-        // enable OR disable firing sequence
-        _CanFire = _FiringDelay <= 0f;
+        if (_HeatedWeapon == true) {
+
+            // Hasnt overheated yet
+            if (_CoolingDown == false) {
+
+                // Weapon HAS hit max heat capacity
+                if (_CurrentHeat >= 1f) {
+
+                    // Weapon is now overheated and must completely cooldown before it can be fired again
+                    _Overheated = true;
+                    _CoolingDown = true;
+
+                    // Clamp max heat to 1
+                    _CurrentHeat = 1;
+                }
+
+                // Weapon has NOT hit max heat capacity
+                else { /// _CurrentHeat < 1f
+
+                    // Clamp minimum heat to 0
+                    if (_CurrentHeat > 0f) {
+
+                        // Deduct stable cooldown amount
+                        _CurrentHeat -= _CooldownRateStable;
+                    }
+                }
+            }
+
+            // Weapon has overheated & it now locked until completely cooled down
+            else { /// _CoolingDown == true
+
+                if (_CurrentHeat > 0f) {
+
+                    // Deduct overheated cooldown amount
+                    _CurrentHeat -= _CooldownRateOverheated;
+                }
+
+                else {
+
+                    // Cooldown phase complete
+                    _CoolingDown = false;
+                    _Overheated = false;
+                }
+            }
+
+            // enable OR disable firing sequence (based on firing delay and if the weapon currently ISNT overheated)
+            _CanFire = _FiringDelay <= 0f && !_CoolingDown && !_Overheated;
+        }
+
+        else { ///_HeatedWeapon == false
+
+            // enable OR disable firing sequence based on firing delay
+            _CanFire = _FiringDelay <= 0f;
+        }
+
     }
+
+    // -------------------------------------------------------------
+    // FIRING
 
     public virtual void Fire() {
 
@@ -39,13 +120,13 @@ public class Weapon : MonoBehaviour {
         _FiringDelay = _FiringRate;
     }
 
-    public void SetOwner(PlayerCharacter a_Owner) {
+    public float GetCurrentHeat() {
 
-        // Set the new owner for this weapon
-        _Owner = a_Owner;
+        return _CurrentHeat;
     }
 
-    public virtual void Init() {
+    public bool GetOverheatedStatus() {
 
+        return _Overheated;
     }
 }
