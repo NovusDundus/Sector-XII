@@ -7,9 +7,6 @@ public class Proj_ShieldMinion : Projectile {
     //--------------------------------------
     // VARIABLES
 
-    private float _StunTime;
-    private float _ImpactRadius;
-    private float _TravelSpeed;
     private float _SpinSpeed = 4f;
     private int _Health = 100;
 
@@ -17,13 +14,6 @@ public class Proj_ShieldMinion : Projectile {
     // FUNCTIONS
 
     public override void Start() {
-
-        // Set impact stats
-        ///_StunTime = PlayerManager._pInstance._pAuraMinionStunTime;
-        ///_ImpactRadius = PlayerManager._pInstance._pAuraMinionImpactRadius;
-
-        // Set movement speed of the projectile
-        ///_TravelSpeed = PlayerManager._pInstance._pAuraMinionSpeed;
 
         // add to object pool
         ///PlayerManager._pInstance.GetActiveAuraMinions().Add(this.gameObject);

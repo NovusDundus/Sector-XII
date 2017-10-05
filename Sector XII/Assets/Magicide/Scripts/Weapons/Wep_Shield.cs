@@ -15,70 +15,31 @@ public class Wep_Shield : Weapon {
     public GameObject _ShieldMinionPrefab;
 
     private int _MaxMinions = 14;                                   // Cap of how many minions are allowed to make the shield.
-    private int _MinionCount = 8;                                   // Amount of minions that composes the weapon.
+    private int _MinionCount = 14;                                  // Amount of minions that composes the weapon.
     private float _MinionSpacing = 1f;                              // Unit of space between each minion.
     private float _OrbitSpeed = 3f;                                 // The speed in which the minions rotate around the character that owns this weapon.
+    private Quaternion rotation;
 
     //--------------------------------------------------------------
     // CONSTRUCTORS
 
     public override void Start() {
         
-        // Set firing rate
-        ///_FiringRate = WeaponManager._pInstance._pOrbFiringRate;
-
         // Set orbit speed
-        ///_OrbitSpeed = WeaponManager._pInstance._pAuraOrbitSpeed;
+        _OrbitSpeed = WeaponManager._pInstance._OrbitSpeed;
 
-        // Set minion count
-        ///_MinionCount = WeaponManager._pInstance._pAuraMinionCount;
+        // Set minion cap
+        _MaxMinions = WeaponManager._pInstance._MaxSize;
+        ///_MinionCount = 0;
 
-        // Set minion spacing
-        ///_MinionSpacing = WeaponManager._pInstance._pAuraMinionSpacing;
+        // Set initial rotation
+        rotation = transform.rotation;
     }
 
-    public override void Update() {
-
-    }
-
-    public override void FixedUpdate() {
-                
-        if (_Owner != null) {
-
-            /// IF RIGHT TRIGGER ISNT BEING USED
-
-            /// IF LEFT TRIGGER IS BEING USED
-
-                // Rotate shield left
-                ///transform.Rotate(0f, transform.parent.rotation.y + _OrbitSpeed, 0f);
-
-        }
+    public override void Init() {
 
         if (_Owner != null) {
 
-            /// IF LEFT TRIGGER ISNT BEING USED
-                    
-            /// IF RIGHT TRIGGER IS BEING USED
-
-                // Rotate shield right
-                ///transform.Rotate(0f, transform.parent.rotation.y + _OrbitSpeed, 0f);
-        }
-
-        // Update weapons position based of the owning character's position (if VALID)
-        if (_Owner != null)
-        {
-            transform.position = _Owner.transform.position;
-        }
-    }
-
-    public override void Fire() {
-
-    }
-
-    public override void Init()
-    {
-        if (_Owner != null)
-        {
             // Create aura minions based on the defined size
             for (int i = 0; i < _MinionCount; i++) {
 
@@ -101,6 +62,78 @@ public class Wep_Shield : Weapon {
 
             // Hide the templated minion prefab
             _ShieldMinionPrefab.GetComponent<Renderer>().enabled = false;
+
+            // Set initial rotation
+            rotation = transform.rotation;
         }
     }
+
+    //--------------------------------------------------------------
+    // FRAME
+
+    public override void Update() {
+
+    }
+
+    public override void FixedUpdate() {
+                
+        if (_Owner != null) {
+
+            /// IF RIGHT TRIGGER ISNT BEING USED
+            if (_Owner.GetRightTriggerInput.y > 0) {
+
+                // Rotate shield right
+                ///rotation = new Quaternion(rotation.x, transform.rotation.y + _OrbitSpeed, rotation.z, rotation.w);
+                ///transform.Rotate(0f, transform.parent.rotation.y + _OrbitSpeed, 0f);
+            }
+
+            /// IF LEFT TRIGGER IS BEING USED
+            if (_Owner.GetLeftTriggerInput.y < 0) {
+
+                // Rotate shield left
+                ///rotation = new Quaternion(rotation.x, transform.rotation.y - _OrbitSpeed, rotation.z, rotation.w);
+                ///transform.Rotate(0f, transform.parent.rotation.y - _OrbitSpeed, 0f);
+            }
+        }
+
+        // Update weapons position based of the owning character's position (if VALID)
+        if (_Owner != null)
+        {
+            transform.position = _Owner.transform.position;
+        }
+
+        // Maintain rotation
+        transform.rotation = rotation;
+    }
+
+    //--------------------------------------------------------------
+    // FIRING
+
+    public override void Fire() {
+
+    }
+
+    public int GetMaxMinions() {
+
+        return _MaxMinions;
+    }
+
+    public int GetMinionCount() {
+
+        return _MinionCount;
+    }
+
+    IEnumerator RotateObj(GameObject spinner, float timeToRotate, Vector3 direction) {
+
+        float t = 0;
+
+        while (t < timeToRotate) {
+
+            spinner.transform.Rotate(direction * (Time.fixedDeltaTime / timeToRotate));
+            t += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        yield break;
+    }
+
 }

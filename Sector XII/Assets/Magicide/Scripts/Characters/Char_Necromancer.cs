@@ -84,16 +84,6 @@ public class Char_Necromancer : Character {
                 // Fire primary weapon (orb)
                 _WeaponPrimary.Fire();
             }
-
-            // Move shield left
-            if (GetLeftTriggerInput != new Vector3(0, 0, 0)) {
-
-            }
-
-            // Move shield right
-            if (GetRightTriggerInput != new Vector3(0, 0, 0)) {
-
-            }
         }
     }
 

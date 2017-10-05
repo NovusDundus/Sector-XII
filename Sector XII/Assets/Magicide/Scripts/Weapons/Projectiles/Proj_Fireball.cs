@@ -28,7 +28,7 @@ public class Proj_Fireball : Projectile {
         _ImpactDamage = WeaponManager._pInstance._ImpactDamage;
 
         // Set travel speed for the projectile
-        _TravelSpeed = WeaponManager._pInstance._FireballSpeed / 60;
+        _TravelSpeed = WeaponManager._pInstance._FireballSpeed;
 
         // Get referenece to projectile collision
         _collider = GetComponent<SphereCollider>();
@@ -79,6 +79,7 @@ public class Proj_Fireball : Projectile {
 
                 /// PLACEHOLDER ****************
                 Destroy(gameObject);
+                _Owner.GetComponent<Wep_Orb>()._ActiveProjectiles -= 1;
             }
         }
     }

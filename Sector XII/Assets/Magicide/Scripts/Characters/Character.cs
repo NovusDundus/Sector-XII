@@ -80,19 +80,19 @@ public class Character : MonoBehaviour {
 
     public Vector3 GetLeftTriggerInput {
 
-        // Get
+        // Get the input axis amount as a Vector rotating left
         get
         {
-            return new Vector3(0, 0, 0);
+            return new Vector3(0, - Input.GetAxis(string.Concat("LeftTrigger_P", _Player._pPlayerID)), 0);
         }
     }
 
     public Vector3 GetRightTriggerInput {
 
-        // Get
+        // Get the input axis amount as a Vector rotating left
         get
         {
-            return new Vector3(0, 0, 0);
+            return new Vector3(0, Input.GetAxis(string.Concat("RightTrigger_P", _Player._pPlayerID)), 0);
         }
     }
 

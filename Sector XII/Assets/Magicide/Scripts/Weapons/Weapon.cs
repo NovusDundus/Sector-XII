@@ -51,8 +51,12 @@ public class Weapon : MonoBehaviour {
 
     public virtual void FixedUpdate() {
 
-        // Deduct from the firing delay timer
-        _FiringDelay -= Time.deltaTime;
+        // Incomplete firing delay sequence
+        if (_FiringDelay > 0) {
+
+            // Deduct from the firing delay timer
+            _FiringDelay -= Time.deltaTime;
+        }
 
         if (_HeatedWeapon == true) {
 
@@ -118,6 +122,11 @@ public class Weapon : MonoBehaviour {
 
         // Reset firing delay (only executes after a successful firing sequence)
         _FiringDelay = _FiringRate;
+    }
+
+    public float GetFireDelay() {
+
+        return _FiringDelay;
     }
 
     public float GetCurrentHeat() {

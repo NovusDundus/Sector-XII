@@ -32,6 +32,22 @@ public class Player : MonoBehaviour {
 
     void FixedUpdate() {
 
+        if (GetPauseInput == true) {
+
+            Debug.Log("Pause button pressed");
+
+            // Game is currently in a PAUSED state
+            if (MatchManager._pInstance.GetPaused() == true) {
+
+                MatchManager._pInstance.SetPause(false);
+            }
+
+            // Game is currently in an UNPAUSED state
+            else { /// MatchManager._pInstance.GetPaused() == true
+
+                MatchManager._pInstance.SetPause(true);
+            }
+        }
     }
 
     public void SetScore(int amount) {
@@ -50,5 +66,14 @@ public class Player : MonoBehaviour {
 
         // Returns the current score of the player
         return _Score;
+    }
+
+    public bool GetPauseInput {
+
+        // Initiates a gameplay pause when the button is pressed
+        get
+        {
+            return Input.GetButton("Pause");
+        }
     }
 }

@@ -20,11 +20,16 @@ public class Wep_Orb : Weapon {
     [Tooltip("gameobject that contains the Fireball script")]
     public GameObject _ProjectilePrefab;
 
+    /// Public (internal)
+    [HideInInspector]
+    public int _ActiveProjectiles = 0;
+
     /// Private
-    private int _POOL_SIZE = 50;                                 // Instance amount required for the object pool to function.
+    private int _POOL_SIZE = 40;                                 // Instance amount required for the object pool to function.
     List<GameObject> _POOL_FIREBALL_INACTIVE;                    // Object pool of all inactive projectiles.
     List<GameObject> _POOL_FIREBALL_ACTIVE;                      // Object pool of all active projectiles in the world.
     private bool _FiredFromLeftMuzzle = false;
+
 
     //--------------------------------------------------------------
     // CONSTRUCTORS
@@ -101,8 +106,6 @@ public class Wep_Orb : Weapon {
                 projectile.GetComponent<Renderer>().enabled = true;
             }
         }
-
-        Debug.LogWarning("Current heat: " + _CurrentHeat);
     }
 
     // -------------------------------------------------------------
@@ -126,6 +129,7 @@ public class Wep_Orb : Weapon {
                         var proj = Instantiate(_ProjectilePrefab, _MuzzlePointLeft.position, transform.rotation);
                         proj.GetComponent<Projectile>().Init();
                         proj.GetComponent<Projectile>().SetOwner(this);
+                        _ActiveProjectiles += 1;
 
                         // Set last muzzle used to RIGHT
                         _FiredFromLeftMuzzle = false;
@@ -143,6 +147,7 @@ public class Wep_Orb : Weapon {
                     var proj = Instantiate(_ProjectilePrefab, _MuzzlePointRight.position, transform.rotation);
                     proj.GetComponent<Projectile>().Init();
                     proj.GetComponent<Projectile>().SetOwner(this);
+                    _ActiveProjectiles += 1;
 
                     // Set last muzzle used to LEFT
                     _FiredFromLeftMuzzle = true;
@@ -189,5 +194,22 @@ public class Wep_Orb : Weapon {
     public void SetActive(Proj_Fireball proj) {
 
     }
-    
+
+    public int GetPoolSize() {
+
+        return _POOL_SIZE;
+    }
+
+    public int GetPoolInactiveCount() {
+
+        return GetPoolSize() - _ActiveProjectiles;
+        ///return _POOL_FIREBALL_INACTIVE.Count;
+    }
+
+    public int GetPoolActiveCount() {
+
+        return _ActiveProjectiles;
+        ///return _POOL_FIREBALL_ACTIVE.Count;
+    }
+
 }
