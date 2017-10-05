@@ -117,11 +117,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644b168221e562842ba6d16853ef85f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _OrbFireDelay: 0.05
+  _OrbFireDelay: 0.1
   _FireballHeatCost: 0.1
   _OrbCooldownRateStable: 0.025
   _OrbCooldownRateOverheated: 0.01
   _ImpactDamage: 100
-  _FireballSpeed: 40
+  _FireballSpeed: 20
   _FireballRange: 100
   _MaxSize: 14
