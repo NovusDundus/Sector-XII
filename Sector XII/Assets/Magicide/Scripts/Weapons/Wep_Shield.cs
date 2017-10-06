@@ -15,10 +15,12 @@ public class Wep_Shield : Weapon {
     public GameObject _ShieldMinionPrefab;
 
     private int _MaxMinions = 14;                                   // Cap of how many minions are allowed to make the shield.
-    private int _MinionCount = 14;                                  // Amount of minions that composes the weapon.
+    private int _MinionCount = 6;                                   // Amount of minions that composes the weapon.
     private float _MinionSpacing = 1f;                              // Unit of space between each minion.
-    private float _OrbitSpeed = 3f;                                 // The speed in which the minions rotate around the character that owns this weapon.
+    private float _OrbitSpeed = 5f;                                // The speed in which the minions rotate around the character that owns this weapon.
     private Quaternion rotation;
+
+    private List<GameObject> _POOL_Minions;
 
     //--------------------------------------------------------------
     // CONSTRUCTORS
@@ -26,14 +28,16 @@ public class Wep_Shield : Weapon {
     public override void Start() {
         
         // Set orbit speed
-        _OrbitSpeed = WeaponManager._pInstance._OrbitSpeed;
+        ///_OrbitSpeed = WeaponManager._pInstance._OrbitSpeed;
 
         // Set minion cap
         _MaxMinions = WeaponManager._pInstance._MaxSize;
-        ///_MinionCount = 0;
 
         // Set initial rotation
         rotation = transform.rotation;
+
+        // Create object pool
+        _POOL_Minions = new List<GameObject>();
     }
 
     public override void Init() {
@@ -54,9 +58,6 @@ public class Wep_Shield : Weapon {
                     // Create the minion prefab
                     var minion = Instantiate(_ShieldMinionPrefab, pos, Quaternion.identity, gameObject.transform).GetComponent<Proj_ShieldMinion>();
                     minion.GetComponentInChildren<Projectile>().Init();
-
-                    // Set owner for the aura minion
-                    ///minion.GetComponentInChildren<Projectile>().SetOwner(_Owner);
                 }
             }
 
@@ -79,20 +80,20 @@ public class Wep_Shield : Weapon {
                 
         if (_Owner != null) {
 
-            /// IF RIGHT TRIGGER ISNT BEING USED
-            if (_Owner.GetRightTriggerInput.y > 0) {
+            /// IF RIGHT TRIGGER IS BEING USED
+            if (_Owner.GetRightTriggerInput.y != 0f) {
 
                 // Rotate shield right
-                ///rotation = new Quaternion(rotation.x, transform.rotation.y + _OrbitSpeed, rotation.z, rotation.w);
-                ///transform.Rotate(0f, transform.parent.rotation.y + _OrbitSpeed, 0f);
+                rotation = new Quaternion(rotation.x, transform.rotation.y + _OrbitSpeed * Time.deltaTime, rotation.z, rotation.w);
+                ///transform.Rotate(0f, transform.rotation.y + _OrbitSpeed * Time.deltaTime, 0f);
             }
 
             /// IF LEFT TRIGGER IS BEING USED
-            if (_Owner.GetLeftTriggerInput.y < 0) {
+            if (_Owner.GetLeftTriggerInput.y != 0f) {
 
                 // Rotate shield left
-                ///rotation = new Quaternion(rotation.x, transform.rotation.y - _OrbitSpeed, rotation.z, rotation.w);
-                ///transform.Rotate(0f, transform.parent.rotation.y - _OrbitSpeed, 0f);
+                rotation = new Quaternion(rotation.x, transform.rotation.y - _OrbitSpeed * Time.deltaTime, rotation.z, rotation.w);
+                ///transform.Rotate(0f, transform.rotation.y - _OrbitSpeed * Time.deltaTime, 0f);
             }
         }
 
@@ -103,6 +104,7 @@ public class Wep_Shield : Weapon {
         }
 
         // Maintain rotation
+        ///rotation.y = transform.rotation.y;
         transform.rotation = rotation;
     }
 
@@ -111,16 +113,7 @@ public class Wep_Shield : Weapon {
 
     public override void Fire() {
 
-    }
-
-    public int GetMaxMinions() {
-
-        return _MaxMinions;
-    }
-
-    public int GetMinionCount() {
-
-        return _MinionCount;
+        // DO NOTHING
     }
 
     IEnumerator RotateObj(GameObject spinner, float timeToRotate, Vector3 direction) {
@@ -134,6 +127,16 @@ public class Wep_Shield : Weapon {
             yield return new WaitForFixedUpdate();
         }
         yield break;
+    }
+
+    public int GetMaxMinions() {
+
+        return _MaxMinions;
+    }
+
+    public int GetMinionCount() {
+
+        return _MinionCount;
     }
 
 }

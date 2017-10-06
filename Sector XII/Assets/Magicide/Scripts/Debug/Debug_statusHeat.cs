@@ -17,7 +17,19 @@ public class Debug_statusHeat : MonoBehaviour {
 
         if (TextComp != null && WeaponTested != null) {
 
-            TextComp.text = WeaponTested.GetOverheatedStatus().ToString();
+            // Overheated
+            if (WeaponTested.GetOverheatedStatus() == true) {
+
+                TextComp.text = "Overheated";
+                TextComp.color = Color.red;
+            }
+
+            // Stable
+            else {
+
+                TextComp.text = "Stable";
+                TextComp.color = Color.blue;
+            }            
         }
     }
 }

@@ -17,7 +17,7 @@ public class PlayerManager : MonoBehaviour {
     [Header("- Health")]
     public int _NecromancerStartingHealth = 100;                    // Starting health of the necromancers that are possessed by the players.
     [Header("- Movement")]
-    public float _NecromancerMovementSpeed = 10f;
+    public float _NecromancerMovementSpeed = 10f;                   // Movement speed of the necromancer character.
     public float _NecromancerRotationSpeed = 2f;
 
     /// Public (internal)
@@ -25,11 +25,9 @@ public class PlayerManager : MonoBehaviour {
     public static PlayerManager _pInstance;                         // This is a singleton script, Initialized in Startup().
    
     /// Private
-    private List<GameObject> _POOL_ALIVE_NECROMANCERS;              // Object pool of all inactive Player necromancers.
-    private List<GameObject> _POOL_DEAD_NECROMANCERS;               // Object pool of all active Player necromancers.
-    private List<GameObject> _POOL_ALIVE_WYRMS;                     // Object pool of all inactive AI wyrms.
-    private List<GameObject> _POOL_DEAD_WYRMS;                      // Object pool of all active AI wyrms.
-
+    private List<Character> _POOL_ALIVE_NECROMANCERS;               // Object pool of all ALIVE Player necromancers.
+    private List<Character> _POOL_DEAD_NECROMANCERS;                // Object pool of all DEAD Player necromancers.
+    
     //--------------------------------------------------------------
     // CONSTRUCTORS
 
@@ -45,10 +43,8 @@ public class PlayerManager : MonoBehaviour {
         _pInstance = this;
 
         // Create object pools
-        _POOL_ALIVE_NECROMANCERS = new List<GameObject>();
-        _POOL_DEAD_NECROMANCERS = new List<GameObject>();
-        _POOL_ALIVE_WYRMS = new List<GameObject>();
-        _POOL_DEAD_WYRMS = new List<GameObject>();
+        _POOL_ALIVE_NECROMANCERS = new List<Character>();
+        _POOL_DEAD_NECROMANCERS = new List<Character>();
     }
 
     //--------------------------------------------------------------
@@ -65,23 +61,13 @@ public class PlayerManager : MonoBehaviour {
     //--------------------------------------------------------------
     // OBJECT POOLS
 
-    public List<GameObject> GetAliveNecromancers() {
+    public List<Character> GetAliveNecromancers() {
 
         return _POOL_ALIVE_NECROMANCERS;
     }
 
-    public List<GameObject> GetDeadNecromancers() {
+    public List<Character> GetDeadNecromancers() {
 
         return _POOL_DEAD_NECROMANCERS;
-    }
-
-    public List<GameObject> GetAliveWyrms() {
-
-        return _POOL_ALIVE_WYRMS;
-    }
-
-    public List<GameObject> GetDeadWyrms() {
-
-        return _POOL_DEAD_WYRMS;
     }
 }

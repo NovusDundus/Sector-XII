@@ -20,8 +20,19 @@ public class Debug_fireRate : MonoBehaviour {
         if (TextComp != null && WeaponTested != null) {
 
             fCurrentDelay = WeaponTested.GetFireDelay();
+            TextComp.text = fCurrentDelay.ToString("0.00");
 
-            TextComp.text = fCurrentDelay.ToString("0.0000");
+            // Can shoot
+            if (fCurrentDelay <= 0f) {
+
+                TextComp.color = Color.blue;
+            }
+
+            // Cannot shoot
+            else {
+
+                TextComp.color = Color.red;
+            }
         }
     }
 }

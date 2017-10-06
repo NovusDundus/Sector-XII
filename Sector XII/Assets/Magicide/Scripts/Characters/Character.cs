@@ -24,6 +24,7 @@ public class Character : MonoBehaviour {
     protected float _RotationSpeed;                                 // The rotating speed of the character.
     protected Vector3 _DeathPosition;                               // World location point of where the character was killed.
     protected Vector3 _CurrentRotationInput;                        // Current Vector in the world that is stored by the gamepad axis.
+    public Collider _Collider;                                      // The collision associated with the character.
 
     //--------------------------------------------------------------
     // CONSTRUCTORS
@@ -32,6 +33,9 @@ public class Character : MonoBehaviour {
 
         // Set the starting health for the character
         _Health = _StartingHealth;
+
+        // Get reference to collision
+        ///_Collider = GetComponentInChildren<Collider>();
     }
 
     //--------------------------------------------------------------
@@ -74,7 +78,9 @@ public class Character : MonoBehaviour {
         // Gets directional rotation input
         get
         {
-            return new Vector3(0, Mathf.Atan2(Input.GetAxis(string.Concat("RightStick_Y_P", _Player._pPlayerID)), Input.GetAxis(string.Concat("RightStick_X_P", _Player._pPlayerID))) * 180 / Mathf.PI, 0);
+            return new Vector3(0, 
+                90f + (Mathf.Atan2(Input.GetAxis(string.Concat("RightStick_Y_P", _Player._pPlayerID)), Input.GetAxis(string.Concat("RightStick_X_P", _Player._pPlayerID))) * 180 / Mathf.PI), 
+                0);
         }
     }
 
@@ -94,6 +100,11 @@ public class Character : MonoBehaviour {
         {
             return new Vector3(0, Input.GetAxis(string.Concat("RightTrigger_P", _Player._pPlayerID)), 0);
         }
+    }
+
+    public float GetMovementSpeed() {
+
+        return _MovementSpeed;
     }
 
     // -------------------------------------------------------------
@@ -130,6 +141,11 @@ public class Character : MonoBehaviour {
         _DeathPosition = transform.position;
     }
 
+    public Collider GetCollider() {
+
+        return _Collider;
+    }
+    
     // -------------------------------------------------------------
     // COMBAT
 

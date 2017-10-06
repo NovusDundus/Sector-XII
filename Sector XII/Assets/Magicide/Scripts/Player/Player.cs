@@ -12,7 +12,7 @@ public class Player : MonoBehaviour {
     //----------------------------------------------------------------------------------
     // VARIABLES
 
-    /// Public
+    /// Public (designers)
     public int _pPlayerID = 0;                                      // ID Reference of the individual player.
     public Color _pPlayerColour;                                    // The colour that represents the individual player.
 

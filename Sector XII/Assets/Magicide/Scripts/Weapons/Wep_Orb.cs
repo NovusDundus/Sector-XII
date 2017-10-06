@@ -25,12 +25,11 @@ public class Wep_Orb : Weapon {
     public int _ActiveProjectiles = 0;
 
     /// Private
-    private int _POOL_SIZE = 40;                                 // Instance amount required for the object pool to function.
-    List<GameObject> _POOL_FIREBALL_INACTIVE;                    // Object pool of all inactive projectiles.
-    List<GameObject> _POOL_FIREBALL_ACTIVE;                      // Object pool of all active projectiles in the world.
-    private bool _FiredFromLeftMuzzle = false;
-
-
+    private int _POOL_SIZE = 30;                                    // Instance amount required for the object pool to function.
+    List<GameObject> _POOL_FIREBALL_INACTIVE;                       // Object pool of all inactive projectiles.
+    List<GameObject> _POOL_FIREBALL_ACTIVE;                         // Object pool of all active projectiles in the world.
+    private bool _FiredFromLeftMuzzle = false;                      // Returns TRUE if the last projectile was fired from the LEFT muzzle launch point.
+    
     //--------------------------------------------------------------
     // CONSTRUCTORS
 
@@ -82,7 +81,7 @@ public class Wep_Orb : Weapon {
         if (_Owner != null) {
 
             transform.position = new Vector3(_Owner.transform.position.x, transform.position.y, _Owner.transform.position.z);
-            transform.rotation = _Owner.transform.rotation;
+            ///transform.rotation = _Owner.transform.rotation;
         }
 
         // Check if fire delay allows the firing sequence to be initiated
@@ -129,6 +128,13 @@ public class Wep_Orb : Weapon {
                         var proj = Instantiate(_ProjectilePrefab, _MuzzlePointLeft.position, transform.rotation);
                         proj.GetComponent<Projectile>().Init();
                         proj.GetComponent<Projectile>().SetOwner(this);
+
+                        // Get a target for aim assist
+                        if (FindTarget().point != new Vector3(0, 0, 0)) {
+
+                            proj.transform.LookAt(FindTarget().point);
+                        }
+
                         _ActiveProjectiles += 1;
 
                         // Set last muzzle used to RIGHT
@@ -147,6 +153,13 @@ public class Wep_Orb : Weapon {
                     var proj = Instantiate(_ProjectilePrefab, _MuzzlePointRight.position, transform.rotation);
                     proj.GetComponent<Projectile>().Init();
                     proj.GetComponent<Projectile>().SetOwner(this);
+
+                    // Get a target for aim assist
+                    if (FindTarget().point != new Vector3(0, 0, 0)) {
+
+                        proj.transform.LookAt(FindTarget().point);
+                    }
+
                     _ActiveProjectiles += 1;
 
                     // Set last muzzle used to LEFT
@@ -160,6 +173,20 @@ public class Wep_Orb : Weapon {
             // Reset firing delay
             base.Fire();
         }
+    }
+
+    public RaycastHit FindTarget() {
+
+        RaycastHit hit;
+        var rayStart = transform.position/*new Vector3(transform.position.x, transform.position.y + 50, transform.position.z)*/;
+        var rayEnd = transform.forward * WeaponManager._pInstance._FireballRange;
+
+        // Fire line trace from weapon's position going forward X max range
+        if (Physics.Raycast(rayStart, rayEnd, out hit)) {
+
+            Debug.DrawLine(rayStart, hit.point, Color.red, 100);
+        }
+        return hit;
     }
 
     //--------------------------------------------------------------

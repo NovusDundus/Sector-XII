@@ -43,6 +43,21 @@ public class Proj_Fireball : Projectile {
         _Active = true;
     }
 
+    public void FreeProjectile() {
+
+        // Reset properties
+        _Active = false;
+        distanceTraveled = 0f;
+
+        // Find reference to self in active projectile pool
+
+        // Needs to move to the inactive projectile pool
+
+        /// PLACEHOLDER ****************
+        Destroy(gameObject);
+        _Owner.GetComponent<Wep_Orb>()._ActiveProjectiles -= 1;
+    }
+
     //--------------------------------------------------------------
     // FRAME
 
@@ -55,12 +70,14 @@ public class Proj_Fireball : Projectile {
         // If this fireball is active in the world
         if (_Active == true) {
 
+            // Check for any collision against all potential targets
+            CollisionChecks();
+
             // If max range hasnt been reached yet
             if (distanceTraveled < WeaponManager._pInstance._FireballRange) {
 
                 // Move forwards
-                StartCoroutine(SmoothMove(transform.right, _TravelSpeed));
-                ///transform.Translate(transform.right * _TravelSpeed);
+                StartCoroutine(SmoothMove(transform.forward, _TravelSpeed));
 
                 // Add 1 unit of distance per second
                 distanceTraveled += Time.deltaTime * 60;
@@ -69,17 +86,49 @@ public class Proj_Fireball : Projectile {
             // Max range has been reached
             else { /// distanceTraveled => WeaponManager._pInstance._FireballRange
 
-                // Reset properties
-                _Active = false;
-                distanceTraveled = 0f;
+                // Destroy
+                FreeProjectile();
+            }
+        }
+    }
 
-                // Find reference to self in active projectile pool
+    public void CollisionChecks() {
 
-                // Needs to move to the inactive projectile pool
+        // Check against all alive minions
+        foreach (var minion in AiManager._pInstance.GetActiveMinions()) {
 
-                /// PLACEHOLDER ****************
-                Destroy(gameObject);
-                _Owner.GetComponent<Wep_Orb>()._ActiveProjectiles -= 1;
+            // If minion has valid collision reference set
+            if (minion.GetCollider() != null) {
+
+                // Has the fireball collided with the minion's collision?
+                if (_collider.bounds.Intersects(minion.GetCollider().bounds)) {
+
+                    // Damage minion
+                    minion.Damage(_ImpactDamage);
+
+                    // Destroy fireball
+                    FreeProjectile();
+                    break;
+                }
+            }
+        }
+
+        // Check against all alive players
+        foreach (var necromancer in PlayerManager._pInstance.GetAliveNecromancers()) {
+            
+            // If necromancer has valid collision reference set
+            if (necromancer.GetCollider() != null) {
+
+                // Has the fireball collided with the necromancer's collision?
+                if (_collider.bounds.Intersects(necromancer.GetCollider().bounds)) {
+
+                    // Damage necromancer
+                    necromancer.Damage(_ImpactDamage);
+
+                    // Destroy fireball
+                    FreeProjectile();
+                    break;
+                }
             }
         }
     }
@@ -87,9 +136,9 @@ public class Proj_Fireball : Projectile {
     //--------------------------------------------------------------
     // MOVEMENT
 
-    // Coroutine to move this gameObjects.transform in a direction X speed
     IEnumerator SmoothMove(Vector3 direction, float speed) {
 
+        // Coroutine to move this gameObjects.transform in a direction * speed
         float startTime = Time.time;
         Vector3 startPos = transform.position;
         Vector3 endPos = transform.position + direction;

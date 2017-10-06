@@ -22,14 +22,14 @@ public class Char_Necromancer : Character {
         // Stores reference to the player associated with its
         _Player = GetComponent<Player>();
 
-        // Set character's speed
-        _MovementSpeed = PlayerManager._pInstance._NecromancerMovementSpeed;
-        _RotationSpeed = PlayerManager._pInstance._NecromancerRotationSpeed;
-
         // Set character's health
         _StartingHealth = PlayerManager._pInstance._NecromancerStartingHealth;
         base.Start();
 
+        // Set character's speed
+        _MovementSpeed = PlayerManager._pInstance._NecromancerMovementSpeed;
+        _RotationSpeed = PlayerManager._pInstance._NecromancerRotationSpeed;
+        
         // Create players's primary weapon (orb)
         _WeaponPrimary = GameObject.FindGameObjectWithTag("P" + _Player._pPlayerID + "_PrimaryWeapon").GetComponent<Weapon>();
         _WeaponPrimary.SetOwner(this);
@@ -44,7 +44,7 @@ public class Char_Necromancer : Character {
         SetActive(true);
 
         // Add object associated to script to the playermanager object pool
-        PlayerManager._pInstance.GetAliveNecromancers().Add(gameObject);
+        PlayerManager._pInstance.GetAliveNecromancers().Add(this);
     }
 
     //--------------------------------------------------------------
@@ -60,11 +60,11 @@ public class Char_Necromancer : Character {
         if (_Active == true) {
 
             // ************************
-            /*  MOVEMENT CONTROLLER */
+            //   MOVEMENT CONTROLLER 
             // ************************
 
             // Placeholder movement controller (DOESNT RELY ON SPEED, JUST PURE CONTROLLER INPUT)
-            if (GetRotationInput != new Vector3(0, 0, 0)) {
+            if (GetRotationInput != new Vector3(0, 90, 0)) {
 
                 transform.SetPositionAndRotation(transform.position + GetMovementInput / 4, Quaternion.Euler(GetRotationInput));
             }
@@ -75,11 +75,11 @@ public class Char_Necromancer : Character {
             }
 
             // ************************
-            /*  COMBAT CONTROLLER   */
+            //    COMBAT CONTROLLER   
             // ************************
 
             // Detect firing input
-            if (GetRotationInput != new Vector3(0, 0, 0)) {
+            if (GetRotationInput != new Vector3(0, 90, 0)) {
 
                 // Fire primary weapon (orb)
                 _WeaponPrimary.Fire();
@@ -98,5 +98,18 @@ public class Char_Necromancer : Character {
         // hide character & move out of playable space
         GetComponentInChildren<Renderer>().enabled = false;
         transform.position = new Vector3(1000, 0, 1000);
+
+        // Find self in active pool
+        foreach (var necromancer in PlayerManager._pInstance.GetAliveNecromancers()) {
+
+            // Once we have found ourself in the pool
+            if (necromancer == this) {
+
+                // Move to inactive pool
+                PlayerManager._pInstance.GetDeadNecromancers().Add(necromancer);
+                PlayerManager._pInstance.GetAliveNecromancers().Remove(necromancer);
+                break;
+            }
+        }
     }
 }

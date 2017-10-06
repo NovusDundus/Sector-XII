@@ -75,13 +75,19 @@ public class Weapon : MonoBehaviour {
                 }
 
                 // Weapon has NOT hit max heat capacity
-                else { /// _CurrentHeat < 1f
+                else { /* _CurrentHeat < 1f */
 
                     // Clamp minimum heat to 0
                     if (_CurrentHeat > 0f) {
 
                         // Deduct stable cooldown amount
                         _CurrentHeat -= _CooldownRateStable;
+
+                        // Clamp heat to 0
+                        if (_CurrentHeat < 0f) {
+
+                            _CurrentHeat = 0f;
+                        }
                     }
                 }
             }
@@ -89,13 +95,21 @@ public class Weapon : MonoBehaviour {
             // Weapon has overheated & it now locked until completely cooled down
             else { /// _CoolingDown == true
 
+                // Weapon has not finished cooling down
                 if (_CurrentHeat > 0f) {
 
                     // Deduct overheated cooldown amount
                     _CurrentHeat -= _CooldownRateOverheated;
-                }
 
-                else {
+                    // Clamp heat to 0
+                    if (_CurrentHeat < 0f) {
+
+                        _CurrentHeat = 0f;
+                    }
+                }
+                
+                // Weapon has finished cooling down
+                else { /*/ _CurrentHeat <= 0f   */
 
                     // Cooldown phase complete
                     _CoolingDown = false;
@@ -112,7 +126,6 @@ public class Weapon : MonoBehaviour {
             // enable OR disable firing sequence based on firing delay
             _CanFire = _FiringDelay <= 0f;
         }
-
     }
 
     // -------------------------------------------------------------
