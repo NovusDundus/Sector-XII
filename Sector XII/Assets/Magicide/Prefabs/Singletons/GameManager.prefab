@@ -20,10 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4818791142805520}
   - component: {fileID: 114944523794425134}
+  - component: {fileID: 114673052955311832}
   - component: {fileID: 114678055456776600}
-  - component: {fileID: 114256192889013498}
-  - component: {fileID: 114508586321138280}
+  - component: {fileID: 114954400972428742}
   - component: {fileID: 114973976100088120}
+  - component: {fileID: 114256192889013498}
   - component: {fileID: 114434580830293508}
   m_Layer: 0
   m_Name: GameManager
@@ -39,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1087329879016264}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.222464, y: 4.4266467, z: -9.532595}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -56,6 +57,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f606b9c4b83287f4ab9411ee5571e4d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _WyrmStartingHealth: 100
+  _WyrmMovementSpeed: 5
 --- !u!114 &114434580830293508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -67,7 +70,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cbcfc139f93d9740bdaf99a6cbb2567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114508586321138280
+--- !u!114 &114673052955311832
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087329879016264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47978ad14e7ae8241bad04686667e7fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _MatchTimerText: {fileID: 0}
+  _TimeLowColour: {r: 1, g: 0, b: 0, a: 1}
+  _TimeMediumColour: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _TimeOkayColour: {r: 1, g: 1, b: 1, a: 1}
+  PlayerAlpha: {fileID: 0}
+  _PlayerAlphaColour: {r: 0, g: 0.751724, b: 1, a: 0}
+  PlayerBravo: {fileID: 0}
+  _PlayerBravoColour: {r: 0, g: 1, b: 0.21379304, a: 0}
+  PlayerCharlie: {fileID: 0}
+  _PlayerCharlieColour: {r: 0.8206897, g: 0, b: 1, a: 0}
+  PlayerDelta: {fileID: 0}
+  _PlayerDeltaColour: {r: 1, g: 0.8482759, b: 0, a: 0}
+--- !u!114 &114678055456776600
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087329879016264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54dd93656b2f2940a229b11df00f869, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Phase1Length: 30
+  _Phase2Timer: 1
+  _Phase2Length: 120
+--- !u!114 &114944523794425134
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087329879016264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 702b879b3a5403e4f9fc26091b3be97a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114954400972428742
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -81,31 +132,6 @@ MonoBehaviour:
   _NecromancerStartingHealth: 100
   _NecromancerMovementSpeed: 10
   _NecromancerRotationSpeed: 2
---- !u!114 &114678055456776600
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1087329879016264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d54dd93656b2f2940a229b11df00f869, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Phase1Length: 30
-  _Phase2Timer: 0
-  _Phase2Length: 120
---- !u!114 &114944523794425134
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1087329879016264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 702b879b3a5403e4f9fc26091b3be97a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114973976100088120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,11 +143,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644b168221e562842ba6d16853ef85f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _OrbFireDelay: 0.1
-  _FireballHeatCost: 0.1
-  _OrbCooldownRateStable: 0.025
-  _OrbCooldownRateOverheated: 0.01
-  _ImpactDamage: 100
+  _OrbFireDelay: 0.05
+  _FireballHeatCost: 0.075
+  _OrbCooldownRateStable: 0.02
+  _OrbCooldownRateOverheated: 0.0075
+  _ImpactDamage: 20
   _FireballSpeed: 20
   _FireballRange: 100
   _MaxSize: 14
+  _OrbitSpeed: 3
