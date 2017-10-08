@@ -12,9 +12,14 @@ public class SoundManager : MonoBehaviour {
     //----------------------------------------------------------------------------------
     // VARIABLES
 
+    /// Public (designers)
+    
+
     /// Public (internal)
     [HideInInspector]
     public static SoundManager _pInstance;                          // This is a singleton script, Initialized in Startup().
+
+    /// Private
 
     //--------------------------------------------------------------
     // CONSTRUCTORS
@@ -28,6 +33,7 @@ public class SoundManager : MonoBehaviour {
             return;
         }
 
+        // Set singleton
         _pInstance = this;
     }
 

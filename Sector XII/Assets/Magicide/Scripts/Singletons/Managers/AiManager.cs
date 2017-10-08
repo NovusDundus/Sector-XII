@@ -32,13 +32,14 @@ public class AiManager : MonoBehaviour {
 
     public void Awake() {
 
-        // If the singleton hasn't been initialized yet
+        // If the singleton has already been initialized yet
         if (_pInstance != null && _pInstance != this) {
 
             Destroy(this.gameObject);
             return;
         }
 
+        // Set singleton
         _pInstance = this;
 
         // Create vector arrays

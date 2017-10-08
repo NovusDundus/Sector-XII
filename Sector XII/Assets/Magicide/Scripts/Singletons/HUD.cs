@@ -14,20 +14,20 @@ public class HUD : MonoBehaviour {
     // VARIABLES
 
     /// Public (designers)
-    [Header("Phase Timer")]
-    public Text _MatchTimer;                                        // Reference to the match timer text that is displayed in the HUD.
+    [Header("*** MATCH GUI ***")]
+    public Text _MatchTimerText;                                    // Reference to the match timer text that is displayed in the HUD.
     public Color _TimeLowColour = Color.red;
     public Color _TimeMediumColour = Color.yellow;
     public Color _TimeOkayColour = Color.white;
-    [Header("Players")]
+    [Header(" *** PLAYERS ***")]
     public Char_Necromancer PlayerAlpha;                            // Reference to player 1's character.
-    public Color _PlayerAlphaColour;                                // Player 1's HUD colour pallet.
+    public Color _PlayerAlphaColour = Color.blue;                   // Player 1's HUD colour pallet.
     public Char_Necromancer PlayerBravo;                            // Reference to player 2's character.
-    public Color _PlayerBravoColour;                                // Player 2's HUD colour pallet.
+    public Color _PlayerBravoColour = Color.green;                  // Player 2's HUD colour pallet.
     public Char_Necromancer PlayerCharlie;                          // Reference to player 3's character.
-    public Color _PlayerCharlieColour;                              // Player 3's HUD colour pallet.
+    public Color _PlayerCharlieColour = Color.magenta;              // Player 3's HUD colour pallet.
     public Char_Necromancer PlayerDelta;                            // Reference to player 4's character.
-    public Color _PlayerDeltaColour;                                // Player 4's HUD colour pallet.
+    public Color _PlayerDeltaColour = Color.yellow;                 // Player 4's HUD colour pallet.
 
     /// Public (internal)
     [HideInInspector]
@@ -61,27 +61,27 @@ public class HUD : MonoBehaviour {
         if (_DisplayHUD == true) {
 
             // Phase1 in session
-            if (MatchManager._pInstance.GetPhase1Active() == true) {
+            if (MatchManager._pInstance.GetGameState() == MatchManager.GameState.Phase1) {
 
                 // Update HUD
-                _MatchTimer.text = MatchManager._pInstance.GetPhase1Timer().ToString("00");
+                _MatchTimerText.text = MatchManager._pInstance.GetPhase1Timer().ToString("00");
             }
 
             // Phase2 in session
-            if (MatchManager._pInstance.GetPhase2Active() == true) {
+            if (MatchManager._pInstance.GetGameState() == MatchManager.GameState.Phase2) {
 
                 // Phase2 has a time limit
                 if (MatchManager._pInstance.GetMaxMatchTime() == true) {
 
                     // Update HUD
-                    _MatchTimer.text = MatchManager._pInstance.GetPhase2Timer().ToString("00");
+                    _MatchTimerText.text = MatchManager._pInstance.GetPhase2Timer().ToString("00");
                 }
 
                 // Phase2 has NO time limit
                 else {
 
                     // Hide match timer text
-                    _MatchTimer.gameObject.SetActive(false);
+                    _MatchTimerText.gameObject.SetActive(false);
                 }
             }
         }
@@ -95,4 +95,5 @@ public class HUD : MonoBehaviour {
         // Show or hide the hud
         _DisplayHUD = display;
     }
+
 }

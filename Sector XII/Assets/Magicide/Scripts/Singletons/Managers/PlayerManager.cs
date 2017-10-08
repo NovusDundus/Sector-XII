@@ -33,13 +33,14 @@ public class PlayerManager : MonoBehaviour {
 
     public void Awake() {
 
-        // if the singleton hasn't been initialized yet
+        // if the singleton has already been initialized yet
         if (_pInstance != null && _pInstance != this) {
 
             Destroy(this.gameObject);
             return;
         }
 
+        // Set singleton
         _pInstance = this;
 
         // Create object pools
