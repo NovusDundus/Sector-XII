@@ -19,7 +19,7 @@ public class UI_Pause : MonoBehaviour {
     //--------------------------------------------------------------
     // CONSTRUCTORS
     
-    void Start () {
+    public void Start () {
 
         // Get reference to the panel
         ///uiPause = GetComponent<GameObject>();
@@ -28,7 +28,11 @@ public class UI_Pause : MonoBehaviour {
     //--------------------------------------------------------------
     // FRAME
 
-    void Update () {
+    public void Update () {
+
+    }
+
+    public void FixedUpdate() {
 
         // Game is PAUSED
         if (MatchManager._pInstance.GetPaused() == true) {
@@ -39,7 +43,7 @@ public class UI_Pause : MonoBehaviour {
         // Game is UNPAUSED
         else { /// MatchManager._pInstance.GetPaused() == false
 
-            uiPause.SetActive(false);
+            ///uiPause.SetActive(false);
         }
     }
 }
