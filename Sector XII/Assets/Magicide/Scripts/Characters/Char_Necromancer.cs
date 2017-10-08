@@ -10,19 +10,19 @@ public class Char_Necromancer : Character {
     ///--------------------------------------///
 
     //----------------------------------------------------------------------------------
-    // VARIABLES
+    // *** VARIABLES ***
 
-    
+
 
     //--------------------------------------------------------------
-    // CONSTRUCTORS
+    // *** CONSTRUCTORS ***
 
     public override void Start() {
 
         // Stores reference to the player associated with its
         _Player = GetComponent<Player>();
 
-        // Set character's health
+        // Set character's health & get collision reference
         _StartingHealth = PlayerManager._pInstance._NecromancerStartingHealth;
         base.Start();
 
@@ -43,12 +43,12 @@ public class Char_Necromancer : Character {
         // Can be controlled by player / ai controller
         SetActive(true);
 
-        // Add object associated to script to the playermanager object pool
+        // Add the gameObject associated to this script to the playermanager object pool
         PlayerManager._pInstance.GetAliveNecromancers().Add(this);
     }
 
     //--------------------------------------------------------------
-    // FRAME
+    // *** FRAME ***
 
     public override void Update() {
 
@@ -56,39 +56,43 @@ public class Char_Necromancer : Character {
 
     public override void FixedUpdate() {
 
-        // Only proceed if the character is actively being possessed by a controller (player OR ai)
-        if (_Active == true) {
+        // If in gameplay
+        if (MatchManager._pInstance.GetGameplay() == true) {
 
-            // ************************
-            //   MOVEMENT CONTROLLER 
-            // ************************
+            // Only proceed if the character is actively being possessed by a controller (player OR ai)
+            if (_Active == true) {
 
-            // Placeholder movement controller (DOESNT RELY ON SPEED, JUST PURE CONTROLLER INPUT)
-            if (GetRotationInput != new Vector3(0, 90, 0)) {
+                // ************************
+                //   MOVEMENT CONTROLLER 
+                // ************************
 
-                transform.SetPositionAndRotation(transform.position + GetMovementInput / 4, Quaternion.Euler(GetRotationInput));
-            }
+                // Placeholder movement controller (DOESNT RELY ON SPEED, JUST PURE CONTROLLER INPUT)
+                if (_Player.GetRotationInput != new Vector3(0, 90, 0)) {
 
-            else { /// GetRotationInput == new Vector3(0, 0, 0)
+                    transform.SetPositionAndRotation(transform.position + _Player.GetMovementInput / 4, Quaternion.Euler(_Player.GetRotationInput));
+                }
 
-                transform.SetPositionAndRotation(transform.position + GetMovementInput / 4, transform.rotation);
-            }
+                else { /// GetRotationInput == new Vector3(0, 0, 0)
 
-            // ************************
-            //    COMBAT CONTROLLER   
-            // ************************
+                    transform.SetPositionAndRotation(transform.position + _Player.GetMovementInput / 4, transform.rotation);
+                }
 
-            // Detect firing input
-            if (GetRotationInput != new Vector3(0, 90, 0)) {
+                // ************************
+                //    COMBAT CONTROLLER   
+                // ************************
 
-                // Fire primary weapon (orb)
-                _WeaponPrimary.Fire();
+                // Detect firing input
+                if (_Player.GetRotationInput != new Vector3(0, 90, 0)) {
+
+                    // Fire primary weapon (orb)
+                    _WeaponPrimary.Fire();
+                }
             }
         }
     }
 
     //--------------------------------------------------------------
-    //  HEALTH & DAMAGE
+    // *** HEALTH & DAMAGE ***
 
     public override void OnDeath() {
 

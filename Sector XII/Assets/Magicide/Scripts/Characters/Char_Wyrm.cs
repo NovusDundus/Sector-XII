@@ -10,29 +10,29 @@ public class Char_Wyrm : Character {
     ///--------------------------------------///
 
     //----------------------------------------------------------------------------------
-    // VARIABLES
+    // *** VARIABLES ***
 
 
 
     //--------------------------------------------------------------
-    // CONSTRUCTORS
+    // *** CONSTRUCTORS ***
 
     public override void Start() {
 
-        // Set starting health
+        // Set starting health & get collision reference
         _StartingHealth = AiManager._pInstance._WyrmStartingHealth;
         base.Start();
 
         // Set movement speed
         _MovementSpeed = AiManager._pInstance._WyrmMovementSpeed;
 
-        // Add to inactive array
+        // Add to object pool
         ///AiManager._pInstance.GetInactiveMinions().Add(this.gameObject);
         AiManager._pInstance.GetActiveMinions().Add(this);
     }
 
     //--------------------------------------------------------------
-    // FRAME
+    // *** FRAME ***
 
     public override void Update() {
 
@@ -45,16 +45,16 @@ public class Char_Wyrm : Character {
     }
 
     //--------------------------------------------------------------
-    //  HEALTH & DAMAGE
+    // *** HEALTH & DAMAGE ***
 
     public override void OnDeath() {
 
         // Get last known alive position and store it
         base.OnDeath();
 
-        // hide character & move out of playable space
-        GetComponentInChildren<Renderer>().enabled = false;
-        transform.position = new Vector3(1000, 0, 1000);
+        // hide THIS character & move out of playable space
+        gameObject.GetComponentInChildren<Renderer>().enabled = false;
+        gameObject.transform.position = new Vector3(1000, 0, 1000);
 
         // Find self in active pool
         foreach (var wyrm in AiManager._pInstance.GetActiveMinions()) {
@@ -68,5 +68,9 @@ public class Char_Wyrm : Character {
                 break;
             }
         }
+
+        // Create kill tag at death position associated with THIS wyrm
+        GameObject killTag = Instantiate(GameObject.FindGameObjectWithTag("KillTag"), _DeathPosition, Quaternion.identity);
+        killTag.GetComponent<KillTag>().Init(this);
     }
 }

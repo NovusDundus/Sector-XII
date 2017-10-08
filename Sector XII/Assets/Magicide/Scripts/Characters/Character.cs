@@ -10,11 +10,13 @@ public class Character : MonoBehaviour {
     ///--------------------------------------///
 
     //----------------------------------------------------------------------------------
-    // VARIABLES
+    // *** VARIABLES ***
 
+    /// Public (internal)
     [HideInInspector]
     public Player _Player;                                          // Reference to the player controller that controls this character.
 
+    /// Protected
     protected bool _Active;                                         // Represents if the character is current being controller by its player controller.
     protected int _StartingHealth;                                  // The health of the character upon Startup().
     protected int _Health;                                          // Current health of the character.
@@ -24,10 +26,10 @@ public class Character : MonoBehaviour {
     protected float _RotationSpeed;                                 // The rotating speed of the character.
     protected Vector3 _DeathPosition;                               // World location point of where the character was killed.
     protected Vector3 _CurrentRotationInput;                        // Current Vector in the world that is stored by the gamepad axis.
-    public Collider _Collider;                                      // The collision associated with the character.
+    protected Collider _Collision;                                  // The collision associated with the character.
 
     //--------------------------------------------------------------
-    // CONSTRUCTORS
+    // *** CONSTRUCTORS ***
 
     public virtual void Start() {
 
@@ -35,11 +37,11 @@ public class Character : MonoBehaviour {
         _Health = _StartingHealth;
 
         // Get reference to collision
-        ///_Collider = GetComponentInChildren<Collider>();
+        _Collision = GetComponent<Collider>();
     }
 
     //--------------------------------------------------------------
-    // FRAME
+    // *** FRAME ***
 
     public virtual void Update() {
 
@@ -50,7 +52,7 @@ public class Character : MonoBehaviour {
     }
 
     // -------------------------------------------------------------
-    // INPUT
+    // *** INPUT ***
 
     public void SetActive(bool active) {
 
@@ -64,51 +66,13 @@ public class Character : MonoBehaviour {
         _Player = controller;
     }
 
-    public Vector3 GetMovementInput {
-
-        // Combines the horizontal & vertical input into 1 vector to use for directional movement
-        get
-        {
-            return new Vector3(Input.GetAxis(string.Concat("LeftStick_X_P", _Player._pPlayerID)), 0, Input.GetAxis(string.Concat("LeftStick_Y_P", _Player._pPlayerID)));
-        }
-    }
-
-    public Vector3 GetRotationInput {
-
-        // Gets directional rotation input
-        get
-        {
-            return new Vector3(0, 
-                90f + (Mathf.Atan2(Input.GetAxis(string.Concat("RightStick_Y_P", _Player._pPlayerID)), Input.GetAxis(string.Concat("RightStick_X_P", _Player._pPlayerID))) * 180 / Mathf.PI), 
-                0);
-        }
-    }
-
-    public Vector3 GetLeftTriggerInput {
-
-        // Get the input axis amount as a Vector rotating left
-        get
-        {
-            return new Vector3(0, - Input.GetAxis(string.Concat("LeftTrigger_P", _Player._pPlayerID)), 0);
-        }
-    }
-
-    public Vector3 GetRightTriggerInput {
-
-        // Get the input axis amount as a Vector rotating left
-        get
-        {
-            return new Vector3(0, Input.GetAxis(string.Concat("RightTrigger_P", _Player._pPlayerID)), 0);
-        }
-    }
-
     public float GetMovementSpeed() {
 
         return _MovementSpeed;
     }
 
     // -------------------------------------------------------------
-    // HEALTH & DAMAGE
+    // *** HEALTH & DAMAGE ***
 
     public int GetStartingHealth() {
 
@@ -143,10 +107,20 @@ public class Character : MonoBehaviour {
 
     public Collider GetCollider() {
 
-        return _Collider;
+        return _Collision;
     }
-    
+
     // -------------------------------------------------------------
-    // COMBAT
+    // *** COMBAT ***
+
+    public Weapon GetPrimaryWeapon() {
+
+        return _WeaponPrimary;
+    }
+
+    public Weapon GetSecondaryWeapon() {
+
+        return _WeaponSecondary;
+    }
 
 }
