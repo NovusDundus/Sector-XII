@@ -10,45 +10,77 @@ public class Player : MonoBehaviour {
     ///--------------------------------------///
 
     //----------------------------------------------------------------------------------
-    // VARIABLES
+    // *** VARIABLES ***
 
     /// Public (designers)
     public int _pPlayerID = 0;                                      // ID Reference of the individual player.
-    public Color _pPlayerColour;                                    // The colour that represents the individual player.
 
     /// Private
     private int _Score = 0;                                         // The player's individual score for the match.
 
     //--------------------------------------------------------------
-    // CONSTRUCTORS
+    // *** CONSTRUCTORS ***
 
-    void Start() {
-
-    }
-
-    void Update() {
+    public void Start() {
 
     }
 
-    void FixedUpdate() {
+    //--------------------------------------------------------------
+    // *** FRAME ***
 
-        if (GetPauseInput == true) {
+    public void Update() {
 
-            Debug.Log("Pause button pressed");
+        if (GetSpecialLeftButton) {
 
-            // Game is currently in a PAUSED state
-            if (MatchManager._pInstance.GetPaused() == true) {
+            Debug.Log("Special Left");
+        }
+        if (GetSpecialRightButton) {
 
-                MatchManager._pInstance.SetPause(false);
-            }
+            Debug.Log("Special Right");
+        }
+        if (GetFaceBottomInput) {
 
-            // Game is currently in an UNPAUSED state
-            else { /// MatchManager._pInstance.GetPaused() == true
+            Debug.Log("A button");
+        }
+        if (GetFaceTopInput) {
 
-                MatchManager._pInstance.SetPause(true);
+            Debug.Log("Y button");
+        }
+        if (GetFaceLeftInput) {
+
+            Debug.Log("X button");
+        }
+        if (GetFaceRightInput) {
+
+            Debug.Log("B button");
+        }
+    }
+
+    public void FixedUpdate() {
+
+        // If in gameplay
+        if (MatchManager._pInstance.GetGameplay() == true) {
+
+            // Detect pause input
+            if (GetSpecialRightButton == true) {
+
+                // Game is currently in a PAUSED state
+                if (MatchManager._pInstance.GetPaused() == true) {
+
+                    MatchManager._pInstance.SetPause(false);
+                }
+
+                // Game is currently in an UNPAUSED state
+                else { /// MatchManager._pInstance.GetPaused() == true
+
+                    MatchManager._pInstance.SetPause(true);
+                }
             }
         }
     }
+
+    //--------------------------------------------------------------
+    // *** SCORE ***
 
     public void SetScore(int amount) {
 
@@ -68,12 +100,105 @@ public class Player : MonoBehaviour {
         return _Score;
     }
 
-    public bool GetPauseInput {
+    //--------------------------------------------------------------
+    // *** INPUT ***
 
-        // Initiates a gameplay pause when the button is pressed
+    public Vector3 GetMovementInput {
+
+        // Combines the horizontal & vertical input into 1 vector to use for directional movement
         get
         {
-            return Input.GetButton("Pause");
+            return new Vector3(Input.GetAxis(string.Concat("LeftStick_X_P", _pPlayerID)), 0, Input.GetAxis(string.Concat("LeftStick_Y_P", _pPlayerID)));
         }
     }
+
+    public Vector3 GetRotationInput {
+
+        // Gets directional rotation input
+        get
+        {
+            return new Vector3(0,
+                90f + (Mathf.Atan2(Input.GetAxis(string.Concat("RightStick_Y_P", _pPlayerID)), Input.GetAxis(string.Concat("RightStick_X_P", _pPlayerID))) * 180 / Mathf.PI),
+                0);
+        }
+    }
+
+    // Triggers
+
+    public Vector3 GetLeftTriggerInput {
+
+        // Get the input axis amount as a Vector rotating left
+        get
+        {
+            return new Vector3(0, -Input.GetAxis(string.Concat("LeftTrigger_P", _pPlayerID)), 0);
+        }
+    }
+
+    public Vector3 GetRightTriggerInput {
+
+        // Get the input axis amount as a Vector rotating right
+        get
+        {
+            return new Vector3(0, Input.GetAxis(string.Concat("RightTrigger_P", _pPlayerID)), 0);
+        }
+    }
+
+    // Specials
+
+    public bool GetSpecialRightButton {
+
+        // Returns if the special right button has been pressed
+        get
+        {
+            return Input.GetButton("SpecialRight");
+        }
+    }
+
+    public bool GetSpecialLeftButton {
+
+        // Returns if the special right button has been pressed
+        get
+        {
+            return Input.GetButton("SpecialLeft");
+        }
+    }
+    
+    // Face buttons
+
+    public bool GetFaceBottomInput {
+
+        // Returns if the xbox A button has been pressed
+        get
+        {
+            return Input.GetButton("FaceBottom");
+        }
+    }
+
+    public bool GetFaceTopInput {
+
+        // Returns if the xbox Y button has been pressed
+        get
+        {
+            return Input.GetButton("FaceTop");
+        }
+    }
+
+    public bool GetFaceLeftInput {
+
+        // Returns if the xbox X button has been pressed
+        get
+        {
+            return Input.GetButton("FaceLeft");
+        }
+    }
+
+    public bool GetFaceRightInput {
+
+        // Returns if the xbox B button has been pressed
+        get
+        {
+            return Input.GetButton("FaceRight");
+        }
+    }
+
 }

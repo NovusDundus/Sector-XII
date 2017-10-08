@@ -17,7 +17,7 @@ public class Debug_TriggerRight : MonoBehaviour {
 
         if (TextComp != null && NecroTested != null) {
 
-            TextComp.text = NecroTested.GetRightTriggerInput.ToString();
+            TextComp.text = NecroTested._Player.GetRightTriggerInput.ToString();
         }
     }
 }
