@@ -10,17 +10,17 @@ public class Proj_Fireball : Projectile {
     ///--------------------------------------///
 
     //---------------------------------------------------------------------------------
-    // VARIABLES
+    // *** VARIABLES ***
 
     /// Private
-    private int _ImpactDamage;
-    private float _TravelSpeed;
-    private bool _Active = false;
-    private SphereCollider _collider;
-    private float distanceTraveled = 0f;
+    private int _ImpactDamage;                                      // Amount of damage inflicted to any object that collides with this projectile.
+    private float _TravelSpeed;                                     // Movement speed of the projectile.
+    private bool _Active = false;                                   // Returns TRUE if the projectile is active in the world.
+    private SphereCollider _collider;                               // Reference to the collision associated with the projectile.
+    private float distanceTraveled = 0f;                            // Used to test if max range has been reached.
 
     //--------------------------------------------------------------
-    // CONSTRUCTORS
+    // *** CONSTRUCTORS ***
 
     public override void Start() {
 
@@ -59,7 +59,7 @@ public class Proj_Fireball : Projectile {
     }
 
     //--------------------------------------------------------------
-    // FRAME
+    // *** FRAME ***
 
     public override void Update() {
 
@@ -119,22 +119,26 @@ public class Proj_Fireball : Projectile {
             // If necromancer has valid collision reference set
             if (necromancer.GetCollider() != null) {
 
-                // Has the fireball collided with the necromancer's collision?
-                if (_collider.bounds.Intersects(necromancer.GetCollider().bounds)) {
+                // If it isnt the instigator who is being tested against
+                if (necromancer != _Owner) {
 
-                    // Damage necromancer
-                    necromancer.Damage(_ImpactDamage);
+                    // Has the fireball collided with the necromancer's collision?
+                    if (_collider.bounds.Intersects(necromancer.GetCollider().bounds)) {
 
-                    // Destroy fireball
-                    FreeProjectile();
-                    break;
+                        // Damage necromancer
+                        ///necromancer.Damage(_ImpactDamage);
+
+                        // Destroy fireball
+                        FreeProjectile();
+                        break;
+                    }
                 }
             }
         }
     }
 
     //--------------------------------------------------------------
-    // MOVEMENT
+    // *** MOVEMENT ***
 
     IEnumerator SmoothMove(Vector3 direction, float speed) {
 

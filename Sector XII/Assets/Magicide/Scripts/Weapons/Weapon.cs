@@ -10,26 +10,41 @@ public class Weapon : MonoBehaviour {
     ///--------------------------------------///
 
     //----------------------------------------------------------------------------------
-    // VARIABLES
+    // *** VARIABLES *** 
 
     // Protected
     protected Character _Owner;                                     // Reference to the current owner assosiated with the weapon.
     protected float _FiringRate = 1;                                // The amount of time between shots.
     protected float _FiringDelay = 0;                               // Current amount of time left till it can fire a projectile.
-    protected bool _CanFire = true;                                 // Returns true if the weapon is allowed to successfully fire a projectile.
-    protected bool _HeatedWeapon = false;
-    protected bool _Overheated = false;
-    protected bool _CoolingDown;
-    protected float _CurrentHeat = 0f;
-    protected float _FiringHeatCost;
-    protected float _CooldownRateStable;
-    protected float _CooldownRateOverheated;
+    protected bool _CanFire = true;                                 // Returns TRUE if the weapon is allowed to successfully fire a projectile.
+    protected bool _HeatedWeapon = false;                           // Can the weapon overheat from firing too much?
+    protected bool _Overheated = false;                             // Returns TRUE if the weapon is currently in an overheated state.
+    protected bool _CoolingDown;                                    // Returns TRUE if the weapon is currently venting cooldown. (Cannot fire during cooldown phase)
+    protected float _CurrentHeat = 0f;                              // The current percentage of heat that the weapon has.
+    protected float _FiringHeatCost;                                // The heat cost of each successful firing of the weapon.
+    protected float _CooldownRateStable;                            // The amount of heat that is removed each frame when the weapon is in a 'stable' state.
+    protected float _CooldownRateOverheated;                        // The amount of heat that is removed each frame when the weapon is in an 'overheated' state.
 
     //--------------------------------------------------------------
-    // CONSTRUCTORS
+    // *** CONSTRUCTORS *** 
 
     public virtual void Start() {
 
+        // If the weapon has overheating functionality
+        if (_HeatedWeapon == true) {
+
+            // Precausion so that when the weapon overheats, it will cooldown
+            if (_CooldownRateOverheated == 0f) {
+
+                _CooldownRateOverheated = 0.1f;
+            }
+        }
+
+        //  Precausion so that the firing rate isnt instant
+        if (_FiringRate == 0f) {
+
+            _FiringRate = 0.1f;
+        }
     }
 
     public virtual void Init() {
@@ -43,7 +58,7 @@ public class Weapon : MonoBehaviour {
     }
 
     //--------------------------------------------------------------
-    // FRAME
+    // *** FRAME *** 
 
     public virtual void Update() {
 
@@ -52,10 +67,16 @@ public class Weapon : MonoBehaviour {
     public virtual void FixedUpdate() {
 
         // Incomplete firing delay sequence
-        if (_FiringDelay > 0) {
+        if (_FiringDelay > 0f) {
 
             // Deduct from the firing delay timer
             _FiringDelay -= Time.deltaTime;
+
+            // Clamp delay to 0.0
+            if (_FiringDelay < 0f) {
+
+                _FiringDelay = 0f;
+            }
         }
 
         if (_HeatedWeapon == true) {
@@ -129,7 +150,7 @@ public class Weapon : MonoBehaviour {
     }
 
     // -------------------------------------------------------------
-    // FIRING
+    // *** FIRING ***
 
     public virtual void Fire() {
 
@@ -141,6 +162,9 @@ public class Weapon : MonoBehaviour {
 
         return _FiringDelay;
     }
+
+    //--------------------------------------------------------------
+    // *** HEAT ***
 
     public float GetCurrentHeat() {
 

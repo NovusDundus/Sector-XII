@@ -10,7 +10,7 @@ public class Wep_Orb : Weapon {
     ///--------------------------------------///
 
     //---------------------------------------------------------------------------------
-    // VARIABLES
+    // *** VARIABLES ***
 
     /// Public (designers)
     [Tooltip("Empty gameObject placed where the left muzzle launch point will be")]
@@ -25,15 +25,18 @@ public class Wep_Orb : Weapon {
     public int _ActiveProjectiles = 0;
 
     /// Private
-    private int _POOL_SIZE = 30;                                    // Instance amount required for the object pool to function.
+    private int _POOL_SIZE = 40;                                    // Instance amount required for the object pool to function.
     List<GameObject> _POOL_FIREBALL_INACTIVE;                       // Object pool of all inactive projectiles.
     List<GameObject> _POOL_FIREBALL_ACTIVE;                         // Object pool of all active projectiles in the world.
     private bool _FiredFromLeftMuzzle = false;                      // Returns TRUE if the last projectile was fired from the LEFT muzzle launch point.
-    
+
     //--------------------------------------------------------------
-    // CONSTRUCTORS
+    // *** CONSTRUCTORS ***
 
     public override void Start() {
+
+        // Precausions
+        base.Start();
 
         // Set firing rate
         _FiringRate = WeaponManager._pInstance._OrbFireDelay;
@@ -69,7 +72,7 @@ public class Wep_Orb : Weapon {
     }
 
     //--------------------------------------------------------------
-    // FRAME
+    // *** FRAME ***
 
     public override void Update() {
 
@@ -81,7 +84,7 @@ public class Wep_Orb : Weapon {
         if (_Owner != null) {
 
             transform.position = new Vector3(_Owner.transform.position.x, transform.position.y, _Owner.transform.position.z);
-            ///transform.rotation = _Owner.transform.rotation;
+            transform.rotation = _Owner.transform.rotation;
         }
 
         // Check if fire delay allows the firing sequence to be initiated
@@ -108,7 +111,7 @@ public class Wep_Orb : Weapon {
     }
 
     // -------------------------------------------------------------
-    // FIRING
+    // *** FIRING ***
 
     public override void Fire() {
         
@@ -178,19 +181,30 @@ public class Wep_Orb : Weapon {
     public RaycastHit FindTarget() {
 
         RaycastHit hit;
-        var rayStart = transform.position/*new Vector3(transform.position.x, transform.position.y + 50, transform.position.z)*/;
-        var rayEnd = transform.forward * WeaponManager._pInstance._FireballRange;
+
+        // Start hitscan from weapon's position
+        var rayStart = transform.position;
+
+        // End hitscan from weapon's facing forward direction
+        var rayEnd = transform.forward * 1000/*WeaponManager._pInstance._FireballRange*/;
 
         // Fire line trace from weapon's position going forward X max range
         if (Physics.Raycast(rayStart, rayEnd, out hit)) {
 
-            Debug.DrawLine(rayStart, hit.point, Color.red, 100);
+            // Successful hit
+            Debug.DrawLine(rayStart, hit.point, Color.green, 100);
+        }
+
+        else {
+
+            // Unsuccessful hit
+            Debug.DrawLine(rayStart, rayEnd, Color.red, 100);
         }
         return hit;
     }
 
     //--------------------------------------------------------------
-    // OBJECT POOLS
+    // *** OBJECT POOLS ***
 
     public Proj_Fireball GetInactiveProjectile() {
 

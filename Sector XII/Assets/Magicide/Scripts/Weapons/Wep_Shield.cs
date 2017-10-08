@@ -10,25 +10,30 @@ public class Wep_Shield : Weapon {
     ///--------------------------------------///
 
     //---------------------------------------------------------------------------------
-    // VARIABLES
+    // *** VARIABLES ***
 
     public GameObject _ShieldMinionPrefab;
 
+    /// Private
     private int _MaxMinions = 14;                                   // Cap of how many minions are allowed to make the shield.
-    private int _MinionCount = 6;                                   // Amount of minions that composes the weapon.
-    private float _MinionSpacing = 1f;                              // Unit of space between each minion.
-    private float _OrbitSpeed = 5f;                                // The speed in which the minions rotate around the character that owns this weapon.
-    private Quaternion rotation;
-
-    private List<GameObject> _POOL_Minions;
+    private int _MinionCount = 0;                                   // Amount of minions that composes the weapon.
+    private int _PreviousMinionCount = 0;
+    private float _OrbitSpeed;                                      // The speed in which the minions rotate around the character that owns this weapon.
+    private float _MinionSpacing = 1f;         /* TEMPORARY */      // Unit of space between each minion.
+    private Quaternion rotation;                                    // Current rotation of the weapon's transform.
+    private List<GameObject> _POOL_Minions;                         // Object pool of all minions attached to this weapon.        
+    private List<Vector3> _MeatPositions;
 
     //--------------------------------------------------------------
-    // CONSTRUCTORS
+    // *** CONSTRUCTORS ***
 
     public override void Start() {
-        
+
+        // Precausions
+        base.Start();
+
         // Set orbit speed
-        ///_OrbitSpeed = WeaponManager._pInstance._OrbitSpeed;
+        _OrbitSpeed = WeaponManager._pInstance._OrbitSpeed;
 
         // Set minion cap
         _MaxMinions = WeaponManager._pInstance._MaxSize;
@@ -36,7 +41,8 @@ public class Wep_Shield : Weapon {
         // Set initial rotation
         rotation = transform.rotation;
 
-        // Create object pool
+        // Create arrays
+        _MeatPositions = new List<Vector3>();
         _POOL_Minions = new List<GameObject>();
     }
 
@@ -45,7 +51,7 @@ public class Wep_Shield : Weapon {
         if (_Owner != null) {
 
             // Create aura minions based on the defined size
-            for (int i = 0; i < _MinionCount; i++) {
+            for (int i = _PreviousMinionCount; i < _MinionCount; i++) {
 
                 // If the designers do their job
                 if (_ShieldMinionPrefab != null) {
@@ -62,7 +68,7 @@ public class Wep_Shield : Weapon {
             }
 
             // Hide the templated minion prefab
-            _ShieldMinionPrefab.GetComponent<Renderer>().enabled = false;
+            ///_ShieldMinionPrefab.GetComponent<Renderer>().enabled = false;
 
             // Set initial rotation
             rotation = transform.rotation;
@@ -70,30 +76,34 @@ public class Wep_Shield : Weapon {
     }
 
     //--------------------------------------------------------------
-    // FRAME
+    // *** FRAME ***
 
     public override void Update() {
 
     }
 
     public override void FixedUpdate() {
-                
+
         if (_Owner != null) {
 
-            /// IF RIGHT TRIGGER IS BEING USED
-            if (_Owner.GetRightTriggerInput.y != 0f) {
+            // Only proceed if a valid player has been assigned to this weapon
+            if (_Owner._Player != null) {
 
-                // Rotate shield right
-                rotation = new Quaternion(rotation.x, transform.rotation.y + _OrbitSpeed * Time.deltaTime, rotation.z, rotation.w);
-                ///transform.Rotate(0f, transform.rotation.y + _OrbitSpeed * Time.deltaTime, 0f);
-            }
+                /// IF RIGHT TRIGGER IS BEING USED
+                if (_Owner._Player.GetRightTriggerInput.y != 0f) {
 
-            /// IF LEFT TRIGGER IS BEING USED
-            if (_Owner.GetLeftTriggerInput.y != 0f) {
+                    // Rotate shield right
+                    rotation = new Quaternion(rotation.x, transform.rotation.y + _OrbitSpeed * Time.deltaTime, rotation.z, rotation.w);
+                    ///transform.Rotate(0f, transform.rotation.y + _OrbitSpeed * Time.deltaTime, 0f);
+                }
 
-                // Rotate shield left
-                rotation = new Quaternion(rotation.x, transform.rotation.y - _OrbitSpeed * Time.deltaTime, rotation.z, rotation.w);
-                ///transform.Rotate(0f, transform.rotation.y - _OrbitSpeed * Time.deltaTime, 0f);
+                /// IF LEFT TRIGGER IS BEING USED
+                if (_Owner._Player.GetLeftTriggerInput.y != 0f) {
+
+                    // Rotate shield left
+                    rotation = new Quaternion(rotation.x, transform.rotation.y - _OrbitSpeed * Time.deltaTime, rotation.z, rotation.w);
+                    ///transform.Rotate(0f, transform.rotation.y - _OrbitSpeed * Time.deltaTime, 0f);
+                }
             }
         }
 
@@ -109,7 +119,7 @@ public class Wep_Shield : Weapon {
     }
 
     //--------------------------------------------------------------
-    // FIRING
+    // *** FIRING ***
 
     public override void Fire() {
 
@@ -137,6 +147,22 @@ public class Wep_Shield : Weapon {
     public int GetMinionCount() {
 
         return _MinionCount;
+    }
+
+    public void AddMinion(Char_Wyrm wyrm) {
+
+        // If minion count hasnt reached max capacity yet
+        if (_MinionCount < _MaxMinions) {
+
+            // Determine position of where the wyrm should be placed in the shield
+
+            // TEMPORARY CODE IDK IT SOMEHOW WORKS LOL 
+            // *******************************************
+            _PreviousMinionCount = _MinionCount;
+            _MinionCount += 1;
+            Init();
+            // *******************************************
+        }
     }
 
 }

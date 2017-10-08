@@ -10,12 +10,13 @@ public class Projectile : MonoBehaviour {
     ///--------------------------------------///
 
     //----------------------------------------------------------------------------------
-    // VARIABLES
+    // *** VARIABLES ***
 
+    /// Protected
     protected Weapon _Owner;                                        // Reference to the weapon that owns/fires this projectile.
-  
+
     //--------------------------------------------------------------
-    // CONSTRUCTORS
+    // *** CONSTRUCTORS ***
 
     public virtual void Start() {
 
@@ -34,7 +35,7 @@ public class Projectile : MonoBehaviour {
     }
 
     //--------------------------------------------------------------
-    // FRAME
+    // *** FRAME ***
 
     public virtual void Update() {
 
@@ -47,8 +48,5 @@ public class Projectile : MonoBehaviour {
     public virtual void OnImpact() {
 
     }
-
-
-
 
 }
