@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114973976100088120}
   - component: {fileID: 114256192889013498}
   - component: {fileID: 114434580830293508}
+  - component: {fileID: 114159303695506240}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Manager
@@ -46,6 +47,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114159303695506240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087329879016264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f873e16021e1d54aa5a59641fec2be8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114256192889013498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -144,9 +156,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _OrbFireDelay: 0.05
-  _FireballHeatCost: 0.075
-  _OrbCooldownRateStable: 0.02
-  _OrbCooldownRateOverheated: 0.0075
+  _FireballHeatCost: 0.06
+  _OrbCooldownRateStable: 0.015
+  _OrbCooldownRateOverheated: 0.02
   _ImpactDamage: 20
   _FireballSpeed: 20
   _FireballRange: 100
