@@ -11,12 +11,11 @@ public class Behaviour_Flee : MonoBehaviour {
     //----------------------------------------------------------------------------------
     // *** VARIABLES ***
 
-    private float FleeDistance;                                     // how close/far the AI is going to get before running away from the player
-    public float FleeOffset;                                        // the distance between the player and the enemy
-    public float FleeThreshold;                                     // determains the distance the AI will run(Once it is outside of the determained threshold it will stop running)
-    public float movespeed;                                            
+    public GameObject m_Target;                                     // references the game object in the game (target to flee from)   
+    public float FleeThreshold = 20f;                               // determains the distance the AI will run(Once it is outside of the determained threshold it will stop running)
                                                                        
-    public GameObject m_Target;                                     // references the game object in the game (target to flee from)
+    private float FleeDistance;                                     // current distance between the agent and target it is attempting to flee from.
+    private float movespeed;                                            
                                                                        
     NavMeshAgent agent;                                             // sets a variable name to be used in the rest of the script
 
@@ -27,6 +26,8 @@ public class Behaviour_Flee : MonoBehaviour {
     {
         // Uses the variable called agent, then uses getcomponent to determain what component is going to be placed into the agent
         agent = GetComponent<NavMeshAgent>();
+
+        movespeed = agent.GetComponent<Char_Wyrm>().GetMovementSpeed();
     }
 
     //--------------------------------------------------------------
@@ -48,7 +49,7 @@ public class Behaviour_Flee : MonoBehaviour {
 
             // finds the position of the script that is associated with the gameobject(EnemyAI)
             // then adds the new position of the vecbetweenplayerandenemy
-            Vector3 targetPosition = transform.position + vecBetweenPlayerAndEnemy.normalized * FleeOffset;
+            Vector3 targetPosition = transform.position + vecBetweenPlayerAndEnemy.normalized * movespeed;
 
             // This sets the destination for the AI to move to that position(in this case its the player)
             agent.SetDestination(targetPosition);
