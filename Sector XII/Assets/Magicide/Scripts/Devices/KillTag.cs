@@ -130,6 +130,10 @@ public class KillTag : MonoBehaviour {
 
             // Add to meat shield
             Necromancer.GetSecondaryWeapon().GetComponent<Wep_Shield>().AddMinion(Wyrm);
+            
+            // hide tag & move out of playable space
+            GetComponentInChildren<Renderer>().enabled = false;
+            transform.position = new Vector3(1000, 0, 1000);
 
             // Destroy tag
             Destroy(gameObject);
