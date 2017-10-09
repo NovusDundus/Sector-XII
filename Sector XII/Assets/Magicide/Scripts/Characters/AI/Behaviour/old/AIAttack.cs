@@ -7,7 +7,7 @@ public class AIAttack : MonoBehaviour {
     public float _attackSpeed = 1;
     public float _attackCooldown = 1;
     public float _attackRange = 1;
-    private PlayerCharacter attackPlayer;
+   // private PlayerCharacter attackPlayer;
     CircleCollider2D _attackAOE;
     bool canattack = true;
     float attackdelay = 0f;
@@ -28,18 +28,18 @@ public class AIAttack : MonoBehaviour {
 
         _attackAOE.transform.position = transform.position;
 
-        if (_attackAOE.OverlapPoint(attackPlayer.transform.position)) {
-
-            if (attackdelay <= 0f)
-            {
-                attack();
-            }
-        }
+      //  if (_attackAOE.OverlapPoint(attackPlayer.transform.position)) {
+      //
+      //      if (attackdelay <= 0f)
+      //      {
+      //          attack();
+      //      }
+      //  }
 	}
 
     void attack()
     {
-        attackPlayer.Damage(_Damage);
+       // attackPlayer.Damage(_Damage);
         attackdelay = attackRate;
     }
 }

@@ -5872,6 +5872,21 @@ Prefab:
       propertyPath: PlayerDelta
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114973976100088120, guid: 3fecd7648617e294fb0b9f342be0141d,
+        type: 2}
+      propertyPath: _FireballHeatCost
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 114973976100088120, guid: 3fecd7648617e294fb0b9f342be0141d,
+        type: 2}
+      propertyPath: _OrbCooldownRateOverheated
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 114973976100088120, guid: 3fecd7648617e294fb0b9f342be0141d,
+        type: 2}
+      propertyPath: _OrbCooldownRateStable
+      value: 0.015
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3fecd7648617e294fb0b9f342be0141d, type: 2}
   m_IsPrefabParent: 0
