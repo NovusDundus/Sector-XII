@@ -82,8 +82,9 @@ public class Char_Necromancer : Character {
                 // ************************
 
                 // Detect firing input
-                if (_Player.GetRotationInput != new Vector3(0, 90, 0)) {
-
+                ///if (_Player.GetRotationInput != new Vector3(0, 90, 0)) {
+                if (_Player.GetFireInput) { 
+                 
                     // Fire primary weapon (orb)
                     _WeaponPrimary.Fire();
                 }
