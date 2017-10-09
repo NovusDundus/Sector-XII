@@ -82,7 +82,6 @@ public class Char_Necromancer : Character {
                 // ************************
 
                 // Detect firing input
-                ///if (_Player.GetRotationInput != new Vector3(0, 90, 0)) {
                 if (_Player.GetFireInput) { 
                  
                     // Fire primary weapon (orb)
@@ -106,7 +105,7 @@ public class Char_Necromancer : Character {
 
         // Find self in active pool
         foreach (var necromancer in PlayerManager._pInstance.GetAliveNecromancers()) {
-
+            
             // Once we have found ourself in the pool
             if (necromancer == this) {
 
