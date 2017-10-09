@@ -57,6 +57,11 @@ public class Weapon : MonoBehaviour {
         _Owner = a_Owner;
     }
 
+    public Character GetOwner() {
+
+        return _Owner;
+    }
+
     //--------------------------------------------------------------
     // *** FRAME *** 
 
