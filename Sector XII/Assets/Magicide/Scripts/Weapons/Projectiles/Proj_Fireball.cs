@@ -120,13 +120,13 @@ public class Proj_Fireball : Projectile {
             if (necromancer.GetCollider() != null) {
 
                 // If it isnt the instigator who is being tested against
-                if (necromancer != _Owner) {
+                if (necromancer != _Owner.GetOwner()) {
 
                     // Has the fireball collided with the necromancer's collision?
                     if (_collider.bounds.Intersects(necromancer.GetCollider().bounds)) {
 
                         // Damage necromancer
-                        ///necromancer.Damage(_ImpactDamage);
+                        necromancer.Damage(_ImpactDamage);
 
                         // Destroy fireball
                         FreeProjectile();
