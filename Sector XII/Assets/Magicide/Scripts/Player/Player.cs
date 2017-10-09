@@ -14,7 +14,7 @@ public class Player : MonoBehaviour {
 
     /// Public (designers)
     public int _pPlayerID = 0;                                      // ID Reference of the individual player.
-    public LayerMask Layers;
+    public LayerMask Layers;                                        // Layers associated with the player.
 
     /// Private
     private int _Score = 0;                                         // The player's individual score for the match.
@@ -106,6 +106,8 @@ public class Player : MonoBehaviour {
     //--------------------------------------------------------------
     // *** INPUT ***
 
+    // Thumbsticks
+
     public Vector3 GetMovementInput {
 
         // Combines the horizontal & vertical input into 1 vector to use for directional movement
@@ -121,6 +123,15 @@ public class Player : MonoBehaviour {
         get
         {
             return new Vector3(0, 90f + (Mathf.Atan2(Input.GetAxis(string.Concat("RightStick_Y_P", _pPlayerID)), Input.GetAxis(string.Concat("RightStick_X_P", _pPlayerID))) * 180 / Mathf.PI), 0);
+        }
+    }
+
+    public bool GetFireInput {
+
+        // Uses thumbstick axis as button input
+        get
+        {
+            return Input.GetAxis(string.Concat("FireX_P" + _pPlayerID)) != 0f || Input.GetAxis(string.Concat("FireY_P" + _pPlayerID)) != 0f;
         }
     }
 
@@ -201,14 +212,5 @@ public class Player : MonoBehaviour {
             return Input.GetButton("FaceRight");
         }
     }
-
-    public bool GetFireInput {
-
-        // Uses thumbstick axis as button input
-        get
-        {
-            return Input.GetAxis(string.Concat("FireX_P" + _pPlayerID)) != 0f || Input.GetAxis(string.Concat("FireY_P" + _pPlayerID)) != 0f;
-        }
-    }
-
+    
 }
