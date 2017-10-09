@@ -4,34 +4,20 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - BullletCollider
-  - Enemy
-  - Fireball
-  - P4_AuraMinion
-  - P4_AuraPool
-  - P4_Ethereal
-  - Minion
-  - P3_Orb
-  - P3_Humanoid
-  - P3_FireBall
-  - P3_AuraMinion
-  - P3_Ethereal
-  - P3_AuraPool
-  - P1_AuraMinion
-  - P1_Ethereal
-  - P1_AuraPool
-  - P2_Orb
-  - P2_Humanoid
-  - P2_FireBall
-  - P2_AuraMinion
-  - P2_Ethereal
-  - P2_AuraPool
-  - P4_Orb
-  - P4_Humanoid
-  - P4_FireBall
-  - P1_Humanoid
-  - P1_Orb
-  - P1_FireBall
+  - Manager
+  - P1_Character
+  - P1_PrimaryWeapon
+  - P1_SecondaryWeapon
+  - P2_Character
+  - P2_PrimaryWeapon
+  - P2_SecondaryWeapon
+  - P3_Character
+  - P3_PrimaryWeapon
+  - P3_SecondaryWeapon
+  - P4_Character
+  - P4_PrimaryWeapon
+  - P4_SecondaryWeapon
+  - KillTag
   layers:
   - Default
   - TransparentFX
@@ -41,10 +27,10 @@ TagManager:
   - UI
   - 
   - 
-  - Collider
-  - Fireball
-  - 
-  - 
+  - Player1
+  - Player2
+  - Player3
+  - Player4
   - 
   - 
   - 
