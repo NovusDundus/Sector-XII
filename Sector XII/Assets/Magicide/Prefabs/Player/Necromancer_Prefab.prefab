@@ -24,15 +24,9 @@ GameObject:
   - component: {fileID: 23147563968859926}
   - component: {fileID: 114162625803826018}
   - component: {fileID: 114211429021322728}
-<<<<<<< .mine
-  m_Layer: 8
-||||||| .r78
   m_Layer: 0
-=======
-  m_Layer: 11
->>>>>>> .r95
   m_Name: Necromancer_Prefab
-  m_TagString: P4_Character
+  m_TagString: P1_Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,13 +43,7 @@ GameObject:
   - component: {fileID: 135207430454225508}
   - component: {fileID: 23538050565394986}
   - component: {fileID: 114681706452266690}
-<<<<<<< .mine
-  m_Layer: 8
-||||||| .r78
   m_Layer: 0
-=======
-  m_Layer: 11
->>>>>>> .r95
   m_Name: Proj_Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,13 +61,7 @@ GameObject:
   - component: {fileID: 33837919029447904}
   - component: {fileID: 135423934705652794}
   - component: {fileID: 23591135787710180}
-<<<<<<< .mine
-  m_Layer: 8
-||||||| .r78
   m_Layer: 0
-=======
-  m_Layer: 11
->>>>>>> .r95
   m_Name: MuzzleRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,13 +79,7 @@ GameObject:
   - component: {fileID: 33322165367644880}
   - component: {fileID: 135862835971676504}
   - component: {fileID: 23558687495860442}
-<<<<<<< .mine
-  m_Layer: 8
-||||||| .r78
   m_Layer: 0
-=======
-  m_Layer: 11
->>>>>>> .r95
   m_Name: MuzzleLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,15 +95,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4987963736956926}
   - component: {fileID: 114776342777352892}
-<<<<<<< .mine
-  m_Layer: 8
-||||||| .r78
   m_Layer: 0
-=======
-  m_Layer: 11
->>>>>>> .r95
   m_Name: Wep_Orb
-  m_TagString: P4_PrimaryWeapon
+  m_TagString: P1_PrimaryWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,15 +111,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4078009459726530}
   - component: {fileID: 114667390437330938}
-<<<<<<< .mine
-  m_Layer: 8
-||||||| .r78
   m_Layer: 0
-=======
-  m_Layer: 11
->>>>>>> .r95
   m_Name: Wep_Shield
-  m_TagString: P4_SecondaryWeapon
+  m_TagString: P1_SecondaryWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,13 +127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4517589807742168}
   - component: {fileID: 108739400936326560}
-<<<<<<< .mine
-  m_Layer: 8
-||||||| .r78
   m_Layer: 0
-=======
-  m_Layer: 11
->>>>>>> .r95
   m_Name: Spotlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,16 +145,8 @@ GameObject:
   - component: {fileID: 33706234394696746}
   - component: {fileID: 136893545577249662}
   - component: {fileID: 23781375459153234}
-<<<<<<< .mine
-  - component: {fileID: 114262063696501920}
-  m_Layer: 8
-||||||| .r78
-  - component: {fileID: 114798872573919502}
+  - component: {fileID: 114255657749564976}
   m_Layer: 0
-=======
-  - component: {fileID: 114820184145197688}
-  m_Layer: 11
->>>>>>> .r95
   m_Name: Proj_ShieldMinion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +200,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1646123375470792}
   m_LocalRotation: {x: -0.05366933, y: 0, z: 0, w: 0.9985588}
-  m_LocalPosition: {x: 0.01, y: -0.89, z: -0.03}
+  m_LocalPosition: {x: 0.01, y: -1.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4873991402955170}
@@ -288,16 +238,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1066668196445472}
-<<<<<<< .mine
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.91, y: 1, z: 0}
-||||||| .r78
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -5}
-=======
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.78, y: 1, z: 0}
->>>>>>> .r95
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4987963736956926}
@@ -335,7 +277,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 6c24988139480624c8aa100b26bc2ff8, type: 2}
+  - {fileID: 2100000, guid: e623219d33d222943ab906eaffeaaf1a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -399,13 +341,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-<<<<<<< .mine
-  - {fileID: 2100000, guid: e623219d33d222943ab906eaffeaaf1a, type: 2}
-||||||| .r78
   - {fileID: 2100000, guid: dbf0beffa9cdb2f47ad2751983c94c0b, type: 2}
-=======
-  - {fileID: 2100000, guid: 6c24988139480624c8aa100b26bc2ff8, type: 2}
->>>>>>> .r95
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -437,13 +373,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-<<<<<<< .mine
-  - {fileID: 2100000, guid: e623219d33d222943ab906eaffeaaf1a, type: 2}
-||||||| .r78
   - {fileID: 2100000, guid: dbf0beffa9cdb2f47ad2751983c94c0b, type: 2}
-=======
-  - {fileID: 2100000, guid: 6c24988139480624c8aa100b26bc2ff8, type: 2}
->>>>>>> .r95
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -475,7 +405,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 804b3b23fc3b341419d2a7504468bc85, type: 2}
+  - {fileID: 2100000, guid: bc6c1b25a6c61ad4191e9abe1c51df3b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -538,13 +468,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 0
-<<<<<<< .mine
-  m_Color: {r: 0.09915656, g: 0.4984206, b: 0.9632353, a: 1}
-||||||| .r78
   m_Color: {r: 0, g: 0.751724, b: 1, a: 1}
-=======
-  m_Color: {r: 0.77254206, g: 0.9632353, b: 0.09915656, a: 1}
->>>>>>> .r95
   m_Intensity: 10
   m_Range: 10
   m_SpotAngle: 30
@@ -596,20 +520,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c58db18f99aefb74cb632ec983a7be70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< .mine
   _pPlayerID: 1
   Layers:
     serializedVersion: 2
     m_Bits: 256
-||||||| .r78
-  _pPlayerID: 1
-  _pPlayerColour: {r: 0, g: 0.5448277, b: 1, a: 0}
-=======
-  _pPlayerID: 4
-  Layers:
-    serializedVersion: 2
-    m_Bits: 2048
->>>>>>> .r95
 --- !u!114 &114211429021322728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -622,7 +536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Player: {fileID: 0}
---- !u!114 &114262063696501920
+--- !u!114 &114255657749564976
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -671,32 +585,6 @@ MonoBehaviour:
   _MuzzlePointRight: {fileID: 4568542575355788}
   _ProjectilePrefab: {fileID: 1348081617690844}
   _ActiveProjectiles: 0
-<<<<<<< .mine
-||||||| .r78
---- !u!114 &114798872573919502
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1966043091035922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cd6b65603489f9489de43ed24e26e48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-=======
---- !u!114 &114820184145197688
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1966043091035922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7584e0d65c25d0e4493cf8dcc3d335a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
->>>>>>> .r95
 --- !u!135 &135207430454225508
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -740,7 +628,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1066668196445472}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
