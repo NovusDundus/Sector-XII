@@ -11,7 +11,7 @@ public class MatchManager : MonoBehaviour {
     ///--------------------------------------///
 
     //----------------------------------------------------------------------------------
-    // VARIABLES
+    // *** VARIABLES ***
 
     /// Public (designers)
     [Header("- Phases")]
