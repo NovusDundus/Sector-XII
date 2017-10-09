@@ -12,8 +12,10 @@ public class Proj_ShieldMinion : Projectile {
     //---------------------------------------------------------------------------------
     // *** VARIABLES ***
 
+    /// Public (designers)
+    public int _Health = 100;                                      // Current health associated to the minion.
+
     private float _SpinSpeed = 4f;
-    private int _Health = 100;                                      // Current health associated to the minion.
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***

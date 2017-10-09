@@ -135,6 +135,41 @@ public class Proj_Fireball : Projectile {
                 }
             }
         }
+
+        // Check against all Static objects
+        foreach (LevelObject staticObject in LevelManager._pInstance.GetStaticObjects()) {
+
+            // If object has valid collision
+            if (staticObject.GetCollision() != null) {
+
+                // Has the fireball collided with the object's collision?
+                if (_collider.bounds.Intersects(staticObject.GetCollision().bounds)) {
+
+                    // Destroy fireball
+                    FreeProjectile();
+                    break;
+                }
+            }
+        }
+
+        // Check against all dynamic objects
+        foreach (LevelObject dynamicObject in LevelManager._pInstance.GetDynamicObjects()) {
+
+            // If object has valid collision
+            if (dynamicObject.GetCollision() != null) {
+
+                // Has the fireball collided with the object's collision?
+                if (_collider.bounds.Intersects(dynamicObject.GetCollision().bounds)) {
+
+                    // Damage object
+
+                    // Destroy fireball
+                    FreeProjectile();
+                    break;
+                }
+            }
+        }
+
     }
 
     //--------------------------------------------------------------
