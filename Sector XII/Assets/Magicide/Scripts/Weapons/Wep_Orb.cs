@@ -188,8 +188,12 @@ public class Wep_Orb : Weapon {
         // End hitscan from weapon's facing forward direction
         var rayEnd = transform.forward * 1000/*WeaponManager._pInstance._FireballRange*/;
 
+        // Ignore layer list
+        ///int LayerMask = ~(_Owner._Player._pPlayerID << 9);
+        LayerMask mask = _Owner._Player.Layers;
+
         // Fire line trace from weapon's position going forward X max range
-        if (Physics.Raycast(rayStart, rayEnd, out hit)) {
+        if (Physics.Raycast(rayStart, rayEnd, out hit, mask)) {
 
             // Successful hit
             Debug.DrawLine(rayStart, hit.point, Color.green, 100);

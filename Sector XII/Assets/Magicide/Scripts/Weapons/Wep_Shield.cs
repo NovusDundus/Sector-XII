@@ -64,6 +64,9 @@ public class Wep_Shield : Weapon {
                     // Create the minion prefab
                     var minion = Instantiate(_ShieldMinionPrefab, pos, Quaternion.identity, gameObject.transform).GetComponent<Proj_ShieldMinion>();
                     minion.GetComponentInChildren<Projectile>().Init();
+
+                    // Set player score
+                    _Owner._Player.SetScore(_MinionCount);
                 }
             }
 
