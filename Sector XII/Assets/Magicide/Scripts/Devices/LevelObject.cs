@@ -24,19 +24,19 @@ public class LevelObject : MonoBehaviour {
     void Start () {
 
         // Get reference to collision
-        _Collision = GetComponent<Collider>();
+        _Collision = GameObject.FindGameObjectWithTag("Collision").GetComponent<Collider>();
 
         // Add to object pool
         if (_StaticObject == true) {
 
             // Static object pool
-            LevelManager._pInstance.GetStaticObjects().Add(this);
+            LevelManager._pInstance.GetStaticObjects().Add(this.gameObject);
         }
 
         else { /// _StaticObject == false
 
             // Dynamic object pool
-            LevelManager._pInstance.GetDynamicObjects().Add(this);
+            LevelManager._pInstance.GetDynamicObjects().Add(this.gameObject);
         }
 	}
 
