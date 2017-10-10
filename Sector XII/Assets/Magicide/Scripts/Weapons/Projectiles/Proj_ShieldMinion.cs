@@ -26,6 +26,11 @@ public class Proj_ShieldMinion : Projectile {
         base.Start();
     }
 
+    public void AddToPool(Wep_Shield weapon) {
+
+        weapon.GetMeatMinionPool().Add(this);
+    }
+
     //--------------------------------------------------------------
     // *** FRAME ***
 

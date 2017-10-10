@@ -132,6 +132,7 @@ public class Proj_Fireball : Projectile {
 
                             // Destroy fireball
                             FreeProjectile();
+                            _Active = false;
                             break;
                         }
                     }
