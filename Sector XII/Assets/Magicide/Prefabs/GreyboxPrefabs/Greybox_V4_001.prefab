@@ -1469,7 +1469,6 @@ GameObject:
   - component: {fileID: 33817836311655050}
   - component: {fileID: 114143806402595978}
   - component: {fileID: 64850816042117574}
-  - component: {fileID: 114889279950720690}
   m_Layer: 0
   m_Name: FBSpawnLoc
   m_TagString: Untagged
@@ -24601,17 +24600,6 @@ MonoBehaviour:
   m_selectedFaces: 
   m_SelectedEdges: []
   m_selectedTriangles: 
---- !u!114 &114889279950720690
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1538672041203276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114893953689653532
 MonoBehaviour:
   m_ObjectHideFlags: 1
