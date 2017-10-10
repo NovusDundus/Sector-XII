@@ -21,7 +21,7 @@ public class Wep_Shield : Weapon {
     private float _OrbitSpeed;                                      // The speed in which the minions rotate around the character that owns this weapon.
     private float _MinionSpacing = 1f;         /* TEMPORARY */      // Unit of space between each minion.
     private Quaternion rotation;                                    // Current rotation of the weapon's transform.
-    private List<GameObject> _POOL_Minions;                         // Object pool of all minions attached to this weapon.        
+    private List<Proj_ShieldMinion> _POOL_Minions;                         // Object pool of all minions attached to this weapon.        
     private List<Vector3> _MeatPositions;
 
     //--------------------------------------------------------------
@@ -43,7 +43,7 @@ public class Wep_Shield : Weapon {
 
         // Create arrays
         _MeatPositions = new List<Vector3>();
-        _POOL_Minions = new List<GameObject>();
+        _POOL_Minions = new List<Proj_ShieldMinion>();
     }
 
     public override void Init() {
@@ -142,15 +142,8 @@ public class Wep_Shield : Weapon {
         yield break;
     }
 
-    public int GetMaxMinions() {
-
-        return _MaxMinions;
-    }
-
-    public int GetMinionCount() {
-
-        return _MinionCount;
-    }
+    //--------------------------------------------------------------
+    // *** OBJECT POOL ***
 
     public void AddMinion(Char_Wyrm wyrm) {
 
@@ -166,6 +159,21 @@ public class Wep_Shield : Weapon {
             Init();
             // *******************************************
         }
+    }
+    
+    public int GetMaxMinions() {
+
+        return _MaxMinions;
+    }
+
+    public int GetMinionCount() {
+
+        return _MinionCount;
+    }
+
+    public List<Proj_ShieldMinion> GetMeatMinionPool() {
+
+        return _POOL_Minions;
     }
 
 }

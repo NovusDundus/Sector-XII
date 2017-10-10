@@ -14,12 +14,15 @@ public class Projectile : MonoBehaviour {
 
     /// Protected
     protected Weapon _Owner;                                        // Reference to the weapon that owns/fires this projectile.
+    protected Collider _Collision;                                  // Reference to the projectile's collision.
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
 
     public virtual void Start() {
 
+        // Get reference to collision collider
+        _Collision = GetComponent<Collider>();
     }
 
     public virtual void Init() {
@@ -45,8 +48,16 @@ public class Projectile : MonoBehaviour {
 
     }
 
+    //--------------------------------------------------------------
+    // *** COLLISION ***
+
     public virtual void OnImpact() {
 
+    }
+
+    public Collider GetCollision() {
+
+        return _Collision;
     }
 
 }

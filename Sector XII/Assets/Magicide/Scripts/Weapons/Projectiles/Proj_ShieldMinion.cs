@@ -22,8 +22,8 @@ public class Proj_ShieldMinion : Projectile {
 
     public override void Start() {
 
-        // add to object pool
-        ///PlayerManager._pInstance.GetActiveAuraMinions().Add(this.gameObject);
+        // Get referenece to projectile collision
+        base.Start();
     }
 
     //--------------------------------------------------------------

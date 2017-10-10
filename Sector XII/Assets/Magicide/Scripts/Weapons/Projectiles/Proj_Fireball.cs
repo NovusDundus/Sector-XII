@@ -16,7 +16,6 @@ public class Proj_Fireball : Projectile {
     private int _ImpactDamage;                                      // Amount of damage inflicted to any object that collides with this projectile.
     private float _TravelSpeed;                                     // Movement speed of the projectile.
     private bool _Active = false;                                   // Returns TRUE if the projectile is active in the world.
-    private SphereCollider _collider;                               // Reference to the collision associated with the projectile.
     private float distanceTraveled = 0f;                            // Used to test if max range has been reached.
 
     //--------------------------------------------------------------
@@ -24,14 +23,14 @@ public class Proj_Fireball : Projectile {
 
     public override void Start() {
 
+        // Get referenece to projectile collision
+        base.Start();
+
         // Set fireball impact damage
         _ImpactDamage = WeaponManager._pInstance._ImpactDamage;
 
         // Set travel speed for the projectile
         _TravelSpeed = WeaponManager._pInstance._FireballSpeed;
-
-        // Get referenece to projectile collision
-        _collider = GetComponent<SphereCollider>();
     }
 
     public override void Init() {
@@ -101,7 +100,7 @@ public class Proj_Fireball : Projectile {
             if (minion.GetCollider() != null) {
 
                 // Has the fireball collided with the minion's collision?
-                if (_collider.bounds.Intersects(minion.GetCollider().bounds)) {
+                if (_Collision.bounds.Intersects(minion.GetCollider().bounds)) {
 
                     // Damage minion
                     minion.Damage(_ImpactDamage);
@@ -122,8 +121,23 @@ public class Proj_Fireball : Projectile {
                 // If it isnt the instigator who is being tested against
                 if (necromancer != _Owner.GetOwner()) {
 
+                    // Check against all meat shield minions associated to the player
+                    foreach (Proj_ShieldMinion meatMinion in necromancer.GetSecondaryWeapon().GetComponent<Wep_Shield>().GetMeatMinionPool()) {
+
+                        // Has the fireball collided with the minions's collision?
+                        if (_Collision.bounds.Intersects(meatMinion.GetCollision().bounds)) {
+
+                            // Damage minion
+                            meatMinion.Damage(_ImpactDamage);
+
+                            // Destroy fireball
+                            FreeProjectile();
+                            break;
+                        }
+                    }
+
                     // Has the fireball collided with the necromancer's collision?
-                    if (_collider.bounds.Intersects(necromancer.GetCollider().bounds)) {
+                    if (_Collision.bounds.Intersects(necromancer.GetCollider().bounds) && _Active) {
 
                         // Damage necromancer
                         necromancer.Damage(_ImpactDamage);
@@ -137,13 +151,15 @@ public class Proj_Fireball : Projectile {
         }
 
         // Check against all Static objects
-        foreach (LevelObject staticObject in LevelManager._pInstance.GetStaticObjects()) {
+        foreach (GameObject Object in LevelManager._pInstance.GetStaticObjects()) {
+
+            LevelObject staticObject = Object.GetComponent<LevelObject>();
 
             // If object has valid collision
             if (staticObject.GetCollision() != null) {
 
                 // Has the fireball collided with the object's collision?
-                if (_collider.bounds.Intersects(staticObject.GetCollision().bounds)) {
+                if (_Collision.bounds.Intersects(staticObject.GetCollision().bounds)) {
 
                     // Destroy fireball
                     FreeProjectile();
@@ -153,13 +169,15 @@ public class Proj_Fireball : Projectile {
         }
 
         // Check against all dynamic objects
-        foreach (LevelObject dynamicObject in LevelManager._pInstance.GetDynamicObjects()) {
+        foreach (GameObject Object in LevelManager._pInstance.GetDynamicObjects()) {
+
+            LevelObject dynamicObject = Object.GetComponent<LevelObject>();
 
             // If object has valid collision
             if (dynamicObject.GetCollision() != null) {
 
                 // Has the fireball collided with the object's collision?
-                if (_collider.bounds.Intersects(dynamicObject.GetCollision().bounds)) {
+                if (_Collision.bounds.Intersects(dynamicObject.GetCollision().bounds)) {
 
                     // Damage object
 
