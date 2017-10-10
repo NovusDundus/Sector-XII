@@ -1086,8 +1086,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4694097238897290}
-  - component: {fileID: 114246490271419790}
-  - component: {fileID: 114276767257790140}
   m_Layer: 0
   m_Name: Player_Prefab
   m_TagString: Untagged
@@ -1478,7 +1476,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1544045524704082
 GameObject:
   m_ObjectHideFlags: 1
@@ -1504,8 +1502,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4325578999036808}
-  - component: {fileID: 114212101275367988}
-  - component: {fileID: 114666263740482882}
   m_Layer: 0
   m_Name: E_Enemy
   m_TagString: P4_Ethereal
@@ -16381,17 +16377,6 @@ MonoBehaviour:
   m_selectedFaces: 
   m_SelectedEdges: []
   m_selectedTriangles: 
---- !u!114 &114212101275367988
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1546624050079124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114233568155074080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16702,17 +16687,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entityType: 0
---- !u!114 &114246490271419790
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1411290961250938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114257735092783606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17011,17 +16985,6 @@ MonoBehaviour:
   m_selectedFaces: 
   m_SelectedEdges: []
   m_selectedTriangles: 
---- !u!114 &114276767257790140
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1411290961250938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114285791663721860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22501,17 +22464,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entityType: 0
---- !u!114 &114666263740482882
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1546624050079124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114689401200331824
 MonoBehaviour:
   m_ObjectHideFlags: 1

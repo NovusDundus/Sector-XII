@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/_GameName/Scenes/Main.unity
+  - enabled: 0
+    path: 
     guid: e859e00dfcf3aa842a2ccfc55110edc2
+  - enabled: 1
+    path: Assets/Magicide/Scenes/MainScene/MainScene.unity
+    guid: 91cbcdc4b5fc8624b950a55ebcc4bf1f
