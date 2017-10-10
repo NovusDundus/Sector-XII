@@ -18,6 +18,7 @@ TagManager:
   - P4_PrimaryWeapon
   - P4_SecondaryWeapon
   - KillTag
+  - Collision
   layers:
   - Default
   - TransparentFX
