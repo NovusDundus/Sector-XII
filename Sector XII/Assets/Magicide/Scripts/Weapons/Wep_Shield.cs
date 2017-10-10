@@ -18,11 +18,12 @@ public class Wep_Shield : Weapon {
     private int _MaxMinions = 14;                                   // Cap of how many minions are allowed to make the shield.
     private int _MinionCount = 0;                                   // Amount of minions that composes the weapon.
     private int _PreviousMinionCount = 0;
-    private float _OrbitSpeed;                                      // The speed in which the minions rotate around the character that owns this weapon.
+    private float _OrbitSpeed = 200;                                // The speed in which the minions rotate around the character that owns this weapon.
     private float _MinionSpacing = 1f;         /* TEMPORARY */      // Unit of space between each minion.
     private Quaternion rotation;                                    // Current rotation of the weapon's transform.
-    private List<Proj_ShieldMinion> _POOL_Minions;                         // Object pool of all minions attached to this weapon.        
-    private List<Vector3> _MeatPositions;
+    private List<Proj_ShieldMinion> _POOL_Minions;                  // Object pool of all minions attached to this weapon.
+    private bool _AutomatedRotation;
+    private Transform from;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -41,8 +42,10 @@ public class Wep_Shield : Weapon {
         // Set initial rotation
         rotation = transform.rotation;
 
+        // Set auto rotation
+        _AutomatedRotation = WeaponManager._pInstance._AutoRotate;
+
         // Create arrays
-        _MeatPositions = new List<Vector3>();
         _POOL_Minions = new List<Proj_ShieldMinion>();
     }
 
@@ -93,20 +96,36 @@ public class Wep_Shield : Weapon {
             // Only proceed if a valid player has been assigned to this weapon
             if (_Owner._Player != null) {
 
-                /// IF RIGHT TRIGGER IS BEING USED
-                if (_Owner._Player.GetRightTriggerInput.y != 0f) {
+                // Meatshield rotates automatically
+                if (_AutomatedRotation == true) {
 
-                    // Rotate shield right
-                    rotation = new Quaternion(rotation.x, transform.rotation.y + _OrbitSpeed * Time.deltaTime, rotation.z, rotation.w);
-                    ///transform.Rotate(0f, transform.rotation.y + _OrbitSpeed * Time.deltaTime, 0f);
+                    if (transform.rotation.y < 180f) {
+
+                        ///transform.Rotate(0f, transform.rotation.y + _OrbitSpeed * Time.deltaTime, 0f);
+                        from.rotation = transform.rotation;
+                        Quaternion rot = Quaternion.AngleAxis(90, Vector3.up);
+                        transform.rotation = Quaternion.Lerp(from.rotation, rot, Time.fixedDeltaTime * _OrbitSpeed);
+                    }
                 }
 
-                /// IF LEFT TRIGGER IS BEING USED
-                if (_Owner._Player.GetLeftTriggerInput.y != 0f) {
+                // Meatshield  will have to be rotated manually
+                else { /// _AutomatedRotation == false
 
-                    // Rotate shield left
-                    rotation = new Quaternion(rotation.x, transform.rotation.y - _OrbitSpeed * Time.deltaTime, rotation.z, rotation.w);
-                    ///transform.Rotate(0f, transform.rotation.y - _OrbitSpeed * Time.deltaTime, 0f);
+                    /// IF RIGHT TRIGGER IS BEING USED
+                    if (_Owner._Player.GetRightTriggerInput.y != 0f) {
+
+                        // Rotate shield right
+                        ///rotation = new Quaternion(rotation.x, transform.rotation.y + _OrbitSpeed * Time.deltaTime, rotation.z, rotation.w);
+                        transform.Rotate(0f, transform.rotation.y + _OrbitSpeed * Time.deltaTime, 0f);
+                    }
+
+                    /// IF LEFT TRIGGER IS BEING USED
+                    if (_Owner._Player.GetLeftTriggerInput.y != 0f) {
+
+                        // Rotate shield left
+                        ///rotation = new Quaternion(rotation.x, transform.rotation.y - _OrbitSpeed * Time.deltaTime, rotation.z, rotation.w);
+                        transform.Rotate(0f, transform.rotation.y - _OrbitSpeed * Time.deltaTime, 0f);
+                    }
                 }
             }
         }
@@ -117,9 +136,18 @@ public class Wep_Shield : Weapon {
             transform.position = _Owner.transform.position;
         }
 
-        // Maintain rotation
-        ///rotation.y = transform.rotation.y;
-        transform.rotation = rotation;
+        // Meatshield rotates automatically
+        if (_AutomatedRotation == true) {
+
+
+        }
+
+        else {
+
+            // Maintain rotation
+            rotation.y = transform.rotation.y;
+            ///transform.rotation = rotation;
+        }
     }
 
     //--------------------------------------------------------------

@@ -69,12 +69,14 @@ public class Char_Necromancer : Character {
                 // Placeholder movement controller (DOESNT RELY ON SPEED, JUST PURE CONTROLLER INPUT)
                 if (_Player.GetRotationInput != new Vector3(0, 90, 0)) {
 
-                    transform.SetPositionAndRotation(transform.position + _Player.GetMovementInput / 4, Quaternion.Euler(_Player.GetRotationInput));
+                    Vector3 vec = _Player.GetMovementInput.normalized;
+                    transform.SetPositionAndRotation(transform.position + vec * _MovementSpeed * Time.fixedDeltaTime, Quaternion.Euler(_Player.GetRotationInput));
                 }
 
                 else { /// GetRotationInput == new Vector3(0, 0, 0)
 
-                    transform.SetPositionAndRotation(transform.position + _Player.GetMovementInput / 4, transform.rotation);
+                    Vector3 vec = _Player.GetMovementInput.normalized;
+                    transform.SetPositionAndRotation(transform.position + vec * _MovementSpeed * Time.fixedDeltaTime/*_Player.GetMovementInput / 4*/, transform.rotation);
                 }
 
                 // ************************

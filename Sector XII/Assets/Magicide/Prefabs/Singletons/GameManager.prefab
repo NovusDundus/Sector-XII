@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114256192889013498}
   - component: {fileID: 114434580830293508}
   - component: {fileID: 114159303695506240}
+  - component: {fileID: 114871509978189574}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Manager
@@ -40,7 +41,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1087329879016264}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -117,8 +118,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Phase1Length: 30
-  _Phase2Timer: 1
+  _Phase2Timer: 0
   _Phase2Length: 120
+--- !u!114 &114871509978189574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087329879016264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca56d49ca28b28d4ca41218d9a608728, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Panel: {fileID: 0}
+  _PlayerOne: {fileID: 0}
 --- !u!114 &114944523794425134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -142,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NecromancerStartingHealth: 100
-  _NecromancerMovementSpeed: 10
+  _NecromancerMovementSpeed: 50
   _NecromancerRotationSpeed: 2
 --- !u!114 &114973976100088120
 MonoBehaviour:
@@ -162,5 +176,5 @@ MonoBehaviour:
   _ImpactDamage: 20
   _FireballSpeed: 20
   _FireballRange: 100
-  _MaxSize: 14
-  _OrbitSpeed: 3
+  _MaxSize: 18
+  _OrbitSpeed: 400

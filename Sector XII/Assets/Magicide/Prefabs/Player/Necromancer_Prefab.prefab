@@ -25,9 +25,9 @@ GameObject:
   - component: {fileID: 114162625803826018}
   - component: {fileID: 114211429021322728}
   - component: {fileID: 54530060574342978}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Necromancer_Prefab
-  m_TagString: P4_Character
+  m_TagString: P1_Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 135207430454225508}
   - component: {fileID: 23538050565394986}
   - component: {fileID: 114681706452266690}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Proj_Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 33837919029447904}
   - component: {fileID: 135423934705652794}
   - component: {fileID: 23591135787710180}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MuzzleRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 33322165367644880}
   - component: {fileID: 135862835971676504}
   - component: {fileID: 23558687495860442}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MuzzleLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,9 +96,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4987963736956926}
   - component: {fileID: 114776342777352892}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wep_Orb
-  m_TagString: P4_PrimaryWeapon
+  m_TagString: P1_PrimaryWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,9 +112,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4078009459726530}
   - component: {fileID: 114667390437330938}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wep_Shield
-  m_TagString: P4_SecondaryWeapon
+  m_TagString: P1_SecondaryWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 136893545577249662}
   - component: {fileID: 23781375459153234}
   - component: {fileID: 114255657749564976}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Proj_ShieldMinion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1066668196445472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 1, z: 0}
+  m_LocalPosition: {x: -7, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4987963736956926}
@@ -248,7 +248,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 6c24988139480624c8aa100b26bc2ff8, type: 2}
+  - {fileID: 2100000, guid: dbf0beffa9cdb2f47ad2751983c94c0b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -437,7 +437,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1066668196445472}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 80
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -456,10 +456,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c58db18f99aefb74cb632ec983a7be70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pPlayerID: 4
+  _pPlayerID: 1
   Layers:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 256
 --- !u!114 &114211429021322728
 MonoBehaviour:
   m_ObjectHideFlags: 1

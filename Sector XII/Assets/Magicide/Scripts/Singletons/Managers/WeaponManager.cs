@@ -36,7 +36,8 @@ public class WeaponManager : MonoBehaviour {
     [Header("- Size")]
     [Tooltip("Maximum amount of minions allowed to compose the meat shield.")]
     public int _MaxSize = 14;
-    [Header("- Movement")]
+    [Header("- Rotation")]
+    public bool _AutoRotate = false;
     [Tooltip("The speed of rotation it takes for the 'Meat' to orbit the character")]
     public float _OrbitSpeed = 3f;
 
