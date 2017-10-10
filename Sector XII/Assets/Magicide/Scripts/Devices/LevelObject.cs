@@ -14,17 +14,22 @@ public class LevelObject : MonoBehaviour {
 
     /// Public (designers)
     public bool _StaticObject = true;
+    public int _Health = 100;
+    public bool _destroyed = false;
 
     /// Private
     private Collider _Collision;
+    private bool _CanBeDamaged = false;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
-    
-    void Start () {
+
+    public void Start () {
 
         // Get reference to collision
         _Collision = GameObject.FindGameObjectWithTag("Collision").GetComponent<Collider>();
+
+        _CanBeDamaged = !_StaticObject;
 
         // Add to object pool
         if (_StaticObject == true) {
@@ -41,14 +46,44 @@ public class LevelObject : MonoBehaviour {
 	}
 
     //--------------------------------------------------------------
-    // *** MISC ***
+    // *** FRAME ***
 
-    void Update () {
-		
-	}
+    public void Update () {
+
+    }
+
+    public void FixedUpdate() {
+        
+        // If the object is dynamic
+        if (_CanBeDamaged == true) {
+
+        }
+    }
+
+    //--------------------------------------------------------------
+    // *** HEALTH ***
 
     public Collider GetCollision() {
 
         return _Collision;
+    }
+
+    public void Damage(int damage) {
+
+        // Only damage the object if its dynamic
+        if (_CanBeDamaged == true) {
+
+            // Apply damage to health
+            _Health -= damage;
+
+            // Check if dead
+            if (_Health <= 0) {
+
+                _Health = 0;
+
+                // Set object to destroyed
+                _destroyed = true;
+            }
+        }
     }
 }
