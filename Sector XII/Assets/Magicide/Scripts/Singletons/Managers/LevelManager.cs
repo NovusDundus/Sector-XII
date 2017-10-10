@@ -17,8 +17,8 @@ public class LevelManager : MonoBehaviour {
     public static LevelManager _pInstance;                          // This is a singleton script, Initialized in Startup().
 
     /// Private
-    private List<LevelObject> _StaticObjects;
-    private List<LevelObject> _DynamicObjects;
+    private List<GameObject> _StaticObjects;
+    private List<GameObject> _DynamicObjects;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -34,13 +34,10 @@ public class LevelManager : MonoBehaviour {
 
         // Set singleton
         _pInstance = this;
-    }
-
-    public void Start() {
 
         // Create object pools
-        _StaticObjects = new List<LevelObject>();
-        _DynamicObjects = new List<LevelObject>();
+        _StaticObjects = new List<GameObject>();
+        _DynamicObjects = new List<GameObject>();
     }
 
     //--------------------------------------------------------------
@@ -57,12 +54,12 @@ public class LevelManager : MonoBehaviour {
     //--------------------------------------------------------------
     // *** OBJECT POOLS ***
 
-    public List<LevelObject> GetStaticObjects() {
+    public List<GameObject> GetStaticObjects() {
 
         return _StaticObjects;
     }
 
-    public List<LevelObject> GetDynamicObjects() {
+    public List<GameObject> GetDynamicObjects() {
 
         return _DynamicObjects;
     }
