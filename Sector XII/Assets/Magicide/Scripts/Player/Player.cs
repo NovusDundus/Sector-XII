@@ -18,6 +18,7 @@ public class Player : MonoBehaviour {
 
     /// Private
     private int _Score = 0;                                         // The player's individual score for the match.
+    private int _KillCount = 0;                                     // Amount of kills a player has done throughout the match.
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -101,6 +102,18 @@ public class Player : MonoBehaviour {
 
         // Returns the current score of the player
         return _Score;
+    }
+
+    public void AddKillCount() {
+
+        // Add 1 point to the player's kill count
+        _KillCount += 1;
+    }
+
+    public int GetKillCount() {
+
+        // Returns the current kill count of the player
+        return _KillCount;
     }
 
     //--------------------------------------------------------------

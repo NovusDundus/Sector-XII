@@ -45,7 +45,7 @@ public class Proj_ShieldMinion : Projectile {
     }
 
     //--------------------------------------------------------------
-    // *** FIRING ***
+    // *** HEALTH ***
 
     public void Damage(int amount) {
 

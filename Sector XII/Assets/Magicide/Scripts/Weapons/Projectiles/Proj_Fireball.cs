@@ -64,10 +64,6 @@ public class Proj_Fireball : Projectile {
             }
             ++i;
         }
-
-        /// PLACEHOLDER ****************
-        ///Destroy(gameObject);
-        ///_Owner.GetComponent<Wep_Orb>()._ActiveProjectiles -= 1;
     }
 
     //--------------------------------------------------------------
@@ -118,6 +114,13 @@ public class Proj_Fireball : Projectile {
                     // Damage minion
                     minion.Damage(_ImpactDamage);
 
+                    // Check if minion has been killed
+                    if (minion.GetHealth() <= 0) {
+
+                        // Add to instigator's kill count
+                        _Owner.GetOwner()._Player.AddKillCount();
+                    }
+
                     // Destroy fireball
                     FreeProjectile();
                     break;
@@ -127,7 +130,7 @@ public class Proj_Fireball : Projectile {
 
         // Check against all alive players
         foreach (var necromancer in PlayerManager._pInstance.GetAliveNecromancers()) {
-            
+
             // If necromancer has valid collision reference set
             if (necromancer.GetCollider() != null) {
 
@@ -143,6 +146,13 @@ public class Proj_Fireball : Projectile {
                             // Damage minion
                             meatMinion.Damage(_ImpactDamage);
 
+                            // Check if minion has been killed
+                            if (meatMinion._Health <= 0) {
+
+                                // Add to instigator's kill count
+                                _Owner.GetOwner()._Player.AddKillCount();
+                            }
+
                             // Destroy fireball
                             FreeProjectile();
                             _Active = false;
@@ -155,6 +165,13 @@ public class Proj_Fireball : Projectile {
 
                         // Damage necromancer
                         necromancer.Damage(_ImpactDamage);
+
+                        // Check if necromancer has been killed
+                        if (necromancer.GetHealth() <= 0) {
+
+                            // Add to instigator's kill count
+                            _Owner.GetOwner()._Player.AddKillCount();
+                        }
 
                         // Destroy fireball
                         FreeProjectile();

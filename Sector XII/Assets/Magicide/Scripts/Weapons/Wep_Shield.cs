@@ -117,15 +117,15 @@ public class Wep_Shield : Weapon {
                 // Meatshield  will have to be rotated manually
                 else { /// _AutomatedRotation == false
 
-                    // IF RIGHT TRIGGER IS BEING USED
-                    if (_Owner._Player.GetRightTriggerInput.y != 0f) {
+                    // Right trigger input ONLY
+                    if (_Owner._Player.GetRightTriggerInput.y != 0f && _Owner._Player.GetLeftTriggerInput.y == 0f) {
 
                         // Rotate shield right
                         transform.Rotate(0f, transform.rotation.y + _OrbitSpeed * Time.fixedDeltaTime, 0f);
                     }
 
-                    // IF LEFT TRIGGER IS BEING USED
-                    if (_Owner._Player.GetLeftTriggerInput.y != 0f) {
+                    // Left trigger input ONLY
+                    if (_Owner._Player.GetLeftTriggerInput.y != 0f && _Owner._Player.GetRightTriggerInput.y == 0f) {
 
                         // Rotate shield left
                         transform.Rotate(0f, transform.rotation.y - _OrbitSpeed * Time.fixedDeltaTime, 0f);
