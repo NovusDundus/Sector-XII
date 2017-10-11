@@ -23,7 +23,7 @@ public class Wep_Shield : Weapon {
     private Quaternion rotation;                                    // Current rotation of the weapon's transform.
     private List<Proj_ShieldMinion> _POOL_Minions;                  // Object pool of all minions attached to this weapon.
     private bool _AutomatedRotation;
-    private Transform from;
+    private bool _RotateRight;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -39,11 +39,10 @@ public class Wep_Shield : Weapon {
         // Set minion cap
         _MaxMinions = WeaponManager._pInstance._MaxSize;
 
-        // Set initial rotation
-        rotation = transform.rotation;
-
-        // Set auto rotation
+        // Set rotation properties
         _AutomatedRotation = WeaponManager._pInstance._AutoRotate;
+        _RotateRight = WeaponManager._pInstance._OrbitClockwise;
+        rotation = transform.rotation;
 
         // Create arrays
         _POOL_Minions = new List<Proj_ShieldMinion>();
@@ -102,11 +101,16 @@ public class Wep_Shield : Weapon {
                 // Meatshield rotates automatically
                 if (_AutomatedRotation == true) {
 
-                    if (transform.rotation.y < 180f) {
-                        
-                        from.rotation = transform.rotation;
-                        Quaternion rot = Quaternion.AngleAxis(90, Vector3.up);
-                        transform.rotation = Quaternion.Lerp(from.rotation, rot, Time.fixedDeltaTime * _OrbitSpeed);
+                    // Rotate shield clockwise
+                    if (_RotateRight == true) {
+
+                        transform.Rotate(0f, transform.rotation.y + _OrbitSpeed * Time.fixedDeltaTime, 0f);
+                    }
+
+                    // Rotate shield counter clockwise
+                    else { /// _RotateRight == false
+
+                        transform.Rotate(0f, transform.rotation.y - _OrbitSpeed * Time.fixedDeltaTime, 0f);
                     }
                 }
 
@@ -126,20 +130,11 @@ public class Wep_Shield : Weapon {
                         // Rotate shield left
                         transform.Rotate(0f, transform.rotation.y - _OrbitSpeed * Time.fixedDeltaTime, 0f);
                     }
+
+                    // Apply new rotation
+                    rotation.y = transform.rotation.y;
                 }
             }
-        }
-
-        // Meatshield rotates automatically
-        if (_AutomatedRotation == true) {
-
-
-        }
-
-        // Uses trigger input to determine rotation
-        else { /// _AutomatedRotation == false
-
-            rotation.y = transform.rotation.y;
         }
     }
 

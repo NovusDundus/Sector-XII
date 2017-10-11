@@ -37,7 +37,10 @@ public class WeaponManager : MonoBehaviour {
     [Tooltip("Maximum amount of minions allowed to compose the meat shield.")]
     public int _MaxSize = 14;
     [Header("- Rotation")]
+    [Tooltip("Whether the shield automatically rotates on its own")]
     public bool _AutoRotate = false;
+    [Tooltip("Sets whether the shield will rotate either clockwise or counter clockwise (AUTO ROTATE NEEDS TO BE ENABLED)")]
+    public bool _OrbitClockwise = true;
     [Tooltip("The speed of rotation it takes for the 'Meat' to orbit the character")]
     public float _OrbitSpeed = 3f;
 

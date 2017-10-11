@@ -49,12 +49,25 @@ public class Proj_Fireball : Projectile {
         distanceTraveled = 0f;
 
         // Find reference to self in active projectile pool
+        int i = 0;
+        foreach (var item in _Owner.GetComponent<Wep_Orb>().GetActivePool()) {
 
-        // Needs to move to the inactive projectile pool
+            // Once we have found ourself
+            if (item == this) {
+
+                // Remove from active pool
+                _Owner.GetComponent<Wep_Orb>().GetActivePool().RemoveAt(i);
+
+                // Needs to move to the inactive projectile pool
+                _Owner.GetComponent<Wep_Orb>().GetInactivePool().Add(item);
+                break;
+            }
+            ++i;
+        }
 
         /// PLACEHOLDER ****************
-        Destroy(gameObject);
-        _Owner.GetComponent<Wep_Orb>()._ActiveProjectiles -= 1;
+        ///Destroy(gameObject);
+        ///_Owner.GetComponent<Wep_Orb>()._ActiveProjectiles -= 1;
     }
 
     //--------------------------------------------------------------
