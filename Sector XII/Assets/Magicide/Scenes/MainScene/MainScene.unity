@@ -10383,6 +10383,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 81321207}
+  - {fileID: 1300362721}
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -28969,6 +28970,56 @@ Transform:
   m_PrefabParentObject: {fileID: 4729491935669076, guid: bf7bab74011faf14286e9dac4f02b3c0,
     type: 2}
   m_PrefabInternal: {fileID: 1297468957}
+--- !u!1 &1300362720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1300362721}
+  - component: {fileID: 1300362722}
+  m_Layer: 0
+  m_Name: FPS_Counter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1300362721
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1300362720}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 444803091}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1300362722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1300362720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6984f78dbad610c47a0a033c352bf0d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startRect:
+    serializedVersion: 2
+    x: 100
+    y: 100
+    width: 75
+    height: 50
+  updateColor: 1
+  allowDrag: 1
+  frequency: 0.5
+  nbDecimal: 1
 --- !u!1 &1316351559
 GameObject:
   m_ObjectHideFlags: 0
@@ -46609,11 +46660,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114673052955311832, guid: 3fecd7648617e294fb0b9f342be0141d,
-        type: 2}
-      propertyPath: _MatchTimerText
-      value: 
-      objectReference: {fileID: 520034577}
     - target: {fileID: 114871509978189574, guid: 3fecd7648617e294fb0b9f342be0141d,
         type: 2}
       propertyPath: _Panel
@@ -46624,16 +46670,11 @@ Prefab:
       propertyPath: _PlayerOne
       value: 
       objectReference: {fileID: 1624258536}
-    - target: {fileID: 114954400972428742, guid: 3fecd7648617e294fb0b9f342be0141d,
+    - target: {fileID: 114673052955311832, guid: 3fecd7648617e294fb0b9f342be0141d,
         type: 2}
-      propertyPath: _NecromancerMovementSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114973976100088120, guid: 3fecd7648617e294fb0b9f342be0141d,
-        type: 2}
-      propertyPath: _AutoRotate
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: _MatchTimerText
+      value: 
+      objectReference: {fileID: 520034577}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3fecd7648617e294fb0b9f342be0141d, type: 2}
   m_IsPrefabParent: 0
