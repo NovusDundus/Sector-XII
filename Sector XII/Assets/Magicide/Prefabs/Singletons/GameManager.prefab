@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NecromancerStartingHealth: 100
-  _NecromancerMovementSpeed: 50
+  _NecromancerMovementSpeed: 10
   _NecromancerRotationSpeed: 2
 --- !u!114 &114973976100088120
 MonoBehaviour:
@@ -177,4 +177,5 @@ MonoBehaviour:
   _FireballSpeed: 20
   _FireballRange: 100
   _MaxSize: 18
+  _AutoRotate: 1
   _OrbitSpeed: 400
