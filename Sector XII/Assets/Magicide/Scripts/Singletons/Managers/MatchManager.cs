@@ -230,6 +230,10 @@ public class MatchManager : MonoBehaviour {
         // Show hud
         HUD._pInstance.ShowHUD(true);
 
+        // Start camera
+        Camera cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        ///cam.GetComponent<DynamicCamera>().Init();
+
         // Initiate phase1
         _GameState = GameState.Phase1;
     }

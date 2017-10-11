@@ -86,7 +86,7 @@ public class Character : MonoBehaviour {
         return _Health;
     }
 
-    public void Damage(int amount) {
+    public virtual void Damage(int amount) {
 
         // Damage character based on amount passed through
         _Health -= amount;

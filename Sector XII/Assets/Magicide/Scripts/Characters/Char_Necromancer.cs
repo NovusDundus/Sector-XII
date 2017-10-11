@@ -28,7 +28,6 @@ public class Char_Necromancer : Character {
 
         // Set character's speed
         _MovementSpeed = PlayerManager._pInstance._NecromancerMovementSpeed;
-        _RotationSpeed = PlayerManager._pInstance._NecromancerRotationSpeed;
         
         // Create players's primary weapon (orb)
         _WeaponPrimary = GameObject.FindGameObjectWithTag("P" + _Player._pPlayerID + "_PrimaryWeapon").GetComponent<Weapon>();
@@ -43,8 +42,9 @@ public class Char_Necromancer : Character {
         // Can be controlled by player / ai controller
         SetActive(true);
 
-        // Add the gameObject associated to this script to the playermanager object pool
+        // Add the gameObject associated to this script to the playermanager object pools
         PlayerManager._pInstance.GetAliveNecromancers().Add(this);
+        PlayerManager._pInstance.GetAllPlayers().Add(this);
     }
 
     //--------------------------------------------------------------
@@ -97,6 +97,23 @@ public class Char_Necromancer : Character {
 
     //--------------------------------------------------------------
     // *** HEALTH & DAMAGE ***
+
+    public override void Damage(int amount) {
+
+        // Only damage character if match is in phase2
+        if (MatchManager._pInstance.GetGameState() == MatchManager.GameState.Phase2) {
+
+            // Damage character based on amount passed through
+            _Health -= amount;
+
+            // Returns TRUE if character has no health
+            if (_Health <= 0) {
+
+                // Character has died
+                OnDeath();
+            }
+        }
+    }
 
     public override void OnDeath() {
 

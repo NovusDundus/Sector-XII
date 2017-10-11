@@ -157,7 +157,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _NecromancerStartingHealth: 100
   _NecromancerMovementSpeed: 10
-  _NecromancerRotationSpeed: 2
 --- !u!114 &114973976100088120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -169,13 +168,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644b168221e562842ba6d16853ef85f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _OrbFireDelay: 0.05
+  _OrbFireDelay: 0.075
   _FireballHeatCost: 0.06
   _OrbCooldownRateStable: 0.015
   _OrbCooldownRateOverheated: 0.02
   _ImpactDamage: 20
   _FireballSpeed: 20
   _FireballRange: 100
-  _MaxSize: 18
-  _AutoRotate: 1
-  _OrbitSpeed: 400
+  _MaxSize: 26
+  _AutoRotate: 0
+  _OrbitClockwise: 1
+  _OrbitSpeed: 350

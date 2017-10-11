@@ -39,9 +39,7 @@ public class Char_Wyrm : Character {
     }
 
     public override void FixedUpdate() {
-
-        // Move forward constantly
-        ///transform.Translate(transform.forward * Time.deltaTime * _MovementSpeed);
+        
     }
 
     //--------------------------------------------------------------

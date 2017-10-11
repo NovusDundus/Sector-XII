@@ -18,7 +18,6 @@ public class PlayerManager : MonoBehaviour {
     public int _NecromancerStartingHealth = 100;                    // Starting health of the necromancers that are possessed by the players.
     [Header("- Movement")]
     public float _NecromancerMovementSpeed = 10f;                   // Movement speed of the necromancer character.
-    public float _NecromancerRotationSpeed = 2f;
 
     /// Public (internal)
     [HideInInspector]
@@ -27,7 +26,8 @@ public class PlayerManager : MonoBehaviour {
     /// Private
     private List<Character> _POOL_ALIVE_NECROMANCERS;               // Object pool of all ALIVE Player necromancers.
     private List<Character> _POOL_DEAD_NECROMANCERS;                // Object pool of all DEAD Player necromancers.
-    
+    private List<Character> _AllPlayers;
+
     //--------------------------------------------------------------
     // CONSTRUCTORS
 
@@ -46,6 +46,7 @@ public class PlayerManager : MonoBehaviour {
         // Create object pools
         _POOL_ALIVE_NECROMANCERS = new List<Character>();
         _POOL_DEAD_NECROMANCERS = new List<Character>();
+        _AllPlayers = new List<Character>();
     }
 
     //--------------------------------------------------------------
@@ -70,5 +71,10 @@ public class PlayerManager : MonoBehaviour {
     public List<Character> GetDeadNecromancers() {
 
         return _POOL_DEAD_NECROMANCERS;
+    }
+
+    public List<Character> GetAllPlayers() {
+
+        return _AllPlayers;
     }
 }
