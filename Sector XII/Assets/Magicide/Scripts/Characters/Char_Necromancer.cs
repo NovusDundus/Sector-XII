@@ -33,7 +33,7 @@ public class Char_Necromancer : Character {
         // Create players's primary weapon (orb)
         _WeaponPrimary = GameObject.FindGameObjectWithTag("P" + _Player._pPlayerID + "_PrimaryWeapon").GetComponent<Weapon>();
         _WeaponPrimary.SetOwner(this);
-        _WeaponPrimary.Init(); /// Create fireball object pool (full of inactive fireballs)
+        ///_WeaponPrimary.Init(); /// Create fireball object pool (full of inactive fireballs)
 
         // Create player's secondary weapon (shield)
         _WeaponSecondary = GameObject.FindGameObjectWithTag("P" + _Player._pPlayerID + "_SecondaryWeapon").GetComponent<Weapon>();
