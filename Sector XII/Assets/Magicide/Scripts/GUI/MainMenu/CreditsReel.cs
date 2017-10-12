@@ -26,6 +26,12 @@ public class CreditsReel : MonoBehaviour {
 
         // Move the credits reel's rect transform back to the starting position
         _Panel.localPosition = new Vector3(50, -300);
+
+        if (MainMenu._pInstance._GameTitleImage != null) {
+
+            // Hide game title image
+            MainMenu._pInstance._GameTitleImage.SetActive(false);
+        }
     }
 
     //--------------------------------------------------------------

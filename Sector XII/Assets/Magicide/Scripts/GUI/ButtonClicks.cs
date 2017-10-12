@@ -63,6 +63,12 @@ public class ButtonClicks : MonoBehaviour {
         // Transition back to main menu
         if (ui_Credits != null && ui_MainMenu != null) {
 
+            if (MainMenu._pInstance._GameTitleImage != null) {
+
+                // Show game title image
+                MainMenu._pInstance._GameTitleImage.SetActive(true);
+            }
+
             // Show main menu
             ui_MainMenu.SetActive(true);
 

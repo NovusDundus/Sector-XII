@@ -198,7 +198,7 @@ public class MatchManager : MonoBehaviour {
         HUD._pInstance.ShowHUD(false);
 
         // Fade in from black
-        Fade._pInstance.StartFade(Fade.FadeStates.fadeOut, Color.black, 0.01f);
+        Fade._pInstance.StartFade(Fade.FadeStates.fadeOut, Color.black, 0.005f);
     }
 
     public void MatchSetup() {
@@ -226,6 +226,9 @@ public class MatchManager : MonoBehaviour {
     }
 
     public void MatchStart() {
+
+        // Exit cinematic bars
+        CinematicBars._pInstance.StartAnimation(CinematicBars.BarDirection.Exit, 4f);
 
         // Show hud
         HUD._pInstance.ShowHUD(true);
@@ -297,4 +300,5 @@ public class MatchManager : MonoBehaviour {
 
         return _MaxMatchTimer;
     }
+
 }

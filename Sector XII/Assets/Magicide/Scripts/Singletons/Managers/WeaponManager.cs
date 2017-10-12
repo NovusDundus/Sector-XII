@@ -36,6 +36,8 @@ public class WeaponManager : MonoBehaviour {
     [Header("- Size")]
     [Tooltip("Maximum amount of minions allowed to compose the meat shield.")]
     public int _MaxSize = 14;
+    [Tooltip("The amount of spacing that spans out the corpses from the center.")]
+    public float _MinionSpacing = 1.5f;
     [Header("- Rotation")]
     [Tooltip("Whether the shield automatically rotates on its own")]
     public bool _AutoRotate = false;

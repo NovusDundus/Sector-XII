@@ -19,7 +19,7 @@ public class Wep_Shield : Weapon {
     private int _MinionCount = 0;                                   // Amount of minions that composes the weapon.
     private int _PreviousMinionCount = 0;
     private float _OrbitSpeed = 200;                                // The speed in which the minions rotate around the character that owns this weapon.
-    private float _MinionSpacing = 1f;         /* TEMPORARY */      // Unit of space between each minion.
+    private float _MinionSpacing = 2f;         /* TEMPORARY */      // Unit of space between each minion.
     private Quaternion rotation;                                    // Current rotation of the weapon's transform.
     private List<Proj_ShieldMinion> _POOL_Minions;                  // Object pool of all minions attached to this weapon.
     private bool _AutomatedRotation;
@@ -36,8 +36,9 @@ public class Wep_Shield : Weapon {
         // Set orbit speed
         _OrbitSpeed = WeaponManager._pInstance._OrbitSpeed;
 
-        // Set minion cap
+        // Set minion cap & spacing
         _MaxMinions = WeaponManager._pInstance._MaxSize;
+        _MinionSpacing = WeaponManager._pInstance._MinionSpacing;
 
         // Set rotation properties
         _AutomatedRotation = WeaponManager._pInstance._AutoRotate;

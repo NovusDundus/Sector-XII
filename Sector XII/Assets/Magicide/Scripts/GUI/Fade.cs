@@ -14,11 +14,12 @@ public class Fade : MonoBehaviour {
     // *** VARIABLES ***
 
     /// Public (designers)
-    public GameObject UI_Panel;
+    public GameObject _UIPanel;                                     // Reference to the UI Panel.
+    public Image _Image;                                            // Reference to the UI Panel's image component.
 
     /// Public (internal)
     [HideInInspector]
-    public static Fade _pInstance;                                  // This is a singleton script, Initialized in Startup().
+    public static Fade _pInstance;                                  // This is a singleton script, Initialized in Awake().
     public enum FadeStates {
 
         idle,
@@ -27,7 +28,6 @@ public class Fade : MonoBehaviour {
     }
 
     /// Private
-    private Image _Image;
     private float _FadeRate = 0f;
     private FadeStates _FadeState = FadeStates.idle;
     private bool _Fading = false;
@@ -47,38 +47,28 @@ public class Fade : MonoBehaviour {
         // Set singleton
         _pInstance = this;
     }
-
-    public void Start () {
-        
-        // Get reference to panel's image component
-        _Image = GetComponent<Image>();
-	}
-
+    
     //--------------------------------------------------------------
     // *** FRAME ***
-
-    public void Update () {
-		
-	}
-
+    
     public void FixedUpdate() {
 
         // Precaution
-        if (UI_Panel != null) {
+        if (_UIPanel != null) {
 
             switch (_FadeState) {
 
                 case FadeStates.idle: {
 
                         // Hide panel
-                        UI_Panel.SetActive(false);
+                        _UIPanel.SetActive(false);
                         _Fading = false;
                         break;
                     }
                 case FadeStates.fadeIn: {
 
                         // Show panel
-                        UI_Panel.SetActive(true);
+                        _UIPanel.SetActive(true);
 
                         // Fade screen into COLOUR
                         if (_Image.color.a < 1f) {
@@ -97,7 +87,7 @@ public class Fade : MonoBehaviour {
                 case FadeStates.fadeOut: {
 
                         // Show panel
-                        UI_Panel.SetActive(true);
+                        _UIPanel.SetActive(true);
 
                         // Fade screen from COLOUR
                         if (_Image.color.a > 0f) {

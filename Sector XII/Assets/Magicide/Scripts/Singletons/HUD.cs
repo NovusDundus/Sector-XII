@@ -34,7 +34,7 @@ public class HUD : MonoBehaviour {
     public static HUD _pInstance;                                   // This is a singleton script, Initialized in Startup().
 
     /// Private
-    private bool _DisplayHUD = false;                               // Returns TRUE if the HUD is being displayed on screen.
+    public bool _DisplayHUD = false;                                // Returns TRUE if the HUD is being displayed on screen.
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
