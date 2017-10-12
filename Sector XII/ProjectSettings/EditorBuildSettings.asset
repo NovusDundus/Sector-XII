@@ -6,5 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Magicide/Scenes/MainMenu/MainMenu.unity
+    guid: a96b29a7de11aed408a908469453f6e8
+  - enabled: 1
     path: Assets/Magicide/Scenes/MainScene/MainScene.unity
     guid: 91cbcdc4b5fc8624b950a55ebcc4bf1f
