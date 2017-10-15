@@ -48,16 +48,17 @@ public class MainMenu : MonoBehaviour {
     public void Start() {
         
         // Fade in from black
-        Fade._pInstance.StartFade(Fade.FadeStates.fadeOut, Color.black, 0.01f);
+        Fade._pInstance.StartFade(Fade.FadeStates.fadeOut, Color.black, 0.02f);
     }
+
+    //--------------------------------------------------------------
+    // *** FRAME ***
 
     public void FixedUpdate() {
 
         switch (_State) {
 
-            case MenuState.SplashScreen: {
-
-                    
+            case MenuState.SplashScreen: {                    
 
                     break;
                 }

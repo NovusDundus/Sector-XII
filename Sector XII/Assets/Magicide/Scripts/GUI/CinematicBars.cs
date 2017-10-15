@@ -60,7 +60,7 @@ public class CinematicBars : MonoBehaviour {
                         // Move cinematic bars inwards
                         if (_BottomBar != null && _TopBar != null) {
 
-                            if (_BottomBar.transform.position.y < 100) {
+                            if (_BottomBar.transform.position.y < 0) {
 
                                 // Move topbar down into the screen
                                 _TopBar.transform.position = new Vector3(_TopBar.transform.position.x, _TopBar.transform.position.y - _AnimationSpeed, _TopBar.transform.position.z);

@@ -19,6 +19,8 @@ public class HUD : MonoBehaviour {
     public Color _TimeLowColour = Color.red;
     public Color _TimeMediumColour = Color.yellow;
     public Color _TimeOkayColour = Color.white;
+    [Header("*** SCOREBOARD ***")]
+    public GameObject _UIScoreboard;                                // Reference to the gui Scoreboard panel.
     [Header(" *** PLAYERS ***")]
     public Char_Necromancer PlayerAlpha;                            // Reference to player 1's character.
     public Color _PlayerAlphaColour = Color.blue;                   // Player 1's HUD colour pallet.

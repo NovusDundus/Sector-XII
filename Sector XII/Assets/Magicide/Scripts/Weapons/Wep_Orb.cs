@@ -249,7 +249,7 @@ public class Wep_Orb : Weapon {
         else {
 
             // Unsuccessful hit
-            Debug.DrawLine(rayStart, rayEnd, Color.red, 10);
+            ////Debug.DrawLine(rayStart, rayEnd, Color.red, 10);
         }
         return hit;
     }

@@ -19,6 +19,8 @@ public class Player : MonoBehaviour {
     /// Private
     private int _Score = 0;                                         // The player's individual score for the match.
     private int _KillCount = 0;                                     // Amount of kills a player has done throughout the match.
+    private float _TimeAlive = 0;                                   // 
+    private int _Placement = 0;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -29,34 +31,6 @@ public class Player : MonoBehaviour {
 
     //--------------------------------------------------------------
     // *** FRAME ***
-
-    public void Update() {
-
-        if (GetSpecialLeftButton) {
-
-            Debug.Log("Special Left");
-        }
-        if (GetSpecialRightButton) {
-
-            Debug.Log("Special Right");
-        }
-        if (GetFaceBottomInput) {
-
-            Debug.Log("A button");
-        }
-        if (GetFaceTopInput) {
-
-            Debug.Log("Y button");
-        }
-        if (GetFaceLeftInput) {
-
-            Debug.Log("X button");
-        }
-        if (GetFaceRightInput) {
-
-            Debug.Log("B button");
-        }
-    }
 
     public void FixedUpdate() {
 
@@ -78,6 +52,36 @@ public class Player : MonoBehaviour {
 
                     // Pause game
                     MatchManager._pInstance.SetPause(true);
+                }
+            }
+        }
+
+        // Determine placement in the match
+        foreach (var plyr in PlayerManager._pInstance.GetAllPlayers()) {
+
+            int place = _Placement;
+
+            // Dont test against ourself
+            if (plyr != this) {
+
+                if (plyr._Player.GetPlacement() < place) {
+
+                    // We are at the right spot
+                    _Placement = place;
+                    break;
+                }
+
+                else if (plyr._Player.GetPlacement() > place) {
+
+                    // Need to move up
+
+                    // Store old placements for both players
+                    int newPlacement = plyr._Player.GetPlacement();
+                    int previousPlacement = _Placement;
+
+                    // Swap spots
+                    _Placement = newPlacement;
+                    plyr._Player.SetPlacement(previousPlacement);
                 }
             }
         }
@@ -114,6 +118,26 @@ public class Player : MonoBehaviour {
 
         // Returns the current kill count of the player
         return _KillCount;
+    }
+
+    public void AddTimeAlive(float amount) {
+
+        _TimeAlive += amount;
+    }
+
+    public int GetTimeAlive() {
+
+        return (int)_TimeAlive;
+    }
+
+    public int GetPlacement() {
+
+        return _Placement;
+    }
+
+    public void SetPlacement(int place) {
+
+        _Placement = place;
     }
 
     //--------------------------------------------------------------

@@ -19,13 +19,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4818791142805520}
-  - component: {fileID: 114944523794425134}
   - component: {fileID: 114673052955311832}
   - component: {fileID: 114678055456776600}
   - component: {fileID: 114954400972428742}
   - component: {fileID: 114973976100088120}
   - component: {fileID: 114256192889013498}
-  - component: {fileID: 114434580830293508}
   - component: {fileID: 114159303695506240}
   - component: {fileID: 114871509978189574}
   m_Layer: 0
@@ -72,17 +70,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _WyrmStartingHealth: 100
   _WyrmMovementSpeed: 5
---- !u!114 &114434580830293508
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1087329879016264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cbcfc139f93d9740bdaf99a6cbb2567, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114673052955311832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -98,6 +85,7 @@ MonoBehaviour:
   _TimeLowColour: {r: 1, g: 0, b: 0, a: 1}
   _TimeMediumColour: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   _TimeOkayColour: {r: 1, g: 1, b: 1, a: 1}
+  _UIScoreboard: {fileID: 0}
   PlayerAlpha: {fileID: 0}
   _PlayerAlphaColour: {r: 0, g: 0.751724, b: 1, a: 0}
   PlayerBravo: {fileID: 0}
@@ -106,6 +94,7 @@ MonoBehaviour:
   _PlayerCharlieColour: {r: 0.8206897, g: 0, b: 1, a: 0}
   PlayerDelta: {fileID: 0}
   _PlayerDeltaColour: {r: 1, g: 0.8482759, b: 0, a: 0}
+  _DisplayHUD: 0
 --- !u!114 &114678055456776600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133,17 +122,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Panel: {fileID: 0}
   _PlayerOne: {fileID: 0}
---- !u!114 &114944523794425134
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1087329879016264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 702b879b3a5403e4f9fc26091b3be97a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114954400972428742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -169,13 +147,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _OrbFireDelay: 0.075
-  _FireballHeatCost: 0.06
+  _FireballHeatCost: 0.085
   _OrbCooldownRateStable: 0.015
   _OrbCooldownRateOverheated: 0.02
-  _ImpactDamage: 20
+  _ImpactDamage: 25
   _FireballSpeed: 20
   _FireballRange: 100
-  _MaxSize: 26
+  _MaxSize: 18
+  _MinionSpacing: 1.2
   _AutoRotate: 0
   _OrbitClockwise: 1
   _OrbitSpeed: 350

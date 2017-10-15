@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonClicks : MonoBehaviour {
+public class ButtonClicksMainMenu : MonoBehaviour {
 
     ///--------------------------------------///
     /// Created by: Daniel Marton
@@ -17,6 +17,9 @@ public class ButtonClicks : MonoBehaviour {
     public GameObject ui_Credits;
     public GameObject ui_ExitGameConfirm;
 
+    private bool _ClosingApplication = false;
+    private float _CloseAppDelay = 1f;
+
     //--------------------------------------------------------------
     // *** BUTTON CLICKS *** 
 
@@ -24,6 +27,9 @@ public class ButtonClicks : MonoBehaviour {
 
         // Start game (go to loading screen)
         if (ui_LoadingScreen != null && ui_MainMenu != null) {
+
+            // Load arena mode level
+            ui_LoadingScreen.GetComponent<LoadingScreen>().SetLevelIndex(1);
 
             // Show loading screen
             ui_LoadingScreen.SetActive(true);
@@ -87,9 +93,24 @@ public class ButtonClicks : MonoBehaviour {
     }
 
     public void OnClick_bConfirmExitGame() {
+                
+        // Fade into black
+        Fade._pInstance.StartFade(Fade.FadeStates.fadeIn, Color.black, 0.04f);
 
-        // Close the application
-        Application.Quit();
+        _ClosingApplication = true;
+    }
+
+    //--------------------------------------------------------------
+    // *** FRAME *** 
+
+    public void FixedUpdate() {
+
+        // Once the fade after confirming the exit game button is complete
+        if (_ClosingApplication == true && Fade._pInstance.IsFadeComplete() == true) {
+            
+            // Close the application
+            Application.Quit();
+        }
     }
 
 }

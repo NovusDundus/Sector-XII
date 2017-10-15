@@ -52,7 +52,7 @@ public class LoadingScreen : MonoBehaviour {
 
                     // Fade in "t_Loading" text from transparent.
                     if (_LoadingText.color.a < 1f) {
-                        _LoadingTextAlpha += Time.deltaTime / 2f;
+                        _LoadingTextAlpha += Time.deltaTime * 0.5f;
                         _LoadingText.color = Color.Lerp(Color.clear, Color.white, _LoadingTextAlpha);
                     }
                     
@@ -72,7 +72,7 @@ public class LoadingScreen : MonoBehaviour {
                     if (_LoadSlider.value < (_LoadSlider.maxValue / 1.1f)) {
 
                         // Add to load slider's current value
-                        _LoadSlider.value += Time.deltaTime;
+                        _LoadSlider.value += Time.deltaTime * 1.5f;
                     }
 
                     // Minimum timer counter for the scene loading.

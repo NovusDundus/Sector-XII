@@ -33,18 +33,21 @@ public class Debug_ShowDevUI : MonoBehaviour {
             _TimerActive = 0f;
         }
 
-        if (_PlayerOne._Player.GetSpecialLeftButton == true) {
+        if (_PlayerOne != null) {
 
-            if (PanelShowing == true && _TimerActive > 0.5f) {
+            if (_PlayerOne._Player.GetSpecialLeftButton == true) {
 
-                _Panel.SetActive(false);
-                PanelShowing = false;
-            }
+                if (PanelShowing == true && _TimerActive > 0.5f) {
 
-            else if (_TimerInactive > 0.5f){
+                    _Panel.SetActive(false);
+                    PanelShowing = false;
+                }
 
-                _Panel.SetActive(true);
-                PanelShowing = true;
+                else if (_TimerInactive > 0.5f) {
+
+                    _Panel.SetActive(true);
+                    PanelShowing = true;
+                }
             }
         }
     }

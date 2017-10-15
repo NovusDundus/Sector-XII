@@ -115,7 +115,7 @@ public class Fade : MonoBehaviour {
     // *** FADE ***
 
     public void StartFade(FadeStates state, Color colour, float rate) {
-
+        
         // Set fade colour
         _Image.color = colour;
 
@@ -124,6 +124,35 @@ public class Fade : MonoBehaviour {
 
         // Begin fade
         _FadeState = state;
+
+        switch (state) {
+
+            case FadeStates.idle: {
+
+                    break;
+                }
+
+            case FadeStates.fadeIn: {
+
+                    _UIPanel.SetActive(true);
+                    _Fading = true;
+                    _Image.color = new Color(_Image.color.r, _Image.color.g, _Image.color.b, 0f);
+                    break;
+                }
+
+            case FadeStates.fadeOut: {
+
+                    _UIPanel.SetActive(true);
+                    _Fading = true;
+                    _Image.color = new Color(_Image.color.r, _Image.color.g, _Image.color.b, 1f);
+                    break;
+                }
+
+            default: {
+
+                    break;
+                }
+        }
     }
 
     public bool IsFadeComplete() {

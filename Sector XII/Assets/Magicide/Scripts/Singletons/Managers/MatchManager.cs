@@ -112,6 +112,12 @@ public class MatchManager : MonoBehaviour {
 
                         // Deduct from timer 1 second per second
                         _TimerPhase1 -= Time.deltaTime;
+                        
+                        foreach (var player in PlayerManager._pInstance.GetAliveNecromancers()) {
+
+                            // Add 1 second per second to the alive time
+                            player._Player.AddTimeAlive(Time.deltaTime);
+                        }
 
                         // Once phase1 timer is complete
                         if (_TimerPhase1 <= 0f) {
@@ -139,13 +145,30 @@ public class MatchManager : MonoBehaviour {
 
                             // Deduct from timer 1 second per second
                             _TimerPhase2 -= Time.deltaTime;
-   
+
+
+                            foreach (var player in PlayerManager._pInstance.GetAliveNecromancers()) {
+
+                                // Add 1 second per second to the alive time
+                                player._Player.AddTimeAlive(Time.deltaTime);
+                            }
+
+                            // Check for premature game over
+                            LastManStandingChecks();
+
                             // Once phase2 timer is complete
                             if (_TimerPhase2 <= 0f) {
 
                                 // Stop phase2 (GAME OVER)
-                                _GameState = GameState.Gameover;
+                                MatchCompleted();
                             }
+                        }
+
+                        // Phase 2 has no time limit
+                        else { /// _MaxMatchTimer == false
+
+                        // Check for premature game over
+                            LastManStandingChecks();
                         }
                     }
                     break;
@@ -158,6 +181,7 @@ public class MatchManager : MonoBehaviour {
 
                     // Disable pausing (and force unpause)
                     SetPause(false);
+                    MatchCompleted();
                     break;
                 }
 
@@ -186,6 +210,16 @@ public class MatchManager : MonoBehaviour {
         _Gameplay = !_GamePaused && !_CinematicPlaying;
     }
 
+    public void LastManStandingChecks() {
+
+        // There is now only 1 alive player in the match
+        if (PlayerManager._pInstance.GetAliveNecromancers().Count <= 1) {
+
+            // Match completed
+            MatchCompleted();
+        }
+    }
+
     //--------------------------------------------------------------
     // *** MATCH ***
 
@@ -204,6 +238,8 @@ public class MatchManager : MonoBehaviour {
     public void MatchSetup() {
 
         /* Reset all match settings */
+        // Reset initial AI spawns
+        // Reset player positions & health
 
         // Set phase1 time
         _TimerPhase1 = _Phase1Length;
@@ -243,6 +279,17 @@ public class MatchManager : MonoBehaviour {
 
     public void MatchCompleted() {
 
+        // Set gamestate
+        _GameState = GameState.Gameover;
+
+        // Show scoreboard
+        if (HUD._pInstance._UIScoreboard != null) {
+
+            HUD._pInstance._UIScoreboard.SetActive(true);
+        }
+
+        // Show cinematic bars
+        CinematicBars._pInstance.StartAnimation(CinematicBars.BarDirection.Enter, 4f);
     }
 
     //--------------------------------------------------------------

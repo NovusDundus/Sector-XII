@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33057997686416340}
   - component: {fileID: 64628327961320440}
   - component: {fileID: 23424024529049330}
-  - component: {fileID: 114696993268020314}
   - component: {fileID: 114124823376219078}
   m_Layer: 0
   m_Name: CrystalScoreboard
@@ -108,20 +107,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4afd79465f78d5e4e84c6acbef26ef37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CrystalObject: {fileID: 0}
-  PlayerAlphaMaterial: {fileID: 0}
-  PlayerBravoMaterial: {fileID: 0}
-  PlayerCharlieMaterial: {fileID: 0}
-  PlayerDeltaMaterial: {fileID: 0}
-  DefaultMaterial: {fileID: 0}
---- !u!114 &114696993268020314
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1720292145333682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  CrystalObject: {fileID: 1720292145333682}
+  PlayerAlphaMaterial: {fileID: 2100000, guid: e623219d33d222943ab906eaffeaaf1a, type: 2}
+  PlayerBravoMaterial: {fileID: 2100000, guid: a3f7364e76cd0714b84fbb6f8b6c5226, type: 2}
+  PlayerCharlieMaterial: {fileID: 2100000, guid: 8709e366bbc28834baffc3eaecae3b58,
+    type: 2}
+  PlayerDeltaMaterial: {fileID: 2100000, guid: 6c24988139480624c8aa100b26bc2ff8, type: 2}
+  DefaultMaterial: {fileID: 2100000, guid: 354cfc9b47b7dc54ca871dbae4ea0e5d, type: 2}
