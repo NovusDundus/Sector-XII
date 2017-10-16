@@ -20,10 +20,16 @@ public class ButtonClicksArenaMode : MonoBehaviour {
     public void OnClick_Restart() {
 
         // Reset everything & start a new match
-        MatchManager._pInstance.Start();
+        ///MatchManager._pInstance.Start();
 
         // Hide scoreboard panel
         HUD._pInstance._UIScoreboard.SetActive(false);
+
+        // Load main menu level
+        _LoadingScreen.GetComponent<LoadingScreen>().SetLevelIndex(1);
+
+        // Show loading screen panel
+        _LoadingScreen.SetActive(true);
     }
 
     public void OnClick_MainMenu() {
