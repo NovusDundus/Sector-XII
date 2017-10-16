@@ -10,8 +10,9 @@ public class CrystalScoreboard : MonoBehaviour {
     ///--------------------------------------///
 
     //----------------------------------------------------------------------------------
-    // VARIABLES
+    // *** VARIABLES ***
 
+    /// Public (designers)
     public GameObject CrystalObject;
     public Material PlayerAlphaMaterial;
     public Material PlayerBravoMaterial;
@@ -19,46 +20,27 @@ public class CrystalScoreboard : MonoBehaviour {
     public Material PlayerDeltaMaterial;
     public Material DefaultMaterial;
 
-  
+    /// Private
     private int _HighestScore = int.MinValue;
     private int _CurrentHighest = 0;
     private Player _TopPlayer = null;
     private int _TopPlayerID = 0;
-    // private Color _CrystalColour;
-    //public Material _CrystalMat;
-
     private MeshRenderer meshRenderer;
 
 
     //--------------------------------------------------------------
-    // CONSTRUCTORS
+    // *** CONSTRUCTORS ***
 
     void Start () {
+
         meshRenderer = GetComponent<MeshRenderer>();
-
     }
-	
-	void Update () {
 
-       
-	}
+    //--------------------------------------------------------------
+    // *** FRAME ***
 
     private void FixedUpdate()
     {
-
-
-        //create variable to store the current highest Player (set it null)
-        //create variable to store the current highest Score (set that to int.MinValue)
-        //create variable to store the current highest Player's index
-
-        //loop over each player using for loop 
-        //if this player's score is greater than current highest score
-        //set current highest player to this player
-        //set current highest score to this player's score
-
-
-        _CurrentHighest = int.MinValue;
-
         foreach (Character plyr in PlayerManager._pInstance.GetAliveNecromancers())
         {
             Player p = plyr.GetComponent<Player>();
@@ -68,17 +50,17 @@ public class CrystalScoreboard : MonoBehaviour {
                 _CurrentHighest = p.GetScore();
                 _TopPlayer = p;
                 _TopPlayerID = p._pPlayerID;
+                break;
             }
         }
-        //Debug.Log("Winning Player: " + _TopPlayerID);
-        // switch statement on colours
-        // set colour of crystal to highest score
 
-        //if currentHighestScore != 0
+        switch (_TopPlayerID) {
 
+            case 0:
 
-        switch (_TopPlayerID)
-        {
+                meshRenderer.material = DefaultMaterial;
+                break;
+
             case 1:
 
                 meshRenderer.material = PlayerAlphaMaterial;
@@ -100,16 +82,11 @@ public class CrystalScoreboard : MonoBehaviour {
                 break;
 
             default:
+
                 meshRenderer.material = DefaultMaterial;
                 break;
 
         }
-
-                
-
-                
-
-
-
     }
+
 }
