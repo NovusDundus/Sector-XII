@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 1bd49bea2d2627743ad72f09bdb568ed
-timeCreated: 1506905719
+guid: 31313c58708edc241bb9bcbf239b77cc
+timeCreated: 1508106445
 licenseType: Pro
 ModelImporter:
   serializedVersion: 21
@@ -9,8 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: MM_Fence
-    4300002: MM_FENCE
+    4300000: NAT_Tree2
   materials:
     importMaterials: 1
     materialName: 0
