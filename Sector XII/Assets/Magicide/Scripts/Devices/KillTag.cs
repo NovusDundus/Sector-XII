@@ -68,7 +68,6 @@ public class KillTag : MonoBehaviour {
 
                 // Move up
                 transform.position = new Vector3(transform.position.x, transform.position.y + _BobSpeed * Time.deltaTime, transform.position.z);
-                ///transform.Translate(new Vector3(transform.position.x, transform.position.y + _BobSpeed * Time.deltaTime, transform.position.z));
             }
 
             // Minimum bob has been reached
@@ -85,7 +84,6 @@ public class KillTag : MonoBehaviour {
 
                 // Move down
                 transform.position = new Vector3(transform.position.x, transform.position.y - _BobSpeed * Time.deltaTime, transform.position.z);
-                ///transform.Translate(new Vector3(transform.position.x, transform.position.y - _BobSpeed * Time.deltaTime, transform.position.z));
             }
 
             // Minimum bob has been reached
@@ -109,6 +107,9 @@ public class KillTag : MonoBehaviour {
 
                     // Pickup minion check
                     OnPickup(necromancer.GetComponent<Char_Necromancer>());
+
+                    // Respawn ai (if possible)
+                    AiManager._pInstance.OnRespawn();
                     break;
                 }
             }
