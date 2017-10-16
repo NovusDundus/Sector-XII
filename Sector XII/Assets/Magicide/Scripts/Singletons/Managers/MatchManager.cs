@@ -39,7 +39,6 @@ public class MatchManager : MonoBehaviour {
     private bool _GamePaused = false;                               // Returns TRUE if the game is currently paused.
     private bool _CinematicPlaying = true;                          // Returns TRUE if the game is currently playing a cinematic.
     private bool _Gameplay;                                         // Returns TRUE if the game is currently in a gameplay state.
-    private float _MinimumPauseTime = 10f;                          // Minimum amount of time required for the game to be in a paused state before returning to unpaused.
     private float _TimePaused = 0f;
     private float _TimerPhase1 = 0f;
     private float _TimerPhase2 = 0f;
@@ -203,7 +202,7 @@ public class MatchManager : MonoBehaviour {
         }
 
         // Gameplay is true if the game isnt paused AND NOT playing a cinematic
-        _Gameplay = !_GamePaused && !_CinematicPlaying;
+        _Gameplay = _GamePaused == false && _CinematicPlaying == false;
     }
 
     public void LastManStandingChecks() {
@@ -234,7 +233,7 @@ public class MatchManager : MonoBehaviour {
     public void MatchSetup() {
 
         // Determine how many controllers are connected
-        int size = Input.GetJoystickNames().Length / 2;
+        ///int size = Input.GetJoystickNames().Length / 2;
 
         // Set phase1 time
         _TimerPhase1 = _Phase1Length;
@@ -264,8 +263,8 @@ public class MatchManager : MonoBehaviour {
         // Show hud
         HUD._pInstance.ShowHUD(true);
 
-        // Start camera
-        Camera cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        // Start dynamic camera
+        ///Camera cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         ///cam.GetComponent<DynamicCamera>().Init();
 
         // Initiate phase1
@@ -295,13 +294,12 @@ public class MatchManager : MonoBehaviour {
 
         // Attempting to UNPAUSE the game
         if (pause == false) {
+            
+            // Unpause the game
+            _GamePaused = false;
 
-            // If time paused has reached minimum time required
-            if (_TimePaused >= _MinimumPauseTime) {
-
-                // Unpause the game
-                _GamePaused = false;
-            }
+            // Exit cinematic bars
+            ///CinematicBars._pInstance.StartAnimation(CinematicBars.BarDirection.Exit, 4f);
         }
 
         // Attemtping to PAUSE the game
@@ -309,6 +307,9 @@ public class MatchManager : MonoBehaviour {
 
             // Pause the game
             _GamePaused = true;
+
+            // Show cinematic bars
+            ///CinematicBars._pInstance.StartAnimation(CinematicBars.BarDirection.Enter, 4f);
         }
     }
 

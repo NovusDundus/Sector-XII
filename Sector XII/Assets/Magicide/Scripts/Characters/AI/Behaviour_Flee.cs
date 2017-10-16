@@ -27,7 +27,7 @@ public class Behaviour_Flee : MonoBehaviour {
         // Uses the variable called agent, then uses getcomponent to determain what component is going to be placed into the agent
         agent = GetComponent<NavMeshAgent>();
 
-        movespeed = agent.GetComponent<Char_Wyrm>().GetMovementSpeed();
+        movespeed = agent.GetComponent<Char_Crystal>().GetMovementSpeed();
     }
 
     //--------------------------------------------------------------

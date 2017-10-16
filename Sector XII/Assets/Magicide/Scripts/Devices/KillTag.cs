@@ -20,7 +20,7 @@ public class KillTag : MonoBehaviour {
     /// Private
     private bool _Active = false;
     private Collider _Collision;
-    private Char_Wyrm Wyrm;
+    private Char_Crystal Wyrm;
     private float _Min;
     private float _Max;
     private bool _MovingUp = true;
@@ -38,7 +38,7 @@ public class KillTag : MonoBehaviour {
         _Max = _Min + _BobHeight;
     }
 
-    public void Init(Char_Wyrm Char) {
+    public void Init(Char_Crystal Char) {
 
         // Set reference to the wyrm to be used in the meat shield
         Wyrm = Char;
@@ -106,7 +106,7 @@ public class KillTag : MonoBehaviour {
                 if (_Collision.bounds.Intersects(necromancer.GetCollider().bounds)) {
 
                     // Pickup minion check
-                    OnPickup(necromancer.GetComponent<Char_Necromancer>());
+                    OnPickup(necromancer.GetComponent<Char_Geomancer>());
 
                     // Respawn ai (if possible)
                     AiManager._pInstance.OnRespawn();
@@ -119,7 +119,7 @@ public class KillTag : MonoBehaviour {
     //--------------------------------------------------------------
     // *** PICKUP ***
 
-    public void OnPickup(Char_Necromancer Necromancer) {
+    public void OnPickup(Char_Geomancer Necromancer) {
 
         // Determine if whether the necromancer can be picked up or not
         // Get minion count

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Debug_TriggerRight : MonoBehaviour {
 
     public Text TextComp;
-    public Char_Necromancer NecroTested;
+    public Char_Geomancer NecroTested;
 
     void Start() {
 

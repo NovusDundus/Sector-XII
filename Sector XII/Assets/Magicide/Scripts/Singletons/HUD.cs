@@ -14,30 +14,41 @@ public class HUD : MonoBehaviour {
     // VARIABLES
 
     /// Public (designers)
-    [Header("*** MATCH GUI ***")]
+    [Header("*** MATCH USER INTERFACE ***")]
+    [Tooltip("Reference to the match timer text that is displayed in the HUD.")]
     public Text _MatchTimerText;                                    // Reference to the match timer text that is displayed in the HUD.
     public Color _TimeLowColour = Color.red;
     public Color _TimeMediumColour = Color.yellow;
     public Color _TimeOkayColour = Color.white;
-    [Header("*** SCOREBOARD ***")]
+    [Header("*** PANEL SCREENS ***")]
+    [Tooltip("Reference to the gui pause screen panel.")]
+    public GameObject _UIPause;                                     // Reference to the gui pause screen panel.
+    [Tooltip("Reference to the gui Scoreboard panel.")]
     public GameObject _UIScoreboard;                                // Reference to the gui Scoreboard panel.
     [Header(" *** PLAYERS ***")]
-    public Char_Necromancer PlayerAlpha;                            // Reference to player 1's character.
-    public Color _PlayerAlphaColour = Color.blue;                   // Player 1's HUD colour pallet.
-    public Char_Necromancer PlayerBravo;                            // Reference to player 2's character.
-    public Color _PlayerBravoColour = Color.green;                  // Player 2's HUD colour pallet.
-    public Char_Necromancer PlayerCharlie;                          // Reference to player 3's character.
-    public Color _PlayerCharlieColour = Color.magenta;              // Player 3's HUD colour pallet.
-    public Char_Necromancer PlayerDelta;                            // Reference to player 4's character.
-    public Color _PlayerDeltaColour = Color.yellow;                 // Player 4's HUD colour pallet.
+    [Tooltip("Reference to player 1's character.")]
+    public Char_Geomancer PlayerOne;                                // Reference to player 1's character.
+    [Tooltip("Player 1's HUD colour pallet.")]
+    public Color _PlayerOneColour = Color.blue;                     // Player 1's HUD colour pallet.
+    [Tooltip("Reference to player 2's character.")]
+    public Char_Geomancer PlayerTwoCharacter;                       // Reference to player 2's character.
+    [Tooltip("Player 2's HUD colour pallet.")]
+    public Color _PlayerTwoColour = Color.green;                    // Player 2's HUD colour pallet.
+    [Tooltip("Reference to player 3's character.")]
+    public Char_Geomancer PlayerThree;                              // Reference to player 3's character.
+    [Tooltip("Player 3's HUD colour pallet.")]
+    public Color _PlayerThreeColour = Color.magenta;                // Player 3's HUD colour pallet.
+    [Tooltip("Reference to player 4's character.")]
+    public Char_Geomancer PlayerFour;                               // Reference to player 4's character.
+    [Tooltip("Player 4's HUD colour pallet.")]
+    public Color _PlayerFourColour = Color.yellow;                  // Player 4's HUD colour pallet.
 
     /// Public (internal)
     [HideInInspector]
     public static HUD _pInstance;                                   // This is a singleton script, Initialized in Startup().
-
-    /// Private
+    [HideInInspector]
     public bool _DisplayHUD = false;                                // Returns TRUE if the HUD is being displayed on screen.
-
+    
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
 

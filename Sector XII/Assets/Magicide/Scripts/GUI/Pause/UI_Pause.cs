@@ -11,39 +11,55 @@ public class UI_Pause : MonoBehaviour {
     ///--------------------------------------///
 
     //----------------------------------------------------------------------------------
-    // VARIABLES
+    // *** VARIABLES **
 
-    /// Public
-    public GameObject uiPause; 
+    /// Public (designers)
+    public Character _PlayerAttachedTo;
 
-    //--------------------------------------------------------------
-    // CONSTRUCTORS
-    
-    public void Start () {
-
-        // Get reference to the panel
-        ///uiPause = GetComponent<GameObject>();
-	}
+    /// Private
+    private bool PanelShowing = true;
+    private float _TimerActive = 0f;
+    private float _TimerInactive = 0f;
 
     //--------------------------------------------------------------
-    // FRAME
+    // *** FRAME ***
 
-    public void Update () {
+    void FixedUpdate() {
 
-    }
+        if (PanelShowing == true) {
 
-    public void FixedUpdate() {
+            _TimerActive += Time.deltaTime;
+            _TimerInactive = 0f;
+        }
+        else {
 
-        // Game is PAUSED
-        if (MatchManager._pInstance.GetPaused() == true) {
-
-            uiPause.SetActive(true);
+            _TimerInactive += Time.deltaTime;
+            _TimerActive = 0f;
         }
 
-        // Game is UNPAUSED
-        else { /// MatchManager._pInstance.GetPaused() == false
+        if (_PlayerAttachedTo != null) {
 
-            ///uiPause.SetActive(false);
+            // If the gamepad associated with the attached pressed the special left button
+            if (_PlayerAttachedTo._Player.GetSpecialRightButton == true) {
+
+                // And the panel was currently showing and had been on screen for enough time
+                if (PanelShowing == true && _TimerActive > 0.5f) {
+
+                    // Hide the panel
+                    HUD._pInstance._UIPause.SetActive(false);
+                    PanelShowing = false;
+
+                    // Resume gameplay
+                }
+
+                // And the panel wasnt on screen and had been inactive for enough time
+                else if (_TimerInactive > 0.5f) {
+
+                    // Show the panel
+                    HUD._pInstance._UIPause.SetActive(true);
+                    PanelShowing = true;
+                }
+            }
         }
     }
 }

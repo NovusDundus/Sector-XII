@@ -164,7 +164,7 @@ public class Wep_Shield : Weapon {
     //--------------------------------------------------------------
     // *** OBJECT POOL ***
 
-    public void AddMinion(Char_Wyrm wyrm) {
+    public void AddMinion(Char_Crystal wyrm) {
 
         // If minion count hasnt reached max capacity yet
         if (_MinionCount < _MaxMinions) {

@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 33090874094859162}
   - component: {fileID: 136369226598338440}
   - component: {fileID: 23703258386374832}
-  - component: {fileID: 114466320435124948}
   - component: {fileID: 195514549827962048}
   - component: {fileID: 114566191130380676}
+  - component: {fileID: 114959725643599012}
   m_Layer: 0
   m_Name: CrystalMinion
   m_TagString: Enemy
@@ -84,18 +84,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1888011731846786}
   m_Mesh: {fileID: 4300000, guid: 81c3c9ffcc1ccbe42aed486190483b40, type: 3}
---- !u!114 &114466320435124948
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1888011731846786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a27c02c0157cb542874c3e0cf0bb2a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Player: {fileID: 0}
 --- !u!114 &114566191130380676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -108,7 +96,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Target: {fileID: 0}
-  FleeThreshold: 15
+  FleeThreshold: 20
+--- !u!114 &114959725643599012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1888011731846786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19c2ff0d256c1174b814a73c1bfd9681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Player: {fileID: 0}
 --- !u!136 &136369226598338440
 CapsuleCollider:
   m_ObjectHideFlags: 1

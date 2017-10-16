@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: d6314eb473a3ea041a230968b2406bff
-timeCreated: 1507678880
+guid: 306337a0ec86ad3468d34158221d5996
+timeCreated: 1508191365
 licenseType: Pro
 ModelImporter:
   serializedVersion: 21
@@ -9,9 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: pPipe2
-    4300002: NAT_Crystal
-    4300004: NAT_Blockout_Crystal
+    4300000: pHelix12
   materials:
     importMaterials: 1
     materialName: 0
@@ -42,10 +40,10 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    importVisibility: 0
+    importVisibility: 1
     importBlendShapes: 1
-    importCameras: 0
-    importLights: 0
+    importCameras: 1
+    importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -61,7 +59,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
-    normalCalculationMode: 0
+    normalCalculationMode: 4
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

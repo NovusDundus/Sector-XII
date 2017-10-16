@@ -99,28 +99,30 @@ public class Proj_Fireball : Projectile {
             }
         }
     }
-
+    
     public void CollisionChecks() {
 
         // Check against all alive minions
         foreach (var minion in AiManager._pInstance.GetActiveMinions()) {
-
+ 
+            Char_Crystal crystal = minion.GetComponent<Char_Crystal>();
+ 
             // If minion has valid collision reference set
-            if (minion.GetCollider() != null) {
-
+            if (crystal.GetCollider() != null) {
+ 
                 // Has the fireball collided with the minion's collision?
-                if (_Collision.bounds.Intersects(minion.GetCollider().bounds)) {
-
+                if (_Collision.bounds.Intersects(crystal.GetCollider().bounds)) {
+ 
                     // Damage minion
-                    minion.Damage(_ImpactDamage);
-
+                    crystal.Damage(_ImpactDamage);
+ 
                     // Check if minion has been killed
-                    if (minion.GetHealth() <= 0) {
-
+                    if (crystal.GetHealth() <= 0) {
+ 
                         // Add to instigator's kill count
                         _Owner.GetOwner()._Player.AddKillCount();
                     }
-
+ 
                     // Destroy fireball
                     FreeProjectile();
                     break;
@@ -220,6 +222,12 @@ public class Proj_Fireball : Projectile {
         }
 
     }
+    
+
+   /// public void OnTriggerEnter(Collider other) {
+   ///     
+   ///     
+   /// }
 
     //--------------------------------------------------------------
     // *** MOVEMENT ***

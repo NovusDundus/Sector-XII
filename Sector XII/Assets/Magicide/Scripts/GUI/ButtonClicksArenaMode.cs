@@ -12,24 +12,26 @@ public class ButtonClicksArenaMode : MonoBehaviour {
     //----------------------------------------------------------------------------------
     // *** VARIABLES *** 
     
+    /// Public (designers)
+    [Header("LOADING SCREENS")]
     public GameObject _LoadingScreen;
+    public GameObject _RestartScreen;
+    public GameObject _MainMenuScreen;
 
     //--------------------------------------------------------------
     // *** BUTTON CLICKS *** 
 
     public void OnClick_Restart() {
 
-        // Reset everything & start a new match
-        ///MatchManager._pInstance.Start();
-
         // Hide scoreboard panel
         HUD._pInstance._UIScoreboard.SetActive(false);
 
-        // Load main menu level
+        // Reload the arena mode level
         _LoadingScreen.GetComponent<LoadingScreen>().SetLevelIndex(1);
 
         // Show loading screen panel
         _LoadingScreen.SetActive(true);
+        _RestartScreen.SetActive(true);
     }
 
     public void OnClick_MainMenu() {
@@ -39,6 +41,16 @@ public class ButtonClicksArenaMode : MonoBehaviour {
 
         // Show loading screen panel
         _LoadingScreen.SetActive(true);
+        _MainMenuScreen.SetActive(true);
+    }
+
+    public void OnClick_Resume() {
+
+        // Hide pause screen panel
+        HUD._pInstance._UIPause.SetActive(false);
+
+        // Resume gameplay
+        MatchManager._pInstance.SetPause(false);
     }
 
     //--------------------------------------------------------------
