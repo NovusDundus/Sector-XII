@@ -1034,8 +1034,8 @@ GameObject:
   - component: {fileID: 114749022845659106}
   - component: {fileID: 114109267794855900}
   - component: {fileID: 114545155817392350}
-  - component: {fileID: 114722374249599798}
   - component: {fileID: 114461931027952290}
+  - component: {fileID: 114602218737335090}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Manager
@@ -12093,7 +12093,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _NecromancerStartingHealth: 100
   _NecromancerMovementSpeed: 10
-  _NecromancerRotationSpeed: 2
 --- !u!114 &114141500480253304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19491,6 +19490,7 @@ MonoBehaviour:
   _TimeLowColour: {r: 1, g: 0, b: 0, a: 1}
   _TimeMediumColour: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   _TimeOkayColour: {r: 1, g: 1, b: 1, a: 1}
+  _UIScoreboard: {fileID: 0}
   PlayerAlpha: {fileID: 0}
   _PlayerAlphaColour: {r: 0, g: 0.751724, b: 1, a: 0}
   PlayerBravo: {fileID: 0}
@@ -19499,6 +19499,7 @@ MonoBehaviour:
   _PlayerCharlieColour: {r: 0.8206897, g: 0, b: 1, a: 0}
   PlayerDelta: {fileID: 0}
   _PlayerDeltaColour: {r: 1, g: 0.8482759, b: 0, a: 0}
+  _DisplayHUD: 0
 --- !u!114 &114526706354270386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19804,6 +19805,9 @@ MonoBehaviour:
   _FireballSpeed: 20
   _FireballRange: 100
   _MaxSize: 14
+  _MinionSpacing: 1.5
+  _AutoRotate: 0
+  _OrbitClockwise: 1
   _OrbitSpeed: 3
 --- !u!114 &114547767008790572
 MonoBehaviour:
@@ -20699,6 +20703,19 @@ MonoBehaviour:
   m_selectedFaces: 
   m_SelectedEdges: []
   m_selectedTriangles: 
+--- !u!114 &114602218737335090
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1368065535093162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca56d49ca28b28d4ca41218d9a608728, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Panel: {fileID: 0}
+  _PlayerOne: {fileID: 0}
 --- !u!114 &114610372295009720
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22773,19 +22790,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entityType: 0
---- !u!114 &114722374249599798
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1368065535093162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f606b9c4b83287f4ab9411ee5571e4d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _WyrmStartingHealth: 100
-  _WyrmMovementSpeed: 5
 --- !u!114 &114730653918977316
 MonoBehaviour:
   m_ObjectHideFlags: 1

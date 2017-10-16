@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 114678055456776600}
   - component: {fileID: 114954400972428742}
   - component: {fileID: 114973976100088120}
-  - component: {fileID: 114256192889013498}
   - component: {fileID: 114159303695506240}
   - component: {fileID: 114871509978189574}
   m_Layer: 0
@@ -57,19 +56,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f873e16021e1d54aa5a59641fec2be8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114256192889013498
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1087329879016264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f606b9c4b83287f4ab9411ee5571e4d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _WyrmStartingHealth: 100
-  _WyrmMovementSpeed: 5
 --- !u!114 &114673052955311832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -152,9 +138,9 @@ MonoBehaviour:
   _OrbCooldownRateOverheated: 0.02
   _ImpactDamage: 25
   _FireballSpeed: 20
-  _FireballRange: 100
+  _FireballRange: 20
   _MaxSize: 18
   _MinionSpacing: 1.2
-  _AutoRotate: 0
+  _AutoRotate: 1
   _OrbitClockwise: 1
   _OrbitSpeed: 350
