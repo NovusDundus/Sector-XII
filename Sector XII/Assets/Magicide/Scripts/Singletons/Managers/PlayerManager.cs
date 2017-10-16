@@ -51,13 +51,18 @@ public class PlayerManager : MonoBehaviour {
 
     //--------------------------------------------------------------
     // FRAME
-
-    public void Update() {
-
-    }
-
+    
     public void FixedUpdate() {
 
+        // If match is in gameplay
+        if (MatchManager._pInstance.GetGameplay() == true) {
+
+            // Add 1 second of alive time to all alive players
+            foreach (var player in _POOL_ALIVE_NECROMANCERS) {
+
+                player._Player.AddTimeAlive(Time.deltaTime);
+            }
+        }
     }
 
     //--------------------------------------------------------------

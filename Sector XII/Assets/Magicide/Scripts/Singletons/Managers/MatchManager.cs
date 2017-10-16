@@ -73,11 +73,7 @@ public class MatchManager : MonoBehaviour {
 
     //--------------------------------------------------------------
     // *** FRAME ***
-
-    public void Update() {
-
-    }
-
+    
     public void FixedUpdate() {
 
         switch (_GameState) {
@@ -237,9 +233,8 @@ public class MatchManager : MonoBehaviour {
 
     public void MatchSetup() {
 
-        /* Reset all match settings */
-        // Reset initial AI spawns
-        // Reset player positions & health
+        // Determine how many controllers are connected
+        int size = Input.GetJoystickNames().Length / 2;
 
         // Set phase1 time
         _TimerPhase1 = _Phase1Length;
@@ -286,6 +281,7 @@ public class MatchManager : MonoBehaviour {
         if (HUD._pInstance._UIScoreboard != null) {
 
             HUD._pInstance._UIScoreboard.SetActive(true);
+            HUD._pInstance._UIScoreboard.GetComponent<PostMatch_Scoreboard>().ResetScoreboard();
         }
 
         // Show cinematic bars
