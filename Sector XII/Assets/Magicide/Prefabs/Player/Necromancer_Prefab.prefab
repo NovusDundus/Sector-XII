@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 135293816412533796}
   - component: {fileID: 23942915639214764}
   - component: {fileID: 114684512798730160}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Proj_Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,9 +44,9 @@ GameObject:
   - component: {fileID: 114162625803826018}
   - component: {fileID: 114211429021322728}
   - component: {fileID: 54530060574342978}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Necromancer_Prefab
-  m_TagString: P2_Character
+  m_TagString: P1_Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 33824131653634522}
   - component: {fileID: 135529339266153726}
   - component: {fileID: 23350894965912146}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MuzzleRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 33303477019109838}
   - component: {fileID: 135031801361965380}
   - component: {fileID: 23711059844318396}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MuzzleLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4686338179718866}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MuzzleCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4904644739369910}
   - component: {fileID: 114873288783560084}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wep_Orb
   m_TagString: P2_PrimaryWeapon
   m_Icon: {fileID: 0}
@@ -383,10 +383,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c58db18f99aefb74cb632ec983a7be70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pPlayerID: 2
+  _pPlayerID: 1
   Layers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 256
 --- !u!114 &114211429021322728
 MonoBehaviour:
   m_ObjectHideFlags: 1
