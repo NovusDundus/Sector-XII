@@ -19,8 +19,8 @@ public class AiManager : MonoBehaviour {
     [Header("- Movement")]
     public float _WyrmMovementSpeed = 5f;                           // Movement speed of the wyrm character.
     [Header("- AI Respawning")]
-    public List<Transform> _spawnPoints;                            // Array of spawn points
-    public int _maxCharacters = 10;
+    public List<Transform> _SpawnPositions;                            // Array of spawn points
+    public int _MaxLives = 10;
 
     /// Public (internal)
     [HideInInspector]
@@ -28,7 +28,7 @@ public class AiManager : MonoBehaviour {
     
     /// Private
     private List<Character> _POOL_ALIVE_MINIONS;                    // Object pool of all ALIVE minions in the scene
-    public List<Character> _POOL_DEAD_MINIONS;                     // Object pool of all DEAD minions in the scene
+    private List<Character> _POOL_DEAD_MINIONS;                     // Object pool of all DEAD minions in the scene
     
     //--------------------------------------------------------------
     // CONSTRUCTORS
@@ -47,38 +47,15 @@ public class AiManager : MonoBehaviour {
 
         // Create vector arrays
         _POOL_ALIVE_MINIONS = new List<Character>();
-        ///_POOL_DEAD_MINIONS = new List<Character>();
-        ///_spawnPoints = new List<Transform>();
+        _POOL_DEAD_MINIONS = new List<Character>();
 
-        //loop over all spawned minions  (_POOL_SPAWNED_MINIONS)
-            //set each one's position to a random spawn position     
-         //gives you random number between 1 and 20.
+        // Get all startup ai
+        GameObject[] All = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (var ai in All) {
 
-            // testing respawn function
-        OnRespawn();
-        OnRespawn();
-        OnRespawn();
-        OnRespawn();
-        OnRespawn();
-        OnRespawn();
-        OnRespawn();
-        OnRespawn();
-        OnRespawn();
-        OnRespawn();
-        OnRespawn();
-        OnRespawn();
-        OnRespawn();
-        OnRespawn();
-        OnRespawn();
-        OnRespawn();
-        OnRespawn();
-        OnRespawn();
-        OnRespawn();
-        OnRespawn();
-        OnRespawn();
-        OnRespawn();
-        OnRespawn();
-        OnRespawn();
+            // Add to alive pool
+            _POOL_ALIVE_MINIONS.Add(ai.GetComponent<Character>());
+        }
     }
 
     //--------------------------------------------------------------
@@ -97,17 +74,17 @@ public class AiManager : MonoBehaviour {
 
     public void OnRespawn() {
     
-        if (_POOL_DEAD_MINIONS.Count > 0 && _maxCharacters > 0)
+        if (_POOL_DEAD_MINIONS.Count > 0 && _MaxLives > 0)
         {
             // Get the character from the end of the dead array
-            Character newAi = _POOL_DEAD_MINIONS[_POOL_DEAD_MINIONS.Count - 1];
+            Char_Wyrm newAi = _POOL_DEAD_MINIONS[_POOL_DEAD_MINIONS.Count - 1].GetComponent<Char_Wyrm>();
 
             // Get random int (min = 0, max = vector array.size -1)
-            int randIndex = Random.Range(0, _spawnPoints.Count - 1); //change 10 to the size of the spawnPoints array - 1
+            int randIndex = Random.Range(0, _SpawnPositions.Count - 1);
 
             // Get spawn position from spawnPoints [ randIndex ].position (newAI)
             // Set ai transform's to the random spawn's position
-            newAi.transform.position = _spawnPoints[randIndex].position;
+            newAi.GetComponent<GameObject>().transform.position = _SpawnPositions[randIndex].position;
 
             // Add ai (newAI variable) to active minion array
            _POOL_ALIVE_MINIONS.Add(newAi);
@@ -116,7 +93,7 @@ public class AiManager : MonoBehaviour {
             _POOL_DEAD_MINIONS.RemoveAt(_POOL_DEAD_MINIONS.Count - 1);
 
             // -1 from ai lives cap
-            _maxCharacters -= 1;
+            _MaxLives -= 1;
         }        
     }
 
