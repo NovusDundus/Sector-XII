@@ -71,6 +71,7 @@ public class Wep_Shield : Weapon {
 
                     // Set player score
                     _Owner._Player.SetScore(_MinionCount);
+                    _Owner._Player.SetPlacement(_Owner._Player.GetPlacement() + 1);
                 }
             }
 

@@ -19,8 +19,8 @@ public class Player : MonoBehaviour {
     /// Private
     private int _Score = 0;                                         // The player's individual score for the match.
     private int _KillCount = 0;                                     // Amount of kills a player has done throughout the match.
-    private float _TimeAlive = 0;                                   // 
-    private int _Placement = 0;
+    private float _TimeAlive = 0;                                   // Total amount of time the player is alive for.
+    private int _Placement = 0;                                     // What match placement the player is currently at.
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -73,8 +73,7 @@ public class Player : MonoBehaviour {
 
                 else if (plyr._Player.GetPlacement() > place) {
 
-                    // Need to move up
-
+                    // Need to move up placement
                     // Store old placements for both players
                     int newPlacement = plyr._Player.GetPlacement();
                     int previousPlacement = _Placement;
@@ -125,9 +124,14 @@ public class Player : MonoBehaviour {
         _TimeAlive += amount;
     }
 
-    public int GetTimeAlive() {
+    public int GetMinutesAlive() {
 
-        return (int)_TimeAlive;
+        return (int)_TimeAlive / 60;
+    }
+
+    public int GetSecondsAlive() {
+
+        return (int)_TimeAlive % 60;
     }
 
     public int GetPlacement() {

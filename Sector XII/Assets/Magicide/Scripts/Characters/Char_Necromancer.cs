@@ -78,7 +78,7 @@ public class Char_Necromancer : Character {
 
                     // Get directional input (movement)
                     Vector3 vec = _Player.GetMovementInput.normalized;
-                    transform.SetPositionAndRotation(transform.position + vec * _MovementSpeed * Time.fixedDeltaTime/*_Player.GetMovementInput / 4*/, transform.rotation);
+                    transform.SetPositionAndRotation(transform.position + vec * _MovementSpeed * Time.fixedDeltaTime, transform.rotation);
                 }
 
                 // ************************
