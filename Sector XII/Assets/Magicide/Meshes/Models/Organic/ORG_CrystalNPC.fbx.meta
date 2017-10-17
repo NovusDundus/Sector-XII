@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 306337a0ec86ad3468d34158221d5996
-timeCreated: 1508191365
+guid: 09f3c785f767b2342bb1bf8eb804295a
+timeCreated: 1508211611
 licenseType: Pro
 ModelImporter:
   serializedVersion: 21
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: pHelix12
+    4300000: ORG_CrystalNPC
   materials:
     importMaterials: 1
     materialName: 0
