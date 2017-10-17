@@ -51,14 +51,14 @@ public class Char_Crystal : Character {
         gameObject.transform.position = new Vector3(1000, 0, 1000);
 
         // Find self in active pool
-        foreach (var wyrm in AiManager._pInstance.GetActiveMinions()) {
+        foreach (var minion in AiManager._pInstance.GetActiveMinions()) {
 
             // Once we have found ourself in the pool
-            if (wyrm == this) {
+            if (minion == this.gameObject) {
 
                 // Move to inactive pool
-                AiManager._pInstance.GetInactiveMinions().Add(wyrm);
-                AiManager._pInstance.GetActiveMinions().Remove(wyrm);
+                AiManager._pInstance.GetInactiveMinions().Add(minion.gameObject);
+                AiManager._pInstance.GetActiveMinions().Remove(minion);
                 break;
             }
         }

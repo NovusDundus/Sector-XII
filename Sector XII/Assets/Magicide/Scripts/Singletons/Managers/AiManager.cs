@@ -77,7 +77,7 @@ public class AiManager : MonoBehaviour {
         if (_POOL_DEAD_MINIONS.Count > 0 && _MaxLives > 0)
         {
             // Get the character from the end of the dead array
-            GameObject newAi = _POOL_DEAD_MINIONS[_POOL_DEAD_MINIONS.Count - 1];
+            GameObject newAi = _POOL_DEAD_MINIONS[_POOL_DEAD_MINIONS.Count - 1].gameObject;
 
             // Get random int (min = 0, max = vector array.size -1)
             int randIndex = Random.Range(0, _SpawnPositions.Count - 1);
@@ -86,8 +86,11 @@ public class AiManager : MonoBehaviour {
             // Set ai transform's to the random spawn's position
             newAi.transform.position = _SpawnPositions[randIndex].position;
 
+            // Show the ai's mesh renderer
+            newAi.gameObject.GetComponentInChildren<Renderer>().enabled = true;
+
             // Add ai (newAI variable) to active minion array
-           _POOL_ALIVE_MINIONS.Add(newAi);
+            _POOL_ALIVE_MINIONS.Add(newAi.gameObject);
 
             // Remove ai (new AI variable) from dead minion array
             _POOL_DEAD_MINIONS.RemoveAt(_POOL_DEAD_MINIONS.Count - 1);
