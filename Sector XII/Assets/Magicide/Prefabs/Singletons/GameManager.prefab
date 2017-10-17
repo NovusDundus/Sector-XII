@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 114403142367840752}
   - component: {fileID: 114610210431620844}
   - component: {fileID: 114025385545714628}
-  - component: {fileID: 114480499875664132}
   - component: {fileID: 114481876437901886}
   - component: {fileID: 114342767189424728}
   - component: {fileID: 114977905998677262}
@@ -124,31 +123,6 @@ MonoBehaviour:
   PlayerFour: {fileID: 0}
   _PlayerFourColour: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   _DisplayHUD: 1
---- !u!114 &114480499875664132
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1254212357002398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f606b9c4b83287f4ab9411ee5571e4d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _CrystalStartingHealth: 100
-  _CrystalMovementSpeed: 5
-  _SpawnPositions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _MaxLives: 20
 --- !u!114 &114481876437901886
 MonoBehaviour:
   m_ObjectHideFlags: 1
