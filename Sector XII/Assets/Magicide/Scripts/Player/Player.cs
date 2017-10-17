@@ -167,6 +167,7 @@ public class Player : MonoBehaviour {
         get
         {
             return new Vector3(0, 90f + (Mathf.Atan2(Input.GetAxis(string.Concat("RightStick_Y_P", _pPlayerID)), Input.GetAxis(string.Concat("RightStick_X_P", _pPlayerID))) * 180 / Mathf.PI), 0);
+            ///return new Vector3(0, 90f + (Mathf.Atan2(XCI.GetAxis(XboxAxis.RightStickY, _Controller), XCI.GetAxis(XboxAxis.RightStickX, _Controller)) * 180 / Mathf.PI), 0);
         }
     }
 
@@ -175,7 +176,8 @@ public class Player : MonoBehaviour {
         // Uses thumbstick axis as button input
         get
         {
-            return Input.GetAxis(string.Concat("FireX_P" + _pPlayerID)) != 0f || Input.GetAxis(string.Concat("FireY_P" + _pPlayerID)) != 0f;
+            ///return Input.GetAxis(string.Concat("FireX_P" + _pPlayerID)) != 0f || Input.GetAxis(string.Concat("FireY_P" + _pPlayerID)) != 0f;
+            return XCI.GetAxis(XboxAxis.RightStickX, _Controller) != 0f || XCI.GetAxis(XboxAxis.RightStickY, _Controller) != 0f;
         }
     }
 
@@ -186,7 +188,8 @@ public class Player : MonoBehaviour {
         // Get the input axis amount as a Vector rotating left
         get
         {
-            return new Vector3(0, -Input.GetAxis(string.Concat("LeftTrigger_P", _pPlayerID)), 0);
+            ///return new Vector3(0, -Input.GetAxis(string.Concat("LeftTrigger_P", _pPlayerID)), 0);
+            return new Vector3(0, -XCI.GetAxis(XboxAxis.LeftTrigger, _Controller), 0);
         }
     }
 
@@ -195,7 +198,8 @@ public class Player : MonoBehaviour {
         // Get the input axis amount as a Vector rotating right
         get
         {
-            return new Vector3(0, Input.GetAxis(string.Concat("RightTrigger_P", _pPlayerID)), 0);
+            ///return new Vector3(0, Input.GetAxis(string.Concat("RightTrigger_P", _pPlayerID)), 0);
+            return new Vector3(0, XCI.GetAxis(XboxAxis.RightTrigger, _Controller), 0);
         }
     }
 
@@ -206,7 +210,8 @@ public class Player : MonoBehaviour {
         // Returns if the special right button has been pressed
         get
         {
-            return Input.GetButton("SpecialRight");
+            ///return Input.GetButton("SpecialRight");
+            return XCI.GetButton(XboxButton.Start);
         }
     }
 
@@ -215,7 +220,8 @@ public class Player : MonoBehaviour {
         // Returns if the special right button has been pressed
         get
         {
-            return Input.GetButton("SpecialLeft");
+            ///return Input.GetButton("SpecialLeft");
+            return XCI.GetButton(XboxButton.Back);
         }
     }
     
@@ -226,7 +232,8 @@ public class Player : MonoBehaviour {
         // Returns if the xbox A button has been pressed
         get
         {
-            return Input.GetButton("FaceBottom");
+            ///return Input.GetButton("FaceBottom");
+            return XCI.GetButton(XboxButton.A);
         }
     }
 
@@ -235,7 +242,8 @@ public class Player : MonoBehaviour {
         // Returns if the xbox Y button has been pressed
         get
         {
-            return Input.GetButton("FaceTop");
+            ///return Input.GetButton("FaceTop");
+            return XCI.GetButton(XboxButton.Y);
         }
     }
 
@@ -244,7 +252,8 @@ public class Player : MonoBehaviour {
         // Returns if the xbox X button has been pressed
         get
         {
-            return Input.GetButton("FaceLeft");
+            ///return Input.GetButton("FaceLeft");
+            return XCI.GetButton(XboxButton.X);
         }
     }
 
@@ -253,7 +262,8 @@ public class Player : MonoBehaviour {
         // Returns if the xbox B button has been pressed
         get
         {
-            return Input.GetButton("FaceRight");
+            ///return Input.GetButton("FaceRight");
+            return XCI.GetButton(XboxButton.B);
         }
     }
     

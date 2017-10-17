@@ -8,7 +8,6 @@ public class Debug_ShowDevUI : MonoBehaviour {
     public Character _PlayerOne;
 
     private bool PanelShowing = true;
-    private bool pauseInitiated = false;
     private float _TimerActive = 0f;
     private float _TimerInactive = 0f;
 

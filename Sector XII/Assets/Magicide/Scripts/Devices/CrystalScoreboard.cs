@@ -21,9 +21,7 @@ public class CrystalScoreboard : MonoBehaviour {
     public Material DefaultMaterial;
 
     /// Private
-    private int _HighestScore = int.MinValue;
     private int _CurrentHighest = 0;
-    private Player _TopPlayer = null;
     private int _TopPlayerID = 0;
     private MeshRenderer meshRenderer;
 
@@ -47,7 +45,6 @@ public class CrystalScoreboard : MonoBehaviour {
             if (p.GetScore() > _CurrentHighest)
             {
                 _CurrentHighest = p.GetScore();
-                _TopPlayer = p;
                 _TopPlayerID = p._pPlayerID;
                 break;
             }

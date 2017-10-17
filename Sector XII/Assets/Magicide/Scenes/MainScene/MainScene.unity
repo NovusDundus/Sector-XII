@@ -1506,6 +1506,11 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 506f34469a62561439ff884478103461, type: 2}
+    - target: {fileID: 114162625803826018, guid: f182b71c73975fd48b3d603b96bfb31b,
+        type: 2}
+      propertyPath: _Controller
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f182b71c73975fd48b3d603b96bfb31b, type: 2}
   m_IsPrefabParent: 0
@@ -34528,6 +34533,7 @@ MonoBehaviour:
   Layers:
     serializedVersion: 2
     m_Bits: 2048
+  _Controller: 4
 --- !u!23 &1370064598
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43828,6 +43834,7 @@ MonoBehaviour:
   Layers:
     serializedVersion: 2
     m_Bits: 512
+  _Controller: 2
 --- !u!23 &1787855217
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -46817,6 +46824,7 @@ MonoBehaviour:
   Layers:
     serializedVersion: 2
     m_Bits: 1024
+  _Controller: 3
 --- !u!23 &1830120242
 MeshRenderer:
   m_ObjectHideFlags: 0

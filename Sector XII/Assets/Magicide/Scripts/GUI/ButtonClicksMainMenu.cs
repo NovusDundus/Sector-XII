@@ -18,7 +18,6 @@ public class ButtonClicksMainMenu : MonoBehaviour {
     public GameObject ui_ExitGameConfirm;
 
     private bool _ClosingApplication = false;
-    private float _CloseAppDelay = 1f;
 
     //--------------------------------------------------------------
     // *** BUTTON CLICKS *** 
