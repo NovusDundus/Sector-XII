@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XboxCtrlrInput;
 
 public class Player : MonoBehaviour {
 
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour {
     /// Public (designers)
     public int _pPlayerID = 0;                                      // ID Reference of the individual player.
     public LayerMask Layers;                                        // Layers associated with the player.
+    public XboxController _Controller;
 
     /// Private
     private int _Score = 0;                                         // The player's individual score for the match.
@@ -154,7 +156,8 @@ public class Player : MonoBehaviour {
         // Combines the horizontal & vertical input into 1 vector to use for directional movement
         get
         {
-            return new Vector3(Input.GetAxis(string.Concat("LeftStick_X_P", _pPlayerID)), 0, Input.GetAxis(string.Concat("LeftStick_Y_P", _pPlayerID)));
+            ///return new Vector3(Input.GetAxis(string.Concat("LeftStick_X_P", _pPlayerID)), 0, Input.GetAxis(string.Concat("LeftStick_Y_P", _pPlayerID)));
+            return new Vector3(XCI.GetAxis(XboxAxis.LeftStickX, _Controller),0, XCI.GetAxis(XboxAxis.LeftStickY, _Controller));
         }
     }
 
