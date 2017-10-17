@@ -134,58 +134,61 @@ public class Proj_Fireball : Projectile {
             }
         }
 
-        // Check against all alive players
-        foreach (var necromancer in PlayerManager._pInstance.GetAliveNecromancers()) {
+        if (MatchManager._pInstance.GetGameState() == MatchManager.GameState.Phase2) {
 
-            // If necromancer has valid collision reference set
-            if (necromancer.GetCollider() != null) {
+            // Check against all alive players
+            foreach (var necromancer in PlayerManager._pInstance.GetAliveNecromancers()) {
 
-                // If it isnt the instigator who is being tested against
-                if (necromancer != _Owner.GetOwner()) {
+                // If necromancer has valid collision reference set
+                if (necromancer.GetCollider() != null) {
 
-                    // Check against all meat shield minions associated to the player
-                    foreach (Proj_ShieldMinion meatMinion in necromancer.GetSecondaryWeapon().GetComponent<Wep_Shield>().GetMeatMinionPool()) {
+                    // If it isnt the instigator who is being tested against
+                    if (necromancer != _Owner.GetOwner()) {
 
-                        // Has the fireball collided with the minions's collision?
-                        if (_Collision.bounds.Intersects(meatMinion.GetCollision().bounds)) {
+                        // Check against all meat shield minions associated to the player
+                        foreach (Proj_ShieldMinion meatMinion in necromancer.GetSecondaryWeapon().GetComponent<Wep_Shield>().GetMeatMinionPool()) {
 
-                            // Damage minion
-                            meatMinion.Damage(_ImpactDamage);
+                            // Has the fireball collided with the minions's collision?
+                            if (_Collision.bounds.Intersects(meatMinion.GetCollision().bounds)) {
 
-                            // Check if minion has been killed
-                            if (meatMinion._Health <= 0) {
+                                // Damage minion
+                                meatMinion.Damage(_ImpactDamage);
+
+                                // Check if minion has been killed
+                                if (meatMinion._Health <= 0) {
+
+                                    // Add to instigator's kill count
+                                    _Owner.GetOwner()._Player.AddKillCount();
+
+                                    // Remove minion from the shield count (-1)
+                                    ///meatMinion.GetOwner().GetOwner().GetComponentInChildren<Wep_Shield>().SetMinionCount(meatMinion.getowner)
+                                    ///meatMinion.GetOwner().GetComponent<Wep_Shield>().SetMinionCount(meatMinion.GetOwner().GetComponent<Wep_Shield>().GetMinionCount() - 1);
+                                }
+
+                                // Destroy fireball
+                                FreeProjectile();
+                                _Active = false;
+                                break;
+                            }
+                        }
+
+                        // Has the fireball collided with the necromancer's collision?
+                        if (_Collision.bounds.Intersects(necromancer.GetCollider().bounds) && _Active) {
+
+                            // Damage necromancer
+                            necromancer.Damage(_ImpactDamage);
+
+                            // Check if necromancer has been killed
+                            if (necromancer.GetHealth() <= 0) {
 
                                 // Add to instigator's kill count
                                 _Owner.GetOwner()._Player.AddKillCount();
-
-                                // Remove minion from the shield count (-1)
-                                ///meatMinion.GetOwner().GetOwner().GetComponentInChildren<Wep_Shield>().SetMinionCount(meatMinion.getowner)
-                                ///meatMinion.GetOwner().GetComponent<Wep_Shield>().SetMinionCount(meatMinion.GetOwner().GetComponent<Wep_Shield>().GetMinionCount() - 1);
                             }
 
                             // Destroy fireball
                             FreeProjectile();
-                            _Active = false;
                             break;
                         }
-                    }
-
-                    // Has the fireball collided with the necromancer's collision?
-                    if (_Collision.bounds.Intersects(necromancer.GetCollider().bounds) && _Active) {
-
-                        // Damage necromancer
-                        necromancer.Damage(_ImpactDamage);
-
-                        // Check if necromancer has been killed
-                        if (necromancer.GetHealth() <= 0) {
-
-                            // Add to instigator's kill count
-                            _Owner.GetOwner()._Player.AddKillCount();
-                        }
-
-                        // Destroy fireball
-                        FreeProjectile();
-                        break;
                     }
                 }
             }
