@@ -59,6 +59,13 @@ public class Proj_ShieldMinion : Projectile {
             GetComponent<Renderer>().enabled = false;
             transform.parent = null;
             transform.position = new Vector3(1000, 0, 1000);
+           
+            // Deduct from weapon's minion count thats associated with this minion
+            Wep_Shield wep = GameObject.FindGameObjectWithTag(string.Concat("P" + GetOwner().GetOwner()._Player._pPlayerID + "_SecondaryWeapon")).GetComponent<Wep_Shield>();
+            wep.SetMinionCount(wep.GetMinionCount() - 1);
+
+            // Remove from weapon pool
+            wep.GetMeatMinionPool().Remove(this);
         }
     }
 

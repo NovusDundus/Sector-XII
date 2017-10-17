@@ -25,7 +25,7 @@ public class MatchManager : MonoBehaviour {
 
     /// Public (internal)
     [HideInInspector]
-    public static MatchManager _pInstance;                          // This is a singleton script, Initialized in Startup().
+    public static MatchManager _pInstance;                          // This is a singleton script, Initialized in Awake().
 
     public enum GameState {                                         // Enumerator for match states.
 
@@ -184,21 +184,6 @@ public class MatchManager : MonoBehaviour {
 
                     break;
                 }
-        }
-
-        // If the game is PAUSED
-        if (_GamePaused == true) {
-
-            // Add to pause time counter
-            _TimePaused += Time.deltaTime;
-
-            ///Debug.Log("GAME PAUSED");
-        }
-
-        // If the game is UNPAUSED
-        else { /// _GamePaused == false
-
-            ///Debug.Log("GAME UNPAUSED");
         }
 
         // Gameplay is true if the game isnt paused AND NOT playing a cinematic

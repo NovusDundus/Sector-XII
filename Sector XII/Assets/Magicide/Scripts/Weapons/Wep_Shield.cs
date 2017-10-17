@@ -68,6 +68,7 @@ public class Wep_Shield : Weapon {
                     var minion = Instantiate(_ShieldMinionPrefab, pos, Quaternion.identity, gameObject.transform).GetComponent<Proj_ShieldMinion>();
                     minion.GetComponentInChildren<Projectile>().Init();
                     minion.AddToPool(this);
+                    minion.SetOwner(this);
 
                     // Set player score
                     _Owner._Player.SetScore(_MinionCount);
@@ -193,6 +194,11 @@ public class Wep_Shield : Weapon {
     public List<Proj_ShieldMinion> GetMeatMinionPool() {
 
         return _POOL_Minions;
+    }
+
+    public void SetMinionCount(int amount) {
+
+        _MinionCount = amount;
     }
 
 }

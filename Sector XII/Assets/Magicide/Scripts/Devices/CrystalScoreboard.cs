@@ -27,7 +27,6 @@ public class CrystalScoreboard : MonoBehaviour {
     private int _TopPlayerID = 0;
     private MeshRenderer meshRenderer;
 
-
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
 

@@ -157,6 +157,10 @@ public class Proj_Fireball : Projectile {
 
                                 // Add to instigator's kill count
                                 _Owner.GetOwner()._Player.AddKillCount();
+
+                                // Remove minion from the shield count (-1)
+                                ///meatMinion.GetOwner().GetOwner().GetComponentInChildren<Wep_Shield>().SetMinionCount(meatMinion.getowner)
+                                ///meatMinion.GetOwner().GetComponent<Wep_Shield>().SetMinionCount(meatMinion.GetOwner().GetComponent<Wep_Shield>().GetMinionCount() - 1);
                             }
 
                             // Destroy fireball

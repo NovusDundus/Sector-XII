@@ -20,7 +20,7 @@ public class Player : MonoBehaviour {
     private int _Score = 0;                                         // The player's individual score for the match.
     private int _KillCount = 0;                                     // Amount of kills a player has done throughout the match.
     private float _TimeAlive = 0;                                   // Total amount of time the player is alive for.
-    private int _Placement = 0;                                     // What match placement the player is currently at.
+    private int _Placement = 1;                                     // What match placement the player is currently at.
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
