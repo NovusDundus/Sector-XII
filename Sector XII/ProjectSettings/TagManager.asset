@@ -20,6 +20,7 @@ TagManager:
   - KillTag
   - Collision
   - Enemy
+  - Projectile
   layers:
   - Default
   - TransparentFX
