@@ -123,6 +123,7 @@ public class Player : MonoBehaviour {
 
     public void AddTimeAlive(float amount) {
 
+        // Add time to the player's alive counter (1 second per second)
         _TimeAlive += amount;
     }
 
@@ -138,11 +139,13 @@ public class Player : MonoBehaviour {
 
     public int GetPlacement() {
 
+        // Returns the current placement of the player
         return _Placement;
     }
 
     public void SetPlacement(int place) {
 
+        // set the player's placement to match the parameter
         _Placement = place;
     }
 
