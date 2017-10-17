@@ -9,22 +9,25 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1087329879016264}
+  m_RootGameObject: {fileID: 1254212357002398}
   m_IsPrefabParent: 1
---- !u!1 &1087329879016264
+--- !u!1 &1254212357002398
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4818791142805520}
-  - component: {fileID: 114673052955311832}
-  - component: {fileID: 114678055456776600}
-  - component: {fileID: 114954400972428742}
-  - component: {fileID: 114973976100088120}
-  - component: {fileID: 114159303695506240}
-  - component: {fileID: 114871509978189574}
+  - component: {fileID: 4952080041549234}
+  - component: {fileID: 114439388492536600}
+  - component: {fileID: 114403142367840752}
+  - component: {fileID: 114610210431620844}
+  - component: {fileID: 114025385545714628}
+  - component: {fileID: 114480499875664132}
+  - component: {fileID: 114481876437901886}
+  - component: {fileID: 114342767189424728}
+  - component: {fileID: 114977905998677262}
+  - component: {fileID: 114693822331123310}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Manager
@@ -32,12 +35,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4818791142805520
+--- !u!4 &4952080041549234
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1087329879016264}
+  m_GameObject: {fileID: 1254212357002398}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -45,88 +48,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114159303695506240
+--- !u!114 &114025385545714628
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1087329879016264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f873e16021e1d54aa5a59641fec2be8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114673052955311832
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1087329879016264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47978ad14e7ae8241bad04686667e7fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _MatchTimerText: {fileID: 0}
-  _TimeLowColour: {r: 1, g: 0, b: 0, a: 1}
-  _TimeMediumColour: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  _TimeOkayColour: {r: 1, g: 1, b: 1, a: 1}
-  _UIScoreboard: {fileID: 0}
-  PlayerAlpha: {fileID: 0}
-  _PlayerAlphaColour: {r: 0, g: 0.751724, b: 1, a: 0}
-  PlayerBravo: {fileID: 0}
-  _PlayerBravoColour: {r: 0, g: 1, b: 0.21379304, a: 0}
-  PlayerCharlie: {fileID: 0}
-  _PlayerCharlieColour: {r: 0.8206897, g: 0, b: 1, a: 0}
-  PlayerDelta: {fileID: 0}
-  _PlayerDeltaColour: {r: 1, g: 0.8482759, b: 0, a: 0}
-  _DisplayHUD: 0
---- !u!114 &114678055456776600
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1087329879016264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d54dd93656b2f2940a229b11df00f869, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Phase1Length: 30
-  _Phase2Timer: 0
-  _Phase2Length: 120
---- !u!114 &114871509978189574
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1087329879016264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca56d49ca28b28d4ca41218d9a608728, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Panel: {fileID: 0}
-  _PlayerOne: {fileID: 0}
---- !u!114 &114954400972428742
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1087329879016264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afe1339e1a23a9b4a95bd4c6240bb02b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _NecromancerStartingHealth: 100
-  _NecromancerMovementSpeed: 10
---- !u!114 &114973976100088120
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1087329879016264}
+  m_GameObject: {fileID: 1254212357002398}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 644b168221e562842ba6d16853ef85f1, type: 3}
@@ -141,6 +68,132 @@ MonoBehaviour:
   _FireballRange: 20
   _MaxSize: 18
   _MinionSpacing: 1.2
-  _AutoRotate: 1
+  _AutoRotate: 0
   _OrbitClockwise: 1
   _OrbitSpeed: 350
+--- !u!114 &114342767189424728
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1254212357002398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca56d49ca28b28d4ca41218d9a608728, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Panel: {fileID: 0}
+  _PlayerOne: {fileID: 0}
+--- !u!114 &114403142367840752
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1254212357002398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54dd93656b2f2940a229b11df00f869, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Phase1Length: 10
+  _Phase2Timer: 0
+  _Phase2Length: 120
+--- !u!114 &114439388492536600
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1254212357002398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47978ad14e7ae8241bad04686667e7fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _MatchTimerText: {fileID: 0}
+  _TimeLowColour: {r: 1, g: 0, b: 0, a: 1}
+  _TimeMediumColour: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _TimeOkayColour: {r: 1, g: 1, b: 1, a: 1}
+  _UIPause: {fileID: 0}
+  _UIScoreboard: {fileID: 0}
+  PlayerOne: {fileID: 0}
+  _PlayerOneColour: {r: 0, g: 0, b: 1, a: 1}
+  PlayerTwoCharacter: {fileID: 0}
+  _PlayerTwoColour: {r: 0, g: 1, b: 0, a: 1}
+  PlayerThree: {fileID: 0}
+  _PlayerThreeColour: {r: 1, g: 0, b: 1, a: 1}
+  PlayerFour: {fileID: 0}
+  _PlayerFourColour: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _DisplayHUD: 1
+--- !u!114 &114480499875664132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1254212357002398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f606b9c4b83287f4ab9411ee5571e4d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _CrystalStartingHealth: 100
+  _CrystalMovementSpeed: 5
+  _SpawnPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _MaxLives: 20
+--- !u!114 &114481876437901886
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1254212357002398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f873e16021e1d54aa5a59641fec2be8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114610210431620844
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1254212357002398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afe1339e1a23a9b4a95bd4c6240bb02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _NecromancerStartingHealth: 100
+  _NecromancerMovementSpeed: 10
+--- !u!114 &114693822331123310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1254212357002398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92dc5851382412f4caea55f2041cd30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _PlayerAttachedTo: {fileID: 0}
+--- !u!114 &114977905998677262
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1254212357002398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92dc5851382412f4caea55f2041cd30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _PlayerAttachedTo: {fileID: 0}
