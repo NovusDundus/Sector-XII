@@ -25,10 +25,6 @@ public class Char_Crystal : Character {
 
         // Set movement speed
         _MovementSpeed = AiManager._pInstance._CrystalMovementSpeed;
-
-        // Add to object pool
-        ///AiManager._pInstance.GetInactiveMinions().Add(this.gameObject);
-        AiManager._pInstance.GetActiveMinions().Add(this.GetComponent<GameObject>());
     }
 
     //--------------------------------------------------------------

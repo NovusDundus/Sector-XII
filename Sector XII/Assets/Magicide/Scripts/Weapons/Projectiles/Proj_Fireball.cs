@@ -43,28 +43,28 @@ public class Proj_Fireball : Projectile {
     }
 
     public void FreeProjectile() {
-
+        
         // Reset properties
         _Active = false;
         distanceTraveled = 0f;
-
+        
         // Find reference to self in active projectile pool
         int i = 0;
         foreach (var item in _Owner.GetComponent<Wep_Orb>().GetActivePool()) {
-
+        
             // Once we have found ourself
-            if (item == this) {
-
+            if (item.gameObject == this.gameObject) {
+        
                 // Remove from active pool
                 _Owner.GetComponent<Wep_Orb>().GetActivePool().RemoveAt(i);
-
+        
                 // Needs to move to the inactive projectile pool
                 _Owner.GetComponent<Wep_Orb>().GetInactivePool().Add(item);
                 break;
             }
             ++i;
         }
-    }
+    }  
 
     //--------------------------------------------------------------
     // *** FRAME ***
@@ -104,28 +104,32 @@ public class Proj_Fireball : Projectile {
 
         // Check against all alive minions
         foreach (var minion in AiManager._pInstance.GetActiveMinions()) {
- 
+   
             Char_Crystal crystal = minion.GetComponent<Char_Crystal>();
- 
-            // If minion has valid collision reference set
-            if (crystal.GetCollider() != null) {
- 
-                // Has the fireball collided with the minion's collision?
-                if (_Collision.bounds.Intersects(crystal.GetCollider().bounds)) {
- 
-                    // Damage minion
-                    crystal.Damage(_ImpactDamage);
- 
-                    // Check if minion has been killed
-                    if (crystal.GetHealth() <= 0) {
- 
-                        // Add to instigator's kill count
-                        _Owner.GetOwner()._Player.AddKillCount();
+
+            // Precaution
+            if (crystal != null) {
+
+                // If minion has valid collision reference set
+                if (crystal.GetCollider() != null) {
+
+                    // Has the fireball collided with the minion's collision?
+                    if (_Collision.bounds.Intersects(crystal.GetCollider().bounds)) {
+
+                        // Damage minion
+                        crystal.Damage(_ImpactDamage);
+
+                        // Check if minion has been killed
+                        if (crystal.GetHealth() <= 0) {
+
+                            // Add to instigator's kill count
+                            _Owner.GetOwner()._Player.AddKillCount();
+                        }
+
+                        // Destroy fireball
+                        FreeProjectile();
+                        break;
                     }
- 
-                    // Destroy fireball
-                    FreeProjectile();
-                    break;
                 }
             }
         }
@@ -221,14 +225,32 @@ public class Proj_Fireball : Projectile {
             }
         }
 
-    }
+    }   
     
-
-   /// public void OnTriggerEnter(Collider other) {
-   ///     
-   ///     
-   /// }
-
+ //  public void OnTriggerEnter(Collider other) {
+ //
+ //      Debug.Log(other.tag);
+ //
+ //      if (other.gameObject.tag == "Enemy") {
+ //          print("Colliding");
+ //
+ //          Char_Crystal crystal = other.GetComponent<Char_Crystal>();
+ //
+ //          // Damage minion
+ //          crystal.Damage(_ImpactDamage);
+ //        
+ //          // Check if minion has been killed
+ //          if (crystal.GetHealth() <= 0) {
+ //        
+ //              // Add to instigator's kill count
+ //              _Owner.GetOwner()._Player.AddKillCount();
+ //          }
+ //
+ //          // Destroy fireball
+ //          FreeProjectile();
+ //      }
+ //  }
+    
     //--------------------------------------------------------------
     // *** MOVEMENT ***
 
@@ -247,5 +269,13 @@ public class Proj_Fireball : Projectile {
 
             yield return null;
         }
+    }
+
+    //--------------------------------------------------------------
+    // *** DAMAGE ***
+
+    public int GetImpactDamage() {
+
+        return _ImpactDamage;
     }
 }

@@ -37,6 +37,11 @@ public class Projectile : MonoBehaviour {
         _Owner = a_Owner;
     }
 
+    public Weapon GetOwner() {
+
+        return _Owner;
+    }
+
     //--------------------------------------------------------------
     // *** FRAME ***
 

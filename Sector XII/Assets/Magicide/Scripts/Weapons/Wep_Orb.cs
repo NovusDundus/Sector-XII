@@ -26,8 +26,8 @@ public class Wep_Orb : Weapon {
 
     /// Private
     private int _POOL_SIZE = 40;                                    // Instance amount required for the object pool to function.
-    List<Proj_Fireball> _POOL_FIREBALL_INACTIVE;                       // Object pool of all inactive projectiles.
-    List<Proj_Fireball> _POOL_FIREBALL_ACTIVE;                         // Object pool of all active projectiles in the world.
+    List<GameObject> _POOL_FIREBALL_INACTIVE;                       // Object pool of all inactive projectiles.
+    List<GameObject> _POOL_FIREBALL_ACTIVE;                         // Object pool of all active projectiles in the world.
     private bool _FiredFromLeftMuzzle = false;                      // Returns TRUE if the last projectile was fired from the LEFT muzzle launch point.
 
     //--------------------------------------------------------------
@@ -48,8 +48,8 @@ public class Wep_Orb : Weapon {
         _CooldownRateOverheated = WeaponManager._pInstance._OrbCooldownRateOverheated;
 
         // Create object pools
-        _POOL_FIREBALL_INACTIVE = new List<Proj_Fireball>();
-        _POOL_FIREBALL_ACTIVE = new List<Proj_Fireball>();
+        _POOL_FIREBALL_INACTIVE = new List<GameObject>();
+        _POOL_FIREBALL_ACTIVE = new List<GameObject>();
 
         // create inactive projectile pool by the defined size
         for (int i = 0; i < _POOL_SIZE; i++) {
@@ -58,12 +58,12 @@ public class Wep_Orb : Weapon {
             if (_ProjectilePrefab != null) {
 
                 // instantiate projectile
-                var proj = Instantiate(_ProjectilePrefab/*.GetComponent<Proj_Fireball>()*/, new Vector3(), Quaternion.identity);
+                var proj = Instantiate(_ProjectilePrefab, new Vector3(), Quaternion.identity);
                 proj.GetComponent<Proj_Fireball>().Start();
                 proj.GetComponent<Projectile>().SetOwner(this);
 
                 // Add projectile to the end of the inactive object pool
-                _POOL_FIREBALL_INACTIVE.Add(proj.GetComponent<Proj_Fireball>());
+                _POOL_FIREBALL_INACTIVE.Add(proj);
             }
         }
     }
@@ -77,12 +77,12 @@ public class Wep_Orb : Weapon {
             if (_ProjectilePrefab != null) {
    
                 // instantiate projectile
-                var proj = Instantiate(_ProjectilePrefab/*.GetComponent<Proj_Fireball>()*/, new Vector3(), Quaternion.identity);
+                var proj = Instantiate(_ProjectilePrefab, new Vector3(), Quaternion.identity);
                 proj.GetComponent<Proj_Fireball>().Start();
                 proj.GetComponent<Projectile>().SetOwner(this);
                 
                 // Add projectile to the end of the inactive object pool
-                _POOL_FIREBALL_INACTIVE.Add(proj.GetComponent<Proj_Fireball>());
+                _POOL_FIREBALL_INACTIVE.Add(proj);
             }
         }
     }
@@ -121,7 +121,7 @@ public class Wep_Orb : Weapon {
 
             foreach (var projectile in _POOL_FIREBALL_ACTIVE) {
                                
-                projectile.GetComponent<Renderer>().enabled = true;
+                projectile.gameObject.GetComponent<Renderer>().enabled = true;
             }
         }
     }
@@ -142,21 +142,57 @@ public class Wep_Orb : Weapon {
 
                     // If the designers did their job
                     if (_ProjectilePrefab != null) {
-
-                        ///    // Create projectile on RIGHT
-                        ///    var proj = Instantiate(_ProjectilePrefab, _MuzzlePointLeft.position, transform.rotation);
-                        ///    proj.GetComponent<Projectile>().Init();
-                        ///    proj.GetComponent<Projectile>().SetOwner(this);
                         
                         // Get fireball projectile and move it through the pools
-                        Proj_Fireball proj = GetInactiveProjectile();
+                        GameObject proj = GetInactiveProjectile();
+
+                        if (proj != null) {
+
+                            _POOL_FIREBALL_ACTIVE.Add(proj);
+                            _POOL_FIREBALL_INACTIVE.RemoveAt(_POOL_FIREBALL_INACTIVE.Count - 1);
+
+                            // Initialize the fireball
+                            proj.GetComponent<Projectile>().Init();
+                            proj.GetComponent<Projectile>().SetOwner(this);
+                            proj.transform.position = _MuzzlePointLeft.position;
+                            proj.transform.rotation = transform.rotation;
+
+                            if (proj != null) {
+
+                                // Get a target for aim assist
+                                if (FindTarget().point != new Vector3(0, 0, 0)) {
+
+                                    proj.transform.LookAt(FindTarget().point);
+                                }
+
+                                _ActiveProjectiles += 1;
+
+                                // Set last muzzle used to RIGHT
+                                _FiredFromLeftMuzzle = false;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Last shot came from right side
+            else { ///_FiredFromLeftMuzzle == false
+
+                // If the designers did their job
+                if (_ProjectilePrefab != null) {
+
+                    // Get fireball projectile and move it through the pools
+                    GameObject proj = GetInactiveProjectile();
+
+                    if (proj != null) {
+
                         _POOL_FIREBALL_ACTIVE.Add(proj);
                         _POOL_FIREBALL_INACTIVE.RemoveAt(_POOL_FIREBALL_INACTIVE.Count - 1);
 
                         // Initialize the fireball
                         proj.GetComponent<Projectile>().Init();
                         proj.GetComponent<Projectile>().SetOwner(this);
-                        proj.transform.position = _MuzzlePointLeft.position;
+                        proj.transform.position = _MuzzlePointRight.position;
                         proj.transform.rotation = transform.rotation;
 
                         if (proj != null) {
@@ -169,48 +205,10 @@ public class Wep_Orb : Weapon {
 
                             _ActiveProjectiles += 1;
 
-                            // Set last muzzle used to RIGHT
-                            _FiredFromLeftMuzzle = false;
+
+                            // Set last muzzle used to LEFT
+                            _FiredFromLeftMuzzle = true;
                         }
-                    }
-                }
-            }
-
-            // Last shot came from right side
-            else { ///_FiredFromLeftMuzzle == false
-
-                // If the designers did their job
-                if (_ProjectilePrefab != null) {
-
-                    ///    // Create projectile on LEFT
-                    ///    var proj = Instantiate(_ProjectilePrefab, _MuzzlePointRight.position, transform.rotation);
-                    ///    proj.GetComponent<Projectile>().Init();
-                    ///    proj.GetComponent<Projectile>().SetOwner(this);
-                    
-                    // Get fireball projectile and move it through the pools
-                    Proj_Fireball proj = GetInactiveProjectile();
-                    _POOL_FIREBALL_ACTIVE.Add(proj);
-                    _POOL_FIREBALL_INACTIVE.RemoveAt(_POOL_FIREBALL_INACTIVE.Count - 1);
-
-                    // Initialize the fireball
-                    proj.GetComponent<Projectile>().Init();
-                    proj.GetComponent<Projectile>().SetOwner(this);
-                    proj.transform.position = _MuzzlePointRight.position;
-                    proj.transform.rotation = transform.rotation;
-
-                    if (proj != null) {
-
-                        // Get a target for aim assist
-                        if (FindTarget().point != new Vector3(0, 0, 0)) {
-
-                            proj.transform.LookAt(FindTarget().point);
-                        }
-
-                        _ActiveProjectiles += 1;
-                        
-
-                        // Set last muzzle used to LEFT
-                        _FiredFromLeftMuzzle = true;
                     }
                 }
             }
@@ -256,16 +254,15 @@ public class Wep_Orb : Weapon {
 
     //--------------------------------------------------------------
     // *** OBJECT POOLS ***
-
-    public Proj_Fireball GetInactiveProjectile() {
+    
+    public GameObject GetInactiveProjectile() {
 
         if (_POOL_FIREBALL_INACTIVE.Count > 0) {
 
             // Get the projectile from the end of the list
-            Projectile proj = _POOL_FIREBALL_INACTIVE[_POOL_FIREBALL_INACTIVE.Count - 1].GetComponent<Projectile>();
-            Proj_Fireball fireBall = proj.GetComponent<Proj_Fireball>();
+            GameObject proj = _POOL_FIREBALL_INACTIVE[_POOL_FIREBALL_INACTIVE.Count - 1];
 
-            return fireBall;
+            return proj;
         }
 
         // Empty pool >> returns NULL
@@ -275,15 +272,14 @@ public class Wep_Orb : Weapon {
         }
     }
 
-    public Proj_Fireball GetActiveProjectile() {
+    public GameObject GetActiveProjectile() {
 
         if (_POOL_FIREBALL_ACTIVE.Count > 0) {
 
             // Get the projectile from the end of the list
-            Projectile proj = _POOL_FIREBALL_ACTIVE[_POOL_FIREBALL_ACTIVE.Count - 1].GetComponent<Projectile>();
-            Proj_Fireball fireBall = proj.GetComponent<Proj_Fireball>();
+            GameObject proj = _POOL_FIREBALL_ACTIVE[_POOL_FIREBALL_ACTIVE.Count - 1];
 
-            return fireBall;
+            return proj;
         }
 
         // Empty pool >> returns NULL
@@ -308,12 +304,12 @@ public class Wep_Orb : Weapon {
         return _POOL_FIREBALL_ACTIVE.Count;
     }
 
-    public List<Proj_Fireball> GetActivePool() {
+    public List<GameObject> GetActivePool() {
 
         return _POOL_FIREBALL_ACTIVE;
     }
 
-    public List<Proj_Fireball> GetInactivePool() {
+    public List<GameObject> GetInactivePool() {
 
         return _POOL_FIREBALL_INACTIVE;
     }

@@ -54,7 +54,7 @@ public class AiManager : MonoBehaviour {
         foreach (var ai in startupAi) {
     
             // Add to alive pool
-            _POOL_ALIVE_MINIONS.Add(ai);
+            _POOL_ALIVE_MINIONS.Add(ai.gameObject);
         }
     }
 
