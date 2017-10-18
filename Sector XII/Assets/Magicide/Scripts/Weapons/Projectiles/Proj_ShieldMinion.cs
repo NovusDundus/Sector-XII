@@ -17,7 +17,6 @@ public class Proj_ShieldMinion : Projectile {
 
     /// Private
     private float _SpinSpeed = 4f;
-    ///private 
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -47,9 +46,22 @@ public class Proj_ShieldMinion : Projectile {
     }
 
     private void OnCollisionEnter(Collision collision) {
-        
+
         if (collision.gameObject.tag == "Collision") {
 
+            // Lock shield weapon rotation
+            _Owner.GetComponent<Wep_Shield>().SetCanRotate(false);
+            GetComponent<Rigidbody>().isKinematic = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision) {
+
+        if (collision.gameObject.tag == "Collision") {
+
+            // Unlock shield weapon rotation
+            _Owner.GetComponent<Wep_Shield>().SetCanRotate(true);
+            GetComponent<Rigidbody>().isKinematic = false;
         }
     }
 

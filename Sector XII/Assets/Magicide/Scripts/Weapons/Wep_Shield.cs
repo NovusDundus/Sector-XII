@@ -21,9 +21,10 @@ public class Wep_Shield : Weapon {
     private float _OrbitSpeed = 200;                                // The speed in which the minions rotate around the character that owns this weapon.
     private float _MinionSpacing = 2f;         /* TEMPORARY */      // Unit of space between each minion.
     private Quaternion rotation;                                    // Current rotation of the weapon's transform.
-    private List<GameObject> _POOL_Minions;                  // Object pool of all minions attached to this weapon.
+    private List<GameObject> _POOL_Minions;                         // Object pool of all minions attached to this weapon.
     private bool _AutomatedRotation;
     private bool _RotateRight;
+    private bool _CanRotate = true;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -125,15 +126,21 @@ public class Wep_Shield : Weapon {
                     // Right trigger input ONLY
                     if (_Owner._Player.GetRightTriggerInput.y != 0f && _Owner._Player.GetLeftTriggerInput.y == 0f) {
 
-                        // Rotate shield right
-                        transform.Rotate(0f, transform.rotation.y + _OrbitSpeed * Time.fixedDeltaTime, 0f);
+                        if (_CanRotate == true) {
+
+                            // Rotate shield right
+                            transform.Rotate(0f, transform.rotation.y + _OrbitSpeed * Time.fixedDeltaTime, 0f);
+                        }
                     }
 
                     // Left trigger input ONLY
                     if (_Owner._Player.GetLeftTriggerInput.y != 0f && _Owner._Player.GetRightTriggerInput.y == 0f) {
 
-                        // Rotate shield left
-                        transform.Rotate(0f, transform.rotation.y - _OrbitSpeed * Time.fixedDeltaTime, 0f);
+                        if (_CanRotate == true) {
+
+                            // Rotate shield left
+                            transform.Rotate(0f, transform.rotation.y - _OrbitSpeed * Time.fixedDeltaTime, 0f);
+                        }
                     }
 
                     // Apply new rotation
@@ -162,6 +169,11 @@ public class Wep_Shield : Weapon {
             yield return new WaitForFixedUpdate();
         }
         yield break;
+    }
+
+    public void SetCanRotate(bool enabled) {
+
+        _CanRotate = enabled;
     }
 
     //--------------------------------------------------------------
