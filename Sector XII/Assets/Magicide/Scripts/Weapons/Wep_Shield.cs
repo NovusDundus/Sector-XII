@@ -21,7 +21,7 @@ public class Wep_Shield : Weapon {
     private float _OrbitSpeed = 200;                                // The speed in which the minions rotate around the character that owns this weapon.
     private float _MinionSpacing = 2f;         /* TEMPORARY */      // Unit of space between each minion.
     private Quaternion rotation;                                    // Current rotation of the weapon's transform.
-    private List<Proj_ShieldMinion> _POOL_Minions;                  // Object pool of all minions attached to this weapon.
+    private List<GameObject> _POOL_Minions;                  // Object pool of all minions attached to this weapon.
     private bool _AutomatedRotation;
     private bool _RotateRight;
 
@@ -46,7 +46,7 @@ public class Wep_Shield : Weapon {
         rotation = transform.rotation;
 
         // Create arrays
-        _POOL_Minions = new List<Proj_ShieldMinion>();
+        _POOL_Minions = new List<GameObject>();
     }
 
     public override void Init() {
@@ -69,6 +69,8 @@ public class Wep_Shield : Weapon {
                     minion.GetComponentInChildren<Projectile>().Init();
                     minion.AddToPool(this);
                     minion.SetOwner(this);
+                    
+                    Debug.Log(GetMinionCount());
 
                     // Set player score
                     _Owner._Player.SetScore(_MinionCount);
@@ -191,7 +193,7 @@ public class Wep_Shield : Weapon {
         return _MinionCount;
     }
 
-    public List<Proj_ShieldMinion> GetMeatMinionPool() {
+    public List<GameObject> GetMeatMinionPool() {
 
         return _POOL_Minions;
     }

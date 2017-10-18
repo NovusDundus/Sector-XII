@@ -146,16 +146,18 @@ public class Proj_Fireball : Projectile {
                     if (necromancer != _Owner.GetOwner()) {
 
                         // Check against all meat shield minions associated to the player
-                        foreach (Proj_ShieldMinion meatMinion in necromancer.GetSecondaryWeapon().GetComponent<Wep_Shield>().GetMeatMinionPool()) {
+                        foreach (GameObject meatMinion in necromancer.GetSecondaryWeapon().GetComponent<Wep_Shield>().GetMeatMinionPool()) {
+
+                            Proj_ShieldMinion minion = meatMinion.GetComponent<Proj_ShieldMinion>();
 
                             // Has the fireball collided with the minions's collision?
-                            if (_Collision.bounds.Intersects(meatMinion.GetCollision().bounds)) {
+                            if (_Collision.bounds.Intersects(minion.GetCollision().bounds)) {
 
                                 // Damage minion
-                                meatMinion.Damage(_ImpactDamage);
+                                minion.Damage(_ImpactDamage);
 
                                 // Check if minion has been killed
-                                if (meatMinion._Health <= 0) {
+                                if (minion._Health <= 0) {
 
                                     // Add to instigator's kill count
                                     _Owner.GetOwner()._Player.AddKillCount();

@@ -24,6 +24,7 @@ public class CrystalScoreboard : MonoBehaviour {
     private int _CurrentHighest = 0;
     private int _TopPlayerID = 0;
     private MeshRenderer meshRenderer;
+    private Player _HighestPlayer;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -38,6 +39,19 @@ public class CrystalScoreboard : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        foreach (Character plyr in PlayerManager._pInstance.GetDeadNecromancers())
+        {
+            Player p = plyr.GetComponent<Player>();
+
+            if (p == _HighestPlayer)
+            {
+                _HighestPlayer = null;
+                _CurrentHighest = 0;
+                _TopPlayerID = 0;
+                break;
+            }
+        }
+
         foreach (Character plyr in PlayerManager._pInstance.GetAliveNecromancers())
         {
             Player p = plyr.GetComponent<Player>();
@@ -46,6 +60,7 @@ public class CrystalScoreboard : MonoBehaviour {
             {
                 _CurrentHighest = p.GetScore();
                 _TopPlayerID = p._pPlayerID;
+                _HighestPlayer = p;
                 break;
             }
         }
