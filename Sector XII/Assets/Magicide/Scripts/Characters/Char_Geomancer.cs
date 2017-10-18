@@ -120,18 +120,18 @@ public class Char_Geomancer : Character {
         // Get last known alive position and store it
         base.OnDeath();
 
+        // Kill all the minions associated with the character
+   ///     Wep_Shield shield = _WeaponSecondary.GetComponent<Wep_Shield>();
+   ///     foreach (var minion in shield.GetMeatMinionPool())
+   ///     {
+   ///         minion.GetComponent<Proj_ShieldMinion>().ForceDeath();
+   ///     }
+        // Reset score to 0
+        ///_Player.SetScore(0);
+
         // hide character & move out of playable space
         GetComponentInChildren<Renderer>().enabled = false;
         transform.position = new Vector3(1000, 0, 1000);
-
-        // Kill all the minions associated with the character
-        Wep_Shield shield = _WeaponSecondary.GetComponent<Wep_Shield>();
-        foreach (var minion in shield.GetMeatMinionPool())
-        {
-            minion.GetComponent<Proj_ShieldMinion>().ForceDeath();
-        }
-        // Reset score to 0
-        ///_Player.SetScore(0);
 
         // Find self in active pool
         foreach (var necromancer in PlayerManager._pInstance.GetAliveNecromancers()) {

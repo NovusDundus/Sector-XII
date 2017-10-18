@@ -39,7 +39,6 @@ public class MatchManager : MonoBehaviour {
     private bool _GamePaused = false;                               // Returns TRUE if the game is currently paused.
     private bool _CinematicPlaying = true;                          // Returns TRUE if the game is currently playing a cinematic.
     private bool _Gameplay;                                         // Returns TRUE if the game is currently in a gameplay state.
-    private float _TimePaused = 0f;
     private float _TimerPhase1 = 0f;
     private float _TimerPhase2 = 0f;
     private bool _MaxMatchTimer = false;                            // Returns TRUE if the game has a maximum time limit for gameplay.
@@ -102,9 +101,6 @@ public class MatchManager : MonoBehaviour {
                     // Game is currently unpaused
                     if (_GamePaused == false) {
 
-                        // Reset pause time counter
-                        _TimePaused = 0f;
-
                         // Deduct from timer 1 second per second
                         _TimerPhase1 -= Time.deltaTime;
                         
@@ -131,9 +127,6 @@ public class MatchManager : MonoBehaviour {
 
                     // Game is currently unpaused
                     if (_GamePaused == false) {
-                        
-                        // Reset pause time counter
-                        _TimePaused = 0f;
 
                         // If phase2 runs on a timer
                         if (_MaxMatchTimer == true) {

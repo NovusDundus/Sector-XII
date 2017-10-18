@@ -52,13 +52,13 @@ public class LevelObject : MonoBehaviour {
         if (_Destroyable == true) {
 
             // Static object pool
-            LevelManager._pInstance.GetStaticObjects().Add(this.gameObject);
+            LevelManager._pInstance.GetDynamicObjects().Add(this.gameObject);
         }
 
         else { /// _Destroyable == false
 
             // Dynamic object pool
-            LevelManager._pInstance.GetDynamicObjects().Add(this.gameObject);
+            LevelManager._pInstance.GetStaticObjects().Add(this.gameObject);
         }
 	}
 

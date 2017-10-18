@@ -160,7 +160,7 @@ public class Player : MonoBehaviour {
         get
         {
             ///return new Vector3(Input.GetAxis(string.Concat("LeftStick_X_P", _pPlayerID)), 0, Input.GetAxis(string.Concat("LeftStick_Y_P", _pPlayerID)));
-            return new Vector3(XCI.GetAxis(XboxAxis.LeftStickX, _Controller),0, XCI.GetAxis(XboxAxis.LeftStickY, _Controller));
+            return new Vector3(XCI.GetAxisRaw(XboxAxis.LeftStickX, _Controller),0, XCI.GetAxisRaw(XboxAxis.LeftStickY, _Controller));
         }
     }
 
@@ -170,7 +170,7 @@ public class Player : MonoBehaviour {
         get
         {
             ///return new Vector3(0, 90f + (Mathf.Atan2(Input.GetAxis(string.Concat("RightStick_Y_P", _pPlayerID)), Input.GetAxis(string.Concat("RightStick_X_P", _pPlayerID))) * 180 / Mathf.PI), 0);
-            return new Vector3(0, 90f - (Mathf.Atan2(XCI.GetAxis(XboxAxis.RightStickY, _Controller), XCI.GetAxis(XboxAxis.RightStickX, _Controller)) * 180 / Mathf.PI), 0);
+            return new Vector3(0, 90f - (Mathf.Atan2(XCI.GetAxisRaw(XboxAxis.RightStickY, _Controller), XCI.GetAxisRaw(XboxAxis.RightStickX, _Controller)) * 180 / Mathf.PI), 0);
         }
     }
 
@@ -180,7 +180,7 @@ public class Player : MonoBehaviour {
         get
         {
             ///return Input.GetAxis(string.Concat("FireX_P" + _pPlayerID)) != 0f || Input.GetAxis(string.Concat("FireY_P" + _pPlayerID)) != 0f;
-            return XCI.GetAxis(XboxAxis.RightStickX, _Controller) != 0f || XCI.GetAxis(XboxAxis.RightStickY, _Controller) != 0f;
+            return XCI.GetAxisRaw(XboxAxis.RightStickX, _Controller) != 0f || XCI.GetAxisRaw(XboxAxis.RightStickY, _Controller) != 0f;
         }
     }
 
@@ -192,7 +192,7 @@ public class Player : MonoBehaviour {
         get
         {
             ///return new Vector3(0, -Input.GetAxis(string.Concat("LeftTrigger_P", _pPlayerID)), 0);
-            return new Vector3(0, -XCI.GetAxis(XboxAxis.LeftTrigger, _Controller), 0);
+            return new Vector3(0, -XCI.GetAxisRaw(XboxAxis.LeftTrigger, _Controller), 0);
         }
     }
 
@@ -202,7 +202,7 @@ public class Player : MonoBehaviour {
         get
         {
             ///return new Vector3(0, Input.GetAxis(string.Concat("RightTrigger_P", _pPlayerID)), 0);
-            return new Vector3(0, XCI.GetAxis(XboxAxis.RightTrigger, _Controller), 0);
+            return new Vector3(0, XCI.GetAxisRaw(XboxAxis.RightTrigger, _Controller), 0);
         }
     }
 

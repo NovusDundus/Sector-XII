@@ -15,7 +15,9 @@ public class Proj_ShieldMinion : Projectile {
     /// Public (designers)
     public int _Health = 100;                                      // Current health associated to the minion.
 
+    /// Private
     private float _SpinSpeed = 4f;
+    ///private 
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -42,6 +44,13 @@ public class Proj_ShieldMinion : Projectile {
 
         // Continuously rotate the minion on the spot 
         transform.Rotate(0f, transform.rotation.y + _SpinSpeed, 0f);
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        
+        if (collision.gameObject.tag == "Collision") {
+
+        }
     }
 
     //--------------------------------------------------------------
