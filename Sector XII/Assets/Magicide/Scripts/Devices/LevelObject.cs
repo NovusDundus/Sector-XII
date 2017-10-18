@@ -16,6 +16,9 @@ public class LevelObject : MonoBehaviour {
     public bool _Destroyable = true;
     public int _Health = 100;
     public DamagedState _DamagedState = DamagedState.New;
+    public GameObject NewMesh;
+    public GameObject DamagedMesh;
+    public GameObject DeastroyedMesh;
 
     public enum DamagedState {
 

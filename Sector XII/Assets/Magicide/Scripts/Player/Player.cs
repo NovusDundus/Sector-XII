@@ -169,8 +169,8 @@ public class Player : MonoBehaviour {
         // Gets directional rotation input
         get
         {
-            return new Vector3(0, 90f + (Mathf.Atan2(Input.GetAxis(string.Concat("RightStick_Y_P", _pPlayerID)), Input.GetAxis(string.Concat("RightStick_X_P", _pPlayerID))) * 180 / Mathf.PI), 0);
-            ///return new Vector3(0, 90f + (Mathf.Atan2(XCI.GetAxis(XboxAxis.RightStickY, _Controller), XCI.GetAxis(XboxAxis.RightStickX, _Controller)) * 180 / Mathf.PI), 0);
+            ///return new Vector3(0, 90f + (Mathf.Atan2(Input.GetAxis(string.Concat("RightStick_Y_P", _pPlayerID)), Input.GetAxis(string.Concat("RightStick_X_P", _pPlayerID))) * 180 / Mathf.PI), 0);
+            return new Vector3(0, 90f - (Mathf.Atan2(XCI.GetAxis(XboxAxis.RightStickY, _Controller), XCI.GetAxis(XboxAxis.RightStickX, _Controller)) * 180 / Mathf.PI), 0);
         }
     }
 
