@@ -23,10 +23,11 @@ GameObject:
   - component: {fileID: 114403142367840752}
   - component: {fileID: 114610210431620844}
   - component: {fileID: 114025385545714628}
+  - component: {fileID: 114157945126146578}
+  - component: {fileID: 114188143390799446}
   - component: {fileID: 114481876437901886}
   - component: {fileID: 114342767189424728}
   - component: {fileID: 114977905998677262}
-  - component: {fileID: 114693822331123310}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Manager
@@ -59,17 +60,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _OrbFireDelay: 0.075
-  _FireballHeatCost: 0.085
-  _OrbCooldownRateStable: 0.015
+  _FireballHeatCost: 0.059
+  _OrbCooldownRateStable: 0.01
   _OrbCooldownRateOverheated: 0.02
   _ImpactDamage: 25
   _FireballSpeed: 20
   _FireballRange: 20
   _MaxSize: 18
-  _MinionSpacing: 1.2
+  _MinionSpacing: 1.5
   _AutoRotate: 0
   _OrbitClockwise: 1
   _OrbitSpeed: 350
+--- !u!114 &114157945126146578
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1254212357002398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62cfa343cdca9fa47ac26407347e7876, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _CrystalStartingHealth: 100
+  _CrystalMovementSpeed: 5
+  _SpawnPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _MaxLives: 0
+--- !u!114 &114188143390799446
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1254212357002398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bcc39189bd07774d97dba80046d91a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _TeleportCooldownTime: 10
 --- !u!114 &114342767189424728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -94,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d54dd93656b2f2940a229b11df00f869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Phase1Length: 10
+  _Phase1Length: 30
   _Phase2Timer: 0
   _Phase2Length: 120
 --- !u!114 &114439388492536600
@@ -147,18 +185,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _NecromancerStartingHealth: 100
   _NecromancerMovementSpeed: 10
---- !u!114 &114693822331123310
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1254212357002398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92dc5851382412f4caea55f2041cd30d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _PlayerAttachedTo: {fileID: 0}
 --- !u!114 &114977905998677262
 MonoBehaviour:
   m_ObjectHideFlags: 1
