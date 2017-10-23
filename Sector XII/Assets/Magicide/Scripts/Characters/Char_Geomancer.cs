@@ -13,10 +13,19 @@ public class Char_Geomancer : Character {
     // *** VARIABLES ***
 
     /// Private
+    public bool _DashEnabled;
     private XboxCtrlrInput.XboxButton _DashInputButton = XboxCtrlrInput.XboxButton.B;
     private float _DashDistance;
     private float _DashCooldown;
     private float _CurrentDashCooldown = 0f;
+    private bool _JustDashed = false;
+    private float _TimeSinceLastDash = 0f;
+    public bool _KnockbackEnabled;
+    private XboxCtrlrInput.XboxButton _KnockbackInputButton = XboxCtrlrInput.XboxButton.Y;
+    private float _KnockbackForceNormal;
+    private float _KnockbackForceDash;
+    private float _KnockbackCooldown;
+    private float _CurrentKnockbackCooldown = 0f;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -34,9 +43,17 @@ public class Char_Geomancer : Character {
         _MovementSpeed = PlayerManager._pInstance._NecromancerMovementSpeed;
 
         // Set dash properties
+        _DashEnabled = PlayerManager._pInstance.DashEnabled;
         _DashInputButton = PlayerManager._pInstance.DashButton;
         _DashDistance = PlayerManager._pInstance.DashDistance;
         _DashCooldown = PlayerManager._pInstance.DashCooldown;
+
+        // Set knockback properties
+        _KnockbackEnabled = PlayerManager._pInstance.KnockbackEnabled;
+        _KnockbackInputButton = PlayerManager._pInstance.KnockbackButton;
+        _KnockbackForceNormal = PlayerManager._pInstance.KnockbackForceNormal;
+        _KnockbackForceDash = PlayerManager._pInstance.KnockbackForceDash;
+        _KnockbackCooldown = PlayerManager._pInstance.KnockbackCooldown;
 
         // Create players's primary weapon (orb)
         _WeaponPrimary = GameObject.FindGameObjectWithTag("P" + _Player._pPlayerID + "_PrimaryWeapon").GetComponent<Weapon>();
@@ -97,64 +114,145 @@ public class Char_Geomancer : Character {
                     _WeaponPrimary.Fire();
                 }
 
-                // Detect dash ability input
-                switch (_DashInputButton) {
+                // Knockback ability
+                if (_KnockbackEnabled == true) {
 
-                    // Face button bottom (A)
-                    case XboxCtrlrInput.XboxButton.A: { 
+                    // Detect knockback ability input
+                    switch (_KnockbackInputButton) {
 
-                            if (_Player.GetFaceBottomInput) {
+                        // Face button bottom (A)
+                        case XboxCtrlrInput.XboxButton.A: {
 
-                                Dash();
+                                if (_Player.GetFaceBottomInput) {
+
+                                    KnockbackDetection();
+                                }
+                                break;
                             }
-                            break;
-                        }
 
-                    // Face button right (B)
-                    case XboxCtrlrInput.XboxButton.B: {
-                            
-                            if (_Player.GetFaceRightInput) {
+                        // Face button right (B)
+                        case XboxCtrlrInput.XboxButton.B: {
 
-                                Dash();
+                                if (_Player.GetFaceRightInput) {
+
+                                    KnockbackDetection();
+                                }
+                                break;
                             }
-                            break;
-                        }
 
-                    // Face button left (X)
-                    case XboxCtrlrInput.XboxButton.X: {
+                        // Face button left (X)
+                        case XboxCtrlrInput.XboxButton.X: {
 
-                            if (_Player.GetFaceLeftInput) {
+                                if (_Player.GetFaceLeftInput) {
 
-                                Dash();
+                                    KnockbackDetection();
+                                }
+                                break;
                             }
-                            break;
-                        }
 
-                    // Face button top (Y)
-                    case XboxCtrlrInput.XboxButton.Y: {
+                        // Face button top (Y)
+                        case XboxCtrlrInput.XboxButton.Y: {
 
-                            if (_Player.GetFaceTopInput) {
+                                if (_Player.GetFaceTopInput) {
 
-                                Dash();
+                                    KnockbackDetection();
+                                }
+                                break;
                             }
-                            break;
+
+                        default: {
+
+                                break;
+                            }
+                    }
+
+                    // Deduct knockback cooldown
+                    if (_CurrentKnockbackCooldown > 0f) {
+
+                        _CurrentKnockbackCooldown -= Time.fixedDeltaTime;
+
+                        // Clamp to 0f
+                        if (_CurrentKnockbackCooldown < 0f) {
+
+                            _CurrentKnockbackCooldown = 0f;
                         }
+                    }
+                }
 
-                    default: {
+                // Dash ability
+                if (_DashEnabled == true) {
 
-                            break;
+                    // Detect dash ability input
+                    switch (_DashInputButton) {
+
+                        // Face button bottom (A)
+                        case XboxCtrlrInput.XboxButton.A: {
+
+                                if (_Player.GetFaceBottomInput) {
+
+                                    Dash();
+                                }
+                                break;
+                            }
+
+                        // Face button right (B)
+                        case XboxCtrlrInput.XboxButton.B: {
+
+                                if (_Player.GetFaceRightInput) {
+
+                                    Dash();
+                                }
+                                break;
+                            }
+
+                        // Face button left (X)
+                        case XboxCtrlrInput.XboxButton.X: {
+
+                                if (_Player.GetFaceLeftInput) {
+
+                                    Dash();
+                                }
+                                break;
+                            }
+
+                        // Face button top (Y)
+                        case XboxCtrlrInput.XboxButton.Y: {
+
+                                if (_Player.GetFaceTopInput) {
+
+                                    Dash();
+                                }
+                                break;
+                            }
+
+                        default: {
+
+                                break;
+                            }
+                    }
+
+                    // Deduct dash cooldown
+                    if (_CurrentDashCooldown > 0f) {
+
+                        _CurrentDashCooldown -= Time.fixedDeltaTime;
+
+                        // Clamp to 0f
+                        if (_CurrentDashCooldown < 0f) {
+
+                            _CurrentDashCooldown = 0f;
                         }
-                }              
-                
-                // Deduct dash cooldown
-                if (_CurrentDashCooldown > 0f) {
+                    }
+                    if (_JustDashed == true) {
 
-                    _CurrentDashCooldown -= Time.fixedDeltaTime;
+                        if (_TimeSinceLastDash < 1f) {
 
-                    // Clamp to 0f
-                    if (_CurrentDashCooldown < 0f) {
+                            _TimeSinceLastDash += Time.fixedDeltaTime;
+                        }
+                        else {
 
-                        _CurrentDashCooldown = 0f;
+                            _JustDashed = false;
+                            _TimeSinceLastDash = 0f;
+                        }
                     }
                 }
             }
@@ -228,9 +326,41 @@ public class Char_Geomancer : Character {
 
             // Perform dash
             gameObject.transform.position = DashPos;
+            _JustDashed = true;
 
             // Reset cooldown
             _CurrentDashCooldown = _DashCooldown;
+        }
+    }
+
+    public void KnockbackDetection() {
+
+        // Create sphere collider to detect for the knockback
+        SphereCollider knockbackCol = GetComponent<SphereCollider>();
+
+        // Detect for any collisions with other player controlled characters
+        foreach (Character playerCharacter in PlayerManager._pInstance.GetAliveNecromancers()) {
+
+            // Dont test against ourself
+            if (playerCharacter != this) {
+
+                // If collider intersects with the character's collider
+                if (knockbackCol.bounds.Intersects(playerCharacter.GetCollider().bounds)) {
+
+                    if (_JustDashed == true) {
+
+                        // Apply knockback effect (Dash version)
+                        playerCharacter.GetComponent<Rigidbody>().AddForce(_Player.GetMovementInput * _KnockbackForceDash);
+                    }
+
+                    else { /// _JustDashed == false
+
+                        // Apply knockback effect (Normal version)
+                        playerCharacter.GetComponent<Rigidbody>().AddForce(_Player.GetMovementInput * _KnockbackForceNormal);
+                    }
+                    break;
+                }
+            }
         }
     }
 }

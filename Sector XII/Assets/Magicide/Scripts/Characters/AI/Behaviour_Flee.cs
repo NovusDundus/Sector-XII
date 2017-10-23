@@ -11,13 +11,15 @@ public class Behaviour_Flee : MonoBehaviour {
     //----------------------------------------------------------------------------------
     // *** VARIABLES ***
 
+    /// Public (designers)
     public GameObject m_Target;                                     // references the game object in the game (target to flee from)   
     public float FleeThreshold = 20f;                               // determains the distance the AI will run(Once it is outside of the determained threshold it will stop running)
-                                                                       
+                          
+    /// Private
     private float FleeDistance;                                     // current distance between the agent and target it is attempting to flee from.
-    private float movespeed;                                            
-                                                                       
-    NavMeshAgent agent;                                             // sets a variable name to be used in the rest of the script
+    private float movespeed;                                                                                                                   
+    private NavMeshAgent agent;                                     // sets a variable name to be used in the rest of the script
+    private SphereCollider RetargetCollider;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -28,6 +30,8 @@ public class Behaviour_Flee : MonoBehaviour {
         agent = GetComponent<NavMeshAgent>();
 
         movespeed = agent.GetComponent<Char_Crystal>().GetMovementSpeed();
+
+        RetargetCollider = GetComponent<SphereCollider>();
     }
 
     //--------------------------------------------------------------
@@ -58,6 +62,16 @@ public class Behaviour_Flee : MonoBehaviour {
         else {
 
             // Successful flee escape (DO SOME STUFF IDK CHANGE BEHAVIOURS OR SOMETHING)?
+        }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+
+        // If the other collider's controlled by a player
+        if (other.gameObject.GetComponent<Player>() != null) {
+
+            // Set new flee target
+            m_Target = other.gameObject;
         }
     }
 

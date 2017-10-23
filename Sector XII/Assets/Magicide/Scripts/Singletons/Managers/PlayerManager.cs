@@ -13,7 +13,7 @@ public class PlayerManager : MonoBehaviour {
     // VARIABLES
 
     /// Public (Designers)
-    [Header(" *** NECROMANCER CHARACTER ***")]
+    [Header(" *** GEOMANCER CHARACTER ***")]
     [Header("- Health")]
     [Tooltip("Starting health of the necromancers that are possessed by the players.")]
     public int _NecromancerStartingHealth = 100;                    // Starting health of the necromancers that are possessed by the players.
@@ -21,12 +21,25 @@ public class PlayerManager : MonoBehaviour {
     [Tooltip("Movement speed of the necromancer character.")]
     public float _NecromancerMovementSpeed = 10f;                   // Movement speed of the necromancer character.
     [Header("- Dash")]
+    public bool DashEnabled = true;
     [Tooltip("Input button tied to the player's dash ability.")]
     public XboxCtrlrInput.XboxButton DashButton = XboxCtrlrInput.XboxButton.B;  // Input button tied to the player's dash ability.
     [Tooltip("")]
     public float DashDistance = 5f;                                 // Units of distance that the player's character will teleport when performed.
     [Tooltip("Amount of time between reallowing the dash ability.")]
     public int DashCooldown = 5;                                    // Amount of time between reallowing the dash ability.
+    [Header("- Knockback")]
+    public bool KnockbackEnabled = false;
+    [Tooltip("Input button tied to the player's knockback ability.")]
+    public XboxCtrlrInput.XboxButton KnockbackButton = XboxCtrlrInput.XboxButton.Y;  // Input button tied to the player's knockback ability.
+    [Tooltip("Amount of force applied to the target that is being knockbacked against.")]
+    [Range(10000, 100000)]
+    public int KnockbackForceNormal = 100000;                       // Amount of force applied to the target that is being knockbacked against.
+    [Tooltip("Amount of force applied to the target that is being knockbacked against (After a dash was just performed).")]
+    [Range(10000, 100000)]
+    public int KnockbackForceDash = 100000;                         // Amount of force applied to the target that is being knockbacked against (After a dash was just performed).
+    [Tooltip("Amount of time between reallowing the knockback ability.")]
+    public int KnockbackCooldown = 5;                               // Amount of time between reallowing the knockback ability.
 
     /// Public (internal)
     [HideInInspector]

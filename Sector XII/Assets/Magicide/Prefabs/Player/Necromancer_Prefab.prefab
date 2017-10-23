@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114162625803826018}
   - component: {fileID: 54530060574342978}
   - component: {fileID: 114149306494974570}
+  - component: {fileID: 135059492863357212}
   m_Layer: 8
   m_Name: Necromancer_Prefab
   m_TagString: P1_Character
@@ -161,7 +162,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1066668196445472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9, y: 1, z: -0.21}
+  m_LocalPosition: {x: -1.9, y: 1, z: 0.88}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children:
   - {fileID: 4846503054008736}
@@ -312,6 +313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Player: {fileID: 0}
+  _KnockbackEnabled: 0
 --- !u!114 &114162625803826018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -343,6 +345,18 @@ MonoBehaviour:
   _MuzzlePointRight: {fileID: 4717579908700672}
   _ProjectilePrefab: {fileID: 0}
   _ActiveProjectiles: 0
+--- !u!135 &135059492863357212
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1066668196445472}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!135 &135073835755017124
 SphereCollider:
   m_ObjectHideFlags: 1
