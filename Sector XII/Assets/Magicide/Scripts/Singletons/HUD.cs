@@ -48,6 +48,12 @@ public class HUD : MonoBehaviour {
     public static HUD _pInstance;                                   // This is a singleton script, Initialized in Startup().
     [HideInInspector]
     public bool _DisplayHUD = false;                                // Returns TRUE if the HUD is being displayed on screen.
+
+    /// Private
+    private int _Phase1Medium;
+    private int _Phase1Low;
+    private int _Phase2Medium;
+    private int _Phase2Low;
     
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -65,6 +71,14 @@ public class HUD : MonoBehaviour {
         _pInstance = this;
     }
 
+    public void Start() {
+
+        _Phase1Medium = MatchManager._pInstance._Phase1Length / 2;
+        _Phase1Low = 3;
+        _Phase2Medium = MatchManager._pInstance._Phase2Length / 2;
+        _Phase2Low = 10;
+    }
+
     //--------------------------------------------------------------
     // *** FRAME ***
 
@@ -78,6 +92,27 @@ public class HUD : MonoBehaviour {
 
                 // Update HUD
                 _MatchTimerText.text = MatchManager._pInstance.GetPhase1Timer().ToString("00");
+                
+                // Set text colour low
+                if (MatchManager._pInstance.GetPhase1Timer() <= _Phase1Low) {
+
+                    _MatchTimerText.color = HUD._pInstance._TimeLowColour;
+                }
+
+                else {
+
+                    // Set text colour medium
+                    if (MatchManager._pInstance.GetPhase1Timer() <= _Phase1Medium) {
+
+                        _MatchTimerText.color = HUD._pInstance._TimeMediumColour;
+                    }
+
+                    // Set text colour okay
+                    else {
+
+                        _MatchTimerText.color = HUD._pInstance._TimeOkayColour;
+                    }
+                }
             }
 
             // Phase2 in session

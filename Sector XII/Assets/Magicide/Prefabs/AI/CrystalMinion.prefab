@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 195514549827962048}
   - component: {fileID: 114566191130380676}
   - component: {fileID: 114959725643599012}
+  - component: {fileID: 135105239198437718}
   m_Layer: 12
   m_Name: CrystalMinion
   m_TagString: Enemy
@@ -109,6 +110,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Player: {fileID: 0}
+--- !u!135 &135105239198437718
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1888011731846786}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!136 &136369226598338440
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -130,7 +143,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1888011731846786}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
+  m_Radius: 2
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 20
@@ -142,4 +155,4 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 2
+  m_ObstacleAvoidanceType: 4
