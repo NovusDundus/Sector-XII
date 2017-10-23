@@ -12,7 +12,11 @@ public class Char_Geomancer : Character {
     //----------------------------------------------------------------------------------
     // *** VARIABLES ***
 
-
+    /// Private
+    private XboxCtrlrInput.XboxButton _DashInputButton;
+    private float _DashDistance;
+    private float _DashCooldown;
+    private float _CurrentDashCooldown = 0f;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -28,11 +32,15 @@ public class Char_Geomancer : Character {
 
         // Set character's speed
         _MovementSpeed = PlayerManager._pInstance._NecromancerMovementSpeed;
-        
+
+        // Set dash properties
+        _DashInputButton = PlayerManager._pInstance.DashButton;
+        _DashDistance = PlayerManager._pInstance.DashDistance;
+        _DashCooldown = PlayerManager._pInstance.DashCooldown;
+
         // Create players's primary weapon (orb)
         _WeaponPrimary = GameObject.FindGameObjectWithTag("P" + _Player._pPlayerID + "_PrimaryWeapon").GetComponent<Weapon>();
         _WeaponPrimary.SetOwner(this);
-        ///_WeaponPrimary.Init(); /// Create fireball object pool (full of inactive fireballs)
 
         // Create player's secondary weapon (shield)
         _WeaponSecondary = GameObject.FindGameObjectWithTag("P" + _Player._pPlayerID + "_SecondaryWeapon").GetComponent<Weapon>();
@@ -49,11 +57,7 @@ public class Char_Geomancer : Character {
 
     //--------------------------------------------------------------
     // *** FRAME ***
-
-    public override void Update() {
-
-    }
-
+    
     public override void FixedUpdate() {
 
         // If in gameplay
@@ -90,6 +94,67 @@ public class Char_Geomancer : Character {
                  
                     // Fire primary weapon (orb)
                     _WeaponPrimary.Fire();
+                }
+
+                // Detect dash ability input
+                switch (_DashInputButton) {
+
+                    // Face button bottom (A)
+                    case XboxCtrlrInput.XboxButton.A: { 
+
+                            if (_Player.GetFaceBottomInput) {
+
+                                Dash();
+                            }
+                            break;
+                        }
+
+                    // Face button right (B)
+                    case XboxCtrlrInput.XboxButton.B: {
+                            
+                            if (_Player.GetFaceRightInput) {
+
+                                Dash();
+                            }
+                            break;
+                        }
+
+                    // Face button left (X)
+                    case XboxCtrlrInput.XboxButton.X: {
+
+                            if (_Player.GetFaceLeftInput) {
+
+                                Dash();
+                            }
+                            break;
+                        }
+
+                    // Face button top (Y)
+                    case XboxCtrlrInput.XboxButton.Y: {
+
+                            if (_Player.GetFaceTopInput) {
+
+                                Dash();
+                            }
+                            break;
+                        }
+
+                    default: {
+
+                            break;
+                        }
+                }              
+                
+                // Deduct dash cooldown
+                if (_CurrentDashCooldown > 0f) {
+
+                    _CurrentDashCooldown -= Time.fixedDeltaTime;
+
+                    // Clamp to 0f
+                    if (_CurrentDashCooldown < 0f) {
+
+                        _CurrentDashCooldown = 0f;
+                    }
                 }
             }
         }
@@ -144,6 +209,27 @@ public class Char_Geomancer : Character {
                 PlayerManager._pInstance.GetAliveNecromancers().Remove(necromancer);
                 break;
             }
+        }
+    }
+
+    //--------------------------------------------------------------
+    // *** ABILITIES ***
+
+    public void Dash() {
+
+        // If dash cooldown is complete
+        if (_CurrentDashCooldown <= 0f) {
+
+            // Determine how far the character can teleport
+            Vector3 DashPos = transform.position;
+            Vector3 DashDirection = _Player.GetMovementInput;
+            DashPos += DashDirection * _DashDistance;
+
+            // Perform dash
+            transform.position = DashPos;
+
+            // Reset cooldown
+            _CurrentDashCooldown = _DashCooldown;
         }
     }
 }

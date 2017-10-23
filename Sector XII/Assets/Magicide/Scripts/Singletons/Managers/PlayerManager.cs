@@ -15,9 +15,18 @@ public class PlayerManager : MonoBehaviour {
     /// Public (Designers)
     [Header(" *** NECROMANCER CHARACTER ***")]
     [Header("- Health")]
+    [Tooltip("Starting health of the necromancers that are possessed by the players.")]
     public int _NecromancerStartingHealth = 100;                    // Starting health of the necromancers that are possessed by the players.
     [Header("- Movement")]
+    [Tooltip("Movement speed of the necromancer character.")]
     public float _NecromancerMovementSpeed = 10f;                   // Movement speed of the necromancer character.
+    [Header("- Dash")]
+    [Tooltip("Input button tied to the player's dash ability.")]
+    public XboxCtrlrInput.XboxButton DashButton = XboxCtrlrInput.XboxButton.B;  // Input button tied to the player's dash ability.
+    [Tooltip("")]
+    public float DashDistance = 5f;                                 // Units of distance that the player's character will teleport when performed.
+    [Tooltip("Amount of time between reallowing the dash ability.")]
+    public int DashCooldown = 5;                                    // Amount of time between reallowing the dash ability.
 
     /// Public (internal)
     [HideInInspector]

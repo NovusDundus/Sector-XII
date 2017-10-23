@@ -69,22 +69,7 @@ public class Wep_Orb : Weapon {
     }
 
     public override void Init() {
-
-        // create inactive projectile pool by the defined size
-        for (int i = 0; i < _POOL_SIZE; i++) {
-   
-            // If the designers do their job
-            if (_ProjectilePrefab != null) {
-   
-                // instantiate projectile
-                var proj = Instantiate(_ProjectilePrefab, new Vector3(), Quaternion.identity);
-                proj.GetComponent<Proj_Fireball>().Start();
-                proj.GetComponent<Projectile>().SetOwner(this);
-                
-                // Add projectile to the end of the inactive object pool
-                _POOL_FIREBALL_INACTIVE.Add(proj);
-            }
-        }
+        
     }
 
     //--------------------------------------------------------------
