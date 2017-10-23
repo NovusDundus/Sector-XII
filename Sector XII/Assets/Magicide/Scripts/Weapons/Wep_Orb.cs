@@ -46,6 +46,9 @@ public class Wep_Orb : Weapon {
         _FiringHeatCost = WeaponManager._pInstance._FireballHeatCost;
         _CooldownRateStable = WeaponManager._pInstance._OrbCooldownRateStable;
         _CooldownRateOverheated = WeaponManager._pInstance._OrbCooldownRateOverheated;
+    }
+
+    public override void Init() {
 
         // Create object pools
         _POOL_FIREBALL_INACTIVE = new List<GameObject>();
@@ -66,10 +69,6 @@ public class Wep_Orb : Weapon {
                 _POOL_FIREBALL_INACTIVE.Add(proj);
             }
         }
-    }
-
-    public override void Init() {
-        
     }
 
     //--------------------------------------------------------------

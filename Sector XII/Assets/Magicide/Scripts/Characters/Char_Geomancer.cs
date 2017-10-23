@@ -41,6 +41,7 @@ public class Char_Geomancer : Character {
         // Create players's primary weapon (orb)
         _WeaponPrimary = GameObject.FindGameObjectWithTag("P" + _Player._pPlayerID + "_PrimaryWeapon").GetComponent<Weapon>();
         _WeaponPrimary.SetOwner(this);
+        _WeaponPrimary.Init(); /// Create fireball object pool (inactive projectiles)
 
         // Create player's secondary weapon (shield)
         _WeaponSecondary = GameObject.FindGameObjectWithTag("P" + _Player._pPlayerID + "_SecondaryWeapon").GetComponent<Weapon>();
