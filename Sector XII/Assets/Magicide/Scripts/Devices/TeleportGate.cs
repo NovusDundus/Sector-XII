@@ -15,12 +15,15 @@ public class TeleportGate : MonoBehaviour {
     /// Public
     public GameObject _TeleportPartner;
     public Transform _TeleportPosition;
+    public Material _InactiveMaterial;
+    public Material _ActiveMaterial;
 
     /// Private
     private int _CooldownTime;
     private float _Cooldown = 0f;
     private bool _CanUse = true;
     private bool _Phase1Enabled = false;
+    private MeshRenderer meshRenderer;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -30,6 +33,9 @@ public class TeleportGate : MonoBehaviour {
         // Initialize properties based off the game manager
         _CooldownTime = DeviceManager._pInstance._TeleportCooldownTime;
         _Phase1Enabled = DeviceManager._pInstance._CanBeUsedInPhase1;
+
+        // Get reference to mesh renderer
+        meshRenderer = GetComponent<MeshRenderer>();
     }
     
     //--------------------------------------------------------------
@@ -51,39 +57,70 @@ public class TeleportGate : MonoBehaviour {
         }
 
         _CanUse = _Cooldown == 0f;
+
+        // Set material of the plane
+        if (_CanUse == true) {
+
+            // If the teleport can be used in phase 1
+            if (MatchManager._pInstance.GetGameState() == MatchManager.GameState.Phase1 && _Phase1Enabled == true) {
+
+                // Active teleport
+                meshRenderer.material = _ActiveMaterial;
+            }
+
+            else {
+
+                // If the match's gamestate is in phase 2
+                if (MatchManager._pInstance.GetGameState() == MatchManager.GameState.Phase2) {
+
+                    // Active teleport
+                    meshRenderer.material = _ActiveMaterial;
+                }
+
+                else { /// MatchManager._pInstance.GetGameState() != MatchManager.GameState.Phase2
+
+                    // Inactive teleport
+                    meshRenderer.material = _InactiveMaterial;
+                }
+            }
+
+        }
+
+        else { /// _CanUse == false
+
+            // Inactive teleport
+            meshRenderer.material = _InactiveMaterial;
+        }
     }
 
     public void OnTriggerEnter(Collider other) {
         
-        // Can the teleporter be used in phase 1?
-        if (_Phase1Enabled == true) {
+        // If its a player controlled character thats been collided with the trigger
+        if (other.GetComponent<Player>() != null) {
 
-            // If its a player controlled character thats been collided with the trigger
-            if (other.GetComponent<Player>() != null) {
+            if (MatchManager._pInstance.GetGameState() == MatchManager.GameState.Phase1) {
 
-                if (MatchManager._pInstance.GetGameState() == MatchManager.GameState.Phase1) {
-
-                    if (_Phase1Enabled == true) {
-
-                        // If cooldown is complete
-                        if (_CanUse == true) {
-
-                            Teleport(other);
-                        }
-                    }
-                }
-
-                else if (MatchManager._pInstance.GetGameState() == MatchManager.GameState.Phase2) {
+                // Can the teleporter be used in phase 1?
+                if (_Phase1Enabled == true) {
 
                     // If cooldown is complete
                     if (_CanUse == true) {
 
                         Teleport(other);
                     }
-
                 }
             }
-        }
+
+            else if (MatchManager._pInstance.GetGameState() == MatchManager.GameState.Phase2) {
+
+                // If cooldown is complete
+                if (_CanUse == true) {
+
+                    Teleport(other);
+                }
+
+            }
+        }        
     }
 
     public void Teleport(Collider other) {
