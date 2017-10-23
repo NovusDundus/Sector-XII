@@ -214,7 +214,7 @@ public class Player : MonoBehaviour {
         get
         {
             ///return Input.GetButton("SpecialRight");
-            return XCI.GetButton(XboxButton.Start);
+            return XCI.GetButton(XboxButton.Start, _Controller);
         }
     }
 
@@ -224,7 +224,7 @@ public class Player : MonoBehaviour {
         get
         {
             ///return Input.GetButton("SpecialLeft");
-            return XCI.GetButton(XboxButton.Back);
+            return XCI.GetButton(XboxButton.Back, _Controller);
         }
     }
     
@@ -236,7 +236,7 @@ public class Player : MonoBehaviour {
         get
         {
             ///return Input.GetButton("FaceBottom");
-            return XCI.GetButton(XboxButton.A);
+            return XCI.GetButton(XboxButton.A, _Controller);
         }
     }
 
@@ -246,7 +246,7 @@ public class Player : MonoBehaviour {
         get
         {
             ///return Input.GetButton("FaceTop");
-            return XCI.GetButton(XboxButton.Y);
+            return XCI.GetButton(XboxButton.Y, _Controller);
         }
     }
 
@@ -256,7 +256,7 @@ public class Player : MonoBehaviour {
         get
         {
             ///return Input.GetButton("FaceLeft");
-            return XCI.GetButton(XboxButton.X);
+            return XCI.GetButton(XboxButton.X, _Controller);
         }
     }
 
@@ -266,7 +266,7 @@ public class Player : MonoBehaviour {
         get
         {
             ///return Input.GetButton("FaceRight");
-            return XCI.GetButton(XboxButton.B);
+            return XCI.GetButton(XboxButton.B, _Controller);
         }
     }
     

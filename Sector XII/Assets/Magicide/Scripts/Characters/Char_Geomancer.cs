@@ -226,7 +226,7 @@ public class Char_Geomancer : Character {
             DashPos += DashDirection * _DashDistance;
 
             // Perform dash
-            transform.position = DashPos;
+            gameObject.transform.position = DashPos;
 
             // Reset cooldown
             _CurrentDashCooldown = _DashCooldown;
