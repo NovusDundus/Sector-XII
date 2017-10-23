@@ -13,7 +13,7 @@ public class Char_Geomancer : Character {
     // *** VARIABLES ***
 
     /// Private
-    private XboxCtrlrInput.XboxButton _DashInputButton;
+    private XboxCtrlrInput.XboxButton _DashInputButton = XboxCtrlrInput.XboxButton.B;
     private float _DashDistance;
     private float _DashCooldown;
     private float _CurrentDashCooldown = 0f;
