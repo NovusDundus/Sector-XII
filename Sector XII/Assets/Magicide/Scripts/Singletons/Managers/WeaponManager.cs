@@ -16,6 +16,7 @@ public class WeaponManager : MonoBehaviour {
     [Header(" *** ORB WEAPON ***")]
     [Header("- Firing Delay")]
     [Tooltip("Minimum time in seconds allowed between each projectile that is fired.")]
+    [Range(0f, 1f)]
     public float _OrbFireDelay = 0.6f;
     [Header("- Heat")]
     [Tooltip("Percentage of heat generated for each projectile fired.")]
