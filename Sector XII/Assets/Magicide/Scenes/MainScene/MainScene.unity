@@ -17351,7 +17351,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4391402596822598, guid: 51435ec51f36d7f4baa3048c8331bf93, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 65.68
+      value: 65.1
       objectReference: {fileID: 0}
     - target: {fileID: 4391402596822598, guid: 51435ec51f36d7f4baa3048c8331bf93, type: 2}
       propertyPath: m_LocalPosition.y
@@ -22923,7 +22923,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4391402596822598, guid: 51435ec51f36d7f4baa3048c8331bf93, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.34
+      value: 0.84
       objectReference: {fileID: 0}
     - target: {fileID: 4391402596822598, guid: 51435ec51f36d7f4baa3048c8331bf93, type: 2}
       propertyPath: m_LocalPosition.y
@@ -30365,7 +30365,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4391402596822598, guid: 51435ec51f36d7f4baa3048c8331bf93, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 44.4
+      value: 43.81
       objectReference: {fileID: 0}
     - target: {fileID: 4391402596822598, guid: 51435ec51f36d7f4baa3048c8331bf93, type: 2}
       propertyPath: m_LocalRotation.x
@@ -30420,7 +30420,7 @@ Prefab:
         type: 2}
       propertyPath: _TeleportPosition
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1794080679}
     - target: {fileID: 114404431087052140, guid: 51435ec51f36d7f4baa3048c8331bf93,
         type: 2}
       propertyPath: _TeleportPartner
@@ -35117,6 +35117,11 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
+--- !u!4 &1403530298 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4867184717858886, guid: 51435ec51f36d7f4baa3048c8331bf93,
+    type: 2}
+  m_PrefabInternal: {fileID: 2098359148}
 --- !u!1 &1403638155
 GameObject:
   m_ObjectHideFlags: 0
@@ -44265,6 +44270,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1790615890}
+--- !u!4 &1794080679 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4867184717858886, guid: 51435ec51f36d7f4baa3048c8331bf93,
+    type: 2}
+  m_PrefabInternal: {fileID: 1186822545}
 --- !u!1 &1795122331
 GameObject:
   m_ObjectHideFlags: 0
@@ -54967,7 +54977,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4391402596822598, guid: 51435ec51f36d7f4baa3048c8331bf93, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.46
+      value: 0.95
       objectReference: {fileID: 0}
     - target: {fileID: 4391402596822598, guid: 51435ec51f36d7f4baa3048c8331bf93, type: 2}
       propertyPath: m_LocalRotation.x
@@ -55018,7 +55028,7 @@ Prefab:
         type: 2}
       propertyPath: _TeleportPosition
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1403530298}
     - target: {fileID: 114404431087052140, guid: 51435ec51f36d7f4baa3048c8331bf93,
         type: 2}
       propertyPath: _TeleportPartner
