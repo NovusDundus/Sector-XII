@@ -6,7 +6,7 @@ public class AIEntity : MonoBehaviour {
 
     //referencing another script allows you to use and call that script.
     private Behaviour_Flee fleeBehaviour; //references the fleebehavior script
-    private Behavior_Wonder wanderBehaviour; //references the wanderbehavior script
+    private Behaviour_Wander wanderBehaviour; //references the wanderbehavior script
 
     int scriptSwitch = 1;
 
@@ -17,7 +17,7 @@ public class AIEntity : MonoBehaviour {
 	void Start () {
 
         fleeBehaviour = GetComponent<Behaviour_Flee>(); //finds the component called Behaviour_Flee
-        wanderBehaviour = GetComponent<Behavior_Wonder>(); // finds the component called Behavior_Wonder
+        wanderBehaviour = GetComponent<Behaviour_Wander>(); // finds the component called Behavior_Wonder
 
         //get access to the player
         player = GameObject.FindGameObjectWithTag("Player").transform;
