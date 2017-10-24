@@ -56,7 +56,7 @@ public class Proj_ShieldMinion : Projectile {
 
         // Continuously rotate the minion on the spot 
         transform.Rotate(0f, transform.rotation.y + _SpinSpeed, 0f);
-
+        
         // Bob the minion up & down
         if (_MovingUp == true) {
 
@@ -114,10 +114,10 @@ public class Proj_ShieldMinion : Projectile {
     //--------------------------------------------------------------
     // *** HEALTH ***
 
-    public void Damage(int amount) {
+    public void Damage(float amount) {
 
         // Damage character based on amount passed through
-        _Health -= amount;
+        _Health -= (int)amount;
 
         // Check if minion character has no health
         if (_Health <= 0) {

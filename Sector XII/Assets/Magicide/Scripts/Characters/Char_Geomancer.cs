@@ -26,6 +26,7 @@ public class Char_Geomancer : Character {
     private float _KnockbackForceDash;
     private float _KnockbackCooldown;
     private float _CurrentKnockbackCooldown = 0f;
+    private float _MoveSpeedMultiplier = 1f;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -88,21 +89,21 @@ public class Char_Geomancer : Character {
                 //   MOVEMENT CONTROLLER 
                 // ************************
                 
-                // Placeholder movement controller
+                // Movement controller
                 if (_Player.GetRotationInput != new Vector3(0, 90, 0)) {
 
                     // Get directional input (movement)
                     Vector3 vec = _Player.GetMovementInput.normalized;
-                    transform.SetPositionAndRotation(transform.position + vec * _MovementSpeed * Time.fixedDeltaTime, Quaternion.Euler(_Player.GetRotationInput));
+                    transform.SetPositionAndRotation(transform.position + vec * (_MovementSpeed * _MoveSpeedMultiplier) * Time.fixedDeltaTime, Quaternion.Euler(_Player.GetRotationInput));
                 }
 
                 else { /// GetRotationInput == new Vector3(0, 0, 0)
 
                     // Get directional input (movement)
                     Vector3 vec = _Player.GetMovementInput.normalized;
-                    transform.SetPositionAndRotation(transform.position + vec * _MovementSpeed * Time.fixedDeltaTime, transform.rotation);
+                    transform.SetPositionAndRotation(transform.position + vec * (_MovementSpeed * _MoveSpeedMultiplier) * Time.fixedDeltaTime, transform.rotation);
                 }
-
+                
                 // ************************
                 //    COMBAT CONTROLLER   
                 // ************************
@@ -262,13 +263,13 @@ public class Char_Geomancer : Character {
     //--------------------------------------------------------------
     // *** HEALTH & DAMAGE ***
 
-    public override void Damage(int amount) {
+    public override void Damage(float amount) {
 
         // Only damage character if match is in phase2
         if (MatchManager._pInstance.GetGameState() == MatchManager.GameState.Phase2) {
 
             // Damage character based on amount passed through
-            _Health -= amount;
+            _Health -= (int)amount;
 
             // Returns TRUE if character has no health
             if (_Health <= 0) {
@@ -312,7 +313,7 @@ public class Char_Geomancer : Character {
     }
 
     //--------------------------------------------------------------
-    // *** ABILITIES ***
+    // *** ABILITIES / MOVEMENT ***
 
     public void Dash() {
 
@@ -363,4 +364,10 @@ public class Char_Geomancer : Character {
             }
         }
     }
+
+    public void SetMovementMultiplier(float multi) {
+
+        _MoveSpeedMultiplier = multi;
+    }
+
 }

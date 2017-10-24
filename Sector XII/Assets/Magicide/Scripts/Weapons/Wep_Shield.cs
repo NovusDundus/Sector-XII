@@ -61,7 +61,8 @@ public class Wep_Shield : Weapon {
                 if (_ShieldMinionPrefab != null) {
 
                     // Determine the position of the minion in the pool
-                    float angle = i * Mathf.PI * 2 / _MinionCount;
+                    Quaternion rot = transform.rotation;
+                    float angle = i * (Mathf.PI * 2f / (float)GetMaxMinions());
                     Vector3 pos = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * _MinionSpacing;
                     pos += new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
 
@@ -98,7 +99,7 @@ public class Wep_Shield : Weapon {
 
             // Update weapons position based of the owning character's position
             transform.position = _Owner.transform.position;
-            
+
             // Only proceed if a valid player has been assigned to this weapon
             if (_Owner._Player != null) {
 
@@ -144,6 +145,23 @@ public class Wep_Shield : Weapon {
                     // Apply new rotation
                     rotation.y = transform.rotation.y;
                 }
+            }
+
+            // Apply stat modifiers to the player based on how many minions are in the shield
+            if (_MinionCount > 0) {
+
+                // Modify movement speed
+                float multiMov = _MinionCount / _MaxMinions;
+                ///_Owner.GetComponent<Char_Geomancer>().SetMovementMultiplier(multiMov);
+
+                // Modify fireball damage output (and scale)
+                float multiDmg = _MaxMinions / _MinionCount;
+                ///_Owner.GetSecondaryWeapon().GetComponent<Wep_Orb>().SetDamageMultiplier(multiDmg);
+            }
+
+            else {
+
+                _Owner.GetComponent<Char_Geomancer>().SetMovementMultiplier(1f);
             }
         }
     }

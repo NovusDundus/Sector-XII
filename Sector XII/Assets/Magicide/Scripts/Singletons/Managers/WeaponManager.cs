@@ -40,6 +40,7 @@ public class WeaponManager : MonoBehaviour {
     [Tooltip("Maximum amount of minions allowed to compose the meat shield.")]
     public int _MaxSize = 14;
     [Tooltip("The amount of spacing that spans out the corpses from the center.")]
+    [Range(0f, 4f)]
     public float _MinionSpacing = 1.5f;
     [Header("- Movement")]
     [Tooltip("The rate of rotation that the each individual minion will rotate locally within the shield.")]

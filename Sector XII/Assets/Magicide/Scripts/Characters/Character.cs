@@ -86,10 +86,10 @@ public class Character : MonoBehaviour {
         return _Health;
     }
 
-    public virtual void Damage(int amount) {
+    public virtual void Damage(float amount) {
 
         // Damage character based on amount passed through
-        _Health -= amount;
+        _Health -= (int)amount;
 
         // Returns TRUE if character has no health
         if (_Health <= 0) {

@@ -66,11 +66,15 @@ MonoBehaviour:
   _ImpactDamage: 25
   _FireballSpeed: 30
   _FireballRange: 35
-  _MaxSize: 15
-  _MinionSpacing: 1.5
-  _AutoRotate: 0
-  _OrbitClockwise: 1
-  _OrbitSpeed: 350
+  _MinionHealth: 100
+  _MaxSize: 20
+  _MinionSpacing: 2
+  _MinionSpinSpeed: 4
+  _MinionBobHeight: 0.5
+  _MinionBobSpeed: 0.5
+  _AutoRotateShield: 0
+  _ShieldOrbitClockwise: 1
+  _ShieldOrbitSpeed: 300
 --- !u!114 &114157945126146578
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,7 +99,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _MaxLives: 0
+  _MaxLives: 20
 --- !u!114 &114188143390799446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d54dd93656b2f2940a229b11df00f869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Phase1Length: 15
+  _Phase1Length: 5
   _Phase2Timer: 0
   _Phase2Length: 120
 --- !u!114 &114439388492536600
@@ -185,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe1339e1a23a9b4a95bd4c6240bb02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _NecromancerStartingHealth: 100
+  _NecromancerStartingHealth: 200
   _NecromancerMovementSpeed: 10
   DashEnabled: 1
   DashButton: 1
@@ -195,7 +199,7 @@ MonoBehaviour:
   KnockbackButton: 3
   KnockbackForceNormal: 25000
   KnockbackForceDash: 50000
-  KnockbackCooldown: 5
+  KnockbackCooldown: 1
 --- !u!114 &114977905998677262
 MonoBehaviour:
   m_ObjectHideFlags: 1

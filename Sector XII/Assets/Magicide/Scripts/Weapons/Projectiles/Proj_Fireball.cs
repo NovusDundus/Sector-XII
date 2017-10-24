@@ -17,6 +17,7 @@ public class Proj_Fireball : Projectile {
     private float _TravelSpeed;                                     // Movement speed of the projectile.
     private bool _Active = false;                                   // Returns TRUE if the projectile is active in the world.
     private float distanceTraveled = 0f;                            // Used to test if max range has been reached.
+    private float _DamageMultiplier = 1f;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -98,6 +99,9 @@ public class Proj_Fireball : Projectile {
                 // Destroy
                 FreeProjectile();
             }
+
+            // Set damage multiplier based of weapon
+            _DamageMultiplier = _Owner.GetComponent<Wep_Orb>().GetDamageMultiplier();
         }
     }
     
@@ -118,7 +122,7 @@ public class Proj_Fireball : Projectile {
                     if (_Collision.bounds.Intersects(crystal.GetCollider().bounds)) {
 
                         // Damage minion
-                        crystal.Damage(_ImpactDamage);
+                        crystal.Damage(_ImpactDamage + (_ImpactDamage * _DamageMultiplier));
 
                         // Check if minion has been killed
                         if (crystal.GetHealth() <= 0) {
@@ -155,7 +159,7 @@ public class Proj_Fireball : Projectile {
                             if (_Collision.bounds.Intersects(minion.GetCollision().bounds)) {
 
                                 // Damage minion
-                                minion.Damage(_ImpactDamage);
+                                minion.Damage(_ImpactDamage + (_ImpactDamage * _DamageMultiplier));
 
                                 // Check if minion has been killed
                                 if (minion.GetHealth() <= 0) {
@@ -179,8 +183,8 @@ public class Proj_Fireball : Projectile {
                         if (_Collision.bounds.Intersects(necromancer.GetCollider().bounds) && _Active) {
 
                             // Damage necromancer
-                            necromancer.Damage(_ImpactDamage);
-
+                            necromancer.Damage(_ImpactDamage + (_ImpactDamage * _DamageMultiplier));
+                            
                             // Check if necromancer has been killed
                             if (necromancer.GetHealth() <= 0) {
 
