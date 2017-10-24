@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114149306494974570}
   - component: {fileID: 135059492863357212}
   m_Layer: 8
-  m_Name: Necromancer_Prefab
+  m_Name: Geomancer_Prefab
   m_TagString: P1_Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -313,8 +313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Player: {fileID: 0}
-  _DashEnabled: 0
-  _KnockbackEnabled: 0
+  _DamagedMaterial: {fileID: 0}
 --- !u!114 &114162625803826018
 MonoBehaviour:
   m_ObjectHideFlags: 1
