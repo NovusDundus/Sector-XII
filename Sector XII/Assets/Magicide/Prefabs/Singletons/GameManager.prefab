@@ -60,21 +60,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _OrbFireDelay: 0.1125
-  _FireballHeatCost: 0.11
-  _OrbCooldownRateStable: 0.01
+  _FireballHeatCost: 0.095
+  _OrbCooldownRateStable: 0.0085
   _OrbCooldownRateOverheated: 0.02
   _ImpactDamage: 25
   _FireballSpeed: 30
   _FireballRange: 35
   _MinionHealth: 100
-  _MaxSize: 20
-  _MinionSpacing: 2
-  _MinionSpinSpeed: 4
-  _MinionBobHeight: 0.5
-  _MinionBobSpeed: 0.5
+  _MaxSize: 22
+  _MinionSpacing: 1.85
+  _MinionSpinSpeed: 3.75
+  _MinionBobHeight: 0.7
+  _MinionBobSpeed: 0.425
   _AutoRotateShield: 0
   _ShieldOrbitClockwise: 1
-  _ShieldOrbitSpeed: 300
+  _ShieldOrbitSpeed: 270
 --- !u!114 &114157945126146578
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -87,8 +87,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _CrystalStartingHealth: 100
-  _CrystalMovementSpeed: 5
+  _CrystalMovementSpeed: 10
   _SpawnPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -111,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bcc39189bd07774d97dba80046d91a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _TeleportCooldownTime: 10
+  _TeleportCooldownTime: 8
   _CanBeUsedInPhase1: 1
 --- !u!114 &114342767189424728
 MonoBehaviour:
@@ -193,8 +203,8 @@ MonoBehaviour:
   _NecromancerMovementSpeed: 10
   DashEnabled: 1
   DashButton: 1
-  DashDistance: 5
-  DashCooldown: 5
+  DashDistance: 8
+  DashCooldown: 6
   KnockbackEnabled: 0
   KnockbackButton: 3
   KnockbackForceNormal: 25000

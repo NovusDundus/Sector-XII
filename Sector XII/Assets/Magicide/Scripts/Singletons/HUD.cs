@@ -76,7 +76,7 @@ public class HUD : MonoBehaviour {
     public void Start() {
 
         _Phase1Medium = MatchManager._pInstance._Phase1Length / 2;
-        _Phase1Low = 3;
+        _Phase1Low = 5;
         _Phase2Medium = MatchManager._pInstance._Phase2Length / 2;
         _Phase2Low = 10;
     }

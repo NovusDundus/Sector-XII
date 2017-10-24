@@ -122,7 +122,7 @@ public class Proj_Fireball : Projectile {
                     if (_Collision.bounds.Intersects(crystal.GetCollider().bounds)) {
 
                         // Damage minion
-                        crystal.Damage(_ImpactDamage + (_ImpactDamage * _DamageMultiplier));
+                        crystal.Damage(_ImpactDamage /*+ (_ImpactDamage * _DamageMultiplier)*/);
 
                         // Check if minion has been killed
                         if (crystal.GetHealth() <= 0) {
@@ -159,7 +159,7 @@ public class Proj_Fireball : Projectile {
                             if (_Collision.bounds.Intersects(minion.GetCollision().bounds)) {
 
                                 // Damage minion
-                                minion.Damage(_ImpactDamage + (_ImpactDamage * _DamageMultiplier));
+                                minion.Damage(_ImpactDamage /*+ (_ImpactDamage * _DamageMultiplier)*/);
 
                                 // Check if minion has been killed
                                 if (minion.GetHealth() <= 0) {
@@ -183,7 +183,7 @@ public class Proj_Fireball : Projectile {
                         if (_Collision.bounds.Intersects(necromancer.GetCollider().bounds) && _Active) {
 
                             // Damage necromancer
-                            necromancer.Damage(_ImpactDamage + (_ImpactDamage * _DamageMultiplier));
+                            necromancer.Damage(_ImpactDamage /*+ (_ImpactDamage * _DamageMultiplier)*/);
                             
                             // Check if necromancer has been killed
                             if (necromancer.GetHealth() <= 0) {
