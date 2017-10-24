@@ -15,6 +15,7 @@ public class Character : MonoBehaviour {
     /// Public (internal)
     [HideInInspector]
     public Player _Player;                                          // Reference to the player controller that controls this character.
+    public Material _DamagedMaterial;                               // The material that is shown on the character when receiving damage.
 
     /// Protected
     protected bool _Active;                                         // Represents if the character is current being controller by its player controller.
@@ -27,6 +28,10 @@ public class Character : MonoBehaviour {
     protected Vector3 _DeathPosition;                               // World location point of where the character was killed.
     protected Vector3 _CurrentRotationInput;                        // Current Vector in the world that is stored by the gamepad axis.
     protected Collider _Collision;                                  // The collision associated with the character.
+    protected MeshRenderer _MeshRenderer;                           // Reference to the character's mesh renderer.
+    protected Material _OriginalMaterial;                           // Reference to the mesh renderer's original material.
+    protected float _ImpactFlashTimer = 0f;
+    protected bool _ReceivingDamage = false;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -38,17 +43,37 @@ public class Character : MonoBehaviour {
 
         // Get reference to collision
         _Collision = GetComponent<Collider>();
+
+        // Store the original material so it can be reverted back on the mesh renderer later
+        _MeshRenderer = GetComponent<MeshRenderer>();
+        _OriginalMaterial = _MeshRenderer.material;
     }
 
     //--------------------------------------------------------------
     // *** FRAME ***
 
     public virtual void Update() {
-
+        
     }
 
     public virtual void FixedUpdate() {
 
+        if (_ReceivingDamage == true) {
+
+            if (_ImpactFlashTimer > 0f) {
+
+                _ImpactFlashTimer -= Time.fixedDeltaTime * 20;
+            }
+
+            else {
+
+                _ReceivingDamage = false;
+            }
+        }
+        else {
+
+            _MeshRenderer.material = _OriginalMaterial;
+        }
     }
 
     // -------------------------------------------------------------
@@ -87,6 +112,14 @@ public class Character : MonoBehaviour {
     }
 
     public virtual void Damage(float amount) {
+
+        // Material change for feedback on impact
+        if (_DamagedMaterial != null) {
+
+            _MeshRenderer.material = _DamagedMaterial;
+            _ReceivingDamage = true;
+            _ImpactFlashTimer = 1f;
+        }
 
         // Damage character based on amount passed through
         _Health -= (int)amount;

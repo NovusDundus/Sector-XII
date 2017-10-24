@@ -29,17 +29,25 @@ public class Char_Crystal : Character {
 
     //--------------------------------------------------------------
     // *** FRAME ***
+    
 
     public override void Update() {
 
+        base.Update();
     }
 
     public override void FixedUpdate() {
-        
+
+        base.FixedUpdate();
     }
 
     //--------------------------------------------------------------
     // *** HEALTH & DAMAGE ***
+
+    public override void Damage(float amount) {
+        
+        base.Damage(amount);
+    }
 
     public override void OnDeath() {
 

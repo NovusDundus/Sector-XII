@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class Behavior_Wonder : MonoBehaviour
+public class Behaviour_Wander : MonoBehaviour
 {
     public float minX;
     public float maxX;

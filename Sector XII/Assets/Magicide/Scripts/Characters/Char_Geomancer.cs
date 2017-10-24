@@ -13,14 +13,14 @@ public class Char_Geomancer : Character {
     // *** VARIABLES ***
 
     /// Private
-    public bool _DashEnabled;
+    private bool _DashEnabled;
     private XboxCtrlrInput.XboxButton _DashInputButton = XboxCtrlrInput.XboxButton.B;
     private float _DashDistance;
     private float _DashCooldown;
     private float _CurrentDashCooldown = 0f;
     private bool _JustDashed = false;
     private float _TimeSinceLastDash = 0f;
-    public bool _KnockbackEnabled;
+    private bool _KnockbackEnabled;
     private XboxCtrlrInput.XboxButton _KnockbackInputButton = XboxCtrlrInput.XboxButton.Y;
     private float _KnockbackForceNormal;
     private float _KnockbackForceDash;
@@ -76,8 +76,15 @@ public class Char_Geomancer : Character {
 
     //--------------------------------------------------------------
     // *** FRAME ***
-    
+
+    public override void Update() {
+
+        base.Update();
+    }
+
     public override void FixedUpdate() {
+
+        base.FixedUpdate();
 
         // If in gameplay
         if (MatchManager._pInstance.GetGameplay() == true) {
@@ -264,19 +271,11 @@ public class Char_Geomancer : Character {
     // *** HEALTH & DAMAGE ***
 
     public override void Damage(float amount) {
-
+        
         // Only damage character if match is in phase2
         if (MatchManager._pInstance.GetGameState() == MatchManager.GameState.Phase2) {
-
-            // Damage character based on amount passed through
-            _Health -= (int)amount;
-
-            // Returns TRUE if character has no health
-            if (_Health <= 0) {
-
-                // Character has died
-                OnDeath();
-            }
+            
+            base.Damage(amount);
         }
     }
 
