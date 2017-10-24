@@ -34,18 +34,27 @@ public class WeaponManager : MonoBehaviour {
     [Tooltip("Maximum distance a fireball can travel (will detonate when range is hit).")]
     public float _FireballRange = 50f;
     [Header(" *** MEAT SHIELD ***")]
+    [Header("- Health")]
+    public int _MinionHealth = 100;
     [Header("- Size")]
     [Tooltip("Maximum amount of minions allowed to compose the meat shield.")]
     public int _MaxSize = 14;
     [Tooltip("The amount of spacing that spans out the corpses from the center.")]
     public float _MinionSpacing = 1.5f;
-    [Header("- Rotation")]
+    [Header("- Movement")]
+    [Tooltip("The rate of rotation that the each individual minion will rotate locally within the shield.")]
+    public float _MinionSpinSpeed = 4f;
+    [Tooltip("The units of measurement that each individual minion will bob up & down.")]
+    public float _MinionBobHeight = 0.5f;
+    [Tooltip("The rate of speed that each individual minion will bob up & down.")]
+    public float _MinionBobSpeed = 0.5f;
+    [Header("- Shield Rotation")]
     [Tooltip("Whether the shield automatically rotates on its own")]
-    public bool _AutoRotate = false;
+    public bool _AutoRotateShield = false;
     [Tooltip("Sets whether the shield will rotate either clockwise or counter clockwise (AUTO ROTATE NEEDS TO BE ENABLED)")]
-    public bool _OrbitClockwise = true;
+    public bool _ShieldOrbitClockwise = true;
     [Tooltip("The speed of rotation it takes for the 'Meat' to orbit the character")]
-    public float _OrbitSpeed = 3f;
+    public float _ShieldOrbitSpeed = 3f;
 
     /// Public (internal)
     [HideInInspector]

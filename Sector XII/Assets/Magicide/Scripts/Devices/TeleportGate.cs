@@ -14,6 +14,7 @@ public class TeleportGate : MonoBehaviour {
 
     /// Public
     public GameObject _TeleportPartner;
+    public GameObject _Rune;
     public Transform _TeleportPosition;
     public Material _InactiveMaterial;
     public Material _ActiveMaterial;
@@ -28,14 +29,17 @@ public class TeleportGate : MonoBehaviour {
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
 
-    public void Start () {
+    public void Start() {
 
         // Initialize properties based off the game manager
         _CooldownTime = DeviceManager._pInstance._TeleportCooldownTime;
         _Phase1Enabled = DeviceManager._pInstance._CanBeUsedInPhase1;
 
-        // Get reference to mesh renderer
-        meshRenderer = GetComponent<MeshRenderer>();
+        // Get reference to mesh renderer to change the material
+        if (_Rune != null) {
+
+            meshRenderer = _Rune.GetComponent<MeshRenderer>();
+        }
     }
     
     //--------------------------------------------------------------

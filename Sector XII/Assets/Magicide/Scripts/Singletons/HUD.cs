@@ -25,6 +25,8 @@ public class HUD : MonoBehaviour {
     public GameObject _UIPause;                                     // Reference to the gui pause screen panel.
     [Tooltip("Reference to the gui Scoreboard panel.")]
     public GameObject _UIScoreboard;                                // Reference to the gui Scoreboard panel.
+    [Tooltip("Reference to the gui HUD panel.")]
+    public GameObject _UIHUD;                                       // Reference to the gui HUD panel.
     [Header(" *** PLAYERS ***")]
     [Tooltip("Reference to player 1's character.")]
     public Char_Geomancer PlayerOne;                                // Reference to player 1's character.

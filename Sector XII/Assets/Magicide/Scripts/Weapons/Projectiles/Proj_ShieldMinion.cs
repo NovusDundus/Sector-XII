@@ -11,12 +11,15 @@ public class Proj_ShieldMinion : Projectile {
 
     //---------------------------------------------------------------------------------
     // *** VARIABLES ***
-
-    /// Public (designers)
-    public int _Health = 100;                                      // Current health associated to the minion.
-
+    
     /// Private
-    private float _SpinSpeed = 4f;
+    private int _Health;                                            // Current health associated to the minion.
+    private float _SpinSpeed;
+    private float _BobHeight;
+    private float _BobSpeed;
+    private float _Min;
+    private float _Max;
+    private bool _MovingUp = true;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -25,6 +28,16 @@ public class Proj_ShieldMinion : Projectile {
 
         // Get referenece to projectile collision
         base.Start();
+
+        // Set min & max bob positions
+        _Min = transform.position.y;
+        _Max = _Min + _BobHeight;
+
+        // Get stats based off weapon manager
+        _Health = WeaponManager._pInstance._MinionHealth;
+        _SpinSpeed = WeaponManager._pInstance._MinionSpinSpeed;
+        _BobHeight = WeaponManager._pInstance._MinionBobHeight;
+        _BobSpeed = WeaponManager._pInstance._MinionBobSpeed;
     }
 
     public void AddToPool(Wep_Shield weapon) {
@@ -43,6 +56,39 @@ public class Proj_ShieldMinion : Projectile {
 
         // Continuously rotate the minion on the spot 
         transform.Rotate(0f, transform.rotation.y + _SpinSpeed, 0f);
+
+        // Bob the minion up & down
+        if (_MovingUp == true) {
+
+            // Havent reached max yet
+            if (transform.position.y < _Max) {
+
+                // Move up
+                transform.position = new Vector3(transform.position.x, transform.position.y + _BobSpeed * Time.deltaTime, transform.position.z);
+            }
+
+            // Minimum bob has been reached
+            else {
+
+                _MovingUp = false;
+            }
+        }
+
+        else { /// _MovingUp == false
+
+            // Havent reached min yet
+            if (transform.position.y > _Min) {
+
+                // Move down
+                transform.position = new Vector3(transform.position.x, transform.position.y - _BobSpeed * Time.deltaTime, transform.position.z);
+            }
+
+            // Minimum bob has been reached
+            else {
+
+                _MovingUp = true;
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision) {
@@ -101,6 +147,11 @@ public class Proj_ShieldMinion : Projectile {
     public void ForceDeath()
     {
         Damage(10000);
+    }
+
+    public int GetHealth() {
+
+        return _Health;
     }
 
 }

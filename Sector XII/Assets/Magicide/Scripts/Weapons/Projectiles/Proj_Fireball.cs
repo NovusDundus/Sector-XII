@@ -84,8 +84,9 @@ public class Proj_Fireball : Projectile {
             // If max range hasnt been reached yet
             if (distanceTraveled < WeaponManager._pInstance._FireballRange) {
 
-                // Move forwards
-                StartCoroutine(SmoothMove(transform.forward, _TravelSpeed));
+                // Move forwards                
+                transform.position = transform.position + transform.forward * _TravelSpeed * Time.fixedDeltaTime;
+                ///(SmoothMove(transform.forward, _TravelSpeed * Time.deltaTime));
 
                 // Add 1 unit of distance per second
                 distanceTraveled += Time.deltaTime * 60;
@@ -157,7 +158,7 @@ public class Proj_Fireball : Projectile {
                                 minion.Damage(_ImpactDamage);
 
                                 // Check if minion has been killed
-                                if (minion._Health <= 0) {
+                                if (minion.GetHealth() <= 0) {
 
                                     // Add to instigator's kill count
                                     _Owner.GetOwner()._Player.AddKillCount();

@@ -35,15 +35,15 @@ public class Wep_Shield : Weapon {
         base.Start();
 
         // Set orbit speed
-        _OrbitSpeed = WeaponManager._pInstance._OrbitSpeed;
+        _OrbitSpeed = WeaponManager._pInstance._ShieldOrbitSpeed;
 
         // Set minion cap & spacing
         _MaxMinions = WeaponManager._pInstance._MaxSize;
         _MinionSpacing = WeaponManager._pInstance._MinionSpacing;
 
         // Set rotation properties
-        _AutomatedRotation = WeaponManager._pInstance._AutoRotate;
-        _RotateRight = WeaponManager._pInstance._OrbitClockwise;
+        _AutomatedRotation = WeaponManager._pInstance._AutoRotateShield;
+        _RotateRight = WeaponManager._pInstance._ShieldOrbitClockwise;
         rotation = transform.rotation;
 
         // Create arrays
@@ -70,8 +70,6 @@ public class Wep_Shield : Weapon {
                     minion.GetComponentInChildren<Projectile>().Init();
                     minion.AddToPool(this);
                     minion.SetOwner(this);
-                    
-                    Debug.Log(GetMinionCount());
 
                     // Set player score
                     _Owner._Player.SetScore(_MinionCount);

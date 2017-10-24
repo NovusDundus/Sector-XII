@@ -153,6 +153,7 @@ MonoBehaviour:
   _TimeOkayColour: {r: 1, g: 1, b: 1, a: 1}
   _UIPause: {fileID: 0}
   _UIScoreboard: {fileID: 0}
+  _UIHUD: {fileID: 0}
   PlayerOne: {fileID: 0}
   _PlayerOneColour: {r: 0, g: 0, b: 1, a: 1}
   PlayerTwoCharacter: {fileID: 0}
@@ -186,6 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _NecromancerStartingHealth: 100
   _NecromancerMovementSpeed: 10
+  DashEnabled: 1
   DashButton: 1
   DashDistance: 5
   DashCooldown: 5
