@@ -54,4 +54,9 @@ public class Loading : MonoBehaviour {
         return Async.isDone;
     }
 
+    public float GetSceneLoadProgress() {
+        
+        return Async.progress;
+    }
+
 }

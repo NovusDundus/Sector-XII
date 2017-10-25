@@ -36,55 +36,58 @@ public class Player : MonoBehaviour {
 
     public void FixedUpdate() {
 
-        // If in gameplay
-        if (MatchManager._pInstance.GetGameplay() == true) {
+        if (MatchManager._pInstance != null) {
 
-            // Detect pause input
-            if (GetSpecialRightButton == true) {
+            // If in gameplay
+            if (MatchManager._pInstance.GetGameplay() == true) {
 
-                // Game is currently in a PAUSED state
-                if (MatchManager._pInstance.GetPaused() == true) {
+                // Detect pause input
+                if (GetSpecialRightButton == true) {
 
-                    // Unpause game
-                    MatchManager._pInstance.SetPause(false);
-                }
+                    // Game is currently in a PAUSED state
+                    if (MatchManager._pInstance.GetPaused() == true) {
 
-                // Game is currently in an UNPAUSED state
-                else { /// MatchManager._pInstance.GetPaused() == true
+                        // Unpause game
+                        MatchManager._pInstance.SetPause(false);
+                    }
 
-                    // Pause game
-                    MatchManager._pInstance.SetPause(true);
-                }
-            }
-        }
+                    // Game is currently in an UNPAUSED state
+                    else { /// MatchManager._pInstance.GetPaused() == true
 
-        // Determine placement in the match
-        foreach (var plyr in PlayerManager._pInstance.GetAllPlayers()) {
-
-            int place = _Placement;
-
-            // Dont test against ourself
-            if (plyr != this) {
-
-                if (plyr._Player.GetPlacement() < place) {
-
-                    // We are at the right spot
-                    _Placement = place;
-                    break;
-                }
-
-                else if (plyr._Player.GetPlacement() > place) {
-
-                    // Need to move up placement
-                    // Store old placements for both players
-                    int newPlacement = plyr._Player.GetPlacement();
-                    int previousPlacement = _Placement;
-
-                    // Swap spots
-                    _Placement = newPlacement;
-                    plyr._Player.SetPlacement(previousPlacement);
+                        // Pause game
+                        MatchManager._pInstance.SetPause(true);
+                    }
                 }
             }
+            /*
+            // Determine placement in the match
+            foreach (var plyr in PlayerManager._pInstance.GetAllPlayers()) {
+
+                int place = _Placement;
+
+                // Dont test against ourself
+                if (plyr != this) {
+
+                    if (plyr._Player.GetPlacement() < place) {
+
+                        // We are at the right spot
+                        _Placement = place;
+                        break;
+                    }
+
+                    else if (plyr._Player.GetPlacement() > place) {
+
+                        // Need to move up placement
+                        // Store old placements for both players
+                        int newPlacement = plyr._Player.GetPlacement();
+                        int previousPlacement = _Placement;
+
+                        // Swap spots
+                        _Placement = newPlacement;
+                        plyr._Player.SetPlacement(previousPlacement);
+                    }
+                }
+            }*/
         }
     }
 

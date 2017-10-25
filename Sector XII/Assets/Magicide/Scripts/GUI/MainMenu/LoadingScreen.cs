@@ -12,14 +12,13 @@ public class LoadingScreen : MonoBehaviour {
 
     //----------------------------------------------------------------------------------
     // *** VARIABLES *** 
-
-    public int _MinimumLoadingTime = 10;                            // Minimum loading time for the level.
-    public Slider _LoadSlider;                                      // Reference to the s_Loadbar widget.
+    
+    public Slider _LoadSlider;                                      // Reference to the "s_ProgressBar" widget.
+    public Text _MessageText;                                       // Reference to the "t_Message" text in the panel..
+    public RawImage _GamepadContinueIcon;                           // Reference to the "i_GamepadContinue" image widget.
 
     private int _LevelIndex;                                        // Build level index for the level to load.
     private eState _currentState = eState.Intro;                    // Current state of the UI.
-    private float _TimerLoadingScreen = 0f;                         // Timer for the scene load.
-    private Text _LoadingText;                                      // Reference to the "t_Loading" text in the panel.
     private float _LoadingTextAlpha = 0f;                           // Current alpha colour for "t_Loading" text.
 
     private enum eState {
@@ -32,13 +31,18 @@ public class LoadingScreen : MonoBehaviour {
     //--------------------------------------------------------------
     // *** CONSTRUCTORS *** 
 
-    public void Start () {
+    public void Start() {
 
-        // Get reference to 't_Loading'
-        _LoadingText = GetComponentInChildren<Text>();
+        if (_MessageText != null) {
 
-        // Store load slider max value
-        _LoadSlider.maxValue = _MinimumLoadingTime;
+            // Set the text's colour to full transparency
+            _MessageText.color = Color.clear;
+        }
+        if (_GamepadContinueIcon != null) {
+
+            // Hide the gamepad icon
+            _GamepadContinueIcon.color = Color.clear;
+        }
     }
 
     //--------------------------------------------------------------
@@ -46,83 +50,85 @@ public class LoadingScreen : MonoBehaviour {
 
     public void Update () {
 
-        switch (_currentState) {
+        if (_LoadSlider != null && _MessageText != null && _GamepadContinueIcon != null) {
 
-            case eState.Intro: {
+            switch (_currentState) {
 
-                    // Fade in "t_Loading" text from transparent.
-                    if (_LoadingText.color.a < 1f) {
-                        _LoadingTextAlpha += Time.deltaTime * 0.5f;
-                        _LoadingText.color = Color.Lerp(Color.clear, Color.white, _LoadingTextAlpha);
-                    }
-                    
-                    // Text has completed its fade in
-                    else {
+                case eState.Intro: {
 
-                        // Start background loading of the new scene
-                        Loading._pInstance.LoadLevel(_LevelIndex);
-                        _currentState = eState.Loading;
-                    }
-                break;
-            }
+                        // Fade in "t_Loading" text from transparent.
+                        if (_MessageText.color.a < 1f) {
 
-            case eState.Loading: {
+                            _LoadingTextAlpha += Time.deltaTime;
 
-                    // Main load slider
-                    if (_LoadSlider.value < (_LoadSlider.maxValue / 1.1f)) {
+                            _MessageText.color = Color.Lerp(Color.clear, Color.white, _LoadingTextAlpha);
+                            ///_LoadSlider.image.color = Color.Lerp(Color.clear, Color.white, _LoadingTextAlpha);
+                        }
 
-                        // Add to load slider's current value
-                        _LoadSlider.value += Time.deltaTime * 1.5f;
+                        // Text has completed its fade in
+                        else {
+
+                            // Start background loading of the new scene
+                            Loading._pInstance.LoadLevel(_LevelIndex);
+                            _currentState = eState.Loading;
+                        }
+                        break;
                     }
 
-                    // Minimum timer counter for the scene loading.
-                    if (_TimerLoadingScreen < _MinimumLoadingTime) {
+                case eState.Loading: {
 
-                        _TimerLoadingScreen += Time.deltaTime;
-                    }
-
-                    // Once minimum timer has reached threshold
-                    else {
-
-                        // If the background loading has finished
+                        // Once scene loading is complete (last 0.1 represents the level activation)
                         if (Loading._pInstance.Async.progress >= 0.9f) {
 
-                            // Add to load slider the last bit to complete the loading
-                            _LoadSlider.value += Time.deltaTime * 2f;
+                            // Prompt the user to continue to the next level
+                            _LoadSlider.value = 1f;
+                            _MessageText.text = "PRESS      TO CONTINUE";
+                            _GamepadContinueIcon.color = Color.white;
+
+                            // Once any player presses the A button
+                            if (MainMenu._pInstance.GetComponent<Player>().GetFaceBottomInput) {
+
+                                // Proceed to scene activation
+                                _currentState = eState.Exit;
+                            }
                         }
 
-                        // Once the slider has complete
-                        if (_LoadSlider.value == _LoadSlider.maxValue) {
+                        else { // Loading._pInstance.Async.progress < 0.9f
 
-                            _currentState = eState.Exit;
+                            // Track the level loading progress
+                            _LoadSlider.value = Loading._pInstance.GetSceneLoadProgress();
+                            _GamepadContinueIcon.color = Color.clear;
                         }
+
+                        break;
                     }
 
-                    break;
-            }
+                case eState.Exit: {
 
-            case eState.Exit: {
+                        // Fade out widgets to full transparency
+                        if (_MessageText.color.a > 0f) {
 
-                    // Fade out loading text to full transparency.
-                    if (_LoadingText.color.a > 0f) {
+                            _LoadingTextAlpha -= Time.deltaTime;
 
-                        _LoadingTextAlpha -= Time.deltaTime / 2f;
-                        _LoadingText.color = Color.Lerp(Color.clear, Color.white, _LoadingTextAlpha);
+                            _MessageText.color = Color.Lerp(Color.clear, Color.white, _LoadingTextAlpha);
+                            _GamepadContinueIcon.color = Color.Lerp(Color.clear, Color.white, _LoadingTextAlpha);
+                            ///_LoadSlider.image.color = Color.Lerp(Color.clear, Color.white, _LoadingTextAlpha);
+                        }
+
+                        // Loading screen has completed its cycle
+                        else {
+
+                            // Bring new scene to the front
+                            Loading._pInstance.ActivateLevel();
+                        }
+
+                        break;
                     }
 
-                    // Loading screen has completed its cycle
-                    else {
+                default: {
 
-                        // Bring new scene to the front
-                        Loading._pInstance.ActivateLevel();
+                        break;
                     }
-
-                    break;
-            }
-
-            default: {
-
-                break;
             }
         }
     }
