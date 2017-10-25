@@ -5,65 +5,58 @@ using UnityEngine;
 public class AIEntity : MonoBehaviour {
 
     //referencing another script allows you to use and call that script.
-    private Behaviour_Flee fleeBehaviour; //references the fleebehavior script
-    private Behaviour_Wander wanderBehaviour; //references the wanderbehavior script
+    private Behaviour_Flee m_fleeBehaviour; //references the fleebehavior script
+    private Behavior_Wonder m_wanderBehaviour; //references the wanderbehavior script
 
-    int scriptSwitch = 1;
+    int m_scriptSwitch;
 
     //for one player
-    private Transform player;
+    private Transform m_player;
 
 	// Use this for initialization
 	void Start () {
 
-        fleeBehaviour = GetComponent<Behaviour_Flee>(); //finds the component called Behaviour_Flee
-        wanderBehaviour = GetComponent<Behaviour_Wander>(); // finds the component called Behavior_Wonder
+        m_fleeBehaviour = GetComponent<Behaviour_Flee>(); //finds the component called Behaviour_Flee
+        m_wanderBehaviour = GetComponent<Behavior_Wonder>(); // finds the component called Behavior_Wonder
 
         //get access to the player
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        m_player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        fleeBehaviour.m_Target = player.gameObject;
+        m_fleeBehaviour.m_Target = m_player.gameObject;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 
         //calculate the distance between AI gameobject and the player gameobject. 
-        float dist = Vector3.Distance(transform.position, player.transform.position);
+        float m_dist = Vector3.Distance(transform.position, m_player.transform.position);
 
-        dist = scriptSwitch;
+       //m_dist = m_scriptSwitch;
 
-        switch(scriptSwitch)
+       // if(m_fleeBehaviour.GetFleeDistance() > m_dist)
+       // {
+          //  m_wanderBehaviour.get
+      //  }
+
+        //if we're close enough to flee
+        if(m_dist < m_fleeBehaviour.GetFleeThreshold())
         {
-            case 1:
-                if (dist < fleeBehaviour.GetFleeDistance()) //If the distance between the player and the AI gameobject is less the the flee_distance
-                {
-                    //Unity will activate the fleebahavior script
-                    fleeBehaviour.enabled = true;
-                }
-                break;
-
-            case 2:
-                if (dist > fleeBehaviour.GetFleeDistance())
-                {
-                    fleeBehaviour.enabled = false;
-                }
-                break;
-
-            case 3:
-                if(dist < fleeBehaviour.GetFleeDistance())
-                {
-                    wanderBehaviour.enabled = true;
-                }
-             break;
-
-            case 4:
-                if(dist > fleeBehaviour.GetFleeDistance())
-                {
-                    wanderBehaviour.enabled = false;
-                }
-                break;
-
+            //activate flee if it isn't activated already
+            if (m_fleeBehaviour.enabled == false)
+            {
+                m_fleeBehaviour.enabled = true;
+                m_wanderBehaviour.enabled = false;
+            }
+        }
+        else
+        {
+            //activate wander if it isn't activated already
+            if (m_wanderBehaviour.enabled == false)
+            {
+                m_wanderBehaviour.enabled = true;
+                m_fleeBehaviour.enabled = false;
+                m_wanderBehaviour.RecalculateTarget(); //reset wander target to make sure it doesn't keep trying to get the player
+            }
         }
     }
 }
