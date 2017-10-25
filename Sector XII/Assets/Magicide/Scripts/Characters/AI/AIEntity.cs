@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class AIEntity : MonoBehaviour {
 
+    ///--------------------------------------///
+    /// Created by: Callen Mitchell
+    /// Created on: 24.10.2017
+    ///--------------------------------------///
+
     //referencing another script allows you to use and call that script.
     private Behaviour_Flee m_fleeBehaviour; //references the fleebehavior script
-    private Behavior_Wonder m_wanderBehaviour; //references the wanderbehavior script
+    private Behaviour_Wander m_wanderBehaviour; //references the wanderbehavior script
 
     int m_scriptSwitch;
 
@@ -17,7 +22,7 @@ public class AIEntity : MonoBehaviour {
 	void Start () {
 
         m_fleeBehaviour = GetComponent<Behaviour_Flee>(); //finds the component called Behaviour_Flee
-        m_wanderBehaviour = GetComponent<Behavior_Wonder>(); // finds the component called Behavior_Wonder
+        m_wanderBehaviour = GetComponent<Behaviour_Wander>(); // finds the component called Behavior_Wonder
 
         //get access to the player
         m_player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -39,7 +44,7 @@ public class AIEntity : MonoBehaviour {
       //  }
 
         //if we're close enough to flee
-        if(m_dist < m_fleeBehaviour.GetFleeThreshold())
+        if(m_dist < m_fleeBehaviour.m_FleeThreshold)
         {
             //activate flee if it isn't activated already
             if (m_fleeBehaviour.enabled == false)
@@ -55,7 +60,7 @@ public class AIEntity : MonoBehaviour {
             {
                 m_wanderBehaviour.enabled = true;
                 m_fleeBehaviour.enabled = false;
-                m_wanderBehaviour.RecalculateTarget(); //reset wander target to make sure it doesn't keep trying to get the player
+                ///m_wanderBehaviour.RecalculateTarget(); //reset wander target to make sure it doesn't keep trying to get the player
             }
         }
     }

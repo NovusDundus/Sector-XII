@@ -28,7 +28,7 @@ public class Proj_Fireball : Projectile {
         base.Start();
 
         // Set fireball impact damage
-        _ImpactDamage = WeaponManager._pInstance._ImpactDamage;
+        _ImpactDamage = WeaponManager._pInstance._FireballImpactDamage;
 
         // Set travel speed for the projectile
         _TravelSpeed = WeaponManager._pInstance._FireballSpeed;
@@ -71,10 +71,6 @@ public class Proj_Fireball : Projectile {
     // *** FRAME ***
 
     public override void Update() {
-
-    }
-
-    public override void FixedUpdate() {
 
         // If this fireball is active in the world
         if (_Active == true) {
@@ -151,7 +147,7 @@ public class Proj_Fireball : Projectile {
                     if (necromancer != _Owner.GetOwner()) {
 
                         // Check against all meat shield minions associated to the player
-                        foreach (GameObject meatMinion in necromancer.GetSecondaryWeapon().GetComponent<Wep_Shield>().GetMeatMinionPool()) {
+                        foreach (GameObject meatMinion in necromancer.GetSpecialWeapon().GetComponent<Wep_Shield>().GetMeatMinionPool()) {
 
                             Proj_ShieldMinion minion = meatMinion.GetComponent<Proj_ShieldMinion>();
 

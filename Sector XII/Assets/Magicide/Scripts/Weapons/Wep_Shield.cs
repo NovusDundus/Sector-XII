@@ -91,10 +91,6 @@ public class Wep_Shield : Weapon {
 
     public override void Update() {
 
-    }
-
-    public override void FixedUpdate() {
-
         if (_Owner != null) {
 
             // Update weapons position based of the owning character's position

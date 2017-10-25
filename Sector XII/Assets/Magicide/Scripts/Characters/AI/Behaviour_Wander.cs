@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class Behaviour_Wander : MonoBehaviour
-{
+public class Behaviour_Wander : MonoBehaviour {
+
+    ///--------------------------------------///
+    /// Created by: Callen Mitchell
+    /// Created on: 23.10.2017
+    ///--------------------------------------///
+    
     public float minX;
     public float maxX;
     public float minZ;

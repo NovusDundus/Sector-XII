@@ -62,10 +62,17 @@ MonoBehaviour:
   _OrbFireDelay: 0.1125
   _FireballHeatCost: 0.095
   _OrbCooldownRateStable: 0.0085
-  _OrbCooldownRateOverheated: 0.02
-  _ImpactDamage: 25
+  _OrbCooldownRateOverheated: 0.01
+  _FireballImpactDamage: 25
   _FireballSpeed: 30
   _FireballRange: 35
+  _FlameFireDelay: 0.045
+  _FlameHeatCost: 0.02
+  _FlameCooldownRateStable: 0.0015
+  _FlameCooldownRateOverheated: 0.005
+  _FlameDamage: 8
+  _FlameSpeed: 45
+  _FlameRange: 10
   _MinionHealth: 100
   _MaxSize: 22
   _MinionSpacing: 1.85
@@ -147,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d54dd93656b2f2940a229b11df00f869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Phase1Length: 5
+  _Phase1Length: 3
   _Phase2Timer: 0
   _Phase2Length: 120
 --- !u!114 &114439388492536600
@@ -201,15 +208,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _NecromancerStartingHealth: 200
   _NecromancerMovementSpeed: 10
-  DashEnabled: 1
-  DashButton: 1
-  DashDistance: 8
-  DashCooldown: 6
-  KnockbackEnabled: 0
-  KnockbackButton: 3
-  KnockbackForceNormal: 25000
-  KnockbackForceDash: 50000
-  KnockbackCooldown: 1
+  _DashEnabled: 1
+  _DashButton: 1
+  _DashDistance: 5
+  DashCooldown: 5
+  _KnockbackEnabled: 0
+  _KnockbackButton: 3
+  _KnockbackForceNormal: 15000
+  KnockbackForceDash: 40000
+  _KnockbackCooldown: 5
+  _PrimaryWeapon: 1
+  _SecondaryWeaponEnabled: 1
+  _WeaponSwapButton: 8
 --- !u!114 &114977905998677262
 MonoBehaviour:
   m_ObjectHideFlags: 1

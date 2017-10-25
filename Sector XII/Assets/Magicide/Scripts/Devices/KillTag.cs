@@ -123,14 +123,14 @@ public class KillTag : MonoBehaviour {
 
         // Determine if whether the necromancer can be picked up or not
         // Get minion count
-        int minionCount =  Necromancer.GetSecondaryWeapon().GetComponent<Wep_Shield>().GetMinionCount();
+        int minionCount =  Necromancer.GetSpecialWeapon().GetComponent<Wep_Shield>().GetMinionCount();
 
         // Check against max size
-        int MaxSize = Necromancer.GetSecondaryWeapon().GetComponent<Wep_Shield>().GetMaxMinions();
+        int MaxSize = Necromancer.GetSpecialWeapon().GetComponent<Wep_Shield>().GetMaxMinions();
         if (minionCount < MaxSize) {
 
             // Add to meat shield
-            Necromancer.GetSecondaryWeapon().GetComponent<Wep_Shield>().AddMinion(Wyrm);
+            Necromancer.GetSpecialWeapon().GetComponent<Wep_Shield>().AddMinion(Wyrm);
             
             // hide tag & move out of playable space
             GetComponentInChildren<Renderer>().enabled = false;

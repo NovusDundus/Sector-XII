@@ -21,6 +21,22 @@ TagManager:
   - Collision
   - Enemy
   - Projectile
+  - P1_SpecialWeapon
+  - P2_SpecialWeapon
+  - P3_SpecialWeapon
+  - P4_SpecialWeapon
+  - P1_OrbWeapon
+  - P1_FlamethrowerWeapon
+  - P1_ShieldWeapon
+  - P2_OrbWeapon
+  - P2_FlamethrowerWeapon
+  - P2_ShieldWeapon
+  - P3_OrbWeapon
+  - P3_FlamethrowerWeapon
+  - P3_ShieldWeapon
+  - P4_OrbWeapon
+  - P4_FlamethrowerWeapon
+  - P4_ShieldWeapon
   layers:
   - Default
   - TransparentFX

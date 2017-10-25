@@ -21,25 +21,32 @@ public class PlayerManager : MonoBehaviour {
     [Tooltip("Movement speed of the necromancer character.")]
     public float _NecromancerMovementSpeed = 10f;                   // Movement speed of the necromancer character.
     [Header("- Dash")]
-    public bool DashEnabled = true;
+    public bool _DashEnabled = true;
     [Tooltip("Input button tied to the player's dash ability.")]
-    public XboxCtrlrInput.XboxButton DashButton = XboxCtrlrInput.XboxButton.B;  // Input button tied to the player's dash ability.
+    public XboxCtrlrInput.XboxButton _DashButton = XboxCtrlrInput.XboxButton.B;  // Input button tied to the player's dash ability.
     [Tooltip("")]
-    public float DashDistance = 5f;                                 // Units of distance that the player's character will teleport when performed.
+    public float _DashDistance = 5f;                                 // Units of distance that the player's character will teleport when performed.
     [Tooltip("Amount of time between reallowing the dash ability.")]
-    public int DashCooldown = 5;                                    // Amount of time between reallowing the dash ability.
+    public float DashCooldown = 5f;                                 // Amount of time between reallowing the dash ability.
     [Header("- Knockback")]
-    public bool KnockbackEnabled = false;
+    public bool _KnockbackEnabled = false;
     [Tooltip("Input button tied to the player's knockback ability.")]
-    public XboxCtrlrInput.XboxButton KnockbackButton = XboxCtrlrInput.XboxButton.Y;  // Input button tied to the player's knockback ability.
+    public XboxCtrlrInput.XboxButton _KnockbackButton = XboxCtrlrInput.XboxButton.Y;  // Input button tied to the player's knockback ability.
     [Tooltip("Amount of force applied to the target that is being knockbacked against.")]
     [Range(10000, 100000)]
-    public int KnockbackForceNormal = 100000;                       // Amount of force applied to the target that is being knockbacked against.
+    public int _KnockbackForceNormal = 100000;                       // Amount of force applied to the target that is being knockbacked against.
     [Tooltip("Amount of force applied to the target that is being knockbacked against (After a dash was just performed).")]
     [Range(10000, 100000)]
     public int KnockbackForceDash = 100000;                         // Amount of force applied to the target that is being knockbacked against (After a dash was just performed).
     [Tooltip("Amount of time between reallowing the knockback ability.")]
-    public int KnockbackCooldown = 5;                               // Amount of time between reallowing the knockback ability.
+    public float _KnockbackCooldown = 5f;                            // Amount of time between reallowing the knockback ability.
+    [Header("- Weapons")]
+    [Tooltip("The primary weapon associated with a player on startup.")]
+    public WeaponList _PrimaryWeapon = WeaponList.Orb;
+    [Tooltip("Sets whether the player will have a secondary weapon attached on startup.")]
+    public bool _SecondaryWeaponEnabled = false;
+    [Tooltip("Input button tied to the player's weapon swap ability.")]
+    public XboxCtrlrInput.XboxButton _WeaponSwapButton = XboxCtrlrInput.XboxButton.LeftBumper;  // Input button tied to the player's weapon swap ability.
 
     /// Public (internal)
     [HideInInspector]
@@ -49,6 +56,12 @@ public class PlayerManager : MonoBehaviour {
     private List<Character> _POOL_ALIVE_NECROMANCERS;               // Object pool of all ALIVE Player necromancers.
     private List<Character> _POOL_DEAD_NECROMANCERS;                // Object pool of all DEAD Player necromancers.
     private List<Character> _AllPlayers;
+
+    public enum WeaponList {
+
+        Orb,
+        Flamethrower
+    }
 
     //--------------------------------------------------------------
     // CONSTRUCTORS
@@ -73,8 +86,8 @@ public class PlayerManager : MonoBehaviour {
 
     //--------------------------------------------------------------
     // FRAME
-    
-    public void FixedUpdate() {
+
+    private void Update() {
 
         // If match is in gameplay
         if (MatchManager._pInstance.GetGameplay() == true) {
@@ -104,4 +117,5 @@ public class PlayerManager : MonoBehaviour {
 
         return _AllPlayers;
     }
+
 }

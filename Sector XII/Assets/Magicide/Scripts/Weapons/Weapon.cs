@@ -67,10 +67,6 @@ public class Weapon : MonoBehaviour {
 
     public virtual void Update() {
 
-    }
-
-    public virtual void FixedUpdate() {
-
         // Incomplete firing delay sequence
         if (_FiringDelay > 0f) {
 
@@ -133,7 +129,7 @@ public class Weapon : MonoBehaviour {
                         _CurrentHeat = 0f;
                     }
                 }
-                
+
                 // Weapon has finished cooling down
                 else { /*/ _CurrentHeat <= 0f   */
 

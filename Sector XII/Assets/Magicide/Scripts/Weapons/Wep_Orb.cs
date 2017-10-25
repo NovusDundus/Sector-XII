@@ -77,10 +77,6 @@ public class Wep_Orb : Weapon {
 
     public override void Update() {
 
-    }
-
-    public override void FixedUpdate() {
-
         // Update the position and rotation to match the owning character's transform
         if (_Owner != null) {
 
@@ -90,7 +86,7 @@ public class Wep_Orb : Weapon {
 
         // Check if fire delay allows the firing sequence to be initiated
         // Apply cooldown to weapon heat based on overheat status
-        base.FixedUpdate();
+        base.Update();
 
         // Always hide inactive projectiles
         if (_POOL_FIREBALL_INACTIVE != null && _POOL_FIREBALL_INACTIVE.Count > 0) {
@@ -105,7 +101,7 @@ public class Wep_Orb : Weapon {
         if (_POOL_FIREBALL_ACTIVE != null && _POOL_FIREBALL_ACTIVE.Count > 0) {
 
             foreach (var projectile in _POOL_FIREBALL_ACTIVE) {
-                               
+
                 projectile.gameObject.GetComponent<Renderer>().enabled = true;
             }
         }

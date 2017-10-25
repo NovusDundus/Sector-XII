@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
     /// Public (designers)
     public int _pPlayerID = 0;                                      // ID Reference of the individual player.
     public LayerMask Layers;                                        // Layers associated with the player.
-    public XboxController _Controller;
+    public XboxController _Controller;                              // The xbox gamepad associated with the player.
 
     /// Private
     private int _Score = 0;                                         // The player's individual score for the match.
@@ -269,5 +269,25 @@ public class Player : MonoBehaviour {
             return XCI.GetButton(XboxButton.B, _Controller);
         }
     }
-    
+
+    public bool GetLeftBumperInput {
+
+        // Returns if the xbox LEFT bumper button has been pressed
+        get
+        {
+            ///return Input.GetButton("FaceLeft");
+            return XCI.GetButton(XboxButton.LeftBumper, _Controller);
+        }
+    }
+
+    public bool GetRightBumperInput {
+
+        // Returns if the xbox RIGHT bumper button has been pressed
+        get
+        {
+            ///return Input.GetButton("FaceRight");
+            return XCI.GetButton(XboxButton.RightBumper, _Controller);
+        }
+    }
+
 }

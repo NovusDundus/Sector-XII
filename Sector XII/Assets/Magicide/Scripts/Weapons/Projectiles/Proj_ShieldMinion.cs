@@ -50,13 +50,9 @@ public class Proj_ShieldMinion : Projectile {
 
     public override void Update() {
 
-    }
-
-    public override void FixedUpdate() {
-
         // Continuously rotate the minion on the spot 
         transform.Rotate(0f, transform.rotation.y + _SpinSpeed, 0f);
-        
+
         // Bob the minion up & down
         if (_MovingUp == true) {
 

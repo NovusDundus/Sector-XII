@@ -13,7 +13,7 @@ public class WeaponManager : MonoBehaviour {
     // VARIABLES
 
     /// Public (Designers)
-    [Header(" *** ORB WEAPON ***")]
+    [Header(" *** FIREBALL ***")]
     [Header("- Firing Delay")]
     [Tooltip("Minimum time in seconds allowed between each projectile that is fired.")]
     [Range(0f, 1f)]
@@ -27,13 +27,33 @@ public class WeaponManager : MonoBehaviour {
     public float _OrbCooldownRateOverheated = 0.005f;
     [Header("- Damage")]
     [Tooltip("Amount of impact damage applied to the object when collided with a fireball.")]
-    public int _ImpactDamage = 100;
+    public int _FireballImpactDamage = 100;
     [Header("- Movement")]
     [Tooltip("Amount of impact damage applied to the object when collided with a fireball.")]
     public float _FireballSpeed = 20f;
     [Tooltip("Maximum distance a fireball can travel (will detonate when range is hit).")]
     public float _FireballRange = 50f;
-    [Header(" *** MEAT SHIELD ***")]
+    [Header(" *** FLAMETHROWER ***")]
+    [Header("- Firing Delay")]
+    [Tooltip("Minimum time in seconds allowed between each projectile that is fired.")]
+    [Range(0f, 1f)]
+    public float _FlameFireDelay = 0.05f;
+    [Header("- Heat")]
+    [Tooltip("Percentage of heat generated for each projectile fired.")]
+    public float _FlameHeatCost = 0.05f;
+    [Tooltip("Percentage of heat lost each second when the weapon is still in a stable state. (MAKE SURE THIS IS LESS THAN THE COST)")]
+    public float _FlameCooldownRateStable = 0.01f;
+    [Tooltip("Percentage of heat lost each second when the weapon is in an overheated state. (MAKE SURE THIS IS LESS THAN THE COST)")]
+    public float _FlameCooldownRateOverheated = 0.01f;
+    [Header("- Damage")]
+    [Tooltip("Amount of impact damage applied to the object when collided with a fireball.")]
+    public int _FlameDamage = 10;
+    [Header("- Movement")]
+    [Tooltip("Amount of impact damage applied to the object when collided with a fireball.")]
+    public float _FlameSpeed = 10f;
+    [Tooltip("Maximum distance a fireball can travel (will detonate when range is hit).")]
+    public float _FlameRange = 20f;
+    [Header(" *** MINION SHIELD ***")]
     [Header("- Health")]
     public int _MinionHealth = 100;
     [Header("- Size")]

@@ -23,6 +23,7 @@ public class Character : MonoBehaviour {
     protected int _Health;                                          // Current health of the character.
     protected Weapon _WeaponPrimary;                                // Current primary weapon being owned by the character.
     protected Weapon _WeaponSecondary;                              // Current secondary weapon being owned by the character.
+    protected Weapon _WeaponSpecial;                                // Current reserve/special weapon being owned by the character.
     protected float _MovementSpeed;                                 // The walking speed of the character.
     protected float _RotationSpeed;                                 // The rotating speed of the character.
     protected Vector3 _DeathPosition;                               // World location point of where the character was killed.
@@ -32,6 +33,7 @@ public class Character : MonoBehaviour {
     protected Material _OriginalMaterial;                           // Reference to the mesh renderer's original material.
     protected float _ImpactFlashTimer = 0f;
     protected bool _ReceivingDamage = false;
+    protected bool _PrimaryWeaponActive = true;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -53,16 +55,12 @@ public class Character : MonoBehaviour {
     // *** FRAME ***
 
     public virtual void Update() {
-        
-    }
-
-    public virtual void FixedUpdate() {
 
         if (_ReceivingDamage == true) {
 
             if (_ImpactFlashTimer > 0f) {
 
-                _ImpactFlashTimer -= Time.fixedDeltaTime * 100;
+                _ImpactFlashTimer -= Time.deltaTime * 100;
             }
 
             else {
@@ -154,6 +152,11 @@ public class Character : MonoBehaviour {
     public Weapon GetSecondaryWeapon() {
 
         return _WeaponSecondary;
+    }
+
+    public Weapon GetSpecialWeapon() {
+
+        return _WeaponSpecial;
     }
 
 }

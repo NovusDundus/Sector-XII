@@ -36,11 +36,6 @@ public class Char_Crystal : Character {
         base.Update();
     }
 
-    public override void FixedUpdate() {
-
-        base.FixedUpdate();
-    }
-
     //--------------------------------------------------------------
     // *** HEALTH & DAMAGE ***
 

@@ -28,6 +28,10 @@ public class Char_Geomancer : Character {
     private float _CurrentKnockbackCooldown = 0f;
     private float _MoveSpeedMultiplier = 1f;
 
+    /// Delegates / Events
+    private delegate void CharacterAbility();
+    CharacterAbility _Ability;
+
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
 
@@ -44,28 +48,76 @@ public class Char_Geomancer : Character {
         _MovementSpeed = PlayerManager._pInstance._NecromancerMovementSpeed;
 
         // Set dash properties
-        _DashEnabled = PlayerManager._pInstance.DashEnabled;
-        _DashInputButton = PlayerManager._pInstance.DashButton;
-        _DashDistance = PlayerManager._pInstance.DashDistance;
+        _DashEnabled = PlayerManager._pInstance._DashEnabled;
+        _DashInputButton = PlayerManager._pInstance._DashButton;
+        _DashDistance = PlayerManager._pInstance._DashDistance;
         _DashCooldown = PlayerManager._pInstance.DashCooldown;
 
         // Set knockback properties
-        _KnockbackEnabled = PlayerManager._pInstance.KnockbackEnabled;
-        _KnockbackInputButton = PlayerManager._pInstance.KnockbackButton;
-        _KnockbackForceNormal = PlayerManager._pInstance.KnockbackForceNormal;
+        _KnockbackEnabled = PlayerManager._pInstance._KnockbackEnabled;
+        _KnockbackInputButton = PlayerManager._pInstance._KnockbackButton;
+        _KnockbackForceNormal = PlayerManager._pInstance._KnockbackForceNormal;
         _KnockbackForceDash = PlayerManager._pInstance.KnockbackForceDash;
-        _KnockbackCooldown = PlayerManager._pInstance.KnockbackCooldown;
+        _KnockbackCooldown = PlayerManager._pInstance._KnockbackCooldown;
 
-        // Create players's primary weapon (orb)
-        _WeaponPrimary = GameObject.FindGameObjectWithTag("P" + _Player._pPlayerID + "_PrimaryWeapon").GetComponent<Weapon>();
-        _WeaponPrimary.SetOwner(this);
-        _WeaponPrimary.Init(); /// Create fireball object pool (inactive projectiles)
+        // Set's either the orb or the flamethrower as the primary depending on whats specified in the player manager
+        switch (PlayerManager._pInstance._PrimaryWeapon) {
 
-        // Create player's secondary weapon (shield)
-        _WeaponSecondary = GameObject.FindGameObjectWithTag("P" + _Player._pPlayerID + "_SecondaryWeapon").GetComponent<Weapon>();
-        _WeaponSecondary.SetOwner(this);
-        _WeaponSecondary.Init(); /// Create minion object pool (empty)
+            case PlayerManager.WeaponList.Orb: {
 
+                    // Create players's primary weapon (orb)
+                    _WeaponPrimary = GameObject.FindGameObjectWithTag("P" + _Player._pPlayerID + "_OrbWeapon").GetComponent<Weapon>();
+                    if (_WeaponPrimary != null) {
+
+                        // Initialize PRIMARY weapon
+                        _WeaponPrimary.SetOwner(this);
+                        _WeaponPrimary.Init(); /// Create fireball object pool (inactive projectiles)
+                    }
+                    // Create players's secondary weapon (flamethrower)
+                    _WeaponSecondary = GameObject.FindGameObjectWithTag("P" + _Player._pPlayerID + "_FlamethrowerWeapon").GetComponent<Weapon>();
+                    if (_WeaponSecondary != null) {
+
+                        // Initialize SECONDARY weapon
+                        _WeaponSecondary.SetOwner(this);
+                        _WeaponSecondary.Init(); /// Create flamethrower object pool (inactive projectiles)
+                    }
+                    break;
+                }
+
+            case PlayerManager.WeaponList.Flamethrower: {
+
+                    // Create players's primary weapon (flamethrower)
+                    _WeaponPrimary = GameObject.FindGameObjectWithTag("P" + _Player._pPlayerID + "_FlamethrowerWeapon").GetComponent<Weapon>();
+                    if (_WeaponPrimary != null) {
+
+                        // Initialize PRIMARY weapon
+                        _WeaponPrimary.SetOwner(this);
+                        _WeaponPrimary.Init(); /// Create flamethrower object pool (inactive projectiles)
+                    }
+                    // Create players's secondary weapon (orb)
+                    _WeaponSecondary = GameObject.FindGameObjectWithTag("P" + _Player._pPlayerID + "_OrbWeapon").GetComponent<Weapon>();
+                    if (_WeaponSecondary != null) {
+
+                        // Initialize SECONDARY weapon
+                        _WeaponSecondary.SetOwner(this);
+                        _WeaponSecondary.Init(); /// Create fireball object pool (inactive projectiles)
+                    }
+                    break;
+                }
+
+            default: {
+                    break;
+                }
+        }
+
+        // Create player's special weapon (shield)
+        _WeaponSpecial = GameObject.FindGameObjectWithTag("P" + _Player._pPlayerID + "_ShieldWeapon").GetComponent<Weapon>();
+        if (_WeaponSpecial != null) {
+
+            // Initialize SPECIAL weapon
+            _WeaponSpecial.SetOwner(this);
+            _WeaponSpecial.Init(); /// Create minion object pool (empty)
+        }
         // Can be controlled by player / ai controller
         SetActive(true);
 
@@ -80,11 +132,6 @@ public class Char_Geomancer : Character {
     public override void Update() {
 
         base.Update();
-    }
-
-    public override void FixedUpdate() {
-
-        base.FixedUpdate();
 
         // If in gameplay
         if (MatchManager._pInstance.GetGameplay() == true) {
@@ -95,86 +142,52 @@ public class Char_Geomancer : Character {
                 // ************************
                 //   MOVEMENT CONTROLLER 
                 // ************************
-                
-                // Movement controller
+
+                // Character is receiving right stick input
                 if (_Player.GetRotationInput != new Vector3(0, 90, 0)) {
 
-                    // Get directional input (movement)
+                    // Get directional input (movement & rotation)
                     Vector3 vec = _Player.GetMovementInput.normalized;
                     transform.SetPositionAndRotation(transform.position + vec * (_MovementSpeed * _MoveSpeedMultiplier) * Time.fixedDeltaTime, Quaternion.Euler(_Player.GetRotationInput));
                 }
 
-                else { /// GetRotationInput == new Vector3(0, 0, 0)
+                // Character is NOT receiving right stick input
+                else { /// GetRotationInput == new Vector3(0, 90, 0)
 
-                    // Get directional input (movement)
+                    // Get directional input (movement ONLY)
                     Vector3 vec = _Player.GetMovementInput.normalized;
                     transform.SetPositionAndRotation(transform.position + vec * (_MovementSpeed * _MoveSpeedMultiplier) * Time.fixedDeltaTime, transform.rotation);
                 }
-                
+
                 // ************************
-                //    COMBAT CONTROLLER   
+                //    FIRING CONTROLLER   
                 // ************************
 
                 // Detect firing input
-                if (_Player.GetFireInput) { 
-                 
-                    // Fire primary weapon (orb)
-                    _WeaponPrimary.Fire();
-                }
+                if (_Player.GetFireInput) {
 
-                // Knockback ability
-                if (_KnockbackEnabled == true) {
+                    if (_PrimaryWeaponActive == true) {
 
-                    // Detect knockback ability input
-                    switch (_KnockbackInputButton) {
+                        // Fire primary weapon (orb?)
+                        _WeaponPrimary.Fire();
 
-                        // Face button bottom (A)
-                        case XboxCtrlrInput.XboxButton.A: {
-
-                                if (_Player.GetFaceBottomInput) {
-
-                                    KnockbackDetection();
-                                }
-                                break;
-                            }
-
-                        // Face button right (B)
-                        case XboxCtrlrInput.XboxButton.B: {
-
-                                if (_Player.GetFaceRightInput) {
-
-                                    KnockbackDetection();
-                                }
-                                break;
-                            }
-
-                        // Face button left (X)
-                        case XboxCtrlrInput.XboxButton.X: {
-
-                                if (_Player.GetFaceLeftInput) {
-
-                                    KnockbackDetection();
-                                }
-                                break;
-                            }
-
-                        // Face button top (Y)
-                        case XboxCtrlrInput.XboxButton.Y: {
-
-                                if (_Player.GetFaceTopInput) {
-
-                                    KnockbackDetection();
-                                }
-                                break;
-                            }
-
-                        default: {
-
-                                break;
-                            }
                     }
 
-                    // Deduct knockback cooldown
+                    else { /// _PrimaryWeaponActive == false
+
+                        // Fire secondary weapon (flamethrower?)
+                        _WeaponSecondary.Fire();
+                    }
+                }
+
+                // ************************
+                //    ABILIY CONTROLLER   
+                // ************************
+
+                // KNOCKBACK ABILITY 
+                if (_KnockbackEnabled == true) {
+
+                    // Knockback ability cooldown in progress
                     if (_CurrentKnockbackCooldown > 0f) {
 
                         _CurrentKnockbackCooldown -= Time.fixedDeltaTime;
@@ -185,61 +198,19 @@ public class Char_Geomancer : Character {
                             _CurrentKnockbackCooldown = 0f;
                         }
                     }
+
+                    // Knockback cooldown complete
+                    else {
+
+                        // Check for controller input
+                        PerformActionFromInput(Knockback, _KnockbackInputButton);
+                    }
                 }
 
-                // Dash ability
+                // DASH ABILITY 
                 if (_DashEnabled == true) {
 
-                    // Detect dash ability input
-                    switch (_DashInputButton) {
-
-                        // Face button bottom (A)
-                        case XboxCtrlrInput.XboxButton.A: {
-
-                                if (_Player.GetFaceBottomInput) {
-
-                                    Dash();
-                                }
-                                break;
-                            }
-
-                        // Face button right (B)
-                        case XboxCtrlrInput.XboxButton.B: {
-
-                                if (_Player.GetFaceRightInput) {
-
-                                    Dash();
-                                }
-                                break;
-                            }
-
-                        // Face button left (X)
-                        case XboxCtrlrInput.XboxButton.X: {
-
-                                if (_Player.GetFaceLeftInput) {
-
-                                    Dash();
-                                }
-                                break;
-                            }
-
-                        // Face button top (Y)
-                        case XboxCtrlrInput.XboxButton.Y: {
-
-                                if (_Player.GetFaceTopInput) {
-
-                                    Dash();
-                                }
-                                break;
-                            }
-
-                        default: {
-
-                                break;
-                            }
-                    }
-
-                    // Deduct dash cooldown
+                    // Dash ability cooldown in progress
                     if (_CurrentDashCooldown > 0f) {
 
                         _CurrentDashCooldown -= Time.fixedDeltaTime;
@@ -250,6 +221,15 @@ public class Char_Geomancer : Character {
                             _CurrentDashCooldown = 0f;
                         }
                     }
+
+                    // Dash cooldown complete
+                    else {
+
+                        // Check for controller input
+                        PerformActionFromInput(Dash, _DashInputButton);
+                    }
+
+                    // Successful dash was just performed
                     if (_JustDashed == true) {
 
                         if (_TimeSinceLastDash < 1f) {
@@ -263,10 +243,17 @@ public class Char_Geomancer : Character {
                         }
                     }
                 }
+
+                // TAB WEAPON ABILITY
+                if (PlayerManager._pInstance._SecondaryWeaponEnabled == true) {
+
+                    // Check for controller input
+                    PerformActionFromInput(TabWeapons, PlayerManager._pInstance._WeaponSwapButton);
+                }
             }
         }
-    }
-
+    }     
+    
     //--------------------------------------------------------------
     // *** HEALTH & DAMAGE ***
 
@@ -312,9 +299,87 @@ public class Char_Geomancer : Character {
     }
 
     //--------------------------------------------------------------
-    // *** ABILITIES / MOVEMENT ***
+    // *** ABILITIES ***
 
-    public void Dash() {
+    private void PerformActionFromInput(CharacterAbility ability, XboxCtrlrInput.XboxButton button) {
+
+        _Ability = ability;
+        switch (button) {
+
+            // Face button bottom (A)
+            case XboxCtrlrInput.XboxButton.A: {
+
+                    if (_Player.GetFaceBottomInput) {
+
+                        // Perform action
+                        _Ability();
+                    }
+                    break;
+                }
+
+            // Face button right (B)
+            case XboxCtrlrInput.XboxButton.B: {
+
+                    if (_Player.GetFaceRightInput) {
+
+                        // Perform action
+                        _Ability();
+                    }
+                    break;
+                }
+
+            // Face button left (X)
+            case XboxCtrlrInput.XboxButton.X: {
+
+                    if (_Player.GetFaceLeftInput) {
+
+                        // Perform action
+                        _Ability();
+                    }
+                    break;
+                }
+
+            // Face button top (Y)
+            case XboxCtrlrInput.XboxButton.Y: {
+
+                    if (_Player.GetFaceTopInput) {
+
+                        // Perform action
+                        _Ability();
+                    }
+                    break;
+                }
+
+            // Right bumper
+            case XboxCtrlrInput.XboxButton.RightBumper: {
+
+                    if (_Player.GetRightBumperInput) {
+
+                        // Perform action
+                        _Ability();
+                    }
+                    break;
+                }
+
+            // Left bumper
+            case XboxCtrlrInput.XboxButton.LeftBumper: {
+
+                    if (_Player.GetLeftBumperInput) {
+
+                        // Perform action
+                        _Ability();
+                    }
+                    break;
+                }
+
+            default: {
+
+                    break;
+                }
+        }
+    }
+
+    private void Dash() {
 
         // If dash cooldown is complete
         if (_CurrentDashCooldown <= 0f) {
@@ -333,7 +398,7 @@ public class Char_Geomancer : Character {
         }
     }
 
-    public void KnockbackDetection() {
+    private void Knockback() {
 
         // Create sphere collider to detect for the knockback
         SphereCollider knockbackCol = GetComponent<SphereCollider>();
@@ -361,6 +426,21 @@ public class Char_Geomancer : Character {
                     break;
                 }
             }
+        }
+    }
+
+    private void TabWeapons() {
+                
+        if (_PrimaryWeaponActive == true) {
+            
+            // Swap to primary weapon
+            _PrimaryWeaponActive = false;
+        }
+
+        else { /// _PrimaryWeaponActive == false
+
+            // Swap to secondary weapon
+            _PrimaryWeaponActive = true;
         }
     }
 

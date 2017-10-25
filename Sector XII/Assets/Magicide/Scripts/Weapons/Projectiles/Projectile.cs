@@ -49,10 +49,6 @@ public class Projectile : MonoBehaviour {
 
     }
 
-    public virtual void FixedUpdate() {
-
-    }
-
     //--------------------------------------------------------------
     // *** COLLISION ***
 
