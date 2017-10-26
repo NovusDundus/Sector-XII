@@ -11,16 +11,51 @@ public class AiManager : MonoBehaviour {
 
     //----------------------------------------------------------------------------------
     // VARIABLES
-    
+
     /// Public (Designers)
-    [Header(" *** CRYSTAL CHARACTER ***")]
-    [Header("- Health")]
-    public int _CrystalStartingHealth = 100;                        // Starting health of the wyrms when spawning.
+    [Header("---------------------------------------------------------------------------")]
+    [Header(" *** MINOR VARIANT ***")]
     [Header("- Movement")]
-    public float _CrystalMovementSpeed = 5f;                        // Movement speed of the crystal character.
-    [Header("- AI Respawning")]
-    public List<Transform> _SpawnPositions;                         // Array of spawn points
-    public int _MaxLives = 10;
+    [Tooltip("Movement speed of the minor crystal variant.")]
+    public float _CrystalMinorMovementSpeed = 5f;                   // Movement speed of the minor crystal variant.
+    [Header("- Spawning")]
+    [Tooltip("Array of spawn points for the minor crystal variant.")]
+    public List<Transform> _MinorSpawnPositions;                    // Array of spawn points for the minor crystal variant.
+    [Tooltip("")]
+    public int _MinorLives = 10;
+    [Tooltip("Starting health of the minor crystal variant when spawning.")]
+    public int _CrystalMinorStartingHealth = 100;                   // Starting health of the minor crystal variant when spawning.
+    public KillTag.PickupType _MinorTagType = KillTag.PickupType.AddToShield;
+    [Header("- Appearance")]
+    public Material _MinorTypeMaterial;
+
+    [Header("---------------------------------------------------------------------------")]
+    [Header(" *** MAJOR VARIANT ***")]
+    [Header("- Movement")]
+    [Tooltip("Movement speed of the major crystal variant.")]
+    public float _CrystalMajorMovementSpeed = 5f;                   // Movement speed of the major crystal variant.
+    [Header("- Spawning")]
+    [Tooltip("Array of spawn points for the major crystal variant.")]
+    public List<Transform> _MajorSpawnPositions;                    // Array of spawn points for the major crystal variant.
+    [Tooltip("Starting health of the major crystal variant when spawning.")]
+    public int _CrystalMajorStartingHealth = 100;                   // Starting health of the major crystal variant when spawning.
+    public KillTag.PickupType _MajorTagType = KillTag.PickupType.SpeedBoost;
+    [Header("- Appearance")]
+    public Material _MajorTypeMaterial;
+
+    [Header("---------------------------------------------------------------------------")]
+    [Header(" *** CURSED VARIANT***")]
+    [Header("- Movement")]
+    [Tooltip("Movement speed of the cursed crystal variant.")]
+    public float _CrystalCursedMovementSpeed = 5f;                  // Movement speed of the cursed crystal variant.
+    [Header("- Spawning")]
+    [Tooltip("Array of spawn points for the cursed crystal variant.")]
+    public List<Transform> _CursedSpawnPositions;                   // Array of spawn points for the cursed crystal variant.
+    [Tooltip("Starting health of the cursed crystal variant when spawning.")]
+    public int _CrystalCursedStartingHealth = 100;                  // Starting health of the cursed crystal variant when spawning.
+    public KillTag.PickupType _CursedTagType = KillTag.PickupType.Healthpack;
+    [Header("- Appearance")]
+    public Material _CursedTypeMaterial;
 
     /// Public (internal)
     [HideInInspector]
@@ -74,17 +109,17 @@ public class AiManager : MonoBehaviour {
 
     public void OnRespawn() {
     
-        if (_POOL_DEAD_MINIONS.Count > 0 && _MaxLives > 0)
+        if (_POOL_DEAD_MINIONS.Count > 0 && _MinorLives > 0)
         {
             // Get the character from the end of the dead array
             GameObject newAi = _POOL_DEAD_MINIONS[_POOL_DEAD_MINIONS.Count - 1].gameObject;
 
             // Get random int (min = 0, max = vector array.size -1)
-            int randIndex = Random.Range(0, _SpawnPositions.Count - 1);
+            int randIndex = Random.Range(0, _MinorSpawnPositions.Count - 1);
 
             // Get spawn position from spawnPoints [ randIndex ].position (newAI)
             // Set ai transform's to the random spawn's position
-            newAi.transform.position = _SpawnPositions[randIndex].position;
+            newAi.transform.position = _MinorSpawnPositions[randIndex].position;
 
             // Show the ai's mesh renderer
             newAi.gameObject.GetComponentInChildren<Renderer>().enabled = true;
@@ -96,7 +131,7 @@ public class AiManager : MonoBehaviour {
             _POOL_DEAD_MINIONS.RemoveAt(_POOL_DEAD_MINIONS.Count - 1);
 
             // -1 from ai lives cap
-            _MaxLives -= 1;
+            _MinorLives -= 1;
         }        
     }
 

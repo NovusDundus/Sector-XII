@@ -14,12 +14,15 @@ public class HUD : MonoBehaviour {
     // VARIABLES
 
     /// Public (designers)
+    [Header("---------------------------------------------------------------------------")]
     [Header("*** MATCH USER INTERFACE ***")]
     [Tooltip("Reference to the match timer text that is displayed in the HUD.")]
     public Text _MatchTimerText;                                    // Reference to the match timer text that is displayed in the HUD.
     public Color _TimeLowColour = Color.red;
     public Color _TimeMediumColour = Color.yellow;
     public Color _TimeOkayColour = Color.white;
+
+    [Header("---------------------------------------------------------------------------")]
     [Header("*** PANEL SCREENS ***")]
     [Tooltip("Reference to the gui pause screen panel.")]
     public GameObject _UIPause;                                     // Reference to the gui pause screen panel.
@@ -27,6 +30,8 @@ public class HUD : MonoBehaviour {
     public GameObject _UIScoreboard;                                // Reference to the gui Scoreboard panel.
     [Tooltip("Reference to the gui HUD panel.")]
     public GameObject _UIHUD;                                       // Reference to the gui HUD panel.
+
+    [Header("---------------------------------------------------------------------------")]
     [Header(" *** PLAYERS ***")]
     [Tooltip("Reference to player 1's character.")]
     public Char_Geomancer PlayerOne;                                // Reference to player 1's character.

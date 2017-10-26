@@ -59,13 +59,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644b168221e562842ba6d16853ef85f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _OrbFireDelay: 0.1125
+  _OrbFireDelay: 0.2
   _FireballHeatCost: 0.095
   _OrbCooldownRateStable: 0.0085
   _OrbCooldownRateOverheated: 0.01
   _FireballImpactDamage: 25
-  _FireballSpeed: 30
-  _FireballRange: 35
+  _FireballSpeed: 25
+  _FireballRange: 50
   _FlameFireDelay: 0.045
   _FlameHeatCost: 0.02
   _FlameCooldownRateStable: 0.0015
@@ -93,9 +93,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cfa343cdca9fa47ac26407347e7876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _CrystalStartingHealth: 100
-  _CrystalMovementSpeed: 10
-  _SpawnPositions:
+  _CrystalMinorMovementSpeed: 4
+  _MinorSpawnPositions:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -116,7 +115,20 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _MaxLives: 20
+  _MinorLives: 10
+  _CrystalMinorStartingHealth: 50
+  _MinorTagType: 0
+  _MinorTypeMaterial: {fileID: 2100000, guid: 909d1492941fcc04e981ae386a514005, type: 2}
+  _CrystalMajorMovementSpeed: 6
+  _MajorSpawnPositions: []
+  _CrystalMajorStartingHealth: 120
+  _MajorTagType: 2
+  _MajorTypeMaterial: {fileID: 2100000, guid: 9a99602ad7c91b54f92b48b76889219b, type: 2}
+  _CrystalCursedMovementSpeed: 5
+  _CursedSpawnPositions: []
+  _CrystalCursedStartingHealth: 180
+  _CursedTagType: 1
+  _CursedTypeMaterial: {fileID: 2100000, guid: 092728b289935f2409b48959798ec969, type: 2}
 --- !u!114 &114188143390799446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,8 +140,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bcc39189bd07774d97dba80046d91a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _TeleportCooldownTime: 8
+  _AddShieldTypeMaterial: {fileID: 2100000, guid: 909d1492941fcc04e981ae386a514005,
+    type: 2}
+  _AddShieldRotationSpeed: 2
+  _AddShieldBobHeight: 1
+  _AddShieldBobSpeed: 1
+  _SpeedBoostTypeMaterial: {fileID: 2100000, guid: 9a99602ad7c91b54f92b48b76889219b,
+    type: 2}
+  _SpeedBoostRotationSpeed: 1
+  _SpeedBoostBobHeight: 1
+  _SpeedBoostBobSpeed: 0.5
+  _HealthpackTypeMaterial: {fileID: 2100000, guid: 092728b289935f2409b48959798ec969,
+    type: 2}
+  _HealthpackRotationSpeed: 3
+  _HealthpackBobHeight: 1
+  _HealthpackBobSpeed: 2
   _CanBeUsedInPhase1: 1
+  _TeleportCooldownTime: 8
 --- !u!114 &114342767189424728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -206,8 +233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe1339e1a23a9b4a95bd4c6240bb02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _NecromancerStartingHealth: 200
-  _NecromancerMovementSpeed: 10
+  _GeomancerStartingHealth: 100
+  _GeomancerMovementSpeed: 10
   _DashEnabled: 1
   _DashButton: 1
   _DashDistance: 5
@@ -217,7 +244,7 @@ MonoBehaviour:
   _KnockbackForceNormal: 15000
   KnockbackForceDash: 40000
   _KnockbackCooldown: 5
-  _PrimaryWeapon: 1
+  _PrimaryWeapon: 0
   _SecondaryWeaponEnabled: 1
   _WeaponSwapButton: 8
 --- !u!114 &114977905998677262

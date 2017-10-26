@@ -13,7 +13,8 @@ public class WeaponManager : MonoBehaviour {
     // VARIABLES
 
     /// Public (Designers)
-    [Header(" *** FIREBALL ***")]
+    [Header("---------------------------------------------------------------------------")]
+    [Header(" *** ORB FIREBALL ***")]
     [Header("- Firing Delay")]
     [Tooltip("Minimum time in seconds allowed between each projectile that is fired.")]
     [Range(0f, 1f)]
@@ -33,6 +34,8 @@ public class WeaponManager : MonoBehaviour {
     public float _FireballSpeed = 20f;
     [Tooltip("Maximum distance a fireball can travel (will detonate when range is hit).")]
     public float _FireballRange = 50f;
+
+    [Header("---------------------------------------------------------------------------")]
     [Header(" *** FLAMETHROWER ***")]
     [Header("- Firing Delay")]
     [Tooltip("Minimum time in seconds allowed between each projectile that is fired.")]
@@ -53,7 +56,9 @@ public class WeaponManager : MonoBehaviour {
     public float _FlameSpeed = 10f;
     [Tooltip("Maximum distance a fireball can travel (will detonate when range is hit).")]
     public float _FlameRange = 20f;
-    [Header(" *** MINION SHIELD ***")]
+
+    [Header("---------------------------------------------------------------------------")]
+    [Header(" *** SHIELD MINIONS ***")]
     [Header("- Health")]
     public int _MinionHealth = 100;
     [Header("- Size")]

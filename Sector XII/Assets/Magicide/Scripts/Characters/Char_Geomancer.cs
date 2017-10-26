@@ -41,11 +41,11 @@ public class Char_Geomancer : Character {
         _Player = GetComponent<Player>();
 
         // Set character's health & get collision reference
-        _StartingHealth = PlayerManager._pInstance._NecromancerStartingHealth;
+        _StartingHealth = PlayerManager._pInstance._GeomancerStartingHealth;
         base.Start();
 
         // Set character's speed
-        _MovementSpeed = PlayerManager._pInstance._NecromancerMovementSpeed;
+        _MovementSpeed = PlayerManager._pInstance._GeomancerMovementSpeed;
 
         // Set dash properties
         _DashEnabled = PlayerManager._pInstance._DashEnabled;

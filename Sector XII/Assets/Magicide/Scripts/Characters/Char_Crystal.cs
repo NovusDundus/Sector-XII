@@ -12,25 +12,77 @@ public class Char_Crystal : Character {
     //----------------------------------------------------------------------------------
     // *** VARIABLES ***
 
+    /// Public (designers)    
+    public CrystalType _Type = CrystalType.Minor;
+    
+    /// Public (internal)
+    [HideInInspector]
+    public enum CrystalType {
 
+        Minor,
+        Major,
+        Cursed
+    }
 
+    /// Private
+    private KillTag.PickupType _PickupType = KillTag.PickupType.AddToShield;
+    
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
 
     public override void Start() {
 
-        // Set starting health & get collision reference
-        _StartingHealth = AiManager._pInstance._CrystalStartingHealth;
+        // Get references
         base.Start();
 
-        // Set movement speed
-        _MovementSpeed = AiManager._pInstance._CrystalMovementSpeed;
+        switch (_Type) {
+
+            // MINOR VARIANT
+            case CrystalType.Minor: {
+
+                    // Initialize
+                    _StartingHealth = AiManager._pInstance._CrystalMinorStartingHealth;
+                    _MovementSpeed = AiManager._pInstance._CrystalMinorMovementSpeed;
+                    _PickupType = AiManager._pInstance._MinorTagType;
+                    _MeshRenderer.material = AiManager._pInstance._MinorTypeMaterial;
+                    break;
+                }
+
+            // MAJOR VARIANT
+            case CrystalType.Major: {
+
+                    // Initialize
+                    _StartingHealth = AiManager._pInstance._CrystalMajorStartingHealth;
+                    _MovementSpeed = AiManager._pInstance._CrystalMajorMovementSpeed;
+                    _PickupType = AiManager._pInstance._MajorTagType;
+                    _MeshRenderer.material = AiManager._pInstance._MajorTypeMaterial;
+                    break;
+                }
+
+            // CURSED VARIANT
+            case CrystalType.Cursed: {
+
+                    // Initialize
+                    _StartingHealth = AiManager._pInstance._CrystalMajorStartingHealth;
+                    _MovementSpeed = AiManager._pInstance._CrystalMajorMovementSpeed;
+                    _PickupType = AiManager._pInstance._CursedTagType;
+                    _MeshRenderer.material = AiManager._pInstance._CursedTypeMaterial;
+                    break;
+                }
+
+            default: {
+
+                    break;
+                }
+        }
+
+        // Store the original material since the swap on variant
+        _OriginalMaterial = _MeshRenderer.material;
     }
 
     //--------------------------------------------------------------
     // *** FRAME ***
     
-
     public override void Update() {
 
         base.Update();
@@ -66,8 +118,8 @@ public class Char_Crystal : Character {
             }
         }
 
-        // Create kill tag at death position associated with THIS wyrm
+        // Create kill tag at death position associated with THIS minion
         GameObject killTag = Instantiate(GameObject.FindGameObjectWithTag("KillTag"), _DeathPosition, Quaternion.identity);
-        killTag.GetComponent<KillTag>().Init(this);
+        killTag.GetComponent<KillTag>().Init(this, _PickupType);
     }
 }

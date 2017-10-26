@@ -13,19 +13,22 @@ public class PlayerManager : MonoBehaviour {
     // VARIABLES
 
     /// Public (Designers)
+    [Header("---------------------------------------------------------------------------")]
     [Header(" *** GEOMANCER CHARACTER ***")]
     [Header("- Health")]
     [Tooltip("Starting health of the necromancers that are possessed by the players.")]
-    public int _NecromancerStartingHealth = 100;                    // Starting health of the necromancers that are possessed by the players.
+    public int _GeomancerStartingHealth = 100;                      // Starting health of the necromancers that are possessed by the players.
     [Header("- Movement")]
     [Tooltip("Movement speed of the necromancer character.")]
-    public float _NecromancerMovementSpeed = 10f;                   // Movement speed of the necromancer character.
+    public float _GeomancerMovementSpeed = 10f;                     // Movement speed of the necromancer character.
+    [Header("---------------------------------------------------------------------------")]
+    [Header(" *** ABILITIES ***")]
     [Header("- Dash")]
     public bool _DashEnabled = true;
     [Tooltip("Input button tied to the player's dash ability.")]
     public XboxCtrlrInput.XboxButton _DashButton = XboxCtrlrInput.XboxButton.B;  // Input button tied to the player's dash ability.
     [Tooltip("")]
-    public float _DashDistance = 5f;                                 // Units of distance that the player's character will teleport when performed.
+    public float _DashDistance = 5f;                                // Units of distance that the player's character will teleport when performed.
     [Tooltip("Amount of time between reallowing the dash ability.")]
     public float DashCooldown = 5f;                                 // Amount of time between reallowing the dash ability.
     [Header("- Knockback")]
@@ -34,12 +37,12 @@ public class PlayerManager : MonoBehaviour {
     public XboxCtrlrInput.XboxButton _KnockbackButton = XboxCtrlrInput.XboxButton.Y;  // Input button tied to the player's knockback ability.
     [Tooltip("Amount of force applied to the target that is being knockbacked against.")]
     [Range(10000, 100000)]
-    public int _KnockbackForceNormal = 100000;                       // Amount of force applied to the target that is being knockbacked against.
+    public int _KnockbackForceNormal = 100000;                      // Amount of force applied to the target that is being knockbacked against.
     [Tooltip("Amount of force applied to the target that is being knockbacked against (After a dash was just performed).")]
     [Range(10000, 100000)]
     public int KnockbackForceDash = 100000;                         // Amount of force applied to the target that is being knockbacked against (After a dash was just performed).
     [Tooltip("Amount of time between reallowing the knockback ability.")]
-    public float _KnockbackCooldown = 5f;                            // Amount of time between reallowing the knockback ability.
+    public float _KnockbackCooldown = 5f;                           // Amount of time between reallowing the knockback ability.
     [Header("- Weapons")]
     [Tooltip("The primary weapon associated with a player on startup.")]
     public WeaponList _PrimaryWeapon = WeaponList.Orb;

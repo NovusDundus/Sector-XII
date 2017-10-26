@@ -14,12 +14,15 @@ public class MatchManager : MonoBehaviour {
     // *** VARIABLES ***
 
     /// Public (designers)
-    [Header("- Phases")]
+    [Header("---------------------------------------------------------------------------")]
+    [Header(" *** TIMERS ***")]
+    [Header("- Phase One")]
     [Tooltip("Time in seconds to complete the first phase of the match.(Meat grab)")]
     [Range(1, 120)]
     public int _Phase1Length = 30;
-    [Tooltip("Time in seconds to complete the second phase of the match.(Kill players)")]
+    [Header("- Phase Two")]
     public bool _Phase2Timer = false;
+    [Tooltip("Time in seconds to complete the second phase of the match.(Kill players)")]
     [Range(1, 600)]
     public int _Phase2Length = 120;
 
