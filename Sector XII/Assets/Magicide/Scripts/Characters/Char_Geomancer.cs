@@ -26,7 +26,10 @@ public class Char_Geomancer : Character {
     private float _KnockbackForceDash;
     private float _KnockbackCooldown;
     private float _CurrentKnockbackCooldown = 0f;
-    private float _MoveSpeedMultiplier = 1f;
+    private float _SpeedBoostModifier = 1f;
+    private bool _SpeedBoostActive = false;
+    private float _SpeedBoostTimer = 0f;
+    private float _MovementSpeedModifier = 1f;
 
     /// Delegates / Events
     private delegate void CharacterAbility();
@@ -148,7 +151,7 @@ public class Char_Geomancer : Character {
 
                     // Get directional input (movement & rotation)
                     Vector3 vec = _Player.GetMovementInput.normalized;
-                    transform.SetPositionAndRotation(transform.position + vec * (_MovementSpeed * _MoveSpeedMultiplier) * Time.fixedDeltaTime, Quaternion.Euler(_Player.GetRotationInput));
+                    transform.SetPositionAndRotation(transform.position + vec * (_MovementSpeed * _SpeedBoostModifier * _MovementSpeedModifier) * Time.fixedDeltaTime, Quaternion.Euler(_Player.GetRotationInput));
                 }
 
                 // Character is NOT receiving right stick input
@@ -156,7 +159,7 @@ public class Char_Geomancer : Character {
 
                     // Get directional input (movement ONLY)
                     Vector3 vec = _Player.GetMovementInput.normalized;
-                    transform.SetPositionAndRotation(transform.position + vec * (_MovementSpeed * _MoveSpeedMultiplier) * Time.fixedDeltaTime, transform.rotation);
+                    transform.SetPositionAndRotation(transform.position + vec * (_MovementSpeed * _SpeedBoostModifier * _MovementSpeedModifier) * Time.fixedDeltaTime, transform.rotation);
                 }
 
                 // ************************
@@ -190,7 +193,7 @@ public class Char_Geomancer : Character {
                     // Knockback ability cooldown in progress
                     if (_CurrentKnockbackCooldown > 0f) {
 
-                        _CurrentKnockbackCooldown -= Time.fixedDeltaTime;
+                        _CurrentKnockbackCooldown -= Time.deltaTime;
 
                         // Clamp to 0f
                         if (_CurrentKnockbackCooldown < 0f) {
@@ -213,7 +216,7 @@ public class Char_Geomancer : Character {
                     // Dash ability cooldown in progress
                     if (_CurrentDashCooldown > 0f) {
 
-                        _CurrentDashCooldown -= Time.fixedDeltaTime;
+                        _CurrentDashCooldown -= Time.deltaTime;
 
                         // Clamp to 0f
                         if (_CurrentDashCooldown < 0f) {
@@ -234,7 +237,7 @@ public class Char_Geomancer : Character {
 
                         if (_TimeSinceLastDash < 1f) {
 
-                            _TimeSinceLastDash += Time.fixedDeltaTime;
+                            _TimeSinceLastDash += Time.deltaTime;
                         }
                         else {
 
@@ -249,6 +252,21 @@ public class Char_Geomancer : Character {
 
                     // Check for controller input
                     PerformActionFromInput(TabWeapons, PlayerManager._pInstance._WeaponSwapButton);
+                }
+
+                // SPEED BOOST
+                if (_SpeedBoostActive == true) {
+
+                    // Deduct from speed boost timer (1 per second)
+                    _SpeedBoostTimer -= Time.deltaTime;
+
+                    // Boost complete
+                    if (_SpeedBoostTimer <= 0f) {
+
+                        // Disable speed boost
+                        _SpeedBoostModifier = 1f;
+                        _SpeedBoostActive = false;
+                    }
                 }
             }
         }
@@ -444,9 +462,32 @@ public class Char_Geomancer : Character {
         }
     }
 
-    public void SetMovementMultiplier(float multi) {
+    //--------------------------------------------------------------
+    // *** KILLTAGS ***
 
-        _MoveSpeedMultiplier = multi;
+    public void ActivateSpeedBoost(float SpeedModifier, float BoostTime) {
+
+        // Set speed boost
+        _SpeedBoostModifier = SpeedModifier;
+        _SpeedBoostTimer = BoostTime;
+        _SpeedBoostActive = true;
+    }
+
+    public bool IsSpeedBoost() {
+
+        return _SpeedBoostActive;
+    }
+
+    public void AddHealth(int amount) {
+
+        // Add health
+        _Health += amount;
+
+        // Clamp to max health
+        if (_Health > _StartingHealth) {
+
+            _Health = _StartingHealth;
+        }
     }
 
 }

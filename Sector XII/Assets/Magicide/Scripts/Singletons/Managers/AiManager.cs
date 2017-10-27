@@ -19,10 +19,10 @@ public class AiManager : MonoBehaviour {
     [Tooltip("Movement speed of the minor crystal variant.")]
     public float _CrystalMinorMovementSpeed = 5f;                   // Movement speed of the minor crystal variant.
     [Header("- Spawning")]
-    [Tooltip("Array of spawn points for the minor crystal variant.")]
-    public List<Transform> _MinorSpawnPositions;                    // Array of spawn points for the minor crystal variant.
     [Tooltip("")]
     public int _MinorLives = 10;
+    [Tooltip("Array of spawn points for the minor crystal variant.")]
+    public List<Transform> _MinorSpawnPositions;                    // Array of spawn points for the minor crystal variant.
     [Tooltip("Starting health of the minor crystal variant when spawning.")]
     public int _CrystalMinorStartingHealth = 100;                   // Starting health of the minor crystal variant when spawning.
     public KillTag.PickupType _MinorTagType = KillTag.PickupType.AddToShield;
@@ -35,6 +35,8 @@ public class AiManager : MonoBehaviour {
     [Tooltip("Movement speed of the major crystal variant.")]
     public float _CrystalMajorMovementSpeed = 5f;                   // Movement speed of the major crystal variant.
     [Header("- Spawning")]
+    [Tooltip("")]
+    public int _MajorLives = 5;
     [Tooltip("Array of spawn points for the major crystal variant.")]
     public List<Transform> _MajorSpawnPositions;                    // Array of spawn points for the major crystal variant.
     [Tooltip("Starting health of the major crystal variant when spawning.")]
@@ -49,6 +51,8 @@ public class AiManager : MonoBehaviour {
     [Tooltip("Movement speed of the cursed crystal variant.")]
     public float _CrystalCursedMovementSpeed = 5f;                  // Movement speed of the cursed crystal variant.
     [Header("- Spawning")]
+    [Tooltip("")]
+    public int _CursedLives = 2;
     [Tooltip("Array of spawn points for the cursed crystal variant.")]
     public List<Transform> _CursedSpawnPositions;                   // Array of spawn points for the cursed crystal variant.
     [Tooltip("Starting health of the cursed crystal variant when spawning.")]

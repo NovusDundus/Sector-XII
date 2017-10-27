@@ -31,7 +31,7 @@ public class Char_Crystal : Character {
     // *** CONSTRUCTORS ***
 
     public override void Start() {
-
+        
         // Get references
         base.Start();
 
@@ -76,8 +76,8 @@ public class Char_Crystal : Character {
                 }
         }
 
-        // Store the original material since the swap on variant
-        _OriginalMaterial = _MeshRenderer.material;
+        // Reset health now that starting health has been updated
+        _Health = _StartingHealth;
     }
 
     //--------------------------------------------------------------

@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _CrystalMinorMovementSpeed: 4
+  _MinorLives: 10
   _MinorSpawnPositions:
   - {fileID: 0}
   - {fileID: 0}
@@ -115,18 +116,19 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _MinorLives: 10
-  _CrystalMinorStartingHealth: 50
+  _CrystalMinorStartingHealth: 100
   _MinorTagType: 0
   _MinorTypeMaterial: {fileID: 2100000, guid: 909d1492941fcc04e981ae386a514005, type: 2}
   _CrystalMajorMovementSpeed: 6
+  _MajorLives: 5
   _MajorSpawnPositions: []
-  _CrystalMajorStartingHealth: 120
+  _CrystalMajorStartingHealth: 150
   _MajorTagType: 2
   _MajorTypeMaterial: {fileID: 2100000, guid: 9a99602ad7c91b54f92b48b76889219b, type: 2}
   _CrystalCursedMovementSpeed: 5
+  _CursedLives: 2
   _CursedSpawnPositions: []
-  _CrystalCursedStartingHealth: 180
+  _CrystalCursedStartingHealth: 250
   _CursedTagType: 1
   _CursedTypeMaterial: {fileID: 2100000, guid: 092728b289935f2409b48959798ec969, type: 2}
 --- !u!114 &114188143390799446
@@ -155,7 +157,7 @@ MonoBehaviour:
   _HealthpackRotationSpeed: 3
   _HealthpackBobHeight: 1
   _HealthpackBobSpeed: 2
-  _CanBeUsedInPhase1: 1
+  _CanBeUsedInPhase1: 0
   _TeleportCooldownTime: 8
 --- !u!114 &114342767189424728
 MonoBehaviour:
@@ -246,7 +248,7 @@ MonoBehaviour:
   _KnockbackCooldown: 5
   _PrimaryWeapon: 0
   _SecondaryWeaponEnabled: 1
-  _WeaponSwapButton: 8
+  _WeaponSwapButton: 2
 --- !u!114 &114977905998677262
 MonoBehaviour:
   m_ObjectHideFlags: 1

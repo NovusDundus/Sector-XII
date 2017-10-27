@@ -17,8 +17,7 @@ public class KillTag : MonoBehaviour {
 
         AddToShield,
         Healthpack,
-        SpeedBoost,
-        Dash
+        SpeedBoost
     }
 
     /// Private
@@ -77,16 +76,7 @@ public class KillTag : MonoBehaviour {
                     _BobHeight = DeviceManager._pInstance._HealthpackBobHeight;
                     _BobSpeed = DeviceManager._pInstance._HealthpackBobSpeed;
                     break;
-                }          
-
-            case PickupType.Dash: { 
-
-                    GetComponent<MeshRenderer>().material = DeviceManager._pInstance._HealthpackTypeMaterial;
-                    _RotationSpeed = DeviceManager._pInstance._HealthpackRotationSpeed;
-                    _BobHeight = DeviceManager._pInstance._HealthpackBobHeight;
-                    _BobSpeed = DeviceManager._pInstance._HealthpackBobSpeed;
-                    break;                                     
-                }          
+                }        
 
             default: {
 
@@ -197,13 +187,6 @@ public class KillTag : MonoBehaviour {
                     SpeedBoost(Necromancer);
                     break;
                 }
-            
-            // DASH 1 TIME USE
-            case PickupType.Dash: {
-
-                    Dash(Necromancer);
-                    break;
-                }
 
             default: {
 
@@ -219,36 +202,41 @@ public class KillTag : MonoBehaviour {
         Destroy(gameObject);        
     }
 
-    public void AddToShield(Char_Geomancer Necromancer) {
+    public void AddToShield(Char_Geomancer Geomancer) {
 
     // Determine if whether the necromancer can be picked up or not
     // Get minion count
-    int minionCount = Necromancer.GetSpecialWeapon().GetComponent<Wep_Shield>().GetMinionCount();
+    int minionCount = Geomancer.GetSpecialWeapon().GetComponent<Wep_Shield>().GetMinionCount();
 
     // Check against max size
-    int MaxSize = Necromancer.GetSpecialWeapon().GetComponent<Wep_Shield>().GetMaxMinions();
+    int MaxSize = Geomancer.GetSpecialWeapon().GetComponent<Wep_Shield>().GetMaxMinions();
         if (minionCount < MaxSize) {
 
             // Add to meat shield
-            Necromancer.GetSpecialWeapon().GetComponent<Wep_Shield>().AddMinion(_Crystal);
+            Geomancer.GetSpecialWeapon().GetComponent<Wep_Shield>().AddMinion(_Crystal);
         }
     }
 
-    public void Healthpack(Char_Geomancer Necromancer) {
+    public void Healthpack(Char_Geomancer Geomancer) {
 
         // Determine if whether the tag can be picked up or not
+        // Check if there's any missing health
+        if (Geomancer.GetHealth() < Geomancer.GetStartingHealth()) {
 
+            // Add health to necromancer
+            Geomancer.AddHealth(DeviceManager._pInstance._AddHealthAmount);
+        }
     }
 
-    public void SpeedBoost(Char_Geomancer Necromancer) {
+    public void SpeedBoost(Char_Geomancer Geomancer) {
 
-        // Determine if whether the tag can be picked up or not
+        // Determine if whether the tag can be picked up or not.
+        // Check if character is already using a speed boost
+        if (Geomancer.IsSpeedBoost() != true) {
 
+            // Activate speed boost
+            Geomancer.ActivateSpeedBoost(DeviceManager._pInstance._SpeedBoostModifier, DeviceManager._pInstance._SpeedBoostTime);
+        }
     }
 
-    public void Dash(Char_Geomancer Necromancer) {
-
-        // Determine if whether the tag can be picked up or not
-
-    }
 }

@@ -148,16 +148,12 @@ public class Wep_Shield : Weapon {
 
                 // Modify movement speed
                 float multiMov = _MinionCount / _MaxMinions;
-                ///_Owner.GetComponent<Char_Geomancer>().SetMovementMultiplier(multiMov);
-
-                // Modify fireball damage output (and scale)
-                float multiDmg = _MaxMinions / _MinionCount;
-                ///_Owner.GetSecondaryWeapon().GetComponent<Wep_Orb>().SetDamageMultiplier(multiDmg);
+                ///_Owner.GetComponent<Char_Geomancer>().SetMovementSpeedMultiplier(multiMov);
             }
 
             else {
 
-                _Owner.GetComponent<Char_Geomancer>().SetMovementMultiplier(1f);
+                ///_Owner.GetComponent<Char_Geomancer>().
             }
         }
     }

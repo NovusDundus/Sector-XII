@@ -995,61 +995,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114977905998677262, guid: aa42a22ea9d697f4abb43b7e82ccb986,
-        type: 2}
-      propertyPath: _PlayerAttachedTo
-      value: 
-      objectReference: {fileID: 92471157}
-    - target: {fileID: 114439388492536600, guid: aa42a22ea9d697f4abb43b7e82ccb986,
-        type: 2}
-      propertyPath: _MatchTimerText
-      value: 
-      objectReference: {fileID: 520034577}
-    - target: {fileID: 114439388492536600, guid: aa42a22ea9d697f4abb43b7e82ccb986,
-        type: 2}
-      propertyPath: _UIPause
-      value: 
-      objectReference: {fileID: 31718263}
-    - target: {fileID: 114439388492536600, guid: aa42a22ea9d697f4abb43b7e82ccb986,
-        type: 2}
-      propertyPath: _UIScoreboard
-      value: 
-      objectReference: {fileID: 118967264}
-    - target: {fileID: 114439388492536600, guid: aa42a22ea9d697f4abb43b7e82ccb986,
-        type: 2}
-      propertyPath: _UIHUD
-      value: 
-      objectReference: {fileID: 606073360}
-    - target: {fileID: 114439388492536600, guid: aa42a22ea9d697f4abb43b7e82ccb986,
-        type: 2}
-      propertyPath: PlayerOne
-      value: 
-      objectReference: {fileID: 92471157}
-    - target: {fileID: 114439388492536600, guid: aa42a22ea9d697f4abb43b7e82ccb986,
-        type: 2}
-      propertyPath: PlayerTwoCharacter
-      value: 
-      objectReference: {fileID: 97189603}
-    - target: {fileID: 114439388492536600, guid: aa42a22ea9d697f4abb43b7e82ccb986,
-        type: 2}
-      propertyPath: PlayerThree
-      value: 
-      objectReference: {fileID: 1423624252}
-    - target: {fileID: 114439388492536600, guid: aa42a22ea9d697f4abb43b7e82ccb986,
-        type: 2}
-      propertyPath: PlayerFour
-      value: 
-      objectReference: {fileID: 1796523421}
-    - target: {fileID: 114342767189424728, guid: aa42a22ea9d697f4abb43b7e82ccb986,
-        type: 2}
-      propertyPath: _Panel
-      value: 
-      objectReference: {fileID: 2052343147}
-    - target: {fileID: 114342767189424728, guid: aa42a22ea9d697f4abb43b7e82ccb986,
-        type: 2}
-      propertyPath: _PlayerOne
-      value: 
-      objectReference: {fileID: 92471157}
     - target: {fileID: 114157945126146578, guid: aa42a22ea9d697f4abb43b7e82ccb986,
         type: 2}
       propertyPath: _MinorSpawnPositions.Array.data[0]
@@ -1150,6 +1095,61 @@ Prefab:
       propertyPath: _MinorSpawnPositions.Array.data[19]
       value: 
       objectReference: {fileID: 1319592760}
+    - target: {fileID: 114342767189424728, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _Panel
+      value: 
+      objectReference: {fileID: 2052343147}
+    - target: {fileID: 114342767189424728, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _PlayerOne
+      value: 
+      objectReference: {fileID: 92471157}
+    - target: {fileID: 114439388492536600, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _MatchTimerText
+      value: 
+      objectReference: {fileID: 520034577}
+    - target: {fileID: 114439388492536600, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _UIPause
+      value: 
+      objectReference: {fileID: 31718263}
+    - target: {fileID: 114439388492536600, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _UIScoreboard
+      value: 
+      objectReference: {fileID: 118967264}
+    - target: {fileID: 114439388492536600, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _UIHUD
+      value: 
+      objectReference: {fileID: 606073360}
+    - target: {fileID: 114439388492536600, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: PlayerOne
+      value: 
+      objectReference: {fileID: 92471157}
+    - target: {fileID: 114439388492536600, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: PlayerTwoCharacter
+      value: 
+      objectReference: {fileID: 97189603}
+    - target: {fileID: 114439388492536600, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: PlayerThree
+      value: 
+      objectReference: {fileID: 1423624252}
+    - target: {fileID: 114439388492536600, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: PlayerFour
+      value: 
+      objectReference: {fileID: 1796523421}
+    - target: {fileID: 114977905998677262, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _PlayerAttachedTo
+      value: 
+      objectReference: {fileID: 92471157}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa42a22ea9d697f4abb43b7e82ccb986, type: 2}
   m_IsPrefabParent: 0

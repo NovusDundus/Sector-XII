@@ -26,12 +26,15 @@ public class DeviceManager : MonoBehaviour {
     public float _SpeedBoostRotationSpeed = 1f;
     public float _SpeedBoostBobHeight = 1f;
     public float _SpeedBoostBobSpeed = 0.5f;
+    public float _SpeedBoostModifier = 2f;
+    public float _SpeedBoostTime = 5f;
 
     [Header("- Health Pack Variant")]
     public Material _HealthpackTypeMaterial;
     public float _HealthpackRotationSpeed = 3f;
     public float _HealthpackBobHeight = 1f;
     public float _HealthpackBobSpeed = 2f;
+    public int _AddHealthAmount = 50;
 
     [Header("---------------------------------------------------------------------------")]
     [Header("*** Teleporters ***")]
