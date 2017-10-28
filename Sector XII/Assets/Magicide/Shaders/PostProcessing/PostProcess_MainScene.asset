@@ -103,33 +103,33 @@ MonoBehaviour:
         intensity: 100
         threshold: 100
         softKnee: 1
-        radius: 7
+        radius: 6.7
         antiFlicker: 1
       lensDirt:
         texture: {fileID: 0}
         intensity: 100
   colorGrading:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       tonemapping:
         tonemapper: 2
-        neutralBlackIn: 0.0167
-        neutralWhiteIn: 10
-        neutralBlackOut: 0
+        neutralBlackIn: 0.007
+        neutralWhiteIn: 11
+        neutralBlackOut: -0.039
         neutralWhiteOut: 10
-        neutralWhiteLevel: 5.3
-        neutralWhiteClip: 10
+        neutralWhiteLevel: 20
+        neutralWhiteClip: 8.22
       basic:
         postExposure: 0
-        temperature: 0
-        tint: 0
+        temperature: 22
+        tint: -2
         hueShift: 0
         saturation: 1
         contrast: 1
       channelMixer:
         red: {x: 1, y: 0, z: 0}
         green: {x: 0, y: 1, z: 0}
-        blue: {x: 0, y: 0, z: 1.5}
+        blue: {x: 0, y: 0, z: 1.74}
         currentEditingChannel: 2
       colorWheels:
         mode: 1
@@ -236,7 +236,7 @@ MonoBehaviour:
             m_Curve: []
             m_PreInfinity: 2
             m_PostInfinity: 2
-            m_RotationOrder: 4
+            m_RotationOrder: 0
           m_Loop: 1
           m_ZeroValue: 0.5
           m_Range: 1
@@ -290,7 +290,7 @@ MonoBehaviour:
     m_Settings:
       colored: 1
       intensity: 0.5
-      size: 1
+      size: 0.3
       luminanceContribution: 0.8
   vignette:
     m_Enabled: 0
@@ -298,12 +298,12 @@ MonoBehaviour:
       mode: 0
       color: {r: 1, g: 1, b: 1, a: 1}
       center: {x: 0.5, y: 0.5}
-      intensity: 0
-      smoothness: 0.01
-      roundness: 0.067
+      intensity: 1
+      smoothness: 1
+      roundness: 1
       mask: {fileID: 0}
       opacity: 1
-      rounded: 0
+      rounded: 1
   dithering:
     m_Enabled: 0
   monitors:

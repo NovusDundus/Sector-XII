@@ -78,6 +78,9 @@ public class Char_Crystal : Character {
 
         // Reset health now that starting health has been updated
         _Health = _StartingHealth;
+
+        // Store the new material that has been applied to the character
+        _OriginalMaterial = _MeshRenderer.material;
     }
 
     //--------------------------------------------------------------
@@ -122,4 +125,5 @@ public class Char_Crystal : Character {
         GameObject killTag = Instantiate(GameObject.FindGameObjectWithTag("KillTag"), _DeathPosition, Quaternion.identity);
         killTag.GetComponent<KillTag>().Init(this, _PickupType);
     }
+    
 }

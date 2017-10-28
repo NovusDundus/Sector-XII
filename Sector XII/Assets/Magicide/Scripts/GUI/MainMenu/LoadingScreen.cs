@@ -85,11 +85,26 @@ public class LoadingScreen : MonoBehaviour {
                             _MessageText.text = "PRESS      TO CONTINUE";
                             _GamepadContinueIcon.color = Color.white;
 
-                            // Once any player presses the A button
-                            if (MainMenu._pInstance.GetComponent<Player>().GetFaceBottomInput) {
+                            // Main menu to arena
+                            if (MainMenu._pInstance != null) {
 
-                                // Proceed to scene activation
-                                _currentState = eState.Exit;
+                                // Once any player presses the A button
+                                if (MainMenu._pInstance.GetComponent<Player>().GetFaceBottomInput) {
+
+                                    // Proceed to scene activation
+                                    _currentState = eState.Exit;
+                                }
+                            }
+
+                            // Arena to main menu
+                            else if (ArenaMode._pInstance != null) {
+
+                                // Once any player presses the A button
+                                if (ArenaMode._pInstance.GetComponent<Player>().GetFaceBottomInput) {
+
+                                    // Proceed to scene activation
+                                    _currentState = eState.Exit;
+                                }
                             }
                         }
 

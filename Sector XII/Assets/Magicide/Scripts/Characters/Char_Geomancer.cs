@@ -30,6 +30,7 @@ public class Char_Geomancer : Character {
     private bool _SpeedBoostActive = false;
     private float _SpeedBoostTimer = 0f;
     private float _MovementSpeedModifier = 1f;
+    private bool _TabbingWeapon = false;
 
     /// Delegates / Events
     private delegate void CharacterAbility();
@@ -252,6 +253,12 @@ public class Char_Geomancer : Character {
 
                     // Check for controller input
                     PerformActionFromInput(TabWeapons, PlayerManager._pInstance._WeaponSwapButton);
+
+                    if (XboxCtrlrInput.XCI.GetButtonUp(PlayerManager._pInstance._WeaponSwapButton)) {
+
+                        // Reset weapon tab
+                        _TabbingWeapon = false;
+                    }
                 }
 
                 // SPEED BOOST
@@ -396,7 +403,7 @@ public class Char_Geomancer : Character {
                 }
         }
     }
-
+    
     private void Dash() {
 
         // If dash cooldown is complete
@@ -448,17 +455,22 @@ public class Char_Geomancer : Character {
     }
 
     private void TabWeapons() {
-                
-        if (_PrimaryWeaponActive == true) {
-            
-            // Swap to primary weapon
-            _PrimaryWeaponActive = false;
-        }
 
-        else { /// _PrimaryWeaponActive == false
+        // Not currently tabbing weapons
+        if (_TabbingWeapon == false) {
 
-            // Swap to secondary weapon
-            _PrimaryWeaponActive = true;
+            if (_PrimaryWeaponActive == true) {
+
+                // Swap to primary weapon
+                _PrimaryWeaponActive = false;
+            }
+
+            else { /// _PrimaryWeaponActive == false
+
+                // Swap to secondary weapon
+                _PrimaryWeaponActive = true;
+            }
+            _TabbingWeapon = true;
         }
     }
 

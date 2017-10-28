@@ -194,12 +194,8 @@ public class KillTag : MonoBehaviour {
                 }
         }
 
-        // hide tag & move out of playable space
-        GetComponentInChildren<Renderer>().enabled = false;
-        transform.position = new Vector3(1000, 0, 1000);
-
         // Destroy tag
-        Destroy(gameObject);        
+        ///Destroy(gameObject);
     }
 
     public void AddToShield(Char_Geomancer Geomancer) {
@@ -214,6 +210,9 @@ public class KillTag : MonoBehaviour {
 
             // Add to meat shield
             Geomancer.GetSpecialWeapon().GetComponent<Wep_Shield>().AddMinion(_Crystal);
+
+            // Destroy tag
+            Destroy(gameObject);
         }
     }
 
@@ -225,6 +224,9 @@ public class KillTag : MonoBehaviour {
 
             // Add health to necromancer
             Geomancer.AddHealth(DeviceManager._pInstance._AddHealthAmount);
+
+            // Destroy tag
+            Destroy(gameObject);
         }
     }
 
@@ -236,6 +238,9 @@ public class KillTag : MonoBehaviour {
 
             // Activate speed boost
             Geomancer.ActivateSpeedBoost(DeviceManager._pInstance._SpeedBoostModifier, DeviceManager._pInstance._SpeedBoostTime);
+
+            // Destroy tag
+            Destroy(gameObject);
         }
     }
 
