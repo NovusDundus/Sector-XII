@@ -19,12 +19,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4716550856662986}
+  - component: {fileID: 114959725643599012}
   - component: {fileID: 33090874094859162}
   - component: {fileID: 136369226598338440}
   - component: {fileID: 23703258386374832}
   - component: {fileID: 195514549827962048}
   - component: {fileID: 135105239198437718}
-  - component: {fileID: 114959725643599012}
   - component: {fileID: 114824074263057338}
   - component: {fileID: 114566191130380676}
   m_Layer: 12
@@ -98,14 +98,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Target: {fileID: 0}
-  m_FleeThreshold: 0
+  m_FleeThreshold: 20
 --- !u!114 &114824074263057338
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1888011731846786}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e79f2268c0f5824449536396bedca970, type: 3}
   m_Name: 
@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Player: {fileID: 0}
   _DamagedMaterial: {fileID: 2100000, guid: 6b7263b2bf1d4e044a62a41af36ac06d, type: 2}
+  _Type: 0
 --- !u!135 &135105239198437718
 SphereCollider:
   m_ObjectHideFlags: 1

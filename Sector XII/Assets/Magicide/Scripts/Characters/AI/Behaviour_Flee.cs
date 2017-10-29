@@ -12,7 +12,7 @@ public class Behaviour_Flee : MonoBehaviour
     //----------------------------------------------------------------------------------
     // *** VARIABLES ***
 
-    [HideInInspector]
+    ///[HideInInspector]
     public GameObject m_Target;                                     // references the game object in the game (target to flee from)   
     public float m_FleeThreshold;                               // determains the distance the AI will run(Once it is outside of the determained threshold it will stop running)
 

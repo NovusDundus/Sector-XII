@@ -26,14 +26,22 @@ public class Char_Crystal : Character {
 
     /// Private
     private KillTag.PickupType _PickupType = KillTag.PickupType.AddToShield;
-    
+    private Behaviour_Wander _BehaviourWander;
+    private Behaviour_Flee _BehaviourFlee;
+    ///private Behaviour_Seek _BehaviourSeek;
+
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
 
     public override void Start() {
         
-        // Get references
+        // Get base character references
         base.Start();
+
+        // Get behaviour references
+        _BehaviourWander = GetComponent<Behaviour_Wander>();
+        _BehaviourFlee = GetComponent<Behaviour_Flee>();
+        ///_BehaviourSeek = GetComponent<Behaviour_Seek();
 
         switch (_Type) {
 
@@ -45,6 +53,38 @@ public class Char_Crystal : Character {
                     _MovementSpeed = AiManager._pInstance._CrystalMinorMovementSpeed;
                     _PickupType = AiManager._pInstance._MinorTagType;
                     _MeshRenderer.material = AiManager._pInstance._MinorTypeMaterial;
+
+                    switch (AiManager._pInstance._CrystalMinorBehaviourType) {
+
+                        case AiManager.AiBehaviourType.Wander: {
+
+                                _BehaviourWander.enabled = true;
+                                break;
+                            }
+
+                        case AiManager.AiBehaviourType.Flee: {
+
+                                _BehaviourFlee.enabled = true;
+                            }
+                            break;
+
+                        case AiManager.AiBehaviourType.Seek: {
+
+                                ///_BehaviourSeek.enabled = true;
+                                break;
+                            }
+
+                        case AiManager.AiBehaviourType.Mixed: { 
+
+                                break;
+                            }
+
+                        default: { 
+
+                                break;
+                            }
+                        }
+
                     break;
                 }
 
@@ -56,6 +96,37 @@ public class Char_Crystal : Character {
                     _MovementSpeed = AiManager._pInstance._CrystalMajorMovementSpeed;
                     _PickupType = AiManager._pInstance._MajorTagType;
                     _MeshRenderer.material = AiManager._pInstance._MajorTypeMaterial;
+
+                    switch (AiManager._pInstance._CrystalMajorBehaviourType) {
+
+                        case AiManager.AiBehaviourType.Wander: {
+
+                                _BehaviourWander.enabled = true;
+                                break;
+                            }
+
+                        case AiManager.AiBehaviourType.Flee: {
+
+                                _BehaviourFlee.enabled = true;
+                            }
+                            break;
+
+                        case AiManager.AiBehaviourType.Seek: {
+
+                                ///_BehaviourSeek.enabled = true;
+                                break;
+                            }
+
+                        case AiManager.AiBehaviourType.Mixed: {
+
+                                break;
+                            }
+
+                        default: {
+
+                                break;
+                            }
+                    }
                     break;
                 }
 
@@ -67,6 +138,37 @@ public class Char_Crystal : Character {
                     _MovementSpeed = AiManager._pInstance._CrystalMajorMovementSpeed;
                     _PickupType = AiManager._pInstance._CursedTagType;
                     _MeshRenderer.material = AiManager._pInstance._CursedTypeMaterial;
+
+                    switch (AiManager._pInstance._CrystalCursedBehaviourType) {
+
+                        case AiManager.AiBehaviourType.Wander: {
+
+                                _BehaviourWander.enabled = true;
+                                break;
+                            }
+
+                        case AiManager.AiBehaviourType.Flee: {
+
+                                _BehaviourFlee.enabled = true;
+                            }
+                            break;
+
+                        case AiManager.AiBehaviourType.Seek: {
+
+                                ///_BehaviourSeek.enabled = true;
+                                break;
+                            }
+
+                        case AiManager.AiBehaviourType.Mixed: {
+
+                                break;
+                            }
+
+                        default: {
+
+                                break;
+                            }
+                    }
                     break;
                 }
 

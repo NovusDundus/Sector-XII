@@ -15,12 +15,14 @@ public class AiManager : MonoBehaviour {
     /// Public (Designers)
     [Header("---------------------------------------------------------------------------")]
     [Header(" *** MINOR VARIANT ***")]
+    [Header("- Behaviour")]
+    public AiBehaviourType _CrystalMinorBehaviourType = AiBehaviourType.Wander;
     [Header("- Movement")]
     [Tooltip("Movement speed of the minor crystal variant.")]
     public float _CrystalMinorMovementSpeed = 5f;                   // Movement speed of the minor crystal variant.
     [Header("- Spawning")]
     [Tooltip("")]
-    public int _MinorLives = 10;
+    public int _MinorLives = 10;                                    // The amount of respawns allowed for the minor crystal variant.
     [Tooltip("Array of spawn points for the minor crystal variant.")]
     public List<Transform> _MinorSpawnPositions;                    // Array of spawn points for the minor crystal variant.
     [Tooltip("Starting health of the minor crystal variant when spawning.")]
@@ -31,12 +33,14 @@ public class AiManager : MonoBehaviour {
 
     [Header("---------------------------------------------------------------------------")]
     [Header(" *** MAJOR VARIANT ***")]
+    [Header("- Behaviour")]
+    public AiBehaviourType _CrystalMajorBehaviourType = AiBehaviourType.Flee;
     [Header("- Movement")]
     [Tooltip("Movement speed of the major crystal variant.")]
     public float _CrystalMajorMovementSpeed = 5f;                   // Movement speed of the major crystal variant.
     [Header("- Spawning")]
     [Tooltip("")]
-    public int _MajorLives = 5;
+    public int _MajorLives = 5;                                     // The amount of respawns allowed for the major crystal variant.
     [Tooltip("Array of spawn points for the major crystal variant.")]
     public List<Transform> _MajorSpawnPositions;                    // Array of spawn points for the major crystal variant.
     [Tooltip("Starting health of the major crystal variant when spawning.")]
@@ -47,12 +51,14 @@ public class AiManager : MonoBehaviour {
 
     [Header("---------------------------------------------------------------------------")]
     [Header(" *** CURSED VARIANT***")]
+    [Header("- Behaviour")]
+    public AiBehaviourType _CrystalCursedBehaviourType = AiBehaviourType.Seek;
     [Header("- Movement")]
     [Tooltip("Movement speed of the cursed crystal variant.")]
     public float _CrystalCursedMovementSpeed = 5f;                  // Movement speed of the cursed crystal variant.
     [Header("- Spawning")]
     [Tooltip("")]
-    public int _CursedLives = 2;
+    public int _CrystalCursedLives = 2;                                    // The amount of respawns allowed for the cursed crystal variant.
     [Tooltip("Array of spawn points for the cursed crystal variant.")]
     public List<Transform> _CursedSpawnPositions;                   // Array of spawn points for the cursed crystal variant.
     [Tooltip("Starting health of the cursed crystal variant when spawning.")]
@@ -64,10 +70,18 @@ public class AiManager : MonoBehaviour {
     /// Public (internal)
     [HideInInspector]
     public static AiManager _pInstance;                             // This is a singleton script, Initialized in Startup().
+    public enum AiBehaviourType {
+
+        Wander,
+        Flee,
+        Seek,
+        Mixed
+    }
     
     /// Private
     private List<GameObject> _POOL_ALIVE_MINIONS;                   // Object pool of all ALIVE minions in the scene
     private List<GameObject> _POOL_DEAD_MINIONS;                    // Object pool of all DEAD minions in the scene
+
     
     //--------------------------------------------------------------
     // CONSTRUCTORS
@@ -150,4 +164,5 @@ public class AiManager : MonoBehaviour {
         // Returns the contiguous array of all dead/despawned minions
         return _POOL_DEAD_MINIONS;
     }
+
 }
