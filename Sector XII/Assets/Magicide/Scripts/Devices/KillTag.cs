@@ -251,7 +251,7 @@ public class KillTag : MonoBehaviour {
     int minionCount = Geomancer.GetSpecialWeapon().GetComponent<Wep_Shield>().GetMinionCount();
 
     // Check against max size
-    int MaxSize = Geomancer.GetSpecialWeapon().GetComponent<Wep_Shield>().GetMaxMinions();
+    float MaxSize = Geomancer.GetSpecialWeapon().GetComponent<Wep_Shield>().GetMaxMinions() * 0.65f;
         if (minionCount < MaxSize) {
 
             // Add to meat shield

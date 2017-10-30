@@ -38,7 +38,7 @@ public class Wep_Shield : Weapon {
         _OrbitSpeed = WeaponManager._pInstance._ShieldOrbitSpeed;
 
         // Set minion cap & spacing
-        _MaxMinions = WeaponManager._pInstance._MaxSize;
+        _MaxMinions = WeaponManager._pInstance._MaxSize * 2;
         _MinionSpacing = WeaponManager._pInstance._MinionSpacing;
 
         // Set rotation properties
@@ -74,7 +74,6 @@ public class Wep_Shield : Weapon {
 
                     // Set player score
                     _Owner._Player.SetScore(_MinionCount);
-                    _Owner._Player.SetPlacement(_Owner._Player.GetPlacement() + 1);
                 }
             }
 
