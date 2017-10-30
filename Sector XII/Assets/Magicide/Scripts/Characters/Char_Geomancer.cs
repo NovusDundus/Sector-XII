@@ -31,6 +31,7 @@ public class Char_Geomancer : Character {
     private float _SpeedBoostTimer = 0f;
     private float _MovementSpeedModifier = 1f;
     private bool _TabbingWeapon = false;
+    private XboxCtrlrInput.XboxButton _TabInputButton = XboxCtrlrInput.XboxButton.RightBumper;
 
     /// Delegates / Events
     private delegate void CharacterAbility();
@@ -63,6 +64,9 @@ public class Char_Geomancer : Character {
         _KnockbackForceNormal = PlayerManager._pInstance._KnockbackForceNormal;
         _KnockbackForceDash = PlayerManager._pInstance.KnockbackForceDash;
         _KnockbackCooldown = PlayerManager._pInstance._KnockbackCooldown;
+
+        // Set tabbing weapon input
+        _TabInputButton = PlayerManager._pInstance._WeaponSwapButton;
 
         // Set's either the orb or the flamethrower as the primary depending on whats specified in the player manager
         switch (PlayerManager._pInstance._PrimaryWeapon) {
@@ -185,7 +189,7 @@ public class Char_Geomancer : Character {
                 }
 
                 // ************************
-                //    ABILIY CONTROLLER   
+                //    ABILITY CONTROLLER   
                 // ************************
 
                 // KNOCKBACK ABILITY 
@@ -252,9 +256,9 @@ public class Char_Geomancer : Character {
                 if (PlayerManager._pInstance._SecondaryWeaponEnabled == true) {
 
                     // Check for controller input
-                    PerformActionFromInput(TabWeapons, PlayerManager._pInstance._WeaponSwapButton);
+                    PerformActionFromInput(TabWeapons, _TabInputButton);
 
-                    if (XboxCtrlrInput.XCI.GetButtonUp(PlayerManager._pInstance._WeaponSwapButton, _Player._Controller)) {
+                    if (XboxCtrlrInput.XCI.GetButtonUp(_TabInputButton, _Player._Controller)) {
 
                         // Reset weapon tab
                         _TabbingWeapon = false;

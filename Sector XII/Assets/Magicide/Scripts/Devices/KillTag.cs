@@ -151,21 +151,49 @@ public class KillTag : MonoBehaviour {
                     switch (_Crystal.GetVariantType()) {
 
                         case Char_Crystal.CrystalType.Minor: {
+                                
+                                if (AiManager._pInstance._CrystalMinorSpawningBehaviour == AiManager.AiSpawningBehaviour.RandomSpawning) {
 
-                                // Respawn ai (if possible)
-                                AiManager._pInstance.OnRespawnMinor();
+                                    // Spawn at random position within the arena bounds
+                                    AiManager._pInstance.OnRespawnMinorRandom();
+                                }
+
+                                if (AiManager._pInstance._CrystalMinorSpawningBehaviour == AiManager.AiSpawningBehaviour.TeleportingGates) {
+
+                                    // Spawn behind a teleporter gate and move into the gameplay area
+                                    AiManager._pInstance.OnRespawnMinorTeleporter();
+                                }
+
                                 break;
                             }
                         case Char_Crystal.CrystalType.Major: {
 
-                                // Respawn ai (if possible)
-                                AiManager._pInstance.OnRespawnMajor();
+                                if (AiManager._pInstance._CrystalMajorSpawningBehaviour == AiManager.AiSpawningBehaviour.RandomSpawning) {
+
+                                    // Spawn at random position within the arena bounds
+                                    AiManager._pInstance.OnRespawnMajorRandom();
+                                }
+
+                                if (AiManager._pInstance._CrystalMajorSpawningBehaviour == AiManager.AiSpawningBehaviour.TeleportingGates) {
+
+                                    // Spawn behind a teleporter gate and move into the gameplay area
+                                    AiManager._pInstance.OnRespawnMajorTeleporter();
+                                }
                                 break;
                             }
                         case Char_Crystal.CrystalType.Cursed: {
 
-                                // Respawn ai (if possible)
-                                AiManager._pInstance.OnRespawnCursed();
+                                if (AiManager._pInstance._CrystalCursedSpawningBehaviour == AiManager.AiSpawningBehaviour.RandomSpawning) {
+
+                                    // Spawn at random position within the arena bounds
+                                    AiManager._pInstance.OnRespawnCursedRandom();
+                                }
+
+                                if (AiManager._pInstance._CrystalCursedSpawningBehaviour == AiManager.AiSpawningBehaviour.TeleportingGates) {
+
+                                    // Spawn behind a teleporter gate and move into the gameplay area
+                                    AiManager._pInstance.OnRespawnCursedTeleporter();
+                                }
                                 break;
                             }
                         default: {

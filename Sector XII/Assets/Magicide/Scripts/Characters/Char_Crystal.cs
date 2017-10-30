@@ -28,9 +28,9 @@ public class Char_Crystal : Character {
     private KillTag.PickupType _PickupType = KillTag.PickupType.AddToShield;
     private Behaviour_Wander _BehaviourWander;
     private Behaviour_Flee _BehaviourFlee;
-    ///private Behaviour_Seek _BehaviourSeek;
+    private Behaviour_Seek _BehaviourSeek;
     private LinearGoToTarget _LinearSeek;
-    private AiManager.AiSpawningBehaviour _SpawningBehaviour;
+    private AiManager.AiSpawningTime _SpawningBehaviour;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -43,7 +43,7 @@ public class Char_Crystal : Character {
         // Get behaviour references
         _BehaviourWander = GetComponent<Behaviour_Wander>();
         _BehaviourFlee = GetComponent<Behaviour_Flee>();
-        ///_BehaviourSeek = GetComponent<Behaviour_Seek();
+        _BehaviourSeek = GetComponent<Behaviour_Seek>();
         _LinearSeek = GetComponent<LinearGoToTarget>();
 
         switch (_Type) {
@@ -56,7 +56,7 @@ public class Char_Crystal : Character {
                     _MovementSpeed = AiManager._pInstance._CrystalMinorMovementSpeed;
                     _PickupType = AiManager._pInstance._CrystalMinorTagType;
                     _MeshRenderer.material = AiManager._pInstance._CrystalMinorTypeMaterial;
-                    _SpawningBehaviour = AiManager._pInstance._CrystalMinorSpawningBehaviour;
+                    _SpawningBehaviour = AiManager._pInstance._CrystalMinorSpawningTime;
 
                     switch (AiManager._pInstance._CrystalMinorBehaviourType) {
 
@@ -100,7 +100,7 @@ public class Char_Crystal : Character {
                     _MovementSpeed = AiManager._pInstance._CrystalMajorMovementSpeed;
                     _PickupType = AiManager._pInstance._CrystalMajorTagType;
                     _MeshRenderer.material = AiManager._pInstance._CrystalMajorTypeMaterial;
-                    _SpawningBehaviour = AiManager._pInstance._CrystalMajorSpawningBehaviour;
+                    _SpawningBehaviour = AiManager._pInstance._CrystalMajorSpawningTime;
 
                     switch (AiManager._pInstance._CrystalMajorBehaviourType) {
 
@@ -143,7 +143,7 @@ public class Char_Crystal : Character {
                     _MovementSpeed = AiManager._pInstance._CrystalMajorMovementSpeed;
                     _PickupType = AiManager._pInstance._CrystalCursedTagType;
                     _MeshRenderer.material = AiManager._pInstance._CrystalCursedTypeMaterial;
-                    _SpawningBehaviour = AiManager._pInstance._CrystalCursedSpawningBehaviour;
+                    _SpawningBehaviour = AiManager._pInstance._CrystalCursedSpawningTime;
 
                     switch (AiManager._pInstance._CrystalCursedBehaviourType) {
 
@@ -230,7 +230,7 @@ public class Char_Crystal : Character {
         killTag.GetComponent<KillTag>().Init(this, _PickupType);
     }
 
-    public AiManager.AiSpawningBehaviour GetSpawningBehaviour() {
+    public AiManager.AiSpawningTime GetSpawningBehaviour() {
 
         return _SpawningBehaviour;
     }
