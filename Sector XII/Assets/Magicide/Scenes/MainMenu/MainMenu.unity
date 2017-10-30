@@ -605,7 +605,8 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114293438996895454, guid: 22968cbdf4a2fe94fabca441e7a5087f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 22968cbdf4a2fe94fabca441e7a5087f, type: 2}
   m_IsPrefabParent: 0
 --- !u!224 &90724487 stripped
@@ -1471,6 +1472,30 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 544579151}
+--- !u!1 &549772139 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1364819437232326, guid: 22968cbdf4a2fe94fabca441e7a5087f,
+    type: 2}
+  m_PrefabInternal: {fileID: 90724486}
+--- !u!114 &549772140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 549772139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25bbf46917742394ab4eb85f2dcf8c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _UIPanel: {fileID: 549772139}
+  _Image: {fileID: 549772141}
+--- !u!114 &549772141 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114178694233238642, guid: 22968cbdf4a2fe94fabca441e7a5087f,
+    type: 2}
+  m_PrefabInternal: {fileID: 90724486}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &559728469
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,8 +5,8 @@ using UnityEngine;
 public class KillTag : MonoBehaviour {
 
     ///--------------------------------------///
-    /// Created by: FIRSTNAME LASTNAME
-    /// Created on: DAY.MONTH.YEAR
+    /// Created by: Daniel Marton
+    /// Created on: 30.10.2017
     ///--------------------------------------///
 
     //----------------------------------------------------------------------------------
@@ -96,10 +96,6 @@ public class KillTag : MonoBehaviour {
 
     public void Update() {
 
-    }
-
-    public void FixedUpdate() {
-
         CollisionChecks();
 
         // Continuously spin the object
@@ -135,7 +131,7 @@ public class KillTag : MonoBehaviour {
 
                 _MovingUp = true;
             }
-        }   
+        }
     }
 
     public void CollisionChecks() {
@@ -152,8 +148,30 @@ public class KillTag : MonoBehaviour {
                     // Pickup minion check
                     OnPickup(necromancer.GetComponent<Char_Geomancer>());
 
-                    // Respawn ai (if possible)
-                    AiManager._pInstance.OnRespawn();
+                    switch (_Crystal.GetVariantType()) {
+
+                        case Char_Crystal.CrystalType.Minor: {
+
+                                // Respawn ai (if possible)
+                                AiManager._pInstance.OnRespawnMinor();
+                                break;
+                            }
+                        case Char_Crystal.CrystalType.Major: {
+
+                                // Respawn ai (if possible)
+                                AiManager._pInstance.OnRespawnMajor();
+                                break;
+                            }
+                        case Char_Crystal.CrystalType.Cursed: {
+
+                                // Respawn ai (if possible)
+                                AiManager._pInstance.OnRespawnCursed();
+                                break;
+                            }
+                        default: {
+                                break;
+                            }
+                    }
                     break;
                 }
             }

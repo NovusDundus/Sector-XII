@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114746023991759160}
   m_Layer: 8
   m_Name: Wep_Shield
-  m_TagString: P1_SecondaryWeapon
+  m_TagString: P1_ShieldWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

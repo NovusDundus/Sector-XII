@@ -118,6 +118,7 @@ public class MatchManager : MonoBehaviour {
 
                             // Initiate phase2
                             _GameState = GameState.Phase2;
+                            AiManager._pInstance.OnPhase2Start();
                         }
                     }
                     break;

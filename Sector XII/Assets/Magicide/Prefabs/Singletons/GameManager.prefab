@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4952080041549234}
-  - component: {fileID: 114439388492536600}
+  - component: {fileID: 114184276454117132}
   - component: {fileID: 114403142367840752}
   - component: {fileID: 114610210431620844}
   - component: {fileID: 114025385545714628}
@@ -93,44 +93,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cfa343cdca9fa47ac26407347e7876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _CrystalMinorBehaviourType: 0
   _CrystalMinorMovementSpeed: 4
-  _MinorLives: 10
-  _MinorSpawnPositions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _CrystalMinorLives: 10
+  _CrystalMinorSpawnPositions: []
+  _CrystalMinorSpawningBehaviour: 0
+  _CrystalMinorSpawnTime: 0
   _CrystalMinorStartingHealth: 100
-  _MinorTagType: 0
-  _MinorTypeMaterial: {fileID: 2100000, guid: 909d1492941fcc04e981ae386a514005, type: 2}
+  _CrystalMinorTagType: 0
+  _CrystalMinorTypeMaterial: {fileID: 2100000, guid: 409aa8057c1e26943b47215c7e507c51,
+    type: 2}
+  _CrystalMajorBehaviourType: 1
   _CrystalMajorMovementSpeed: 6
-  _MajorLives: 5
-  _MajorSpawnPositions: []
+  _CrystalMajorLives: 5
+  _CrystalMajorSpawnPositions: []
+  _CrystalMajorSpawningBehaviour: 1
+  _CrystalMajorSpawnTime: 0
   _CrystalMajorStartingHealth: 150
-  _MajorTagType: 2
-  _MajorTypeMaterial: {fileID: 2100000, guid: 9a99602ad7c91b54f92b48b76889219b, type: 2}
+  _CrystalMajorTagType: 2
+  _CrystalMajorTypeMaterial: {fileID: 2100000, guid: 9a99602ad7c91b54f92b48b76889219b,
+    type: 2}
+  _CrystalCursedBehaviourType: 0
   _CrystalCursedMovementSpeed: 5
-  _CursedLives: 2
-  _CursedSpawnPositions: []
+  _CrystalCursedLives: 4
+  _CrystalCursedSpawnPositions: []
+  _CrystalCursedSpawningBehaviour: 2
+  _CrystalCursedSpawnTime: 60
   _CrystalCursedStartingHealth: 250
-  _CursedTagType: 1
-  _CursedTypeMaterial: {fileID: 2100000, guid: 092728b289935f2409b48959798ec969, type: 2}
+  _CrystalCursedTagType: 1
+  _CrystalCursedTypeMaterial: {fileID: 2100000, guid: 092728b289935f2409b48959798ec969,
+    type: 2}
+--- !u!114 &114184276454117132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1254212357002398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c1b32e1cd407344696d5c75de60a303, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _MatchTimerText: {fileID: 0}
+  _TimeLowColour: {r: 1, g: 0, b: 0, a: 1}
+  _TimeMediumColour: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _TimeOkayColour: {r: 1, g: 1, b: 1, a: 1}
+  _UIPause: {fileID: 0}
+  _UIScoreboard: {fileID: 0}
+  _UIHUD: {fileID: 0}
+  PlayerOne: {fileID: 0}
+  _PlayerOneColour: {r: 0, g: 0, b: 1, a: 1}
+  PlayerTwoCharacter: {fileID: 0}
+  _PlayerTwoColour: {r: 0, g: 1, b: 0, a: 1}
+  PlayerThree: {fileID: 0}
+  _PlayerThreeColour: {r: 1, g: 0, b: 1, a: 1}
+  PlayerFour: {fileID: 0}
+  _PlayerFourColour: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _DisplayHUD: 0
 --- !u!114 &114188143390799446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -142,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bcc39189bd07774d97dba80046d91a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _AddShieldTypeMaterial: {fileID: 2100000, guid: 909d1492941fcc04e981ae386a514005,
+  _AddShieldTypeMaterial: {fileID: 2100000, guid: 409aa8057c1e26943b47215c7e507c51,
     type: 2}
   _AddShieldRotationSpeed: 2
   _AddShieldBobHeight: 1
@@ -186,36 +205,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d54dd93656b2f2940a229b11df00f869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Phase1Length: 3
+  _Phase1Length: 30
   _Phase2Timer: 0
   _Phase2Length: 120
---- !u!114 &114439388492536600
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1254212357002398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47978ad14e7ae8241bad04686667e7fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _MatchTimerText: {fileID: 0}
-  _TimeLowColour: {r: 1, g: 0, b: 0, a: 1}
-  _TimeMediumColour: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  _TimeOkayColour: {r: 1, g: 1, b: 1, a: 1}
-  _UIPause: {fileID: 0}
-  _UIScoreboard: {fileID: 0}
-  _UIHUD: {fileID: 0}
-  PlayerOne: {fileID: 0}
-  _PlayerOneColour: {r: 0, g: 0, b: 1, a: 1}
-  PlayerTwoCharacter: {fileID: 0}
-  _PlayerTwoColour: {r: 0, g: 1, b: 0, a: 1}
-  PlayerThree: {fileID: 0}
-  _PlayerThreeColour: {r: 1, g: 0, b: 1, a: 1}
-  PlayerFour: {fileID: 0}
-  _PlayerFourColour: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  _DisplayHUD: 1
 --- !u!114 &114481876437901886
 MonoBehaviour:
   m_ObjectHideFlags: 1

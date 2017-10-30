@@ -29,6 +29,8 @@ public class Char_Crystal : Character {
     private Behaviour_Wander _BehaviourWander;
     private Behaviour_Flee _BehaviourFlee;
     ///private Behaviour_Seek _BehaviourSeek;
+    private LinearGoToTarget _LinearSeek;
+    private AiManager.AiSpawningBehaviour _SpawningBehaviour;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -42,6 +44,7 @@ public class Char_Crystal : Character {
         _BehaviourWander = GetComponent<Behaviour_Wander>();
         _BehaviourFlee = GetComponent<Behaviour_Flee>();
         ///_BehaviourSeek = GetComponent<Behaviour_Seek();
+        _LinearSeek = GetComponent<LinearGoToTarget>();
 
         switch (_Type) {
 
@@ -51,8 +54,9 @@ public class Char_Crystal : Character {
                     // Initialize
                     _StartingHealth = AiManager._pInstance._CrystalMinorStartingHealth;
                     _MovementSpeed = AiManager._pInstance._CrystalMinorMovementSpeed;
-                    _PickupType = AiManager._pInstance._MinorTagType;
-                    _MeshRenderer.material = AiManager._pInstance._MinorTypeMaterial;
+                    _PickupType = AiManager._pInstance._CrystalMinorTagType;
+                    _MeshRenderer.material = AiManager._pInstance._CrystalMinorTypeMaterial;
+                    _SpawningBehaviour = AiManager._pInstance._CrystalMinorSpawningBehaviour;
 
                     switch (AiManager._pInstance._CrystalMinorBehaviourType) {
 
@@ -94,8 +98,9 @@ public class Char_Crystal : Character {
                     // Initialize
                     _StartingHealth = AiManager._pInstance._CrystalMajorStartingHealth;
                     _MovementSpeed = AiManager._pInstance._CrystalMajorMovementSpeed;
-                    _PickupType = AiManager._pInstance._MajorTagType;
-                    _MeshRenderer.material = AiManager._pInstance._MajorTypeMaterial;
+                    _PickupType = AiManager._pInstance._CrystalMajorTagType;
+                    _MeshRenderer.material = AiManager._pInstance._CrystalMajorTypeMaterial;
+                    _SpawningBehaviour = AiManager._pInstance._CrystalMajorSpawningBehaviour;
 
                     switch (AiManager._pInstance._CrystalMajorBehaviourType) {
 
@@ -136,8 +141,9 @@ public class Char_Crystal : Character {
                     // Initialize
                     _StartingHealth = AiManager._pInstance._CrystalMajorStartingHealth;
                     _MovementSpeed = AiManager._pInstance._CrystalMajorMovementSpeed;
-                    _PickupType = AiManager._pInstance._CursedTagType;
-                    _MeshRenderer.material = AiManager._pInstance._CursedTypeMaterial;
+                    _PickupType = AiManager._pInstance._CrystalCursedTagType;
+                    _MeshRenderer.material = AiManager._pInstance._CrystalCursedTypeMaterial;
+                    _SpawningBehaviour = AiManager._pInstance._CrystalCursedSpawningBehaviour;
 
                     switch (AiManager._pInstance._CrystalCursedBehaviourType) {
 
@@ -146,24 +152,20 @@ public class Char_Crystal : Character {
                                 _BehaviourWander.enabled = true;
                                 break;
                             }
-
                         case AiManager.AiBehaviourType.Flee: {
 
                                 _BehaviourFlee.enabled = true;
+                                break;
                             }
-                            break;
-
                         case AiManager.AiBehaviourType.Seek: {
 
                                 ///_BehaviourSeek.enabled = true;
                                 break;
                             }
-
                         case AiManager.AiBehaviourType.Mixed: {
 
                                 break;
                             }
-
                         default: {
 
                                 break;
@@ -171,7 +173,7 @@ public class Char_Crystal : Character {
                     }
                     break;
                 }
-
+                
             default: {
 
                     break;
@@ -227,5 +229,15 @@ public class Char_Crystal : Character {
         GameObject killTag = Instantiate(GameObject.FindGameObjectWithTag("KillTag"), _DeathPosition, Quaternion.identity);
         killTag.GetComponent<KillTag>().Init(this, _PickupType);
     }
+
+    public AiManager.AiSpawningBehaviour GetSpawningBehaviour() {
+
+        return _SpawningBehaviour;
+    }
     
+    public CrystalType GetVariantType() {
+
+        return _Type;
+    }
+
 }

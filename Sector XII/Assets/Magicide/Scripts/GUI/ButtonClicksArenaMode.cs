@@ -16,7 +16,6 @@ public class ButtonClicksArenaMode : MonoBehaviour {
     [Header("LOADING SCREENS")]
     public GameObject _LoadingScreen;
     public GameObject _RestartScreen;
-    public GameObject _MainMenuScreen;
 
     //--------------------------------------------------------------
     // *** BUTTON CLICKS *** 
@@ -41,7 +40,6 @@ public class ButtonClicksArenaMode : MonoBehaviour {
 
         // Show loading screen panel
         _LoadingScreen.SetActive(true);
-        _MainMenuScreen.SetActive(true);
     }
 
     public void OnClick_Resume() {
