@@ -18,16 +18,6 @@ public class MainMenu : MonoBehaviour {
     /// Public (internal)
     [HideInInspector]
     public static MainMenu _pInstance;                              // This is a singleton script, Initialized in Awake().
-    public enum MenuState {
-
-        SplashScreen,
-        MainMenu,
-        Credits,
-        ExitGame,
-        LoadingScreen
-    }                                       // Enumerator list of Menu States
-
-    private MenuState _State = MenuState.SplashScreen;              // Current state/page of the main menu.
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -46,7 +36,7 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void Start() {
-        
+
         // Fade in from black
         Fade._pInstance.StartFade(Fade.FadeStates.fadeOut, Color.black, 0.02f);
     }
@@ -54,40 +44,8 @@ public class MainMenu : MonoBehaviour {
     //--------------------------------------------------------------
     // *** FRAME ***
 
-    public void FixedUpdate() {
+    public void Update() {
 
-        switch (_State) {
-
-            case MenuState.SplashScreen: {                    
-
-                    break;
-                }
-
-            case MenuState.MainMenu: {
-
-                    break;
-                }
-
-            case MenuState.Credits: {
-
-                    break;
-                }
-
-            case MenuState.ExitGame: {
-
-                    break;
-                }
-
-            case MenuState.LoadingScreen: {
-
-                    break;
-                }
-
-            default: {
-
-                    break;
-                }
-        }
     }
 
 }

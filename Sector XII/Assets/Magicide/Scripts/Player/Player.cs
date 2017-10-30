@@ -293,4 +293,22 @@ public class Player : MonoBehaviour {
         }
     }
 
+    public bool GetLeftAxisUpInput {
+
+        // Uses left thumbstick axis UP as a button input
+        get
+        {
+            ///return Input.GetAxis(string.Concat("FireX_P" + _pPlayerID)) != 0f || Input.GetAxis(string.Concat("FireY_P" + _pPlayerID)) != 0f;
+            return XCI.GetAxisRaw(XboxAxis.LeftStickY, _Controller) > 0f;
+        }
+    }
+
+    public bool GetLeftAxisDownInput {
+
+        // Uses left thumbstick axis DOWN as a button input
+        get
+        {
+            return XCI.GetAxisRaw(XboxAxis.LeftStickY, _Controller) < 0f;
+        }
+    }
 }
