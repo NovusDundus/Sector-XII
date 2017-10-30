@@ -254,7 +254,7 @@ public class Char_Geomancer : Character {
                     // Check for controller input
                     PerformActionFromInput(TabWeapons, PlayerManager._pInstance._WeaponSwapButton);
 
-                    if (XboxCtrlrInput.XCI.GetButtonUp(PlayerManager._pInstance._WeaponSwapButton)) {
+                    if (XboxCtrlrInput.XCI.GetButtonUp(PlayerManager._pInstance._WeaponSwapButton, _Player._Controller)) {
 
                         // Reset weapon tab
                         _TabbingWeapon = false;
