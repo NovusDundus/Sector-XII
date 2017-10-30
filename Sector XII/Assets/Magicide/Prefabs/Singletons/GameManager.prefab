@@ -96,7 +96,27 @@ MonoBehaviour:
   _CrystalMinorBehaviourType: 0
   _CrystalMinorMovementSpeed: 4
   _CrystalMinorLives: 10
-  _CrystalMinorSpawnPositions: []
+  _CrystalMinorSpawnPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _CrystalMinorSpawningBehaviour: 0
   _CrystalMinorSpawnTime: 0
   _CrystalMinorStartingHealth: 100
@@ -106,7 +126,11 @@ MonoBehaviour:
   _CrystalMajorBehaviourType: 1
   _CrystalMajorMovementSpeed: 6
   _CrystalMajorLives: 5
-  _CrystalMajorSpawnPositions: []
+  _CrystalMajorSpawnPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _CrystalMajorSpawningBehaviour: 1
   _CrystalMajorSpawnTime: 0
   _CrystalMajorStartingHealth: 150
@@ -116,7 +140,11 @@ MonoBehaviour:
   _CrystalCursedBehaviourType: 0
   _CrystalCursedMovementSpeed: 5
   _CrystalCursedLives: 4
-  _CrystalCursedSpawnPositions: []
+  _CrystalCursedSpawnPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _CrystalCursedSpawningBehaviour: 2
   _CrystalCursedSpawnTime: 60
   _CrystalCursedStartingHealth: 250
@@ -171,7 +199,7 @@ MonoBehaviour:
   _SpeedBoostRotationSpeed: 1
   _SpeedBoostBobHeight: 1
   _SpeedBoostBobSpeed: 0.5
-  _SpeedBoostModifier: 2
+  _SpeedBoostModifier: 1.5
   _SpeedBoostTime: 5
   _HealthpackTypeMaterial: {fileID: 2100000, guid: 092728b289935f2409b48959798ec969,
     type: 2}
@@ -233,7 +261,7 @@ MonoBehaviour:
   _GeomancerStartingHealth: 100
   _GeomancerMovementSpeed: 10
   _DashEnabled: 1
-  _DashButton: 1
+  _DashButton: 8
   _DashDistance: 5
   DashCooldown: 5
   _KnockbackEnabled: 0
@@ -243,7 +271,7 @@ MonoBehaviour:
   _KnockbackCooldown: 5
   _PrimaryWeapon: 0
   _SecondaryWeaponEnabled: 1
-  _WeaponSwapButton: 2
+  _WeaponSwapButton: 9
 --- !u!114 &114977905998677262
 MonoBehaviour:
   m_ObjectHideFlags: 1
