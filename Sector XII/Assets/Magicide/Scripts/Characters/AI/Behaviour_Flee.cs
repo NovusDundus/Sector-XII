@@ -37,7 +37,7 @@ public class Behaviour_Flee : MonoBehaviour
     // FixedUpdate is called once per frame but with regular update intervals
     void FixedUpdate()
     {
-        if (m_Target != null) {
+        if (m_Target != null && m_agent != null) {
 
             // Determine distance between ai and target
             //Will get the transform.position of both the target(player) and the gameobject that the navmeshagent is attached too

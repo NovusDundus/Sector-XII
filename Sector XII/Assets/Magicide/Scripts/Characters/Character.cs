@@ -60,7 +60,7 @@ public class Character : MonoBehaviour {
 
             if (_ImpactFlashTimer > 0f) {
 
-                _ImpactFlashTimer -= Time.deltaTime * 100;
+                _ImpactFlashTimer -= Time.deltaTime * 1000;
             }
 
             else {

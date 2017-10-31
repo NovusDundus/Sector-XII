@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HUD_Flamethrower : MonoBehaviour {
+public class HUD_Dash : MonoBehaviour {
 
     ///--------------------------------------///
     /// Created by: Daniel Marton
@@ -14,18 +14,20 @@ public class HUD_Flamethrower : MonoBehaviour {
     // *** VARIABLES ***
 
     /// Public (designers)
-    public Wep_Flamethrower _FlamethrowerAssociated;
+    public Char_Geomancer _CharacterAssociated;
 
     /// Private
-    private Image _FlamethrowerBar;
+    private Image _DashBar;
+    private float _DashMaxCooldown;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
 
-    void Start () {
+    void Start() {
 
         // Get reference to the flamethrower meter components of the ui panel
-        _FlamethrowerBar = GetComponentInChildren<Image>();
+        _DashBar = GetComponentInChildren<Image>();
+        _DashMaxCooldown = PlayerManager._pInstance.DashCooldown;
     }
 
     //--------------------------------------------------------------
@@ -33,11 +35,11 @@ public class HUD_Flamethrower : MonoBehaviour {
 
     void Update() {
 
-        if (_FlamethrowerAssociated != null && _FlamethrowerBar != null) {
+        if (_CharacterAssociated != null && _DashBar != null) {
 
             // Set the flamethrower bar fill to match the
-            float percent = ((float)_FlamethrowerAssociated.GetCurrentHeat() / 1f);
-            _FlamethrowerBar.fillAmount = percent;
+            float percent = ((float)_CharacterAssociated.GetDashCooldown() / _DashMaxCooldown);
+            _DashBar.fillAmount = percent;
 
         }
     }

@@ -427,6 +427,11 @@ public class Char_Geomancer : Character {
         }
     }
 
+    public float GetDashCooldown() {
+
+        return _CurrentDashCooldown;
+    }
+
     private void Knockback() {
 
         // Create sphere collider to detect for the knockback

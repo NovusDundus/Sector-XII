@@ -92,7 +92,7 @@ public class Widget_Scoreboard : MonoBehaviour {
                     _ResetDownInput = true;
                 }
 
-                else { /// _ButtonIndex >= 3
+                else { /// _ButtonIndex >= 1
 
                     // Highlight the lowest button
                     _ButtonIndex = 0;
