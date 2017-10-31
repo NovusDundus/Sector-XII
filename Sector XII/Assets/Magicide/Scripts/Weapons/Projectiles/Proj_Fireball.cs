@@ -95,9 +95,6 @@ public class Proj_Fireball : Projectile {
                 // Destroy
                 FreeProjectile();
             }
-
-            // Set damage multiplier based of weapon
-            _DamageMultiplier = _Owner.GetComponent<Wep_Orb>().GetDamageMultiplier();
         }
     }
     

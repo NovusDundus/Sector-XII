@@ -148,7 +148,7 @@ public class AiManager : MonoBehaviour {
         foreach (var ai in startupAi) {
 
             // If the AI is meant to be active at the start of the match
-            if (ai.GetComponent<Char_Crystal>().GetSpawningBehaviour() == AiSpawningTime.MatchStart) {
+            if (ai.GetComponent<Char_Crystal>().GetSpawningTime() == AiSpawningTime.MatchStart) {
 
                 // Add to alive pool
                 _POOL_ALIVE_MINIONS.Add(ai.gameObject);
@@ -163,6 +163,13 @@ public class AiManager : MonoBehaviour {
                 // Remove the minion from the arena
                 ai.GetComponent<MeshRenderer>().enabled = false;
                 ai.transform.position = new Vector3(1000, 1, 1000);
+
+                // Disable ALL behaviours
+                Char_Crystal crystal = ai.GetComponent<Char_Crystal>();
+                crystal.SetFleeEnable(false);
+                crystal.SetWanderEnable(false);
+                crystal.SetSeekEnable(false);
+                crystal.SetLinearSeekEnable(false);
             }
 
             // Allocate minor types to their pool

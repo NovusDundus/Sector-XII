@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33705796263840458}
   - component: {fileID: 135924334493482148}
   - component: {fileID: 23810026903961670}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MuzzleLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,9 +44,9 @@ GameObject:
   - component: {fileID: 54530060574342978}
   - component: {fileID: 114149306494974570}
   - component: {fileID: 135059492863357212}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Geomancer_Prefab
-  m_TagString: P2_Character
+  m_TagString: P1_Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 33931154371693000}
   - component: {fileID: 135073835755017124}
   - component: {fileID: 23691156677563058}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MuzzleRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 33760465557139562}
   - component: {fileID: 135154231157378874}
   - component: {fileID: 23614770324055320}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MuzzleLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4548197713590330}
   - component: {fileID: 114764502346544744}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wep_Flamethrower
   m_TagString: P2_FlamethrowerWeapon
   m_Icon: {fileID: 0}
@@ -112,9 +112,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4846503054008736}
   - component: {fileID: 114978762280895646}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wep_Orb
-  m_TagString: P2_OrbWeapon
+  m_TagString: P1_OrbWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 33796508582200966}
   - component: {fileID: 135763837021345344}
   - component: {fileID: 23572875207671308}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MuzzleRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4717579908700672}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MuzzleCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4369277408107382}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MuzzleCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +213,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1284404017168440}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.079998784, y: 0.5, z: 28.592}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4556996471099782}
@@ -284,7 +284,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1066668196445472}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -2, y: 1, z: 36.62}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children:
   - {fileID: 4846503054008736}
@@ -526,11 +526,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c58db18f99aefb74cb632ec983a7be70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pPlayerID: 2
+  _pPlayerID: 1
   Layers:
     serializedVersion: 2
-    m_Bits: 512
-  _Controller: 2
+    m_Bits: 256
+  _Controller: 1
 --- !u!114 &114764502346544744
 MonoBehaviour:
   m_ObjectHideFlags: 1

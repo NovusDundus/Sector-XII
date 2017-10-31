@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Wep_Orb : Weapon {
@@ -29,7 +28,9 @@ public class Wep_Orb : Weapon {
     List<GameObject> _POOL_FIREBALL_INACTIVE;                       // Object pool of all inactive projectiles.
     List<GameObject> _POOL_FIREBALL_ACTIVE;                         // Object pool of all active projectiles in the world.
     private bool _FiredFromLeftMuzzle = false;                      // Returns TRUE if the last projectile was fired from the LEFT muzzle launch point.
-    private float _DamageMultiplier = 1f;
+    private float _FireRateGain;
+    private float _FireRateLoss;
+    private float _CurrentFireDelay;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -39,14 +40,13 @@ public class Wep_Orb : Weapon {
         // Precausions
         base.Start();
 
-        // Set firing rate
-        _FiringRate = WeaponManager._pInstance._OrbFireDelay;
+        // Set firing rate stats
+        _CurrentFireDelay = _FiringRate = WeaponManager._pInstance._OrbBaseFiringDelay;
+        _FireRateGain = WeaponManager._pInstance._OrbFireRateGain;
+        _FireRateLoss = WeaponManager._pInstance._OrbFireRateLoss;
 
         // Set overheating properties
-        _HeatedWeapon = true;
-        _FiringHeatCost = WeaponManager._pInstance._FireballHeatCost;
-        _CooldownRateStable = WeaponManager._pInstance._OrbCooldownRateStable;
-        _CooldownRateOverheated = WeaponManager._pInstance._OrbCooldownRateOverheated;
+        _HeatedWeapon = false;
     }
 
     public override void Init() {
@@ -84,10 +84,13 @@ public class Wep_Orb : Weapon {
             transform.rotation = _Owner.transform.rotation;
         }
 
-        // Check if fire delay allows the firing sequence to be initiated
-        // Apply cooldown to weapon heat based on overheat status
-        base.Update();
+        if (_CurrentFireDelay > _FiringRate) {
 
+            _CurrentFireDelay -= _FireRateLoss * Time.deltaTime;
+        }
+
+        base.Update();
+        
         // Always hide inactive projectiles
         if (_POOL_FIREBALL_INACTIVE != null && _POOL_FIREBALL_INACTIVE.Count > 0) {
 
@@ -193,12 +196,17 @@ public class Wep_Orb : Weapon {
                     }
                 }
             }
-       
-            // Add heat from firing
-            _CurrentHeat += _FiringHeatCost;
 
             // Reset firing delay
             base.Fire();
+            _CurrentFireDelay = _FiringDelay;
+            
+            // Add more delay from firing
+            if (_CurrentFireDelay < WeaponManager._pInstance._OrbMaxFireDelay) {
+
+                _CurrentFireDelay += _FireRateGain;
+            }
+            ///_FiringDelay = _CurrentFireDelay;
         }
     }
 
@@ -231,16 +239,6 @@ public class Wep_Orb : Weapon {
             ////Debug.DrawLine(rayStart, rayEnd, Color.red, 10);
         }
         return hit;
-    }
-
-    public float GetDamageMultiplier() {
-
-        return _DamageMultiplier;
-    }
-
-    public void SetDamageMultiplier(float multiplier) {
-
-        _DamageMultiplier = multiplier;
     }
 
     //--------------------------------------------------------------

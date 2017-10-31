@@ -34,8 +34,8 @@ public class LinearGoToTarget : MonoBehaviour
                 if (_AgentCollider.bounds.Intersects(trigger.bounds)) {
 
                     // Enable agency
-                    GetComponent<NavMeshAgent>().enabled = true;
-                    GetComponent<Char_Crystal>().Start();
+                    this.GetComponent<NavMeshAgent>().enabled = true;
+                    this.GetComponent<Char_Crystal>().Start();
 
                     // Disable manual seek
                     this.enabled = false;

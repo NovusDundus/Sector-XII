@@ -18,14 +18,14 @@ public class WeaponManager : MonoBehaviour {
     [Header("- Firing Delay")]
     [Tooltip("Minimum time in seconds allowed between each projectile that is fired.")]
     [Range(0f, 1f)]
-    public float _OrbFireDelay = 0.6f;
-    [Header("- Heat")]
-    [Tooltip("Percentage of heat generated for each projectile fired.")]
-    public float _FireballHeatCost = 0.1f;
-    [Tooltip("Percentage of heat lost each second when the weapon is still in a stable state. (MAKE SURE THIS IS LESS THAN THE COST)")]
-    public float _OrbCooldownRateStable = 0.01f;
-    [Tooltip("Percentage of heat lost each second when the weapon is in an overheated state. (MAKE SURE THIS IS LESS THAN THE COST)")]
-    public float _OrbCooldownRateOverheated = 0.005f;
+    public float _OrbBaseFiringDelay = 0.6f;
+    [Tooltip("Amount of delay added to the current orb firing delay per each shot fired.")]
+    public float _OrbFireRateGain = 0.05f;
+    [Tooltip("Amount of delay taken from the current orb firing delay when the weapon is not being fired.")]
+    public float _OrbFireRateLoss = 0.02f;
+    [Tooltip("")]
+    [Range(0f, 2f)]
+    public float _OrbMaxFireDelay = 1.5f;
     [Header("- Damage")]
     [Tooltip("Amount of impact damage applied to the object when collided with a fireball.")]
     public int _FireballImpactDamage = 100;

@@ -14,11 +14,11 @@ public class HUD_HealthBar : MonoBehaviour {
     // *** VARIABLES ***
 
     /// Public (designers)
-    public Character CharacterAssociated;
-    public RawImage DeadCross;
+    public Character _CharacterAssociated;
+    public RawImage _DeadCross;
 
     /// Private
-    private Image HealthBar;
+    private Image _HealthBar;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -26,7 +26,7 @@ public class HUD_HealthBar : MonoBehaviour {
     void Start() {
 
         // Get reference to the health bar components of the ui panel
-        HealthBar = GetComponentInChildren<Image>();
+        _HealthBar = GetComponentInChildren<Image>();
     }
 
     //--------------------------------------------------------------
@@ -34,25 +34,25 @@ public class HUD_HealthBar : MonoBehaviour {
 
     void Update() {
         
-        if (CharacterAssociated != null && HealthBar != null) {
+        if (_CharacterAssociated != null && _HealthBar != null) {
 
             // Set the health bar fill to match the player's current health / starting health (0.0 - 1.0)
-            float percent = ((float)CharacterAssociated.GetHealth() / (float)CharacterAssociated.GetStartingHealth());
-            HealthBar.fillAmount = 1f - percent;
+            float percent = ((float)_CharacterAssociated.GetHealth() / (float)_CharacterAssociated.GetStartingHealth());
+            _HealthBar.fillAmount = 1f - percent;
 
             // Valid dead image?
-            if (DeadCross != null) {
+            if (_DeadCross != null) {
 
                 // If the player's character is dead
-                if (CharacterAssociated.GetHealth() <= 0) {
+                if (_CharacterAssociated.GetHealth() <= 0) {
 
-                    DeadCross.enabled = true;
+                    _DeadCross.enabled = true;
                 }
 
                 // The player's character is still alive
                 else { /// CharacterAssociated.GetHealth() > 0
 
-                    DeadCross.enabled = false;
+                    _DeadCross.enabled = false;
                 }
             }
         }
