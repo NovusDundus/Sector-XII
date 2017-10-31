@@ -39,6 +39,9 @@ public class MainMenu : MonoBehaviour {
 
         // Fade in from black
         Fade._pInstance.StartFade(Fade.FadeStates.fadeOut, Color.black, 0.02f);
+
+        // Cinematic bars EXIT
+        CinematicBars._pInstance.StartAnimation(CinematicBars.BarDirection.Exit, 4f);
     }
 
     //--------------------------------------------------------------

@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using XboxCtrlrInput;
 
-public class Widget_Mainmenu : MonoBehaviour {
+public class Widget_Pause : MonoBehaviour {
 
     ///--------------------------------------///
     /// Created by: Daniel Marton
@@ -14,14 +13,14 @@ public class Widget_Mainmenu : MonoBehaviour {
     // *** VARIABLES ***
 
     /// Public (designers)
-    public UnityEngine.UI.Button _PlayButton;
-    public UnityEngine.UI.Button _CreditsButton;
-    public UnityEngine.UI.Button _ExitGameButton;
-    
+    public UnityEngine.UI.Button _ResumeButton;
+    public UnityEngine.UI.Button _RestartButton;
+    public UnityEngine.UI.Button _ExitMatchButton;
+
     /// Private
     private int _ButtonIndex = 0;
     private Player _PlayerController;
-    private ButtonClicksMainMenu _ButtonClicks;
+    private ButtonClicksArenaMode _ButtonClicks;
     private bool _ResetDownInput = false;
     private bool _ResetUpInput = false;
     private bool _ResetFaceRightInput = false;
@@ -30,11 +29,11 @@ public class Widget_Mainmenu : MonoBehaviour {
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
 
-    void Start () {
+    void Start() {
 
         // Get references
-        _PlayerController = MainMenu._pInstance.GetComponent<Player>();
-        _ButtonClicks = GetComponentInParent<ButtonClicksMainMenu>();
+        _PlayerController = ArenaMode._pInstance.GetComponent<Player>();
+        _ButtonClicks = GetComponentInParent<ButtonClicksArenaMode>();
     }
 
     //--------------------------------------------------------------
@@ -48,7 +47,7 @@ public class Widget_Mainmenu : MonoBehaviour {
         /// 
         /// ***************************
         if (_ResetUpInput == false) {
-            
+
             // On axis change
             if (_PlayerController.GetLeftAxisUpInput) {
 
@@ -120,12 +119,12 @@ public class Widget_Mainmenu : MonoBehaviour {
         /// 
         /// ***************************        
         if (_ResetFaceRightInput == false) {
-            
+
             // On button down
             if (_PlayerController.GetFaceRightInput) {
 
-                // Show EXIT GAME widget
-
+                // Resume gameplay
+                _ButtonClicks.OnClick_Resume();
                 _ResetFaceRightInput = true;
             }
         }
@@ -154,33 +153,32 @@ public class Widget_Mainmenu : MonoBehaviour {
                 // Proceed to next widget based on current index
                 switch (_ButtonIndex) {
 
-                    // Play game
+                    // Resume gameplay
                     case 0: {
 
-                        _ButtonClicks.OnClick_Play();
-                        _ButtonClicks.ui_LoadingScreen.GetComponent<LoadingScreen>().SetLevelIndex(1);
-                        break;
-                    }
+                            _ButtonClicks.OnClick_Resume();
+                            break;
+                        }
 
-                    // View credits
+                    // Restart match
                     case 1: {
 
-                        _ButtonClicks.OnClick_Credits();
-                        break;
-                    }
-                    
-                    // Exit game popup screen
+                            _ButtonClicks.OnClick_Restart();
+                            break;
+                        }
+
+                    // Exit match
                     case 2: {
 
-                        _ButtonClicks.OnClick_ExitGame();
-                        enabled = false;
-                        break;
-                    }
+                            _ButtonClicks.OnClick_MainMenu();
+                            enabled = false;
+                            break;
+                        }
 
-                    default: { 
+                    default: {
 
-                        break;
-                    }
+                            break;
+                        }
                 }
             }
         }
@@ -201,44 +199,44 @@ public class Widget_Mainmenu : MonoBehaviour {
         /// ***************************      
         switch (_ButtonIndex) {
 
-            // Play game
+            // Resume gameplay
             case 0: {
 
-                if (_PlayButton != null) {
+                    if (_ResumeButton != null) {
 
                         // Highlight
-                        _PlayButton.Select();
+                        _ResumeButton.Select();
                     }
-                break;
-            }
+                    break;
+                }
 
-            // View credits
+            // Restart match
             case 1: {
 
-                if (_CreditsButton != null) {
+                    if (_RestartButton != null) {
 
-                    // Highlight
-                    _CreditsButton.Select();
+                        // Highlight
+                        _RestartButton.Select();
+                    }
+                    break;
                 }
-                break;
-            }
 
-            // Exit game popup screen
+            // Exit match
             case 2: {
 
-                if (_ExitGameButton != null) {
+                    if (_ExitMatchButton != null) {
 
-                    // Highlight
-                    _ExitGameButton.Select();
-                }    
-                break;
-            }
+                        // Highlight
+                        _ExitMatchButton.Select();
+                    }
+                    break;
+                }
 
             default: {
 
                     break;
-            }
+                }
         }
     }
-    
+
 }

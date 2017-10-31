@@ -51,6 +51,9 @@ public class ButtonClicksMainMenu : MonoBehaviour {
 
             // Hide main menu
             ui_MainMenu.SetActive(false);
+
+            // Cinematic bars ENTER
+            CinematicBars._pInstance.StartAnimation(CinematicBars.BarDirection.Enter, 4f);
         }
     }
 
@@ -59,7 +62,7 @@ public class ButtonClicksMainMenu : MonoBehaviour {
         // Show quit game popup
         if (ui_ExitGameConfirm != null) {
             
-            ui_ExitGameConfirm.SetActive(true);
+            ui_ExitGameConfirm.SetActive(true);            
         }
     }
 
@@ -79,6 +82,9 @@ public class ButtonClicksMainMenu : MonoBehaviour {
 
             // Hide credits
             ui_Credits.SetActive(false);
+
+            // Cinematic bars EXIT
+            CinematicBars._pInstance.StartAnimation(CinematicBars.BarDirection.Exit, 4f);
         }
     }
 
@@ -88,6 +94,9 @@ public class ButtonClicksMainMenu : MonoBehaviour {
         if (ui_ExitGameConfirm != null) {
             
             ui_ExitGameConfirm.SetActive(false);
+
+            // Enable main menu controller
+            ui_MainMenu.GetComponent<Widget_Mainmenu>().enabled = true;
         }
     }
 

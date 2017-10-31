@@ -132,7 +132,7 @@ public class Wep_Flamethrower : Weapon {
                             _POOL_FIREBALL_ACTIVE.Add(proj);
                             _POOL_FIREBALL_INACTIVE.RemoveAt(_POOL_FIREBALL_INACTIVE.Count - 1);
 
-                            // Initialize the fireball
+                            // Initialize the flame
                             proj.GetComponent<Projectile>().Init();
                             proj.GetComponent<Projectile>().SetOwner(this);
                             proj.transform.position = _MuzzlePointLeft.position;
@@ -170,7 +170,7 @@ public class Wep_Flamethrower : Weapon {
                         _POOL_FIREBALL_ACTIVE.Add(proj);
                         _POOL_FIREBALL_INACTIVE.RemoveAt(_POOL_FIREBALL_INACTIVE.Count - 1);
 
-                        // Initialize the fireball
+                        // Initialize the flame
                         proj.GetComponent<Projectile>().Init();
                         proj.GetComponent<Projectile>().SetOwner(this);
                         proj.transform.position = _MuzzlePointRight.position;
@@ -185,7 +185,6 @@ public class Wep_Flamethrower : Weapon {
                             }
 
                             _ActiveProjectiles += 1;
-
 
                             // Set last muzzle used to LEFT
                             _FiredFromLeftMuzzle = true;
