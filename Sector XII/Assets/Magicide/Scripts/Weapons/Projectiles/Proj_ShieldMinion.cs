@@ -127,7 +127,7 @@ public class Proj_ShieldMinion : Projectile {
                                                
             // Deduct from weapon's minion count thats associated with this minion
             GetComponent<Renderer>().enabled = false;
-            Wep_Shield wep = GameObject.FindGameObjectWithTag(string.Concat("P" + GetOwner().GetOwner()._Player._pPlayerID + "_SecondaryWeapon")).GetComponent<Wep_Shield>();
+            Wep_Shield wep = GameObject.FindGameObjectWithTag(string.Concat("P" + GetOwner().GetOwner()._Player._pPlayerID + "_ShieldWeapon")).GetComponent<Wep_Shield>();
             wep.SetMinionCount(wep.GetMinionCount() - 1);
 
             // Set player associated with the minion's score

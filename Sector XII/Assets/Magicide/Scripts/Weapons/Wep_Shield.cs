@@ -191,14 +191,10 @@ public class Wep_Shield : Weapon {
         // If minion count hasnt reached max capacity yet
         if (_MinionCount < _MaxMinions) {
 
-            // Determine position of where the wyrm should be placed in the shield
-
-            // TEMPORARY CODE IDK IT SOMEHOW WORKS LOL 
-            // *******************************************
+            // Add minion to the shield
             _PreviousMinionCount = _MinionCount;
             _MinionCount += 1;
             Init();
-            // *******************************************
         }
     }
     

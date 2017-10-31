@@ -40,14 +40,14 @@ public class Char_Geomancer : Character {
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
 
-    public override void Start() {
+    public void Start() {
 
         // Stores reference to the player associated with its
         _Player = GetComponent<Player>();
 
         // Set character's health & get collision reference
         _StartingHealth = PlayerManager._pInstance._GeomancerStartingHealth;
-        base.Start();
+        base.Awake();
 
         // Set character's speed
         _MovementSpeed = PlayerManager._pInstance._GeomancerMovementSpeed;

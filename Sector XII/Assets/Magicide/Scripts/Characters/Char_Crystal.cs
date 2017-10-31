@@ -11,7 +11,7 @@ public class Char_Crystal : Character {
     // *** VARIABLES ***
 
     /// Public (designers)    
-    public CrystalType _Type = CrystalType.Minor;
+    public CrystalType _Type;
     
     /// Public (internal)
     [HideInInspector]
@@ -33,10 +33,10 @@ public class Char_Crystal : Character {
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
 
-    public override void Start() {
-        
+    public override void Awake() {
+
         // Get base character references
-        base.Start();
+        base.Awake();
 
         // Get behaviour references
         _BehaviourWander = GetComponent<Behaviour_Wander>();
@@ -73,15 +73,15 @@ public class Char_Crystal : Character {
                                 _BehaviourSeek.enabled = true;
                                 break;
                             }
-                        case AiManager.AiBehaviourType.Mixed: { 
+                        case AiManager.AiBehaviourType.Mixed: {
 
                                 break;
                             }
-                        default: { 
+                        default: {
 
                                 break;
                             }
-                        }
+                    }
 
                     break;
                 }
@@ -163,7 +163,7 @@ public class Char_Crystal : Character {
                     }
                     break;
                 }
-                
+
             default: {
 
                     break;

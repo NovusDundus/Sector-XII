@@ -38,7 +38,7 @@ public class Character : MonoBehaviour {
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
 
-    public virtual void Start() {
+    public virtual void Awake() {
 
         // Set the starting health for the character
         _Health = _StartingHealth;

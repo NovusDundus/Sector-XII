@@ -35,7 +35,7 @@ public class LinearGoToTarget : MonoBehaviour
 
                     // Enable agency
                     this.GetComponent<NavMeshAgent>().enabled = true;
-                    this.GetComponent<Char_Crystal>().Start();
+                    this.GetComponent<Char_Crystal>().Awake();
 
                     // Disable manual seek
                     this.enabled = false;

@@ -6,25 +6,13 @@ TagManager:
   tags:
   - Manager
   - P1_Character
-  - P1_PrimaryWeapon
-  - P1_SecondaryWeapon
   - P2_Character
-  - P2_PrimaryWeapon
-  - P2_SecondaryWeapon
   - P3_Character
-  - P3_PrimaryWeapon
-  - P3_SecondaryWeapon
   - P4_Character
-  - P4_PrimaryWeapon
-  - P4_SecondaryWeapon
   - KillTag
   - Collision
   - Enemy
   - Projectile
-  - P1_SpecialWeapon
-  - P2_SpecialWeapon
-  - P3_SpecialWeapon
-  - P4_SpecialWeapon
   - P1_OrbWeapon
   - P1_FlamethrowerWeapon
   - P1_ShieldWeapon
@@ -37,6 +25,7 @@ TagManager:
   - P4_OrbWeapon
   - P4_FlamethrowerWeapon
   - P4_ShieldWeapon
+  - P4_Ethereal
   layers:
   - Default
   - TransparentFX

@@ -29,7 +29,7 @@ public class HUD : MonoBehaviour {
     [Tooltip("Reference to the gui Scoreboard panel.")]
     public GameObject _UIScoreboard;                                // Reference to the gui Scoreboard panel.
     [Tooltip("Reference to the gui HUD panel.")]
-    public GameObject _UIHUD;                                       // Reference to the gui HUD panel.
+    public GameObject _UIHud;                                       // Reference to the gui HUD panel.
 
     [Header("---------------------------------------------------------------------------")]
     [Header(" *** PLAYERS ***")]
