@@ -927,6 +927,53 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   _Controller: 0
+--- !u!114 &239414761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 239414759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cbcfc139f93d9740bdaf99a6cbb2567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SFX_ButtonClick: {fileID: 0}
+  _SFX_ButtonHover: {fileID: 0}
+  _SFX_ButtonGoBack: {fileID: 0}
+  _SFX_Dash1: {fileID: 0}
+  _SFX_Dash2: {fileID: 0}
+  _SFX_Dash3: {fileID: 0}
+  _SFX_Dash4: {fileID: 0}
+  _SFX_FireballAttack1: {fileID: 0}
+  _SFX_FireballAttack2: {fileID: 0}
+  _SFX_FireballAttack3: {fileID: 0}
+  _SFX_FireballAttack4: {fileID: 0}
+  _SFX_FireballImpact1: {fileID: 0}
+  _SFX_FireballImpact2: {fileID: 0}
+  _SFX_FireballImpact3: {fileID: 0}
+  _SFX_FireballImpact4: {fileID: 0}
+  _SFX_FlamethrowerAttack1: {fileID: 0}
+  _SFX_FlamethrowerAttack2: {fileID: 0}
+  _SFX_FlamethrowerImpact1: {fileID: 0}
+  _SFX_FlamethrowerImpact2: {fileID: 0}
+  _SFX_OnTagPickupMinion: {fileID: 0}
+  _SFX_OnTagPickupSpeed: {fileID: 0}
+  _SFX_OnTagPickupHealth: {fileID: 0}
+  _SFX_GeomancerDialogue1: {fileID: 0}
+  _SFX_GeomancerDialogue2: {fileID: 0}
+  _SFX_GeomancerDialogue3: {fileID: 0}
+  _SFX_GeomancerDialogue4: {fileID: 0}
+  _SFX_GeomancerDialogue5: {fileID: 0}
+  _SFX_CrystalHit: {fileID: 0}
+  _SFX_CrystalDeath1: {fileID: 0}
+  _SFX_CrystalDeath2: {fileID: 0}
+  _SFX_CrystalDeath3: {fileID: 0}
+  _SFX_CrystalDeath4: {fileID: 0}
+  _MUSIC_MainMenu: {fileID: 0}
+  _MUSIC_Gameplay: {fileID: 0}
+  _AMBIENCE_MainMenu: {fileID: 0}
+  _AMBIENCE_Gameplay: {fileID: 0}
 --- !u!1 &253993226
 GameObject:
   m_ObjectHideFlags: 0

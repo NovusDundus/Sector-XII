@@ -94,7 +94,7 @@ public class Widget_Pause : MonoBehaviour {
                     _ResetDownInput = true;
                 }
 
-                else { /// _ButtonIndex >= 3
+                else { /// _ButtonIndex >= 2
 
                     // Highlight the lowest button
                     _ButtonIndex = 0;
