@@ -86,7 +86,7 @@ LightmapSettings:
     m_PVRFilteringAtrousColorSigma: 1
     m_PVRFilteringAtrousNormalSigma: 1
     m_PVRFilteringAtrousPositionSigma: 1
-  m_LightingDataAsset: {fileID: 112000010, guid: 8ba518b8e553dac4ebca94db64518a6f,
+  m_LightingDataAsset: {fileID: 112000030, guid: 8ba518b8e553dac4ebca94db64518a6f,
     type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -6403,7 +6403,7 @@ Prefab:
     - target: {fileID: 114403142367840752, guid: aa42a22ea9d697f4abb43b7e82ccb986,
         type: 2}
       propertyPath: _Phase1Length
-      value: 30
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 114025385545714628, guid: aa42a22ea9d697f4abb43b7e82ccb986,
         type: 2}
@@ -6513,7 +6513,7 @@ Prefab:
     - target: {fileID: 114025385545714628, guid: aa42a22ea9d697f4abb43b7e82ccb986,
         type: 2}
       propertyPath: _OrbBaseFiringDelay
-      value: 0.3
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 114184276454117132, guid: aa42a22ea9d697f4abb43b7e82ccb986,
         type: 2}
@@ -6528,7 +6528,7 @@ Prefab:
     - target: {fileID: 114157945126146578, guid: aa42a22ea9d697f4abb43b7e82ccb986,
         type: 2}
       propertyPath: _CrystalMajorSpawningTime
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114157945126146578, guid: aa42a22ea9d697f4abb43b7e82ccb986,
         type: 2}
@@ -6543,12 +6543,72 @@ Prefab:
     - target: {fileID: 114157945126146578, guid: aa42a22ea9d697f4abb43b7e82ccb986,
         type: 2}
       propertyPath: _CrystalMajorLives
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114157945126146578, guid: aa42a22ea9d697f4abb43b7e82ccb986,
         type: 2}
       propertyPath: _CrystalMinorLives
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114025385545714628, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _FlameHeatCost
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 114025385545714628, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _FlameCooldownRateStable
+      value: 0.0035
+      objectReference: {fileID: 0}
+    - target: {fileID: 114025385545714628, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _FlameCooldownRateOverheated
+      value: 0.006
+      objectReference: {fileID: 0}
+    - target: {fileID: 114025385545714628, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _FlameDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114610210431620844, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _GeomancerMovementSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114610210431620844, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: DashCooldown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114610210431620844, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _DashDistance
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114157945126146578, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _CrystalMinorStartingHealth
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114157945126146578, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _CrystalMajorStartingHealth
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 114157945126146578, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _CrystalMajorSpawnTime
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114403142367840752, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _Phase2Timer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114157945126146578, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _CrystalMajorTagType
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa42a22ea9d697f4abb43b7e82ccb986, type: 2}
@@ -8333,58 +8393,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 31313c58708edc241bb9bcbf239b77cc, type: 3}
   m_IsPrefabParent: 0
---- !u!1 &299902428 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1254212357002398, guid: aa42a22ea9d697f4abb43b7e82ccb986,
-    type: 2}
-  m_PrefabInternal: {fileID: 241222836}
---- !u!114 &299902429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 299902428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cbcfc139f93d9740bdaf99a6cbb2567, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _SFX_ButtonClick: {fileID: 0}
-  _SFX_ButtonHover: {fileID: 0}
-  _SFX_ButtonGoBack: {fileID: 0}
-  _SFX_Dash1: {fileID: 0}
-  _SFX_Dash2: {fileID: 0}
-  _SFX_Dash3: {fileID: 0}
-  _SFX_Dash4: {fileID: 0}
-  _SFX_FireballAttack1: {fileID: 0}
-  _SFX_FireballAttack2: {fileID: 0}
-  _SFX_FireballAttack3: {fileID: 0}
-  _SFX_FireballAttack4: {fileID: 0}
-  _SFX_FireballImpact1: {fileID: 0}
-  _SFX_FireballImpact2: {fileID: 0}
-  _SFX_FireballImpact3: {fileID: 0}
-  _SFX_FireballImpact4: {fileID: 0}
-  _SFX_FlamethrowerAttack1: {fileID: 0}
-  _SFX_FlamethrowerAttack2: {fileID: 0}
-  _SFX_FlamethrowerImpact1: {fileID: 0}
-  _SFX_FlamethrowerImpact2: {fileID: 0}
-  _SFX_OnTagPickupMinion: {fileID: 0}
-  _SFX_OnTagPickupSpeed: {fileID: 0}
-  _SFX_OnTagPickupHealth: {fileID: 0}
-  _SFX_GeomancerDialogue1: {fileID: 0}
-  _SFX_GeomancerDialogue2: {fileID: 0}
-  _SFX_GeomancerDialogue3: {fileID: 0}
-  _SFX_GeomancerDialogue4: {fileID: 0}
-  _SFX_GeomancerDialogue5: {fileID: 0}
-  _SFX_CrystalHit: {fileID: 0}
-  _SFX_CrystalDeath1: {fileID: 0}
-  _SFX_CrystalDeath2: {fileID: 0}
-  _SFX_CrystalDeath3: {fileID: 0}
-  _SFX_CrystalDeath4: {fileID: 0}
-  _MUSIC_MainMenu: {fileID: 0}
-  _MUSIC_Gameplay: {fileID: 0}
-  _AMBIENCE_MainMenu: {fileID: 0}
-  _AMBIENCE_Gameplay: {fileID: 0}
 --- !u!1 &302702116
 GameObject:
   m_ObjectHideFlags: 0
@@ -8631,7 +8639,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Player: {fileID: 0}
   _DamagedMaterial: {fileID: 2100000, guid: 21eb156c22e4b3f45b59682ecede1b17, type: 2}
-  _Type: 2
+  _Type: 1
 --- !u!114 &302752936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12719,7 +12727,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Player: {fileID: 0}
   _DamagedMaterial: {fileID: 2100000, guid: 21eb156c22e4b3f45b59682ecede1b17, type: 2}
-  _Type: 2
+  _Type: 1
 --- !u!114 &466136026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13255,7 +13263,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 30
+  m_Text: 15
 --- !u!222 &520034578
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18475,7 +18483,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 2db3e29a31a255c4eaa3d1dbda057f0d, type: 2}
+      objectReference: {fileID: 2100000, guid: 570a2bb2de6df1248a764f40db80bad1, type: 2}
     - target: {fileID: 23755477158782576, guid: 51435ec51f36d7f4baa3048c8331bf93,
         type: 2}
       propertyPath: m_Enabled
@@ -23418,7 +23426,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 2db3e29a31a255c4eaa3d1dbda057f0d, type: 2}
+      objectReference: {fileID: 2100000, guid: 570a2bb2de6df1248a764f40db80bad1, type: 2}
     - target: {fileID: 23755477158782576, guid: 51435ec51f36d7f4baa3048c8331bf93,
         type: 2}
       propertyPath: m_Enabled
@@ -32491,7 +32499,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 2db3e29a31a255c4eaa3d1dbda057f0d, type: 2}
+      objectReference: {fileID: 2100000, guid: 570a2bb2de6df1248a764f40db80bad1, type: 2}
     - target: {fileID: 23755477158782576, guid: 51435ec51f36d7f4baa3048c8331bf93,
         type: 2}
       propertyPath: m_Enabled
@@ -32819,7 +32827,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Player: {fileID: 0}
   _DamagedMaterial: {fileID: 2100000, guid: 21eb156c22e4b3f45b59682ecede1b17, type: 2}
-  _Type: 2
+  _Type: 0
 --- !u!114 &1198999994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35760,7 +35768,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh17246
+  m_Name: pb_Mesh245018
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -45272,7 +45280,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh15824
+  m_Name: pb_Mesh243250
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -53816,7 +53824,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Player: {fileID: 0}
   _DamagedMaterial: {fileID: 2100000, guid: 21eb156c22e4b3f45b59682ecede1b17, type: 2}
-  _Type: 2
+  _Type: 0
 --- !u!114 &1998525261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57889,7 +57897,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 2db3e29a31a255c4eaa3d1dbda057f0d, type: 2}
+      objectReference: {fileID: 2100000, guid: 570a2bb2de6df1248a764f40db80bad1, type: 2}
     - target: {fileID: 64128504328739580, guid: 51435ec51f36d7f4baa3048c8331bf93,
         type: 2}
       propertyPath: m_Enabled

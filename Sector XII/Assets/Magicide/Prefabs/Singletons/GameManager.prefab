@@ -74,7 +74,7 @@ MonoBehaviour:
   _FlameSpeed: 45
   _FlameRange: 10
   _MinionHealth: 100
-  _MaxSize: 22
+  _MaxSize: 10
   _MinionSpacing: 1.85
   _MinionSpinSpeed: 3.75
   _MinionBobHeight: 0.7
@@ -96,27 +96,7 @@ MonoBehaviour:
   _CrystalMinorBehaviourType: 0
   _CrystalMinorMovementSpeed: 4
   _CrystalMinorLives: 10
-  _CrystalMinorSpawnPositions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _CrystalMinorSpawningTime: 0
   _CrystalMinorSpawningBehaviour: 0
   _CrystalMinorSpawnTime: 0
   _CrystalMinorStartingHealth: 100
@@ -126,11 +106,7 @@ MonoBehaviour:
   _CrystalMajorBehaviourType: 1
   _CrystalMajorMovementSpeed: 6
   _CrystalMajorLives: 5
-  _CrystalMajorSpawnPositions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _CrystalMajorSpawningTime: 1
   _CrystalMajorSpawningBehaviour: 1
   _CrystalMajorSpawnTime: 0
   _CrystalMajorStartingHealth: 150
@@ -140,17 +116,48 @@ MonoBehaviour:
   _CrystalCursedBehaviourType: 0
   _CrystalCursedMovementSpeed: 5
   _CrystalCursedLives: 4
-  _CrystalCursedSpawnPositions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _CrystalCursedSpawningTime: 2
   _CrystalCursedSpawningBehaviour: 2
   _CrystalCursedSpawnTime: 60
   _CrystalCursedStartingHealth: 250
   _CrystalCursedTagType: 1
   _CrystalCursedTypeMaterial: {fileID: 2100000, guid: 092728b289935f2409b48959798ec969,
     type: 2}
+  _RandomSpawnPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _TeleportingGateSpawnPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _AgentTriggers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114184276454117132
 MonoBehaviour:
   m_ObjectHideFlags: 1
