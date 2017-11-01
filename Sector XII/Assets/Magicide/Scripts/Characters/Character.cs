@@ -94,6 +94,11 @@ public class Character : MonoBehaviour {
         return _MovementSpeed;
     }
 
+    public void SetMovementSpeed(float speed) {
+
+        _MovementSpeed = speed;
+    }
+
     // -------------------------------------------------------------
     // *** HEALTH & DAMAGE ***
 

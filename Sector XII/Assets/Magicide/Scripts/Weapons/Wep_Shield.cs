@@ -195,6 +195,9 @@ public class Wep_Shield : Weapon {
             _PreviousMinionCount = _MinionCount;
             _MinionCount += 1;
             Init();
+
+            // Deduct movement speed from the player associated to the shield
+            _Owner.SetMovementSpeed(_Owner.GetMovementSpeed() - WeaponManager._pInstance._MovementSpeedSap);
         }
     }
     

@@ -74,6 +74,8 @@ public class WeaponManager : MonoBehaviour {
     public float _MinionBobHeight = 0.5f;
     [Tooltip("The rate of speed that each individual minion will bob up & down.")]
     public float _MinionBobSpeed = 0.5f;
+    [Tooltip("The amount deducted from the player's base movement speed when adding a minion to their shield.")]
+    public float _MovementSpeedSap = 0.2f;
     [Header("- Shield Rotation")]
     [Tooltip("Whether the shield automatically rotates on its own")]
     public bool _AutoRotateShield = false;
