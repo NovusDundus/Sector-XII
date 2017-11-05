@@ -221,4 +221,17 @@ public class Wep_Shield : Weapon {
         _MinionCount = amount;
     }
 
+    public void DestroyMinion() {
+
+        if (_MinionCount > 0) {
+
+            // Get the last minion in the pool
+            GameObject minionObj = _POOL_Minions[_POOL_Minions.Count - 1];
+            Proj_ShieldMinion minion = minionObj.GetComponent<Proj_ShieldMinion>();
+
+            // Kill it
+            minion.ForceDeath();
+        }
+    }
+
 }

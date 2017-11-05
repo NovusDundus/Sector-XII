@@ -413,17 +413,24 @@ public class Char_Geomancer : Character {
         // If dash cooldown is complete
         if (_CurrentDashCooldown <= 0f) {
 
-            // Determine how far the character can teleport
-            Vector3 DashPos = transform.position;
-            Vector3 DashDirection = _Player.GetMovementInput;
-            DashPos += DashDirection * _DashDistance;
+            // If the character has minions they can dispense for the dash to proceed
+            if (_WeaponSpecial.GetComponent<Wep_Shield>().GetMinionCount() > 0) {
 
-            // Perform dash
-            gameObject.transform.position = DashPos;
-            _JustDashed = true;
+                // Determine how far the character can teleport
+                Vector3 DashPos = transform.position;
+                Vector3 DashDirection = _Player.GetMovementInput;
+                DashPos += DashDirection * _DashDistance;
 
-            // Reset cooldown
-            _CurrentDashCooldown = _DashCooldown;
+                // Perform dash
+                gameObject.transform.position = DashPos;
+                _JustDashed = true;
+
+                // Reset cooldown
+                _CurrentDashCooldown = _DashCooldown;
+
+                // Destroy minion from the shield
+                _WeaponSpecial.GetComponent<Wep_Shield>().DestroyMinion();
+            }
         }
     }
 
