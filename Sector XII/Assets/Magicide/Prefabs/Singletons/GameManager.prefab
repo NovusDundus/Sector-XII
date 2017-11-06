@@ -59,18 +59,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644b168221e562842ba6d16853ef85f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _OrbFireDelay: 0.2
-  _FireballHeatCost: 0.095
-  _OrbCooldownRateStable: 0.0085
-  _OrbCooldownRateOverheated: 0.01
+  _OrbBaseFiringDelay: 0.15
+  _OrbFireRateGain: 1
+  _OrbFireRateLoss: 0.05
+  _OrbMaxFireDelay: 1.5
   _FireballImpactDamage: 25
   _FireballSpeed: 25
   _FireballRange: 50
   _FlameFireDelay: 0.045
-  _FlameHeatCost: 0.02
-  _FlameCooldownRateStable: 0.0015
-  _FlameCooldownRateOverheated: 0.005
-  _FlameDamage: 8
+  _FlameHeatCost: 0.05
+  _FlameCooldownRateStable: 0.0035
+  _FlameCooldownRateOverheated: 0.006
+  _FlameDamage: 10
   _FlameSpeed: 45
   _FlameRange: 10
   _MinionHealth: 100
@@ -79,6 +79,7 @@ MonoBehaviour:
   _MinionSpinSpeed: 3.75
   _MinionBobHeight: 0.7
   _MinionBobSpeed: 0.425
+  _MovementSpeedSap: 0.2
   _AutoRotateShield: 0
   _ShieldOrbitClockwise: 1
   _ShieldOrbitSpeed: 270
@@ -95,30 +96,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _CrystalMinorBehaviourType: 0
   _CrystalMinorMovementSpeed: 4
-  _CrystalMinorLives: 10
+  _CrystalMinorLives: 15
   _CrystalMinorSpawningTime: 0
   _CrystalMinorSpawningBehaviour: 0
   _CrystalMinorSpawnTime: 0
-  _CrystalMinorStartingHealth: 100
+  _CrystalMinorStartingHealth: 50
   _CrystalMinorTagType: 0
   _CrystalMinorTypeMaterial: {fileID: 2100000, guid: 409aa8057c1e26943b47215c7e507c51,
     type: 2}
   _CrystalMajorBehaviourType: 1
   _CrystalMajorMovementSpeed: 6
-  _CrystalMajorLives: 5
-  _CrystalMajorSpawningTime: 1
+  _CrystalMajorLives: 7
+  _CrystalMajorSpawningTime: 2
   _CrystalMajorSpawningBehaviour: 1
-  _CrystalMajorSpawnTime: 0
-  _CrystalMajorStartingHealth: 150
-  _CrystalMajorTagType: 2
+  _CrystalMajorSpawnTime: 20
+  _CrystalMajorStartingHealth: 75
+  _CrystalMajorTagType: 1
   _CrystalMajorTypeMaterial: {fileID: 2100000, guid: 9a99602ad7c91b54f92b48b76889219b,
     type: 2}
-  _CrystalCursedBehaviourType: 0
+  _CrystalCursedBehaviourType: 2
   _CrystalCursedMovementSpeed: 5
-  _CrystalCursedLives: 4
+  _CrystalCursedLives: 0
   _CrystalCursedSpawningTime: 2
-  _CrystalCursedSpawningBehaviour: 2
-  _CrystalCursedSpawnTime: 60
+  _CrystalCursedSpawningBehaviour: 1
+  _CrystalCursedSpawnTime: 99999999
   _CrystalCursedStartingHealth: 250
   _CrystalCursedTagType: 1
   _CrystalCursedTypeMaterial: {fileID: 2100000, guid: 092728b289935f2409b48959798ec969,
@@ -153,6 +154,22 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _AgentTriggers:
   - {fileID: 0}
   - {fileID: 0}
@@ -175,7 +192,7 @@ MonoBehaviour:
   _TimeOkayColour: {r: 1, g: 1, b: 1, a: 1}
   _UIPause: {fileID: 0}
   _UIScoreboard: {fileID: 0}
-  _UIHUD: {fileID: 0}
+  _UIHud: {fileID: 0}
   PlayerOne: {fileID: 0}
   _PlayerOneColour: {r: 0, g: 0, b: 1, a: 1}
   PlayerTwoCharacter: {fileID: 0}
@@ -222,7 +239,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1254212357002398}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca56d49ca28b28d4ca41218d9a608728, type: 3}
   m_Name: 
@@ -240,7 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d54dd93656b2f2940a229b11df00f869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Phase1Length: 30
+  _Phase1Length: 15
   _Phase2Timer: 0
   _Phase2Length: 120
 --- !u!114 &114481876437901886
@@ -266,11 +283,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _GeomancerStartingHealth: 100
-  _GeomancerMovementSpeed: 10
+  _GeomancerMovementSpeed: 12
   _DashEnabled: 1
   _DashButton: 8
-  _DashDistance: 5
-  DashCooldown: 5
+  _DashDistance: 7
+  DashCooldown: 3
   _KnockbackEnabled: 0
   _KnockbackButton: 3
   _KnockbackForceNormal: 15000

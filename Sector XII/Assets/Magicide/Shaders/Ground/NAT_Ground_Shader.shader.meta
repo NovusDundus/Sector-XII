@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 24a063edcf84279439b3db91458b5246
+timeCreated: 1509930685
+licenseType: Pro
+ShaderImporter:
+  defaultTextures:
+  - _Base_N: {fileID: 2800000, guid: 2eb6d7868ae78f648ad09054679f0fdd, type: 3}
+  - _Cracks_N: {fileID: 2800000, guid: 0451693b80e812f468d4acb691f17b40, type: 3}
+  - _Moss_N: {fileID: 2800000, guid: ecaba0e3b7ef9ea40adae2a5aad0618e, type: 3}
+  - _Glow_N: {fileID: 2800000, guid: 2eb6d7868ae78f648ad09054679f0fdd, type: 3}
+  - _Dirt_N: {fileID: 2800000, guid: 3541d6e909dd5424aa3a10c93fe7274a, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

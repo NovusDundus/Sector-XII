@@ -73,6 +73,7 @@ public class LinearGoToTarget : MonoBehaviour {
 
                         // Disable manual seek
                         this.enabled = false;
+                        break;
                     }
                 }
             }
