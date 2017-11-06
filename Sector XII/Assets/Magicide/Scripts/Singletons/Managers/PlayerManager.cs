@@ -10,18 +10,23 @@ public class PlayerManager : MonoBehaviour {
     ///--------------------------------------///
 
     //----------------------------------------------------------------------------------
-    // VARIABLES
+    // *** VARIABLES ***
 
     /// Public (Designers)
     [Header("---------------------------------------------------------------------------")]
     [Header(" *** GEOMANCER CHARACTER ***")]
+    [Header("- Respawning")]
+    [Tooltip("The maximum amount of respawns associated to each player.")]
+    public int _Respawns = 3;                                       // The maximum amount of respawns associated to each player.
+    [Tooltip("List of references to the North, South, East & West player respawning triggers.")]
+    public List<Collider> _RespawnTriggers;                         // List of references to the North, South, East & West player respawning triggers.
+    [Header("---------------------------------------------------------------------------")]
     [Header("- Health")]
     [Tooltip("Starting health of the necromancers that are possessed by the players.")]
     public int _GeomancerStartingHealth = 100;                      // Starting health of the necromancers that are possessed by the players.
     [Header("- Movement")]
     [Tooltip("Movement speed of the necromancer character.")]
     public float _GeomancerMovementSpeed = 10f;                     // Movement speed of the necromancer character.
-    [Header("---------------------------------------------------------------------------")]
     [Header(" *** ABILITIES ***")]
     [Header("- Dash")]
     public bool _DashEnabled = true;
@@ -67,7 +72,7 @@ public class PlayerManager : MonoBehaviour {
     }
 
     //--------------------------------------------------------------
-    // CONSTRUCTORS
+    // *** CONSTRUCTORS ***
 
     public void Awake() {
 
@@ -88,7 +93,7 @@ public class PlayerManager : MonoBehaviour {
     }
 
     //--------------------------------------------------------------
-    // FRAME
+    // *** FRAME ***
 
     private void Update() {
 
@@ -104,7 +109,7 @@ public class PlayerManager : MonoBehaviour {
     }
 
     //--------------------------------------------------------------
-    // OBJECT POOLS
+    // *** OBJECT POOLS ***
 
     public List<Character> GetAliveNecromancers() {
 

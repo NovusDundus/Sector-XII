@@ -12,6 +12,9 @@ public class Char_Geomancer : Character {
     //----------------------------------------------------------------------------------
     // *** VARIABLES ***
 
+    /// Public
+    public Transform _RespawnPoint;
+
     /// Private
     private bool _DashEnabled;
     private XboxCtrlrInput.XboxButton _DashInputButton = XboxCtrlrInput.XboxButton.B;
@@ -32,6 +35,7 @@ public class Char_Geomancer : Character {
     private float _MovementSpeedModifier = 1f;
     private bool _TabbingWeapon = false;
     private XboxCtrlrInput.XboxButton _TabInputButton = XboxCtrlrInput.XboxButton.RightBumper;
+    private LinearGoToTarget _LinearGoTo;
 
     /// Delegates / Events
     private delegate void CharacterAbility();
@@ -42,8 +46,9 @@ public class Char_Geomancer : Character {
 
     public void Start() {
 
-        // Stores reference to the player associated with its
+        // Stores reference to the player associated with the character
         _Player = GetComponent<Player>();
+        _LinearGoTo = GetComponent<LinearGoToTarget>();
 
         // Set character's health & get collision reference
         _StartingHealth = PlayerManager._pInstance._GeomancerStartingHealth;
@@ -144,8 +149,10 @@ public class Char_Geomancer : Character {
         // If in gameplay
         if (MatchManager._pInstance.GetGameplay() == true) {
 
-            // Only proceed if the character is actively being possessed by a controller (player OR ai)
+            // Only proceed if the character is actively being possessed by a controller
             if (_Active == true) {
+
+                _Collision.enabled = true;
 
                 // ************************
                 //   MOVEMENT CONTROLLER 
@@ -280,6 +287,12 @@ public class Char_Geomancer : Character {
                     }
                 }
             }
+
+            else { ///_Active == false
+
+                // Disable collisions
+                _Collision.enabled = false;
+            }
         }
     }     
     
@@ -291,7 +304,8 @@ public class Char_Geomancer : Character {
         // Only damage character if match is in phase2
         if (MatchManager._pInstance.GetGameState() == MatchManager.GameState.Phase2) {
             
-            base.Damage(amount);
+            if (_Active == true)
+                base.Damage(amount);
         }
     }
 
@@ -308,23 +322,56 @@ public class Char_Geomancer : Character {
    ///     }
         // Reset score to 0
         ///_Player.SetScore(0);
-
-        // hide character & move out of playable space
-        GetComponentInChildren<Renderer>().enabled = false;
-        transform.position = new Vector3(1000, 0, 1000);
-
-        // Find self in active pool
-        foreach (var necromancer in PlayerManager._pInstance.GetAliveNecromancers()) {
+        
+        if (_Player.GetRespawnsLeft() > 0) {
             
-            // Once we have found ourself in the pool
-            if (necromancer == this) {
+            // Disable controller input
+            _Active = false;
 
-                // Move to inactive pool
-                PlayerManager._pInstance.GetDeadNecromancers().Add(necromancer);
-                PlayerManager._pInstance.GetAliveNecromancers().Remove(necromancer);
-                break;
-            }
+            // Deduct life from respawn cap
+            _Player.DeductRespawn();
+
+            // Move character to its respawn point
+            gameObject.transform.position = _RespawnPoint.position;
+
+            // Reset health
+            _Health = _StartingHealth;
+
+            // Move the character into the gameplay area
+            _LinearGoTo.enabled = true;
         }
+
+        // Player is out of lives and is eliminated from the match
+        else {
+
+            // Deduct life from respawn cap
+            _Player.DeductRespawn();
+
+            // hide character & move out of playable space
+            GetComponentInChildren<Renderer>().enabled = false;
+            transform.position = new Vector3(1000, 0, 1000);
+
+            // Find self in active pool
+            foreach (var necromancer in PlayerManager._pInstance.GetAliveNecromancers()) {
+
+                // Once we have found ourself in the pool
+                if (necromancer == this) {
+
+                    // Move to inactive pool
+                    PlayerManager._pInstance.GetDeadNecromancers().Add(necromancer);
+                    PlayerManager._pInstance.GetAliveNecromancers().Remove(necromancer);
+                    break;
+                }
+            }
+
+            // Disable controller input
+            _Active = false;
+        }
+    }
+
+    public bool GetActive() {
+
+        return _Active;
     }
 
     //--------------------------------------------------------------

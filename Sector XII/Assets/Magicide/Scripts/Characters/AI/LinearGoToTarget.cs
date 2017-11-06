@@ -1,23 +1,38 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class LinearGoToTarget : MonoBehaviour
-{
+public class LinearGoToTarget : MonoBehaviour {
+
+    ///--------------------------------------///
+    /// Created by: Daniel Marton
+    /// Created on: 6.11.2017
+    ///--------------------------------------///
+
+    //----------------------------------------------------------------------------------
+    // *** VARIABLES ***
+
     /// Public
     public GameObject _target;
-    
+    public bool _AiControlled = true;
+
     /// Private
     private float _AgentSpeed;
     private Collider _AgentCollider;
-    
+
+    //--------------------------------------------------------------
+    // *** CONSTRUCTORS ***
+
     void Start() {
 
         // Get references
-        _AgentSpeed = GetComponent<Char_Crystal>().GetMovementSpeed();
+        _AgentSpeed = GetComponent<Character>().GetMovementSpeed();
         _AgentCollider = GetComponent<Collider>();
     }
-    
-	void Update () {
+
+    //--------------------------------------------------------------
+    // *** FRAME ***
+
+    void Update () {
 
         // If the agent is outside of the arena still
         if (_target != null && _AgentCollider != null) {
@@ -26,19 +41,39 @@ public class LinearGoToTarget : MonoBehaviour
             transform.LookAt(_target.transform);
 
             // Move towards last known facing direction
-            transform.Translate(Vector3.forward * Time.deltaTime * _AgentSpeed);
+            float speed = _AgentSpeed * Time.deltaTime;
+            transform.Translate(Vector3.forward * speed);
 
-            foreach (var trigger in AiManager._pInstance._AgentTriggers) {
+            if (_AiControlled == true) {
 
-                // Once a collision happens between the Agent and a trigger
-                if (_AgentCollider.bounds.Intersects(trigger.bounds)) {
+                foreach (var trigger in AiManager._pInstance._AgentTriggers) {
 
-                    // Enable agency
-                    this.GetComponent<NavMeshAgent>().enabled = true;
-                    this.GetComponent<Char_Crystal>().Awake();
+                    // Once a collision happens between the Agent and a trigger
+                    if (_AgentCollider.bounds.Intersects(trigger.bounds)) {
 
-                    // Disable manual seek
-                    this.enabled = false;
+                        // Enable agency
+                        this.GetComponent<NavMeshAgent>().enabled = true;
+                        this.GetComponent<Char_Crystal>().Awake();
+
+                        // Disable manual seek
+                        this.enabled = false;
+                    }
+                }
+            }
+
+            else { /// _AiControlled == false
+
+                foreach (var trigger in PlayerManager._pInstance._RespawnTriggers) {
+
+                    // Once a collision happens between the Agent and a trigger
+                    if (_AgentCollider.bounds.Intersects(trigger.bounds)) {
+
+                        // Enable player controller input
+                        GetComponent<Char_Geomancer>().SetActive(true);
+
+                        // Disable manual seek
+                        this.enabled = false;
+                    }
                 }
             }
         }

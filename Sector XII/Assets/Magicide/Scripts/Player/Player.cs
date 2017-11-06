@@ -23,12 +23,15 @@ public class Player : MonoBehaviour {
     private int _KillCount = 0;                                     // Amount of kills a player has done throughout the match.
     private float _TimeAlive = 0;                                   // Total amount of time the player is alive for.
     private int _Placement = 1;                                     // What match placement the player is currently at.
+    private int _RespawnsLeft;                                      // Amount of respawns left for the player.
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
 
     public void Start() {
 
+        // Set the respawn cap to the player.
+        _RespawnsLeft = PlayerManager._pInstance._Respawns;
     }
 
     //--------------------------------------------------------------
@@ -148,8 +151,20 @@ public class Player : MonoBehaviour {
 
     public void SetPlacement(int place) {
 
-        // set the player's placement to match the parameter
+        // Set the player's placement to match the parameter
         _Placement = place;
+    }
+
+    public int GetRespawnsLeft() {
+
+        // Returns the amount of lives associated with the player
+        return _RespawnsLeft;
+    }
+
+    public void DeductRespawn() {
+
+        // Deduct 1 life from the player
+        _RespawnsLeft -= 1;
     }
 
     //--------------------------------------------------------------

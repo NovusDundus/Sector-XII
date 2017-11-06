@@ -100,7 +100,7 @@ public class TeleportGate : MonoBehaviour {
     public void OnTriggerEnter(Collider other) {
         
         // If its a player controlled character thats been collided with the trigger
-        if (other.GetComponent<Player>() != null) {
+        if (other.GetComponent<Player>() != null && other.GetComponent<Char_Geomancer>().GetActive() == true) {
 
             if (MatchManager._pInstance.GetGameState() == MatchManager.GameState.Phase1) {
 
