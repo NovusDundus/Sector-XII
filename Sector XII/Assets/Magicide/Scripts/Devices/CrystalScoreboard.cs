@@ -13,12 +13,13 @@ public class CrystalScoreboard : MonoBehaviour {
     // *** VARIABLES ***
 
     /// Public (designers)
-    public GameObject CrystalObject;
-    public Material PlayerAlphaMaterial;
-    public Material PlayerBravoMaterial;
-    public Material PlayerCharlieMaterial;
-    public Material PlayerDeltaMaterial;
-    public Material DefaultMaterial;
+    public GameObject _Crystal;
+    public Light _LightSource;
+    public Material _PlayerAlphaMaterial;
+    public Material _PlayerBravoMaterial;
+    public Material _PlayerCharlieMaterial;
+    public Material _PlayerDeltaMaterial;
+    public Material _DefaultMaterial;
 
     /// Private
     private int _CurrentHighest = 0;
@@ -69,32 +70,38 @@ public class CrystalScoreboard : MonoBehaviour {
 
             case 0:
 
-                meshRenderer.material = DefaultMaterial;
+                meshRenderer.material = _DefaultMaterial;
+                _LightSource.color = _DefaultMaterial.color;
                 break;
 
             case 1:
 
-                meshRenderer.material = PlayerAlphaMaterial;
+                meshRenderer.material = _PlayerAlphaMaterial;
+                _LightSource.color = _PlayerAlphaMaterial.color;
                 break;
 
             case 2:
 
-                meshRenderer.material = PlayerBravoMaterial;
+                meshRenderer.material = _PlayerBravoMaterial;
+                _LightSource.color = _PlayerBravoMaterial.color;
                 break;
 
             case 3:
 
-                meshRenderer.material = PlayerCharlieMaterial;
+                meshRenderer.material = _PlayerCharlieMaterial;
+                _LightSource.color = _PlayerCharlieMaterial.color;
                 break;
 
             case 4:
                 
-                meshRenderer.material = PlayerDeltaMaterial;
+                meshRenderer.material = _PlayerDeltaMaterial;
+                _LightSource.color = _PlayerDeltaMaterial.color;
                 break;
 
             default:
 
-                meshRenderer.material = DefaultMaterial;
+                meshRenderer.material = _DefaultMaterial;
+                _LightSource.color = _DefaultMaterial.color;
                 break;
 
         }
