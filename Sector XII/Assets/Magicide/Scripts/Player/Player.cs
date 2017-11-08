@@ -31,7 +31,8 @@ public class Player : MonoBehaviour {
     public void Start() {
 
         // Set the respawn cap to the player.
-        _RespawnsLeft = PlayerManager._pInstance._Respawns;
+        if (PlayerManager._pInstance != null)
+            _RespawnsLeft = PlayerManager._pInstance._Respawns;
     }
 
     //--------------------------------------------------------------

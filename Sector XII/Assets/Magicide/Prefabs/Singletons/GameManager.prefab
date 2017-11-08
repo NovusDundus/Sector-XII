@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114481876437901886}
   - component: {fileID: 114342767189424728}
   - component: {fileID: 114977905998677262}
+  - component: {fileID: 114885749551304172}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Manager
@@ -257,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d54dd93656b2f2940a229b11df00f869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Phase1Length: 15
+  _Phase1Length: 3
   _Phase2Timer: 0
   _Phase2Length: 120
 --- !u!114 &114481876437901886
@@ -282,6 +283,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe1339e1a23a9b4a95bd4c6240bb02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _Respawns: 2
+  _RespawnTime: 3
+  _RespawnTriggers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _GeomancerStartingHealth: 100
   _GeomancerMovementSpeed: 12
   _DashEnabled: 1
@@ -296,6 +304,51 @@ MonoBehaviour:
   _PrimaryWeapon: 0
   _SecondaryWeaponEnabled: 1
   _WeaponSwapButton: 9
+--- !u!114 &114885749551304172
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1254212357002398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cbcfc139f93d9740bdaf99a6cbb2567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SFX_ButtonClick: {fileID: 0}
+  _DB_ButtonClick: 0
+  _SFX_ButtonHover: {fileID: 0}
+  _DB_ButtonHover: 0
+  _SFX_ButtonGoBack: {fileID: 0}
+  _DB_ButtonGoBack: 0
+  _SFX_Dash: []
+  _DB_Dash: []
+  _SFX_FireballAttack: []
+  _DB_FireballAttack: []
+  _SFX_FireballImpact: []
+  _DB_FireballImpact: []
+  _SFX_FlamethrowerAttack: []
+  _DB_FlamethrowerAttack: []
+  _SFX_OnTeleport: []
+  _DB_OnTeleport: []
+  _SFX_OnTagPickupMinion: []
+  _DB_OnTagPickupMinion: []
+  _SFX_OnTagPickupSpeed: []
+  _DB_OnPickupSpeed: []
+  _SFX_OnTagPickupHealth: []
+  _DB_OnPickupHealth: []
+  _SFX_CrystalHit: []
+  _DB_CrystalHit: []
+  _SFX_CrystalDeath: []
+  _DB_CrystalDeath: []
+  _MUSIC_MainMenu: {fileID: 0}
+  _DB_MUSIC_MainMenu: 0
+  _MUSIC_Gameplay: {fileID: 0}
+  _DB_MUSIC_Gameplay: 0
+  _AMBIENCE_MainMenu: {fileID: 0}
+  _DB_AMBIENCE_MainMenu: 0
+  _AMBIENCE_Gameplay: {fileID: 0}
+  _DB_AMBIENCE_Gameplay: 0
 --- !u!114 &114977905998677262
 MonoBehaviour:
   m_ObjectHideFlags: 1

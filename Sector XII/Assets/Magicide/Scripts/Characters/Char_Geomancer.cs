@@ -36,6 +36,11 @@ public class Char_Geomancer : Character {
     private bool _TabbingWeapon = false;
     private XboxCtrlrInput.XboxButton _TabInputButton = XboxCtrlrInput.XboxButton.RightBumper;
     private LinearGoToTarget _LinearGoTo;
+    private bool _WaitingToRespawn = false;
+    private float _RespawnTimer = 0f;
+    private float _TauntCooldown = 5f;
+    private float _TauntTimer = 0f;
+    private Dialog _CharacterDialog;
 
     /// Delegates / Events
     private delegate void CharacterAbility();
@@ -163,7 +168,7 @@ public class Char_Geomancer : Character {
 
                     // Get directional input (movement & rotation)
                     Vector3 vec = _Player.GetMovementInput.normalized;
-                    transform.SetPositionAndRotation(transform.position + vec * (_MovementSpeed * _SpeedBoostModifier * _MovementSpeedModifier) * Time.fixedDeltaTime, Quaternion.Euler(_Player.GetRotationInput));
+                    transform.SetPositionAndRotation(transform.position + vec * (_MovementSpeed * _SpeedBoostModifier * _MovementSpeedModifier) * Time.deltaTime, Quaternion.Euler(_Player.GetRotationInput));
                 }
 
                 // Character is NOT receiving right stick input
@@ -171,7 +176,7 @@ public class Char_Geomancer : Character {
 
                     // Get directional input (movement ONLY)
                     Vector3 vec = _Player.GetMovementInput.normalized;
-                    transform.SetPositionAndRotation(transform.position + vec * (_MovementSpeed * _SpeedBoostModifier * _MovementSpeedModifier) * Time.fixedDeltaTime, transform.rotation);
+                    transform.SetPositionAndRotation(transform.position + vec * (_MovementSpeed * _SpeedBoostModifier * _MovementSpeedModifier) * Time.deltaTime, transform.rotation);
                 }
 
                 // ************************
@@ -286,12 +291,55 @@ public class Char_Geomancer : Character {
                         _SpeedBoostActive = false;
                     }
                 }
+
+                // TAUNT
+                if (_Player.GetFaceLeftInput) {
+
+                    // Taunt cooldown IS complete
+                    if (_TauntTimer >= _TauntCooldown) {
+
+                        // Play taunt sequence
+                        Taunt();
+                    }
+
+                    // Taunt cooldown is NOT complete
+                    else { /// _TauntTimer < _TauntCooldown
+
+                        // Add to timer
+                        _TauntTimer += Time.deltaTime;
+                    }
+
+                }
             }
 
+            // Movement controller is disabled for the character
             else { ///_Active == false
 
                 // Disable collisions
                 _Collision.enabled = false;
+            }
+
+            // The character is dead and waiting to respawn
+            if (_WaitingToRespawn == true) {
+
+                // Respawn timer is still counting
+                if (_RespawnTimer < PlayerManager._pInstance._RespawnTime) {
+
+                    // Add to timer
+                    _RespawnTimer += Time.deltaTime;
+                }
+
+                // Respawn timer has finished
+                else { /// _RespawnTimer >= PlayerManager._pInstance._RespawnTime
+                                        
+                    // Move the character into the gameplay area
+                    _LinearGoTo.enabled = true;
+
+                    // Reset health & respawn timer
+                    _Health = _StartingHealth;
+                    _RespawnTimer = 0f;
+                    _WaitingToRespawn = false;
+                }
             }
         }
     }     
@@ -313,15 +361,6 @@ public class Char_Geomancer : Character {
 
         // Get last known alive position and store it
         base.OnDeath();
-
-        // Kill all the minions associated with the character
-   ///     Wep_Shield shield = _WeaponSecondary.GetComponent<Wep_Shield>();
-   ///     foreach (var minion in shield.GetMeatMinionPool())
-   ///     {
-   ///         minion.GetComponent<Proj_ShieldMinion>().ForceDeath();
-   ///     }
-        // Reset score to 0
-        ///_Player.SetScore(0);
         
         if (_Player.GetRespawnsLeft() > 0) {
             
@@ -334,11 +373,8 @@ public class Char_Geomancer : Character {
             // Move character to its respawn point
             gameObject.transform.position = _RespawnPoint.position;
 
-            // Reset health
-            _Health = _StartingHealth;
-
-            // Move the character into the gameplay area
-            _LinearGoTo.enabled = true;
+            // Start respawn timer
+            _WaitingToRespawn = true;
         }
 
         // Player is out of lives and is eliminated from the match
@@ -362,6 +398,10 @@ public class Char_Geomancer : Character {
                     PlayerManager._pInstance.GetAliveNecromancers().Remove(necromancer);
                     break;
                 }
+
+                // Set our match placement depending on how many other players are still alive in the game
+                int playersRemaining = PlayerManager._pInstance.GetAliveNecromancers().Count;
+                _Player.SetPlacement(playersRemaining + 1);
             }
 
             // Disable controller input
@@ -535,6 +575,13 @@ public class Char_Geomancer : Character {
             }
             _TabbingWeapon = true;
         }
+    }
+
+    private void Taunt() {
+
+        _CharacterDialog.PlayTaunt();
+        _TauntTimer = 0f;
+        print("TAUNT!");
     }
 
     //--------------------------------------------------------------

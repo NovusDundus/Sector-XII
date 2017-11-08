@@ -45,6 +45,7 @@ public class Behaviour_Flee : MonoBehaviour
 
             // Checks to see if the distance from the AI gameobject is less then or equal to the flee_threshold
             if (m_FleeDistance <= m_FleeThreshold) {
+
                 // First thing this does it is find the position of the gameobject that this script is associated with(EnemyAI gameobject)
                 // the compiler then finds the position of m_target(Which is the player gameobject)
                 // then the compiler subtracts whatever the position of the player, by the position of the AI is and move it into the vecbetweenplayerandenemy variable

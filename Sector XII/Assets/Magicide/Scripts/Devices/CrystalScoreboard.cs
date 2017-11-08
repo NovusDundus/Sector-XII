@@ -26,6 +26,8 @@ public class CrystalScoreboard : MonoBehaviour {
     private int _TopPlayerID = 0;
     private MeshRenderer meshRenderer;
     private Player _HighestPlayer;
+    private Color _ColourTarget;
+    private float _timerColour = 0f;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -33,6 +35,7 @@ public class CrystalScoreboard : MonoBehaviour {
     void Start () {
 
         meshRenderer = GetComponent<MeshRenderer>();
+        _ColourTarget = _LightSource.color;
     }
 
     //--------------------------------------------------------------
@@ -68,43 +71,56 @@ public class CrystalScoreboard : MonoBehaviour {
 
         switch (_TopPlayerID) {
 
-            case 0:
-
-                meshRenderer.material = _DefaultMaterial;
-                _LightSource.color = _DefaultMaterial.color;
-                break;
-
             case 1:
 
                 meshRenderer.material = _PlayerAlphaMaterial;
-                _LightSource.color = _PlayerAlphaMaterial.color;
+                _ColourTarget = _PlayerAlphaMaterial.color;
+                _timerColour = 0;
                 break;
 
             case 2:
 
                 meshRenderer.material = _PlayerBravoMaterial;
-                _LightSource.color = _PlayerBravoMaterial.color;
+                _ColourTarget = _PlayerBravoMaterial.color;
+                _timerColour = 0;
                 break;
 
             case 3:
 
                 meshRenderer.material = _PlayerCharlieMaterial;
-                _LightSource.color = _PlayerCharlieMaterial.color;
+                _ColourTarget = _PlayerCharlieMaterial.color;
+                _timerColour = 0;
                 break;
 
             case 4:
                 
                 meshRenderer.material = _PlayerDeltaMaterial;
-                _LightSource.color = _PlayerDeltaMaterial.color;
+                _ColourTarget = _PlayerDeltaMaterial.color;
+                _timerColour = 0;
                 break;
 
             default:
 
                 meshRenderer.material = _DefaultMaterial;
-                _LightSource.color = _DefaultMaterial.color;
+                _ColourTarget = _DefaultMaterial.color;
+                _timerColour = 0;
                 break;
 
         }
+
+        if (_LightSource.color != _ColourTarget && _timerColour < 1f) {
+
+            _timerColour += Time.deltaTime * 2;
+            _LightSource.color = Color.Lerp(_LightSource.color, _ColourTarget, _timerColour);
+        }        
+    }
+
+    //--------------------------------------------------------------
+    // *** COLOURING ***
+
+    public void LerpColour(Color a_Colour) {
+
+        _ColourTarget = a_Colour;
     }
 
 }

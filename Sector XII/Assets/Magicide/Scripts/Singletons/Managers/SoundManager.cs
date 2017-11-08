@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
@@ -85,9 +84,21 @@ public class SoundManager : MonoBehaviour {
     public AudioSource _AMBIENCE_Gameplay;
     public float _DB_AMBIENCE_Gameplay;
 
+    [Header("---------------------------------------------------------------------------")]
+    [Header("*** CHARACTER DIALOG")]
+    [Header("")]
+    public List<Dialog> _VOX_Dialoglist;
+
     /// Public (internal)
     [HideInInspector]
     public static SoundManager _pInstance;                          // This is a singleton script, Initialized in Startup().
+
+    /// Private 
+    private bool _IsPlayingVoxel = false;
+    private List<AudioSource> _VoxelWaitingList;
+    private float _TimeSinceLastVoxel = 0f;
+    private List<bool> _DialogsUse;
+
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -105,6 +116,69 @@ public class SoundManager : MonoBehaviour {
         _pInstance = this;
     }
 
+    public void Start() {
+
+        _VoxelWaitingList = new List<AudioSource>();
+        _DialogsUse = new List<bool>();
+
+        for (int i = 0; i < _VOX_Dialoglist.Count; i++) {
+
+            // Dialog isnt used by default
+            _DialogsUse.Add(false);
+        }
+    }
+
+    //--------------------------------------------------------------
+    // *** FRAME ***
+
+    public void Update() {
+
+        // If there are voxel sounds waiting to be played
+        if (_VoxelWaitingList.Count > 0) {
+            
+            if (_IsPlayingVoxel == true) {
+
+                // Find the voxel sound that is current playing
+                AudioSource vox = null;
+                foreach (var sound in _VoxelWaitingList) {
+
+                    // If a sound from the voxel list is playing
+                    if (sound.isPlaying == true) {
+
+                        // Then a voxel is playing
+                        vox = sound;
+                        break;
+                    }
+                }
+
+                _IsPlayingVoxel = vox != null;
+            }
+
+            // A vox has finished playing
+            else { /// _IsPlayingVoxel == false
+
+                // Get the last voxel that was playing (should be at the front of the list) & remove it from the queue
+                _VoxelWaitingList.RemoveAt(0);
+
+                // If there are still voxels in the queue
+                if (_VoxelWaitingList.Count > 0) {
+
+                    // Play the next vox sound in the queue
+                    _VoxelWaitingList[0].Play();
+                    _IsPlayingVoxel = true;
+                    _TimeSinceLastVoxel = 0f;
+                }
+            }
+        }
+
+        // No more voxels are left in the playing queue
+        else { /// _VoxelWaitingList.Count == 0
+
+            // Add to timer
+            _TimeSinceLastVoxel += Time.deltaTime;
+        }
+    }
+
     //--------------------------------------------------------------
     // *** SOUNDS ***
 
@@ -113,6 +187,31 @@ public class SoundManager : MonoBehaviour {
         // Returns a random integer between 0 & the size of the audio source list
         int i = Random.Range(0, SoundList.Count);
         return i;
+    }
+
+    public Dialog GetDialog() {
+
+        int i = 0;
+        foreach (var dialog in _VOX_Dialoglist) {
+
+            if (_DialogsUse[i] == false) {
+
+                _DialogsUse[i] = true;
+                return dialog;
+            }
+            ++i;
+        }
+        return null;        
+    }
+
+    public List<AudioSource> GetVoxelWaitingList() {
+
+        return _VoxelWaitingList;
+    }
+
+    public void StartingPlayingVoxels() {
+
+        _IsPlayingVoxel = true;
     }
 
     /// -------------------------------------------
@@ -281,7 +380,7 @@ public class SoundManager : MonoBehaviour {
 
     /// -------------------------------------------
     ///     
-    ///     MUSIC & AMBIENCE
+    ///     MUSIC & AMBIENCE SFX
     /// 
     /// -------------------------------------------
 

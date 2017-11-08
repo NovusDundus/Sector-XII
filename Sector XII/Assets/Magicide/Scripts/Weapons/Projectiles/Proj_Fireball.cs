@@ -82,7 +82,7 @@ public class Proj_Fireball : Projectile {
             if (distanceTraveled < WeaponManager._pInstance._FireballRange) {
 
                 // Move forwards                
-                transform.position = transform.position + transform.forward * _TravelSpeed * Time.fixedDeltaTime;
+                transform.position = transform.position + transform.forward * _TravelSpeed * Time.deltaTime;
                 ///(SmoothMove(transform.forward, _TravelSpeed * Time.deltaTime));
 
                 // Add 1 unit of distance per second

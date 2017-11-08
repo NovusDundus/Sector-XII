@@ -20,7 +20,7 @@ public class Wep_Shield : Weapon {
     private int _PreviousMinionCount = 0;
     private float _OrbitSpeed = 200;                                // The speed in which the minions rotate around the character that owns this weapon.
     private float _MinionSpacing = 2f;         /* TEMPORARY */      // Unit of space between each minion.
-    private Quaternion rotation;                                    // Current rotation of the weapon's transform.
+    private Quaternion _rotation;                                   // Current rotation of the weapon's transform.
     private List<GameObject> _POOL_Minions;                         // Object pool of all minions attached to this weapon.
     private bool _AutomatedRotation;
     private bool _RotateRight;
@@ -44,7 +44,7 @@ public class Wep_Shield : Weapon {
         // Set rotation properties
         _AutomatedRotation = WeaponManager._pInstance._AutoRotateShield;
         _RotateRight = WeaponManager._pInstance._ShieldOrbitClockwise;
-        rotation = transform.rotation;
+        _rotation = transform.rotation;
 
         // Create arrays
         _POOL_Minions = new List<GameObject>();
@@ -61,8 +61,9 @@ public class Wep_Shield : Weapon {
                 if (_ShieldMinionPrefab != null) {
 
                     // Determine the position of the minion in the pool
-                    Quaternion rot = transform.rotation;
-                    float angle = i * (Mathf.PI * 2f / (float)GetMaxMinions());
+                    ///Quaternion rot = new Quaternion(transform.rotation.x, transform.rotation.y + _rotation.y, transform.rotation.z, transform.rotation.w);
+                    
+                    float angle = i * (Mathf.PI * 2f / (float)GetMaxMinions()) + transform.rotation.y;
                     Vector3 pos = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * _MinionSpacing;
                     pos += new Vector3(transform.position.x, transform.position.y + 0.75f, transform.position.z);
                     
@@ -77,11 +78,8 @@ public class Wep_Shield : Weapon {
                 }
             }
 
-            // Hide the templated minion prefab
-            ///_ShieldMinionPrefab.GetComponent<Renderer>().enabled = false;
-
             // Set initial rotation
-            rotation = transform.rotation;
+            _rotation = transform.rotation;
         }
     }
 
@@ -104,13 +102,13 @@ public class Wep_Shield : Weapon {
                     // Rotate shield clockwise
                     if (_RotateRight == true) {
 
-                        transform.Rotate(0f, transform.rotation.y + _OrbitSpeed * Time.fixedDeltaTime, 0f);
+                        transform.Rotate(0f, transform.rotation.y + _OrbitSpeed * Time.deltaTime, 0f);
                     }
 
                     // Rotate shield counter clockwise
                     else { /// _RotateRight == false
 
-                        transform.Rotate(0f, transform.rotation.y - _OrbitSpeed * Time.fixedDeltaTime, 0f);
+                        transform.Rotate(0f, transform.rotation.y - _OrbitSpeed * Time.deltaTime, 0f);
                     }
                 }
 
@@ -123,7 +121,7 @@ public class Wep_Shield : Weapon {
                         if (_CanRotate == true) {
 
                             // Rotate shield right
-                            transform.Rotate(0f, transform.rotation.y + _OrbitSpeed * Time.fixedDeltaTime, 0f);
+                            transform.Rotate(0f, transform.rotation.y + _OrbitSpeed * Time.deltaTime, 0f);
                         }
                     }
 
@@ -133,26 +131,13 @@ public class Wep_Shield : Weapon {
                         if (_CanRotate == true) {
 
                             // Rotate shield left
-                            transform.Rotate(0f, transform.rotation.y - _OrbitSpeed * Time.fixedDeltaTime, 0f);
+                            transform.Rotate(0f, transform.rotation.y - _OrbitSpeed * Time.deltaTime, 0f);
                         }
                     }
 
                     // Apply new rotation
-                    rotation.y = transform.rotation.y;
+                    _rotation.y = transform.rotation.y;
                 }
-            }
-
-            // Apply stat modifiers to the player based on how many minions are in the shield
-            if (_MinionCount > 0) {
-
-                // Modify movement speed
-                float multiMov = _MinionCount / _MaxMinions;
-                ///_Owner.GetComponent<Char_Geomancer>().SetMovementSpeedMultiplier(multiMov);
-            }
-
-            else {
-
-                ///_Owner.GetComponent<Char_Geomancer>().
             }
         }
     }
@@ -171,8 +156,8 @@ public class Wep_Shield : Weapon {
 
         while (t < timeToRotate) {
 
-            spinner.transform.Rotate(direction * (Time.fixedDeltaTime / timeToRotate));
-            t += Time.fixedDeltaTime;
+            spinner.transform.Rotate(direction * (Time.deltaTime / timeToRotate));
+            t += Time.deltaTime;
             yield return new WaitForFixedUpdate();
         }
         yield break;

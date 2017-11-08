@@ -18,6 +18,8 @@ public class PlayerManager : MonoBehaviour {
     [Header("- Respawning")]
     [Tooltip("The maximum amount of respawns associated to each player.")]
     public int _Respawns = 3;                                       // The maximum amount of respawns associated to each player.
+    [Tooltip("The amount of time between a player's death and their respawn.")]
+    public int _RespawnTime = 3;                                    // The amount of time between a player's death and their respawn.
     [Tooltip("List of references to the North, South, East & West player respawning triggers.")]
     public List<Collider> _RespawnTriggers;                         // List of references to the North, South, East & West player respawning triggers.
     [Header("---------------------------------------------------------------------------")]
