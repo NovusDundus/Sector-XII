@@ -112,7 +112,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       tonemapping:
-        tonemapper: 2
+        tonemapper: 1
         neutralBlackIn: -0.0046
         neutralWhiteIn: 9.3
         neutralBlackOut: -0.039
@@ -120,7 +120,7 @@ MonoBehaviour:
         neutralWhiteLevel: 20
         neutralWhiteClip: 8.22
       basic:
-        postExposure: 0
+        postExposure: 0.5
         temperature: 22
         tint: -2
         hueShift: 0
@@ -134,9 +134,9 @@ MonoBehaviour:
       colorWheels:
         mode: 1
         log:
-          slope: {r: 1, g: 1, b: 1, a: 0}
-          power: {r: 0.52538365, g: 1, b: 0.48331565, a: 0}
-          offset: {r: 1, g: 1, b: 1, a: 0}
+          slope: {r: 0.7345132, g: 1, b: 0.9663954, a: 0.09859155}
+          power: {r: 0.52538365, g: 1, b: 0.48331565, a: -0.46478873}
+          offset: {r: 1, g: 1, b: 1, a: 0.112676054}
         linear:
           lift: {r: 1, g: 1, b: 1, a: 0}
           gamma: {r: 1, g: 1, b: 1, a: 0}
@@ -288,8 +288,8 @@ MonoBehaviour:
   grain:
     m_Enabled: 0
     m_Settings:
-      colored: 0
-      intensity: 1
+      colored: 1
+      intensity: 0.2
       size: 0.3
       luminanceContribution: 1
   vignette:
@@ -298,7 +298,7 @@ MonoBehaviour:
       mode: 0
       color: {r: 0, g: 0, b: 0, a: 1}
       center: {x: 0.5, y: 0.5}
-      intensity: 0.19
+      intensity: 0.255
       smoothness: 0.809
       roundness: 1
       mask: {fileID: 0}
