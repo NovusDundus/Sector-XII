@@ -125,10 +125,24 @@ namespace XboxCtrlrInput
 			if (button.IsDPad())
 				return GetDPad(button.ToDPad(), controller);
 
-			if (controller == XboxController.All)
-				return GetButton(button);
+            if (controller == XboxController.All) {
 
-			int controllerNumber = (int)controller;
+                if (GetButton(button, XboxController.First))
+                    return true;
+
+                if (GetButton(button, XboxController.Second))
+                    return true;
+
+                if (GetButton(button, XboxController.Third))
+                    return true;
+
+                if (GetButton(button, XboxController.Fourth))
+                    return true;
+
+            return false;
+            }
+
+            int controllerNumber = (int)controller;
 			
 			if(OnWindowsNative())
 			{
