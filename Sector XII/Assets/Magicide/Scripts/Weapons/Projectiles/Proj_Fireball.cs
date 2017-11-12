@@ -17,7 +17,6 @@ public class Proj_Fireball : Projectile {
     private float _TravelSpeed;                                     // Movement speed of the projectile.
     private bool _Active = false;                                   // Returns TRUE if the projectile is active in the world.
     private float distanceTraveled = 0f;                            // Used to test if max range has been reached.
-    private float _DamageMultiplier = 1f;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -115,7 +114,10 @@ public class Proj_Fireball : Projectile {
                     if (_Collision.bounds.Intersects(crystal.GetCollider().bounds)) {
 
                         // Damage minion
-                        crystal.Damage(_ImpactDamage /*+ (_ImpactDamage * _DamageMultiplier)*/);
+                        crystal.Damage(_Owner.GetOwner(), _ImpactDamage);
+
+                        // Play impact sound
+                        SoundManager._pInstance.PlayFireballImpact();
 
                         // Check if minion has been killed
                         if (crystal.GetHealth() <= 0) {
@@ -152,7 +154,10 @@ public class Proj_Fireball : Projectile {
                             if (_Collision.bounds.Intersects(minion.GetCollision().bounds)) {
 
                                 // Damage minion
-                                minion.Damage(_ImpactDamage /*+ (_ImpactDamage * _DamageMultiplier)*/);
+                                minion.Damage(_Owner.GetOwner(), _ImpactDamage);
+
+                                // Play impact sound
+                                SoundManager._pInstance.PlayFireballImpact();
 
                                 // Check if minion has been killed
                                 if (minion.GetHealth() <= 0) {
@@ -176,8 +181,11 @@ public class Proj_Fireball : Projectile {
                         if (_Collision.bounds.Intersects(necromancer.GetCollider().bounds) && _Active) {
 
                             // Damage necromancer
-                            necromancer.Damage(_ImpactDamage /*+ (_ImpactDamage * _DamageMultiplier)*/);
+                            necromancer.Damage(_Owner.GetOwner(), _ImpactDamage /*+ (_ImpactDamage * _DamageMultiplier)*/);
                             
+                            // Play impact sound
+                            SoundManager._pInstance.PlayFireballImpact();
+
                             // Check if necromancer has been killed
                             if (necromancer.GetHealth() <= 0) {
 
@@ -194,6 +202,7 @@ public class Proj_Fireball : Projectile {
             }
         }
 
+        /*
         // Check against all Static objects
         foreach (GameObject Object in LevelManager._pInstance.GetStaticObjects()) {
 
@@ -231,36 +240,43 @@ public class Proj_Fireball : Projectile {
                 }
             }
         }
+        */
+    }
 
-    }   
-    
- //  public void OnTriggerEnter(Collider other) {
- //
- //      Debug.Log(other.tag);
- //
- //      if (other.gameObject.tag == "Enemy") {
- //          print("Colliding");
- //
- //          Char_Crystal crystal = other.GetComponent<Char_Crystal>();
- //
- //          // Damage minion
- //          crystal.Damage(_ImpactDamage);
- //        
- //          // Check if minion has been killed
- //          if (crystal.GetHealth() <= 0) {
- //        
- //              // Add to instigator's kill count
- //              _Owner.GetOwner()._Player.AddKillCount();
- //          }
- //
- //          // Destroy fireball
- //          FreeProjectile();
- //      }
- //  }
-    
-    //--------------------------------------------------------------
-    // *** MOVEMENT ***
+    public void OnTriggerEnter(Collider other) {
 
+        Tags tagComp = other.gameObject.GetComponent<Tags>();
+        if (tagComp != null) {
+
+            if (tagComp.ContainsTag("Character")) {
+
+                print(other.tag);
+            }
+
+            if (tagComp.ContainsTag("Collision")) {
+
+                print(other.tag);
+            }
+        }
+    }
+
+    public void OnCollisionEnter(Collision collision) {
+
+        Tags tagComp = collision.gameObject.GetComponent<Tags>();
+        if (tagComp != null) {
+
+            if (tagComp.ContainsTag("Character")) {
+
+                print(collision.gameObject.tag);
+            }
+
+            if (tagComp.ContainsTag("Collision")) {
+
+                print(collision.gameObject.tag);
+            }
+        }
+    }
+    
     IEnumerator SmoothMove(Vector3 direction, float speed) {
 
         // Coroutine to move this gameObjects.transform in a direction * speed
@@ -285,4 +301,5 @@ public class Proj_Fireball : Projectile {
 
         return _ImpactDamage;
     }
+
 }

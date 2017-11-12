@@ -30,19 +30,27 @@ public class DeviceManager : MonoBehaviour {
     public float _SpeedBoostTime = 5f;
 
     [Header("- Health Pack Variant")]
-    public Material _HealthpackTypeMaterial;
+    public Material _mHealthpackTypeMaterial;
     public float _HealthpackRotationSpeed = 3f;
     public float _HealthpackBobHeight = 1f;
     public float _HealthpackBobSpeed = 2f;
-    public int _AddHealthAmount = 50;
+    public int _HealthAddAmount = 50;
 
     [Header("---------------------------------------------------------------------------")]
     [Header("*** Teleporters ***")]
     [Tooltip("Can the teleporters be used in phase 1?")]
-    public bool _CanBeUsedInPhase1 = true;
+    public bool _UsedInPhase1 = true;
     [Header("- Cooldown")]
     [Tooltip("Time in seconds that allows reusing of the teleporters once they has been activated.")]
     public int _TeleportCooldownTime = 10;
+    
+    [Header("---------------------------------------------------------------------------")]
+    [Header("*** Glowing Floor ***")]
+    public float _GlowTime = 1f;
+    public Material _FloorMaterial;
+    public Color _GlowFloorColourMin;
+    public Color _GlowFloorColourMax;
+
 
     /// Public (internal)
     [HideInInspector]

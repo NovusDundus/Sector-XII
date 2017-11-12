@@ -207,6 +207,9 @@ public class Wep_Orb : Weapon {
                 _CurrentFireDelay += _FireRateGain;
             }
             ///_FiringDelay = _CurrentFireDelay;
+
+            // Play firing sound
+            SoundManager._pInstance.PlayFireballAttack();
         }
     }
 

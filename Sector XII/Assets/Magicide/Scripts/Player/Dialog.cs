@@ -16,14 +16,10 @@ public class Dialog : MonoBehaviour {
     [Header("*** SOUND SFX")]
     [Header("")]
     public List<AudioSource> _OnHitSounds;
-    public List<float> _DB_OnHitSounds;
-    [Header("")]
     public List<AudioSource> _OnDeathSounds;
-    public List<float> _DB_DeathSounds;
     [Header("*** SOUND VOX")]
     [Header("")]
     public List<AudioSource> _TauntSounds;
-    public List<float> _DB_TauntSounds;
 
     /// Private
     private bool _OnHitPlaying = false;
@@ -101,7 +97,7 @@ public class Dialog : MonoBehaviour {
     public void PlayOnHit() {
 
         // Precautions
-        if (_OnHitSounds.Count > 0 && _DB_OnHitSounds.Count > 0) {
+        if (_OnHitSounds.Count > 0) {
 
             // If a sound isnt current being played
             if (_OnHitPlaying == false) {
@@ -111,7 +107,6 @@ public class Dialog : MonoBehaviour {
                 AudioSource sound = _OnHitSounds[i];
 
                 // Play the sound
-                sound.volume = _DB_OnHitSounds[i];
                 sound.Play();
                 _OnHitPlaying = true;
             }
@@ -121,36 +116,40 @@ public class Dialog : MonoBehaviour {
     /// SFX
     public void PlayOnDeath() {
 
-        // If a sound isnt current being played
-        if (_OnDeathPlaying == false) {
+        // Precautions
+        if (_OnDeathSounds.Count > 0) {
 
-            // Get random sound from list
-            int i = RandomSoundInt(_OnDeathSounds);
-            AudioSource sound = _OnDeathSounds[i];
+            // If a sound isnt current being played
+            if (_OnDeathPlaying == false) {
 
-            // Play the sound
-            sound.volume = _DB_DeathSounds[i];
-            sound.Play();
-            _OnDeathPlaying = true;
+                // Get random sound from list
+                int i = RandomSoundInt(_OnDeathSounds);
+                AudioSource sound = _OnDeathSounds[i];
+
+                // Play the sound
+                sound.Play();
+                _OnDeathPlaying = true;
+            }
         }
     }
 
     /// VOX
     public void PlayTaunt() {
 
-        // If a sound isnt current being played
-        if (_TauntPlaying == false) {
+        // Precautions
+        if (_TauntSounds.Count > 0) {
 
-            // Get random sound from list
-            AudioSource sound = _TauntSounds[RandomSoundInt(_TauntSounds)];
+            // If a sound isnt current being played
+            if (_TauntPlaying == false) {
 
-            // Queue the sound to the voxel waiting list
-            SoundManager._pInstance.GetVoxelWaitingList().Add(sound);
-           _TauntPlaying = true;
-            SoundManager._pInstance.StartingPlayingVoxels();
+                // Get random sound from list
+                AudioSource sound = _TauntSounds[RandomSoundInt(_TauntSounds)];
 
-         ///   // Play the sound
-         ///   sound.Play();
+                // Queue the sound to the voxel waiting list
+                SoundManager._pInstance.GetVoxelWaitingList().Add(sound);
+                _TauntPlaying = true;
+                SoundManager._pInstance.StartingPlayingVoxels();
+            }
         }
     }
 

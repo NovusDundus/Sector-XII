@@ -71,7 +71,7 @@ public class KillTag : MonoBehaviour {
 
             case PickupType.Healthpack: {
 
-                    GetComponent<MeshRenderer>().material = DeviceManager._pInstance._HealthpackTypeMaterial;
+                    GetComponent<MeshRenderer>().material = DeviceManager._pInstance._mHealthpackTypeMaterial;
                     _RotationSpeed = DeviceManager._pInstance._HealthpackRotationSpeed;
                     _BobHeight = DeviceManager._pInstance._HealthpackBobHeight;
                     _BobSpeed = DeviceManager._pInstance._HealthpackBobSpeed;
@@ -269,7 +269,7 @@ public class KillTag : MonoBehaviour {
         if (Geomancer.GetHealth() < Geomancer.GetStartingHealth()) {
 
             // Add health to necromancer
-            Geomancer.AddHealth(DeviceManager._pInstance._AddHealthAmount);
+            Geomancer.AddHealth(DeviceManager._pInstance._HealthAddAmount);
 
             // Destroy tag
             Destroy(gameObject);

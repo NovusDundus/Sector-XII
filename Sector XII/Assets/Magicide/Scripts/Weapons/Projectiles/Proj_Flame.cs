@@ -114,7 +114,10 @@ public class Proj_Flame : Projectile {
                     if (_Collision.bounds.Intersects(crystal.GetCollider().bounds)) {
 
                         // Damage minion
-                        crystal.Damage(_Damage /*+ (_ImpactDamage * _DamageMultiplier)*/);
+                        crystal.Damage(_Owner.GetOwner(), _Damage);
+
+                        // Play impact sound
+                        SoundManager._pInstance.PlayFireballImpact();
 
                         // Check if minion has been killed
                         if (crystal.GetHealth() <= 0) {
@@ -151,7 +154,10 @@ public class Proj_Flame : Projectile {
                             if (_Collision.bounds.Intersects(minion.GetCollision().bounds)) {
 
                                 // Damage minion
-                                minion.Damage(_Damage /*+ (_ImpactDamage * _DamageMultiplier)*/);
+                                minion.Damage(_Owner.GetOwner(), _Damage);
+
+                                // Play impact sound
+                                SoundManager._pInstance.PlayFireballImpact();
 
                                 // Check if minion has been killed
                                 if (minion.GetHealth() <= 0) {
@@ -175,7 +181,10 @@ public class Proj_Flame : Projectile {
                         if (_Collision.bounds.Intersects(necromancer.GetCollider().bounds) && _Active) {
 
                             // Damage necromancer
-                            necromancer.Damage(_Damage /*+ (_ImpactDamage * _DamageMultiplier)*/);
+                            necromancer.Damage(_Owner.GetOwner(), _Damage);
+
+                            // Play impact sound
+                            SoundManager._pInstance.PlayFireballImpact();
 
                             // Check if necromancer has been killed
                             if (necromancer.GetHealth() <= 0) {
@@ -192,7 +201,7 @@ public class Proj_Flame : Projectile {
                 }
             }
         }
-
+        /*
         // Check against all Static objects
         foreach (GameObject Object in LevelManager._pInstance.GetStaticObjects()) {
 
@@ -230,36 +239,9 @@ public class Proj_Flame : Projectile {
                 }
             }
         }
-
+        */
     }
-
-    //  public void OnTriggerEnter(Collider other) {
-    //
-    //      Debug.Log(other.tag);
-    //
-    //      if (other.gameObject.tag == "Enemy") {
-    //          print("Colliding");
-    //
-    //          Char_Crystal crystal = other.GetComponent<Char_Crystal>();
-    //
-    //          // Damage minion
-    //          crystal.Damage(_ImpactDamage);
-    //        
-    //          // Check if minion has been killed
-    //          if (crystal.GetHealth() <= 0) {
-    //        
-    //              // Add to instigator's kill count
-    //              _Owner.GetOwner()._Player.AddKillCount();
-    //          }
-    //
-    //          // Destroy fireball
-    //          FreeProjectile();
-    //      }
-    //  }
-
-    //--------------------------------------------------------------
-    // *** DAMAGE ***
-
+    
     //--------------------------------------------------------------
     // *** DAMAGE ***
 
@@ -267,4 +249,5 @@ public class Proj_Flame : Projectile {
 
         return _Damage;
     }
+
 }

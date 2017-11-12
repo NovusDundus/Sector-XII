@@ -34,11 +34,13 @@ public class Character : MonoBehaviour {
     protected float _ImpactFlashTimer = 0f;
     protected bool _ReceivingDamage = false;
     protected bool _PrimaryWeaponActive = true;
+    protected Tags _TagList;
+    protected GameObject _EffectOnDeath;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
 
-    public virtual void Awake() {
+    public virtual void Start() {
 
         // Set the starting health for the character
         _Health = _StartingHealth;
@@ -49,6 +51,9 @@ public class Character : MonoBehaviour {
         // Store the original material so it can be reverted back on the mesh renderer later
         _MeshRenderer = GetComponent<MeshRenderer>();
         _OriginalMaterial = _MeshRenderer.material;
+
+        // Get reference to the tags
+        _TagList = GetComponent<Tags>();
     }
 
     //--------------------------------------------------------------
@@ -60,7 +65,7 @@ public class Character : MonoBehaviour {
 
             if (_ImpactFlashTimer > 0f) {
 
-                _ImpactFlashTimer -= Time.deltaTime * 1000;
+                _ImpactFlashTimer -= Time.deltaTime * 100;
             }
 
             else {
@@ -114,7 +119,12 @@ public class Character : MonoBehaviour {
         return _Health;
     }
 
-    public virtual void Damage(float amount) {
+    public bool GetTakingDamage() {
+
+        return _ReceivingDamage;
+    }
+
+    public virtual void Damage(Character instigator, float amount) {
 
         // Material change for feedback on impact
         if (_DamagedMaterial != null) {
@@ -131,11 +141,11 @@ public class Character : MonoBehaviour {
         if (_Health <= 0) {
 
             // Character has died
-            OnDeath();
+            OnDeath(instigator);
         }
     }
 
-    public virtual void OnDeath() {
+    public virtual void OnDeath(Character instigator) {
 
         // Get reference to character's death location in the world
         _DeathPosition = transform.position;

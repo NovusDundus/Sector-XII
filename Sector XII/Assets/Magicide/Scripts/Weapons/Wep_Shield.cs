@@ -65,7 +65,7 @@ public class Wep_Shield : Weapon {
                     
                     float angle = i * (Mathf.PI * 2f / (float)GetMaxMinions()) + transform.rotation.y;
                     Vector3 pos = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * _MinionSpacing;
-                    pos += new Vector3(transform.position.x, transform.position.y + 0.75f, transform.position.z);
+                    pos += new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
                     
                     // Create the minion prefab
                     var minion = Instantiate(_ShieldMinionPrefab, pos, Quaternion.identity, gameObject.transform).GetComponent<Proj_ShieldMinion>();

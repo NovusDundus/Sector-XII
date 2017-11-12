@@ -33,7 +33,7 @@ public class TeleportGate : MonoBehaviour {
 
         // Initialize properties based off the game manager
         _CooldownTime = DeviceManager._pInstance._TeleportCooldownTime;
-        _Phase1Enabled = DeviceManager._pInstance._CanBeUsedInPhase1;
+        _Phase1Enabled = DeviceManager._pInstance._UsedInPhase1;
 
         // Get reference to mesh renderer to change the material
         if (_Rune != null) {
@@ -130,11 +130,14 @@ public class TeleportGate : MonoBehaviour {
     public void Teleport(Collider other) {
 
         // Teleport to partnering position
-        other.transform.position = _TeleportPosition.position;
+        other.transform.position = new Vector3(_TeleportPosition.position.x, other.transform.position.y, _TeleportPosition.position.z);
 
         // Disable teleporters
         ResetCooldown();
         _TeleportPartner.GetComponent<TeleportGate>().ResetCooldown();
+
+        // Play teleport enter sound
+        SoundManager._pInstance.PlayTeleport();
     }
 
     public void ResetCooldown() {

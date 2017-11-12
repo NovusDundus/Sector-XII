@@ -22,7 +22,6 @@ public class PlayerManager : MonoBehaviour {
     public int _RespawnTime = 3;                                    // The amount of time between a player's death and their respawn.
     [Tooltip("List of references to the North, South, East & West player respawning triggers.")]
     public List<Collider> _RespawnTriggers;                         // List of references to the North, South, East & West player respawning triggers.
-    [Header("---------------------------------------------------------------------------")]
     [Header("- Health")]
     [Tooltip("Starting health of the necromancers that are possessed by the players.")]
     public int _GeomancerStartingHealth = 100;                      // Starting health of the necromancers that are possessed by the players.

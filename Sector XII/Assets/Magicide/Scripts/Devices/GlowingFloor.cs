@@ -6,22 +6,17 @@ using UnityEngine.UI;
 public class GlowingFloor : MonoBehaviour {
 
     ///--------------------------------------///
-    /// Created by: Christos Nicolas
+    /// Created by: Daniel Marton
     /// Created on: 08/11/2017
     ///--------------------------------------///
 
     //----------------------------------------------------------------------------------
     // *** VARIABLES ***
-
-    /// Public
-    public Material _floorMat;
-    public Color _ColourMin;
-    public Color _ColourMax;
-    public float _GlowTime = 1f;
-
+    
     /// Private
     private bool _GlowingUp = true;
     private float _tGlow = 0f;
+    private float _GlowTime = 1f;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -29,7 +24,7 @@ public class GlowingFloor : MonoBehaviour {
     void Start () {
 
         // Set glow colour to min
-        _floorMat.SetColor("_GlowColour", _ColourMin);
+        DeviceManager._pInstance._FloorMaterial.SetColor("_GlowColour", DeviceManager._pInstance._GlowFloorColourMin);
     }
 
     //--------------------------------------------------------------
@@ -40,11 +35,11 @@ public class GlowingFloor : MonoBehaviour {
         if (_GlowingUp == true) {
 
             // Colour hasnt completed its lerp
-            if (_floorMat.GetColor("_GlowColour") != _ColourMax && _tGlow < 1f) {
+            if (DeviceManager._pInstance._FloorMaterial.GetColor("_GlowColour") != DeviceManager._pInstance._GlowFloorColourMax && _tGlow < 1f) {
      
                 // Change the colour to max
-				_tGlow += Time.deltaTime * 0.5f;
-				_floorMat.SetColor("_GlowColour", Color.Lerp(_floorMat.GetColor("_GlowColour"), _ColourMax, _tGlow * _GlowTime * Time.deltaTime));
+				_tGlow += Time.deltaTime * _GlowTime;
+                DeviceManager._pInstance._FloorMaterial.SetColor("_GlowColour", Color.Lerp(DeviceManager._pInstance._FloorMaterial.GetColor("_GlowColour"), DeviceManager._pInstance._GlowFloorColourMax, _tGlow * _GlowTime * Time.deltaTime));
             }
      
             // Lerp completed
@@ -57,11 +52,11 @@ public class GlowingFloor : MonoBehaviour {
         else { /// _GlowingUp == false
      
             // Colour hasnt completed its lerp
-			if (_floorMat.GetColor("_GlowColour") != _ColourMin && _tGlow > 0f) {
+			if (DeviceManager._pInstance._FloorMaterial.GetColor("_GlowColour") != DeviceManager._pInstance._GlowFloorColourMin && _tGlow > 0f) {
      
                 // Change the colour to min
-                _tGlow -= Time.deltaTime * 0.5f;
-				_floorMat.SetColor("_GlowColour", Color.Lerp(_floorMat.GetColor("_GlowColour"), _ColourMin, _tGlow * _GlowTime * Time.deltaTime));
+                _tGlow -= Time.deltaTime * _GlowTime;
+                DeviceManager._pInstance._FloorMaterial.SetColor("_GlowColour", Color.Lerp(DeviceManager._pInstance._FloorMaterial.GetColor("_GlowColour"), DeviceManager._pInstance._GlowFloorColourMin, _tGlow * _GlowTime * Time.deltaTime));
             }
      
             // Lerp completed

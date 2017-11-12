@@ -20,6 +20,12 @@ public class CrystalScoreboard : MonoBehaviour {
     public Material _PlayerCharlieMaterial;
     public Material _PlayerDeltaMaterial;
     public Material _DefaultMaterial;
+    public float _LightMinRange = 50f;
+    public float _LightMaxRange = 52f;
+    public float _LightRangeSpeed = 0.1f;
+    public float _LightMinIntensity = 10f;
+    public float _LightMaxIntensity = 12f;
+    public float _LightIntensitySpeed = 0.1f;
 
     /// Private
     private int _CurrentHighest = 0;
@@ -28,6 +34,8 @@ public class CrystalScoreboard : MonoBehaviour {
     private Player _HighestPlayer;
     private Color _ColourTarget;
     private float _timerColour = 0f;
+    private bool _RangeUp = true;
+    private bool _IntensityUp = true;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -41,7 +49,7 @@ public class CrystalScoreboard : MonoBehaviour {
     //--------------------------------------------------------------
     // *** FRAME ***
 
-    private void FixedUpdate()
+    private void Update()
     {
         foreach (Character plyr in PlayerManager._pInstance.GetDeadNecromancers())
         {
@@ -112,7 +120,59 @@ public class CrystalScoreboard : MonoBehaviour {
 
             _timerColour += Time.deltaTime * 2;
             _LightSource.color = Color.Lerp(_LightSource.color, _ColourTarget, _timerColour);
-        }        
+        }     
+        
+        if (_RangeUp == true) {
+
+            if (_LightSource.range < _LightMaxRange) {
+
+                _LightSource.range += _LightRangeSpeed * Time.deltaTime;
+            }
+
+            else { ///_LightSource.range >= _LightMaxRange
+
+                _RangeUp = false;
+            }
+        }
+
+        else { /// _RangeUp == false
+
+            if (_LightSource.range > _LightMinRange) {
+
+                _LightSource.range -= _LightRangeSpeed * Time.deltaTime;
+            }
+
+            else { ///_LightSource.range < _LightMinRange
+
+                _RangeUp = true;
+            }
+        }
+
+        if (_IntensityUp == true) {
+
+            if (_LightSource.intensity < _LightMaxIntensity) {
+
+                _LightSource.intensity += _LightIntensitySpeed * Time.deltaTime;
+            }
+
+            else { ///_LightSource.intensity >= _LightMaxRange
+
+                _IntensityUp = false;
+            }
+        }
+
+        else { /// _IntensityUp == false
+
+            if (_LightSource.intensity > _LightMinIntensity) {
+
+                _LightSource.intensity -= _LightIntensitySpeed * Time.deltaTime;
+            }
+
+            else { ///_LightSource.intensity < _LightMinIntensity
+
+                _IntensityUp = true;
+            }
+        }
     }
 
     //--------------------------------------------------------------

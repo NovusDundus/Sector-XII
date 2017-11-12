@@ -33,10 +33,10 @@ public class Char_Crystal : Character {
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
 
-    public override void Awake() {
+    public override void Start() {
 
         // Get base character references
-        base.Awake();
+        base.Start();
 
         // Get behaviour references
         _BehaviourWander = GetComponent<Behaviour_Wander>();
@@ -188,15 +188,15 @@ public class Char_Crystal : Character {
     //--------------------------------------------------------------
     // *** HEALTH & DAMAGE ***
 
-    public override void Damage(float amount) {
+    public override void Damage(Character instigator, float amount) {
         
-        base.Damage(amount);
+        base.Damage(instigator, amount);
     }
 
-    public override void OnDeath() {
+    public override void OnDeath(Character instigator) {
 
         // Get last known alive position and store it
-        base.OnDeath();
+        base.OnDeath(instigator);
 
         // hide THIS character & move out of playable space
         gameObject.GetComponentInChildren<Renderer>().enabled = false;
@@ -218,6 +218,9 @@ public class Char_Crystal : Character {
         // Create kill tag at death position associated with THIS minion
         GameObject killTag = Instantiate(GameObject.FindGameObjectWithTag("KillTag"), _DeathPosition, Quaternion.identity);
         killTag.GetComponent<KillTag>().Init(this, _PickupType);
+
+        // Play OnDeath sound
+        SoundManager._pInstance.PlayCrystalDeath();
     }
 
     public AiManager.AiSpawningTime GetSpawningTime() {
@@ -237,18 +240,20 @@ public class Char_Crystal : Character {
 
         _BehaviourWander.enabled = enable;
     }
+
     public void SetFleeEnable(bool enable) {
 
         _BehaviourFlee.enabled = enable;
     }
+
     public void SetSeekEnable(bool enable) {
 
         _BehaviourSeek.enabled = enable;
     }
+
     public void SetLinearSeekEnable(bool enable) {
 
         _LinearSeek.enabled = enable;
     }
-
 
 }

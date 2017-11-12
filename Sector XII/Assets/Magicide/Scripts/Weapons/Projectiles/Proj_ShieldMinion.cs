@@ -110,7 +110,7 @@ public class Proj_ShieldMinion : Projectile {
     //--------------------------------------------------------------
     // *** HEALTH ***
 
-    public void Damage(float amount) {
+    public void Damage(Character instigator, float amount) {
 
         // Damage character based on amount passed through
         _Health -= (int)amount;
@@ -145,7 +145,7 @@ public class Proj_ShieldMinion : Projectile {
 
     public void ForceDeath()
     {
-        Damage(10000);
+        Damage(null, 10000);
     }
 
     public int GetHealth() {

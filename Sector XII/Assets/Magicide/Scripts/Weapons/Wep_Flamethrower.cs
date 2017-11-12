@@ -198,6 +198,9 @@ public class Wep_Flamethrower : Weapon {
 
             // Reset firing delay
             base.Fire();
+
+            // Play firing sound
+            SoundManager._pInstance.PlayFlamethrowerAttack();
         }
     }
 

@@ -33,7 +33,10 @@ public class AiManager : MonoBehaviour {
     public int _CrystalMinorStartingHealth = 100;                   // Starting health of the minor crystal variant when spawning.
     public KillTag.PickupType _CrystalMinorTagType = KillTag.PickupType.AddToShield;
     [Header("- Appearance")]
+    [Tooltip("The material to be placed on the mesh attached to the minor variant.")]
     public Material _CrystalMinorTypeMaterial;
+    [Tooltip("The game object that is connected to the particle that is played on the minor variant's death.")]
+    public GameObject _MinorOnDeathEffect;
 
     [Header("---------------------------------------------------------------------------")]
     [Header(" *** MAJOR VARIANT ***")]
@@ -55,7 +58,10 @@ public class AiManager : MonoBehaviour {
     public int _CrystalMajorStartingHealth = 100;                   // Starting health of the major crystal variant when spawning.
     public KillTag.PickupType _CrystalMajorTagType = KillTag.PickupType.SpeedBoost;
     [Header("- Appearance")]
+    [Tooltip("The material to be placed on the mesh attached to the major variant.")]
     public Material _CrystalMajorTypeMaterial;
+    [Tooltip("The game object that is connected to the particle that is played on the major variant's death.")]
+    public GameObject _MajorOnDeathEffect;
 
     [Header("---------------------------------------------------------------------------")]
     [Header(" *** CURSED VARIANT***")]
@@ -77,7 +83,10 @@ public class AiManager : MonoBehaviour {
     public int _CrystalCursedStartingHealth = 100;                  // Starting health of the cursed crystal variant when spawning.
     public KillTag.PickupType _CrystalCursedTagType = KillTag.PickupType.Healthpack;
     [Header("- Appearance")]
+    [Tooltip("The material to be placed on the mesh attached to the cursed variant.")]
     public Material _CrystalCursedTypeMaterial;
+    [Tooltip("The game object that is connected to the particle that is played on the cursed variant's death.")]
+    public GameObject _CursedOnDeathEffect;
 
     [Header("---------------------------------------------------------------------------")]
     [Header(" *** RESPAWN POINTS ***")]

@@ -41,6 +41,7 @@ public class Char_Geomancer : Character {
     private float _TauntCooldown = 5f;
     private float _TauntTimer = 0f;
     private Dialog _CharacterDialog;
+    private Rigidbody _RigidBody;
 
     /// Delegates / Events
     private delegate void CharacterAbility();
@@ -49,15 +50,18 @@ public class Char_Geomancer : Character {
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
 
-    public void Start() {
+    public override void Start() {
 
         // Stores reference to the player associated with the character
         _Player = GetComponent<Player>();
         _LinearGoTo = GetComponent<LinearGoToTarget>();
 
+        // Store rigidbody reference
+        _RigidBody = GetComponent<Rigidbody>();
+
         // Set character's health & get collision reference
         _StartingHealth = PlayerManager._pInstance._GeomancerStartingHealth;
-        base.Awake();
+        base.Start();
 
         // Set character's speed
         _MovementSpeed = PlayerManager._pInstance._GeomancerMovementSpeed;
@@ -310,6 +314,7 @@ public class Char_Geomancer : Character {
                     }
 
                 }
+                
             }
 
             // Movement controller is disabled for the character
@@ -342,25 +347,37 @@ public class Char_Geomancer : Character {
                 }
             }
         }
-    }     
-    
+    }
+
+    private void FixedUpdate() {
+
+        // Attempting to fix the weird physics glitch
+        _RigidBody.maxAngularVelocity = 0f;
+    }
+
     //--------------------------------------------------------------
     // *** HEALTH & DAMAGE ***
 
-    public override void Damage(float amount) {
+    public override void Damage(Character instigator, float amount) {
         
         // Only damage character if match is in phase2
         if (MatchManager._pInstance.GetGameState() == MatchManager.GameState.Phase2) {
-            
-            if (_Active == true)
-                base.Damage(amount);
+
+            if (_Active == true) {
+
+                base.Damage(instigator, amount);
+
+                // Play grunt sound
+                if (_CharacterDialog != null)
+                    _CharacterDialog.PlayOnHit();
+            }
         }
     }
 
-    public override void OnDeath() {
+    public override void OnDeath(Character instigator) {
 
         // Get last known alive position and store it
-        base.OnDeath();
+        base.OnDeath(instigator);
         
         if (_Player.GetRespawnsLeft() > 0) {
             
@@ -407,6 +424,14 @@ public class Char_Geomancer : Character {
             // Disable controller input
             _Active = false;
         }
+
+        // Instigator plays a taunt
+        if (instigator.GetComponent<Char_Geomancer>().GetDialog() != null)
+            instigator.GetComponent<Char_Geomancer>().GetDialog().PlayTaunt();
+
+        // Play death sound
+        if (_CharacterDialog != null)
+            _CharacterDialog.PlayOnDeath();
     }
 
     public bool GetActive() {
@@ -517,6 +542,9 @@ public class Char_Geomancer : Character {
 
                 // Destroy minion from the shield
                 _WeaponSpecial.GetComponent<Wep_Shield>().DestroyMinion();
+
+                // Play sound effect
+                SoundManager._pInstance.PlayDash();
             }
         }
     }
@@ -579,9 +607,12 @@ public class Char_Geomancer : Character {
 
     private void Taunt() {
 
-        _CharacterDialog.PlayTaunt();
-        _TauntTimer = 0f;
-        print("TAUNT!");
+        // Play a taunt sound
+        if (_CharacterDialog != null) {
+
+            _CharacterDialog.PlayTaunt();
+            _TauntTimer = 0f;
+        }
     }
 
     //--------------------------------------------------------------
@@ -610,6 +641,14 @@ public class Char_Geomancer : Character {
 
             _Health = _StartingHealth;
         }
+    }
+
+    //--------------------------------------------------------------
+    // *** SOUND ***
+
+    public Dialog GetDialog() {
+
+        return _CharacterDialog;
     }
 
 }
