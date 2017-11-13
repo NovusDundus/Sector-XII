@@ -51,7 +51,7 @@ public class CrystalScoreboard : MonoBehaviour {
 
     private void Update()
     {
-        foreach (Character plyr in PlayerManager._pInstance.GetDeadNecromancers())
+        foreach (Character plyr in PlayerManager._pInstance.GetEliminatedNecromancers())
         {
             Player p = plyr.GetComponent<Player>();
 
@@ -64,7 +64,7 @@ public class CrystalScoreboard : MonoBehaviour {
             }
         }
 
-        foreach (Character plyr in PlayerManager._pInstance.GetAliveNecromancers())
+        foreach (Character plyr in PlayerManager._pInstance.GetActiveNecromancers())
         {
             Player p = plyr.GetComponent<Player>();
 

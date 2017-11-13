@@ -140,7 +140,7 @@ public class KillTag : MonoBehaviour {
         if (_Collision != null && _Active == true) {
 
             // Test against all alive necromancers in the game
-            foreach (var necromancer in PlayerManager._pInstance.GetAliveNecromancers()) {
+            foreach (var necromancer in PlayerManager._pInstance.GetActiveNecromancers()) {
 
                 // Once collision against the necro has happened
                 if (_Collision.bounds.Intersects(necromancer.GetCollider().bounds)) {

@@ -107,7 +107,7 @@ public class MatchManager : MonoBehaviour {
                         // Deduct from timer 1 second per second
                         _TimerPhase1 -= Time.deltaTime;
                         
-                        foreach (var player in PlayerManager._pInstance.GetAliveNecromancers()) {
+                        foreach (var player in PlayerManager._pInstance.GetActiveNecromancers()) {
 
                             // Add 1 second per second to the alive time
                             player._Player.AddTimeAlive(Time.deltaTime);
@@ -139,7 +139,7 @@ public class MatchManager : MonoBehaviour {
                             _TimerPhase2 -= Time.deltaTime;
 
 
-                            foreach (var player in PlayerManager._pInstance.GetAliveNecromancers()) {
+                            foreach (var player in PlayerManager._pInstance.GetActiveNecromancers()) {
 
                                 // Add 1 second per second to the alive time
                                 player._Player.AddTimeAlive(Time.deltaTime);
@@ -190,7 +190,7 @@ public class MatchManager : MonoBehaviour {
     public void LastManStandingChecks() {
 
         // There is now only 1 alive player in the match
-        if (PlayerManager._pInstance.GetAliveNecromancers().Count <= 1) {
+        if (PlayerManager._pInstance.GetActiveNecromancers().Count <= 1) {
 
             // Match completed
             MatchCompleted();
@@ -262,7 +262,7 @@ public class MatchManager : MonoBehaviour {
         if (HUD._pInstance._UIScoreboard != null) {
 
             HUD._pInstance._UIScoreboard.SetActive(true);
-            HUD._pInstance._UIScoreboard.GetComponent<PostMatch_Scoreboard>().ResetScoreboard();
+            ///HUD._pInstance._UIScoreboard.GetComponent<PostMatch_Scoreboard>().ResetScoreboard();
         }
 
         // Show cinematic bars
@@ -279,6 +279,7 @@ public class MatchManager : MonoBehaviour {
             
             // Unpause the game
             _GamePaused = false;
+            Time.timeScale = 1;
 
             // Exit cinematic bars
             ///CinematicBars._pInstance.StartAnimation(CinematicBars.BarDirection.Exit, 4f);
@@ -289,6 +290,7 @@ public class MatchManager : MonoBehaviour {
 
             // Pause the game
             _GamePaused = true;
+            Time.timeScale = 0;
 
             // Show cinematic bars
             ///CinematicBars._pInstance.StartAnimation(CinematicBars.BarDirection.Enter, 4f);

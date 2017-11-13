@@ -38,7 +38,7 @@ public class Player : MonoBehaviour {
     //--------------------------------------------------------------
     // *** FRAME ***
 
-    public void FixedUpdate() {
+    public void Update() {
 
         if (MatchManager._pInstance != null) {
 
@@ -53,6 +53,7 @@ public class Player : MonoBehaviour {
 
                         // Unpause game
                         MatchManager._pInstance.SetPause(false);
+                        Time.timeScale = 1;
                     }
 
                     // Game is currently in an UNPAUSED state
@@ -60,38 +61,10 @@ public class Player : MonoBehaviour {
 
                         // Pause game
                         MatchManager._pInstance.SetPause(true);
+                        Time.timeScale = 0;
                     }
                 }
             }
-            /*
-            // Determine placement in the match
-            foreach (var plyr in PlayerManager._pInstance.GetAllPlayers()) {
-
-                int place = _Placement;
-
-                // Dont test against ourself
-                if (plyr != this) {
-
-                    if (plyr._Player.GetPlacement() < place) {
-
-                        // We are at the right spot
-                        _Placement = place;
-                        break;
-                    }
-
-                    else if (plyr._Player.GetPlacement() > place) {
-
-                        // Need to move up placement
-                        // Store old placements for both players
-                        int newPlacement = plyr._Player.GetPlacement();
-                        int previousPlacement = _Placement;
-
-                        // Swap spots
-                        _Placement = newPlacement;
-                        plyr._Player.SetPlacement(previousPlacement);
-                    }
-                }
-            }*/
         }
     }
 

@@ -14,131 +14,155 @@ public class PostMatch_Scoreboard : MonoBehaviour {
     // *** VARIABLES *** 
 
     /// Public (designers)
+    public Char_Geomancer _PlayerOne;
+    public Text _FirstPlayerPosText;
     public Text _FirstPlayerNameText;
     public Text _FirstPlayerKillsText;
     public Text _FirstPlayerMinText;
     public Text _FirstPlayerSecText;
 
+    public Char_Geomancer _PlayerTwo;
+    public Text _SecondPlayerPosText;
     public Text _SecondPlayerNameText;
     public Text _SecondPlayerKillsText;
     public Text _SecondPlayerMinText;
     public Text _SecondPlayerSecText;
 
+    public Char_Geomancer _PlayerThree;
+    public Text _ThirdPlayerPosText;
     public Text _ThirdPlayerNameText;
     public Text _ThirdPlayerKillsText;
     public Text _ThirdPlayerMinText;
     public Text _ThirdPlayerSecText;
 
+    public Char_Geomancer _PlayerFour;
+    public Text _FourthPlayerPosText;
     public Text _FourthPlayerNameText;
     public Text _FourthPlayerKillsText;
     public Text _FourthPlayerMinText;
     public Text _FourthPlayerSecText;
-        
+
     //--------------------------------------------------------------
     // *** SCOREBOARD *** 
 
-    public void ResetScoreboard() {
-
-        foreach (var player in PlayerManager._pInstance.GetAllPlayers()) {
-
-            // If the player is coming first
-            if (player._Player.GetPlacement() == 1) {
-
-                GetText(_FirstPlayerNameText, _FirstPlayerKillsText, _FirstPlayerMinText, _FirstPlayerSecText, player.GetComponent<Player>());
-                break;
-            }
-        }
-
-        foreach (var player in PlayerManager._pInstance.GetAllPlayers()) {
-
-            // If the player is coming second
-            if (player._Player.GetPlacement() == 2) {
-
-                GetText(_SecondPlayerNameText, _SecondPlayerKillsText, _SecondPlayerMinText, _SecondPlayerSecText, player.GetComponent<Player>());
-                break;
-            }
-        }
-
-        foreach (var player in PlayerManager._pInstance.GetAllPlayers()) {
-
-            // If the player is coming third
-            if (player._Player.GetPlacement() == 3) {
-
-                GetText(_ThirdPlayerNameText, _ThirdPlayerKillsText, _ThirdPlayerMinText, _ThirdPlayerSecText, player.GetComponent<Player>());
-                break;
-            }
-        }
-
-        foreach (var player in PlayerManager._pInstance.GetAllPlayers()) {
-
-            // If the player is coming fourth
-            if (player._Player.GetPlacement() == 4) {
-
-                GetText(_FourthPlayerNameText, _FourthPlayerKillsText, _FourthPlayerMinText, _FourthPlayerSecText, player.GetComponent<Player>());
-                break;
-            }
-        }
-    }
-
-    public void GetText(Text nameText, Text killText, Text minText, Text secText, Player player) {
+    private void Update() {
         
-        // Update player information
-        switch (player._pPlayerID) {
+        // Player ONE
+        if (_PlayerOne != null) {
 
-            // Player ONE
-            case 1: {
+            // Get placement to text
+            if (_PlayerOne._Player.GetPlacement() == 1) {
 
-                    nameText.text = "Player One";
-                    nameText.color = HUD._pInstance._PlayerOneColour;
-                    killText.text = player.GetKillCount().ToString();
-                    minText.text = player.GetMinutesAlive().ToString();
-                    secText.text = player.GetSecondsAlive().ToString();
-                    break;
-                }
+                _FirstPlayerPosText.text = string.Concat(_PlayerOne._Player.GetPlacement().ToString() + "st");
+            }
+            if (_PlayerOne._Player.GetPlacement() == 2) {
 
-            // Player TWO
-            case 2: {
-                    
-                    nameText.text = "Player Two";
-                    nameText.color = HUD._pInstance._PlayerTwoColour;
-                    killText.text = player.GetKillCount().ToString();
-                    minText.text = player.GetMinutesAlive().ToString();
-                    secText.text = player.GetSecondsAlive().ToString();
-                    break;
-                }
-            
-            // Player THREE
-            case 3: {
+                _FirstPlayerPosText.text = string.Concat(_PlayerOne._Player.GetPlacement().ToString() + "nd");
+            }
+            if (_PlayerOne._Player.GetPlacement() == 3) {
 
-                    nameText.text = "Player Three";
-                    nameText.color = HUD._pInstance._PlayerThreeColour;
-                    killText.text = player.GetKillCount().ToString();
-                    minText.text = player.GetMinutesAlive().ToString();
-                    secText.text = player.GetSecondsAlive().ToString();
-                    break;
-                }
+                _FirstPlayerPosText.text = string.Concat(_PlayerOne._Player.GetPlacement().ToString() + "rd");
+            }
+            if (_PlayerOne._Player.GetPlacement() == 4) {
 
-            // Player FOUR
-            case 4: {
+                _FirstPlayerPosText.text = string.Concat(_PlayerOne._Player.GetPlacement().ToString() + "th");
+            }
 
-                    nameText.text = "Player Four";
-                    nameText.color = HUD._pInstance._PlayerFourColour;
-                    killText.text = player.GetKillCount().ToString();
-                    minText.text = player.GetMinutesAlive().ToString();
-                    secText.text = player.GetSecondsAlive().ToString();
-                    break;
-                }
+            // Get kills to text
+            _FirstPlayerKillsText.text = _PlayerOne._Player.GetKillCount().ToString();
 
-            default: {
-
-                    nameText.text = "MISSING STRING";
-                    nameText.color = Color.black;
-                    killText.text = "0";
-                    minText.text = "00";
-                    secText.text = "00";
-                    break;
-                }
+            // Get time alive to text
+            _FirstPlayerMinText.text = _PlayerOne._Player.GetMinutesAlive().ToString("00");
+            _FirstPlayerSecText.text = _PlayerOne._Player.GetSecondsAlive().ToString("00");
         }
+
+        // Player TWO
+        if (_PlayerTwo != null) {
+
+            // Get placement to text
+            if (_PlayerTwo._Player.GetPlacement() == 1) {
+
+                _SecondPlayerPosText.text = string.Concat(_PlayerTwo._Player.GetPlacement().ToString() + "st");
+            }
+            if (_PlayerTwo._Player.GetPlacement() == 2) {
+
+                _SecondPlayerPosText.text = string.Concat(_PlayerTwo._Player.GetPlacement().ToString() + "nd");
+            }
+            if (_PlayerTwo._Player.GetPlacement() == 3) {
+
+                _SecondPlayerPosText.text = string.Concat(_PlayerTwo._Player.GetPlacement().ToString() + "rd");
+            }
+            if (_PlayerTwo._Player.GetPlacement() == 4) {
+
+                _SecondPlayerPosText.text = string.Concat(_PlayerTwo._Player.GetPlacement().ToString() + "th");
+            }
+
+            // Get kills to text
+            _SecondPlayerKillsText.text = _PlayerTwo._Player.GetKillCount().ToString();
+
+            // Get time alive to text
+            _SecondPlayerMinText.text = _PlayerTwo._Player.GetMinutesAlive().ToString("00");
+            _SecondPlayerSecText.text = _PlayerTwo._Player.GetSecondsAlive().ToString("00");
+        }
+
+        // Player THREE
+        if (_PlayerThree != null) {
+
+            // Get placement to text
+            if (_PlayerThree._Player.GetPlacement() == 1) {
+
+                _ThirdPlayerPosText.text = string.Concat(_PlayerThree._Player.GetPlacement().ToString() + "st");
+            }
+            if (_PlayerThree._Player.GetPlacement() == 2) {
+
+                _ThirdPlayerPosText.text = string.Concat(_PlayerThree._Player.GetPlacement().ToString() + "nd");
+            }
+            if (_PlayerThree._Player.GetPlacement() == 3) {
+
+                _ThirdPlayerPosText.text = string.Concat(_PlayerThree._Player.GetPlacement().ToString() + "rd");
+            }
+            if (_PlayerThree._Player.GetPlacement() == 4) {
+
+                _ThirdPlayerPosText.text = string.Concat(_PlayerThree._Player.GetPlacement().ToString() + "th");
+            }
+
+            // Get kills to text
+            _ThirdPlayerKillsText.text = _PlayerThree._Player.GetKillCount().ToString();
+
+            // Get time alive to text
+            _ThirdPlayerMinText.text = _PlayerThree._Player.GetMinutesAlive().ToString("00");
+            _ThirdPlayerSecText.text = _PlayerThree._Player.GetSecondsAlive().ToString("00");
+        }
+
+        // Player FOUR
+        if (_PlayerFour != null) {
+
+            // Get placement to text
+            if (_PlayerFour._Player.GetPlacement() == 1) {
+
+                _FourthPlayerPosText.text = string.Concat(_PlayerFour._Player.GetPlacement().ToString() + "st");
+            }
+            if (_PlayerFour._Player.GetPlacement() == 2) {
+
+                _FourthPlayerPosText.text = string.Concat(_PlayerFour._Player.GetPlacement().ToString() + "nd");
+            }
+            if (_PlayerFour._Player.GetPlacement() == 3) {
+
+                _FourthPlayerPosText.text = string.Concat(_PlayerFour._Player.GetPlacement().ToString() + "rd");
+            }
+            if (_PlayerFour._Player.GetPlacement() == 4) {
+
+                _FourthPlayerPosText.text = string.Concat(_PlayerFour._Player.GetPlacement().ToString() + "th");
+            }
+
+            // Get kills to text
+            _FourthPlayerKillsText.text = _PlayerFour._Player.GetKillCount().ToString();
+
+            // Get time alive to text
+            _FourthPlayerMinText.text = _PlayerFour._Player.GetMinutesAlive().ToString("00");
+            _FourthPlayerSecText.text = _PlayerFour._Player.GetSecondsAlive().ToString("00");
+        }
+
     }
 
 }

@@ -155,7 +155,7 @@ public class Widget_Pause : MonoBehaviour {
 
                     // Resume gameplay
                     case 0: {
-
+                            
                             _ButtonClicks.OnClick_Resume();
                             break;
                         }

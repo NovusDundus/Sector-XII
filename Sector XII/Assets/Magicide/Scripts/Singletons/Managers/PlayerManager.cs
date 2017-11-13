@@ -62,9 +62,9 @@ public class PlayerManager : MonoBehaviour {
     public static PlayerManager _pInstance;                         // This is a singleton script, Initialized in Startup().
    
     /// Private
-    private List<Character> _POOL_ALIVE_NECROMANCERS;               // Object pool of all ALIVE Player necromancers.
-    private List<Character> _POOL_DEAD_NECROMANCERS;                // Object pool of all DEAD Player necromancers.
-    private List<Character> _AllPlayers;
+    private List<Character> _POOL_ACTIVE_NECROMANCERS;              // Object pool of all ALIVE Player necromancers.
+    private List<Character> _POOL_ELIMINATED_NECROMANCERS;          // Object pool of all DEAD Player necromancers.
+    private List<Character> _AllPlayers;                            // Array of ALL player characters (dead & alive).
 
     public enum WeaponList {
 
@@ -88,8 +88,8 @@ public class PlayerManager : MonoBehaviour {
         _pInstance = this;
 
         // Create object pools
-        _POOL_ALIVE_NECROMANCERS = new List<Character>();
-        _POOL_DEAD_NECROMANCERS = new List<Character>();
+        _POOL_ACTIVE_NECROMANCERS = new List<Character>();
+        _POOL_ELIMINATED_NECROMANCERS = new List<Character>();
         _AllPlayers = new List<Character>();
     }
 
@@ -102,9 +102,12 @@ public class PlayerManager : MonoBehaviour {
         if (MatchManager._pInstance.GetGameplay() == true) {
 
             // Add 1 second of alive time to all alive players
-            foreach (var player in _POOL_ALIVE_NECROMANCERS) {
+            foreach (Character player in _POOL_ACTIVE_NECROMANCERS) {
 
-                player._Player.AddTimeAlive(Time.deltaTime);
+                if (player.GetHealth() > 0) {
+
+                    player._Player.AddTimeAlive(Time.deltaTime);
+                }
             }
         }
     }
@@ -112,14 +115,14 @@ public class PlayerManager : MonoBehaviour {
     //--------------------------------------------------------------
     // *** OBJECT POOLS ***
 
-    public List<Character> GetAliveNecromancers() {
+    public List<Character> GetActiveNecromancers() {
 
-        return _POOL_ALIVE_NECROMANCERS;
+        return _POOL_ACTIVE_NECROMANCERS;
     }
 
-    public List<Character> GetDeadNecromancers() {
+    public List<Character> GetEliminatedNecromancers() {
 
-        return _POOL_DEAD_NECROMANCERS;
+        return _POOL_ELIMINATED_NECROMANCERS;
     }
 
     public List<Character> GetAllPlayers() {

@@ -144,7 +144,7 @@ public class Char_Geomancer : Character {
         SetActive(true);
 
         // Add the gameObject associated to this script to the playermanager object pools
-        PlayerManager._pInstance.GetAliveNecromancers().Add(this);
+        PlayerManager._pInstance.GetActiveNecromancers().Add(this);
         PlayerManager._pInstance.GetAllPlayers().Add(this);
     }
 
@@ -405,21 +405,21 @@ public class Char_Geomancer : Character {
             transform.position = new Vector3(1000, 0, 1000);
 
             // Find self in active pool
-            foreach (var necromancer in PlayerManager._pInstance.GetAliveNecromancers()) {
+            foreach (var necromancer in PlayerManager._pInstance.GetActiveNecromancers()) {
 
                 // Once we have found ourself in the pool
                 if (necromancer == this) {
 
                     // Move to inactive pool
-                    PlayerManager._pInstance.GetDeadNecromancers().Add(necromancer);
-                    PlayerManager._pInstance.GetAliveNecromancers().Remove(necromancer);
+                    PlayerManager._pInstance.GetEliminatedNecromancers().Add(necromancer);
+                    PlayerManager._pInstance.GetActiveNecromancers().Remove(necromancer);
                     break;
                 }
-
-                // Set our match placement depending on how many other players are still alive in the game
-                int playersRemaining = PlayerManager._pInstance.GetAliveNecromancers().Count;
-                _Player.SetPlacement(playersRemaining + 1);
             }
+            
+            // Set our match placement depending on how many other players are still alive in the game
+            int playersRemaining = PlayerManager._pInstance.GetActiveNecromancers().Count;
+            _Player.SetPlacement(playersRemaining + 1);
 
             // Disable controller input
             _Active = false;
@@ -560,7 +560,7 @@ public class Char_Geomancer : Character {
         SphereCollider knockbackCol = GetComponent<SphereCollider>();
 
         // Detect for any collisions with other player controlled characters
-        foreach (Character playerCharacter in PlayerManager._pInstance.GetAliveNecromancers()) {
+        foreach (Character playerCharacter in PlayerManager._pInstance.GetActiveNecromancers()) {
 
             // Dont test against ourself
             if (playerCharacter != this) {

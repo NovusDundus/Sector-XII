@@ -137,7 +137,7 @@ public class Proj_Flame : Projectile {
         if (MatchManager._pInstance.GetGameState() == MatchManager.GameState.Phase2) {
 
             // Check against all alive players
-            foreach (var necromancer in PlayerManager._pInstance.GetAliveNecromancers()) {
+            foreach (var necromancer in PlayerManager._pInstance.GetActiveNecromancers()) {
 
                 // If necromancer has valid collision reference set
                 if (necromancer.GetCollider() != null) {
