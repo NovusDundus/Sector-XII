@@ -42,6 +42,8 @@ public class Char_Geomancer : Character {
     private float _TauntTimer = 0f;
     private Dialog _CharacterDialog;
     private Rigidbody _RigidBody;
+    private bool _Burning = false;
+    private float _BurnTimer = 0f;
 
     /// Delegates / Events
     private delegate void CharacterAbility();
@@ -62,6 +64,9 @@ public class Char_Geomancer : Character {
         // Set character's health & get collision reference
         _StartingHealth = PlayerManager._pInstance._GeomancerStartingHealth;
         base.Start();
+        
+        // Set OnDeath effect
+        _EffectOnDeath = PlayerManager._pInstance._OnDeathEffect;
 
         // Set character's speed
         _MovementSpeed = PlayerManager._pInstance._GeomancerMovementSpeed;
@@ -346,6 +351,26 @@ public class Char_Geomancer : Character {
                     _WaitingToRespawn = false;
                 }
             }
+
+            // If character is in burning state
+            if (_Burning == true) {
+
+                // Apply damage
+                Damage(null, WeaponManager._pInstance._BurnDamage);
+
+                // Add to timer
+                if (_BurnTimer < WeaponManager._pInstance._BurnTime) {
+
+                    _BurnTimer += Time.deltaTime;
+                }
+
+                // Burning timer is complete
+                else { /// _BurnTimer >= WeaponManager._pInstance._BurnTime
+
+                    _Burning = false;
+                    _BurnTimer = 0f;
+                }
+            }
         }
     }
 
@@ -378,6 +403,10 @@ public class Char_Geomancer : Character {
 
         // Get last known alive position and store it
         base.OnDeath(instigator);
+
+        // Play OnDeath effect
+        if (_EffectOnDeath != null)
+            Instantiate(_EffectOnDeath, transform.position, Quaternion.identity);
         
         if (_Player.GetRespawnsLeft() > 0) {
             
@@ -437,6 +466,11 @@ public class Char_Geomancer : Character {
     public bool GetActive() {
 
         return _Active;
+    }
+    
+    public void SetBurnState(bool value) {
+
+        _Burning = value;
     }
 
     //--------------------------------------------------------------

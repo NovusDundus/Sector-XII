@@ -183,6 +183,9 @@ public class Proj_Flame : Projectile {
                             // Damage necromancer
                             necromancer.Damage(_Owner.GetOwner(), _Damage);
 
+                            // Apply burn
+                            necromancer.GetComponent<Char_Geomancer>().SetBurnState(true);
+
                             // Play impact sound
                             SoundManager._pInstance.PlayFireballImpact();
 

@@ -29,7 +29,6 @@ public class Wep_Flamethrower : Weapon {
     List<GameObject> _POOL_FIREBALL_INACTIVE;                       // Object pool of all inactive projectiles.
     List<GameObject> _POOL_FIREBALL_ACTIVE;                         // Object pool of all active projectiles in the world.
     private bool _FiredFromLeftMuzzle = false;                      // Returns TRUE if the last projectile was fired from the LEFT muzzle launch point.
-    private float _DamageMultiplier = 1f;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -233,16 +232,6 @@ public class Wep_Flamethrower : Weapon {
             ////Debug.DrawLine(rayStart, rayEnd, Color.red, 10);
         }
         return hit;
-    }
-
-    public float GetDamageMultiplier() {
-
-        return _DamageMultiplier;
-    }
-
-    public void SetDamageMultiplier(float multiplier) {
-
-        _DamageMultiplier = multiplier;
     }
 
     //--------------------------------------------------------------

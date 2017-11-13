@@ -25,6 +25,8 @@ public class PlayerManager : MonoBehaviour {
     [Header("- Health")]
     [Tooltip("Starting health of the necromancers that are possessed by the players.")]
     public int _GeomancerStartingHealth = 100;                      // Starting health of the necromancers that are possessed by the players.
+    [Tooltip("The particle effect that is played when the character dies.")]
+    public GameObject _OnDeathEffect;                               // The particle effect that is played when the character dies.
     [Header("- Movement")]
     [Tooltip("Movement speed of the necromancer character.")]
     public float _GeomancerMovementSpeed = 10f;                     // Movement speed of the necromancer character.

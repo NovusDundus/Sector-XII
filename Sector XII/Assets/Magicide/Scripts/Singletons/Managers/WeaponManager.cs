@@ -51,6 +51,10 @@ public class WeaponManager : MonoBehaviour {
     [Header("- Damage")]
     [Tooltip("Amount of impact damage applied to the object when collided with a fireball.")]
     public int _FlameDamage = 10;
+    [Tooltip("")]
+    public int _BurnDamage = 1;
+    [Tooltip("")]
+    public float _BurnTime = 0f;
     [Header("- Movement")]
     [Tooltip("Amount of impact damage applied to the object when collided with a fireball.")]
     public float _FlameSpeed = 10f;
