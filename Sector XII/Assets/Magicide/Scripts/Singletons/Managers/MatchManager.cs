@@ -75,7 +75,7 @@ public class MatchManager : MonoBehaviour {
     //--------------------------------------------------------------
     // *** FRAME ***
     
-    public void FixedUpdate() {
+    public void Update() {
 
         switch (_GameState) {
 
