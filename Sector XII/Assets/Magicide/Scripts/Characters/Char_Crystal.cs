@@ -55,6 +55,7 @@ public class Char_Crystal : Character {
                     _PickupType = AiManager._pInstance._CrystalMinorTagType;
                     _MeshRenderer.material = AiManager._pInstance._CrystalMinorTypeMaterial;
                     _SpawningTime = AiManager._pInstance._CrystalMinorSpawningTime;
+                    _EffectOnDeath = AiManager._pInstance._MinorOnDeathEffect;
 
                     switch (AiManager._pInstance._CrystalMinorBehaviourType) {
 
@@ -95,6 +96,7 @@ public class Char_Crystal : Character {
                     _PickupType = AiManager._pInstance._CrystalMajorTagType;
                     _MeshRenderer.material = AiManager._pInstance._CrystalMajorTypeMaterial;
                     _SpawningTime = AiManager._pInstance._CrystalMajorSpawningTime;
+                    _EffectOnDeath = AiManager._pInstance._MajorOnDeathEffect;
 
                     switch (AiManager._pInstance._CrystalMajorBehaviourType) {
 
@@ -134,6 +136,7 @@ public class Char_Crystal : Character {
                     _PickupType = AiManager._pInstance._CrystalCursedTagType;
                     _MeshRenderer.material = AiManager._pInstance._CrystalCursedTypeMaterial;
                     _SpawningTime = AiManager._pInstance._CrystalCursedSpawningTime;
+                    _EffectOnDeath = AiManager._pInstance._CursedOnDeathEffect;
 
                     switch (AiManager._pInstance._CrystalCursedBehaviourType) {
 
@@ -199,6 +202,9 @@ public class Char_Crystal : Character {
 
         // Get last known alive position and store it
         base.OnDeath(instigator);
+
+        // Play OnDeath effect
+        Instantiate(_EffectOnDeath, transform.position, Quaternion.identity);
 
         // hide THIS character & move out of playable space
         gameObject.GetComponentInChildren<Renderer>().enabled = false;
