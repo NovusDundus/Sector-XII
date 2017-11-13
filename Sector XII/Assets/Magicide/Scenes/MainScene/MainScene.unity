@@ -4556,7 +4556,7 @@ Prefab:
         type: 2}
       propertyPath: _RespawnPoint
       value: 
-      objectReference: {fileID: 615130935}
+      objectReference: {fileID: 558745112}
     - target: {fileID: 1195787855333882, guid: 2dbad2b5215e9d546ac5f920f909826e, type: 2}
       propertyPath: m_Name
       value: Player_Prefab (P3)
@@ -6920,6 +6920,11 @@ Prefab:
       propertyPath: _AddShieldTypeMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 29af295d11704e0488ec368533e95fb0, type: 2}
+    - target: {fileID: 114342767189424728, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa42a22ea9d697f4abb43b7e82ccb986, type: 2}
   m_IsPrefabParent: 0
@@ -31522,7 +31527,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1048886773}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 33, y: 1.5, z: -11.87}
+  m_LocalPosition: {x: 33, y: 1, z: -11.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1019036404}
@@ -57258,7 +57263,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1938776043}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33, y: 1.5, z: 55.76}
+  m_LocalPosition: {x: 33, y: 1, z: 55.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1019036404}
