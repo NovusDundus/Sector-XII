@@ -528,11 +528,23 @@ public class Char_Geomancer : Character {
             // If the character has minions they can dispense for the dash to proceed
             if (_WeaponSpecial.GetComponent<Wep_Shield>().GetMinionCount() > 0) {
 
-                // Determine how far the character can teleport
+                // Raycast to determine how far the character can teleport
                 Vector3 DashPos = transform.position;
                 Vector3 DashDirection = _Player.GetMovementInput;
-                DashPos += DashDirection * _DashDistance;
+                RaycastHit hit;
 
+                // Raycast hit an object
+                if (Physics.Raycast(DashPos, DashDirection, out hit, _DashDistance)) {
+
+                    DashPos = hit.point;
+                }
+
+                // Raycast did not hit 
+                else {
+
+                    DashPos += DashDirection * _DashDistance;
+                }
+                
                 // Perform dash
                 gameObject.transform.position = DashPos;
                 _JustDashed = true;
