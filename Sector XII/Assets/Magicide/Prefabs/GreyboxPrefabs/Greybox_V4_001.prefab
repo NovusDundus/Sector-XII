@@ -1030,7 +1030,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4094835005268796}
   - component: {fileID: 114417813638589732}
-  - component: {fileID: 114519937469033480}
   - component: {fileID: 114749022845659106}
   - component: {fileID: 114109267794855900}
   - component: {fileID: 114545155817392350}
@@ -1042,7 +1041,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1395537032460450
 GameObject:
   m_ObjectHideFlags: 1
@@ -12091,8 +12090,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe1339e1a23a9b4a95bd4c6240bb02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _NecromancerStartingHealth: 100
-  _NecromancerMovementSpeed: 10
+  _Respawns: 3
+  _RespawnTime: 3
+  _RespawnTriggers: []
+  _GeomancerStartingHealth: 100
+  _GeomancerMovementSpeed: 10
+  _DashEnabled: 1
+  _DashButton: 1
+  _DashDistance: 5
+  DashCooldown: 5
+  _KnockbackEnabled: 0
+  _KnockbackButton: 3
+  _KnockbackForceNormal: 100000
+  KnockbackForceDash: 100000
+  _KnockbackCooldown: 5
+  _PrimaryWeapon: 0
+  _SecondaryWeaponEnabled: 0
+  _WeaponSwapButton: 8
 --- !u!114 &114141500480253304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18855,6 +18869,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cbcfc139f93d9740bdaf99a6cbb2567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _SFX_ButtonClick: {fileID: 0}
+  _SFX_ButtonHover: {fileID: 0}
+  _SFX_ButtonGoBack: {fileID: 0}
+  _SFX_Dash: []
+  _SFX_FireballAttack: []
+  _SFX_FireballImpact: []
+  _SFX_FlamethrowerAttack: []
+  _SFX_OnTeleport: []
+  _SFX_OnTagPickupMinion: []
+  _SFX_OnTagPickupSpeed: []
+  _SFX_OnTagPickupHealth: []
+  _SFX_CrystalHit: []
+  _SFX_CrystalDeath: []
+  _MUSIC_MainMenu: {fileID: 0}
+  _MUSIC_Gameplay: {fileID: 0}
+  _AMBIENCE_MainMenu: {fileID: 0}
+  _AMBIENCE_Gameplay: {fileID: 0}
+  _VOX_Dialoglist: []
 --- !u!114 &114475408876070576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19475,31 +19507,6 @@ MonoBehaviour:
   m_selectedFaces: 
   m_SelectedEdges: []
   m_selectedTriangles: 
---- !u!114 &114519937469033480
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1368065535093162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47978ad14e7ae8241bad04686667e7fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _MatchTimerText: {fileID: 0}
-  _TimeLowColour: {r: 1, g: 0, b: 0, a: 1}
-  _TimeMediumColour: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  _TimeOkayColour: {r: 1, g: 1, b: 1, a: 1}
-  _UIScoreboard: {fileID: 0}
-  PlayerAlpha: {fileID: 0}
-  _PlayerAlphaColour: {r: 0, g: 0.751724, b: 1, a: 0}
-  PlayerBravo: {fileID: 0}
-  _PlayerBravoColour: {r: 0, g: 1, b: 0.21379304, a: 0}
-  PlayerCharlie: {fileID: 0}
-  _PlayerCharlieColour: {r: 0.8206897, g: 0, b: 1, a: 0}
-  PlayerDelta: {fileID: 0}
-  _PlayerDeltaColour: {r: 1, g: 0.8482759, b: 0, a: 0}
-  _DisplayHUD: 0
 --- !u!114 &114526706354270386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19797,18 +19804,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644b168221e562842ba6d16853ef85f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _OrbFireDelay: 0.05
-  _FireballHeatCost: 0.075
-  _OrbCooldownRateStable: 0.02
-  _OrbCooldownRateOverheated: 0.0075
-  _ImpactDamage: 20
+  _OrbBaseFiringDelay: 0.6
+  _OrbFireRateGain: 0.05
+  _OrbFireRateLoss: 0.02
+  _OrbMaxFireDelay: 1.5
+  _FireballImpactDamage: 100
   _FireballSpeed: 20
   _FireballRange: 100
+  _FlameFireDelay: 0.05
+  _FlameHeatCost: 0.05
+  _FlameCooldownRateStable: 0.01
+  _FlameCooldownRateOverheated: 0.01
+  _FlameDamage: 10
+  _FlameSpeed: 10
+  _FlameRange: 20
+  _MinionHealth: 100
   _MaxSize: 14
   _MinionSpacing: 1.5
-  _AutoRotate: 0
-  _OrbitClockwise: 1
-  _OrbitSpeed: 3
+  _MinionSpinSpeed: 4
+  _MinionBobHeight: 0.5
+  _MinionBobSpeed: 0.5
+  _MovementSpeedSap: 0.2
+  _AutoRotateShield: 0
+  _ShieldOrbitClockwise: 1
+  _ShieldOrbitSpeed: 3
 --- !u!114 &114547767008790572
 MonoBehaviour:
   m_ObjectHideFlags: 1
