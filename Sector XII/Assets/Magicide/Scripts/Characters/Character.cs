@@ -49,7 +49,7 @@ public class Character : MonoBehaviour {
         _Collision = GetComponent<Collider>();
 
         // Store the original material so it can be reverted back on the mesh renderer later
-        _MeshRenderer = GetComponent<MeshRenderer>();
+        _MeshRenderer = GetComponentInChildren<MeshRenderer>();
         _OriginalMaterial = _MeshRenderer.material;
 
         // Get reference to the tags
