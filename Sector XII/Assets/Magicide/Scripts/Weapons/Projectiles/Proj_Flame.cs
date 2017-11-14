@@ -204,45 +204,6 @@ public class Proj_Flame : Projectile {
                 }
             }
         }
-        /*
-        // Check against all Static objects
-        foreach (GameObject Object in LevelManager._pInstance.GetStaticObjects()) {
-
-            LevelObject staticObject = Object.GetComponent<LevelObject>();
-
-            // If object has valid collision
-            if (staticObject.GetCollision() != null) {
-
-                // Has the fireball collided with the object's collision?
-                if (_Collision.bounds.Intersects(staticObject.GetCollision().bounds)) {
-
-                    // Destroy fireball
-                    FreeProjectile();
-                    break;
-                }
-            }
-        }
-
-        // Check against all dynamic objects
-        foreach (GameObject Object in LevelManager._pInstance.GetDynamicObjects()) {
-
-            LevelObject dynamicObject = Object.GetComponent<LevelObject>();
-
-            // If object has valid collision
-            if (dynamicObject.GetCollision() != null) {
-
-                // Has the fireball collided with the object's collision?
-                if (_Collision.bounds.Intersects(dynamicObject.GetCollision().bounds)) {
-
-                    // Damage object
-
-                    // Destroy fireball
-                    FreeProjectile();
-                    break;
-                }
-            }
-        }
-        */
     }
     
     //--------------------------------------------------------------

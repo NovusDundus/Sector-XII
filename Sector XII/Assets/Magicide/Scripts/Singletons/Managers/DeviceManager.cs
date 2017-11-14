@@ -51,6 +51,9 @@ public class DeviceManager : MonoBehaviour {
     public Color _GlowFloorColourMin;
     public Color _GlowFloorColourMax;
 
+    [Header("---------------------------------------------------------------------------")]
+    [Header("*** Face Tree ***")]
+    public List<FaceTree> _FaceTrees;
 
     /// Public (internal)
     [HideInInspector]

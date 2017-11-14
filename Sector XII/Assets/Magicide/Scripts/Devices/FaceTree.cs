@@ -14,7 +14,7 @@ public class FaceTree : MonoBehaviour {
 
     /// Private
     private List<AudioSource> _OnHitSounds;
-    private Collider _HitCollision;
+    private CapsuleCollider _HitCollision;
     private bool _PlayingSound = false;
     private AudioSource _SoundBeingPlayed;
 
@@ -23,7 +23,7 @@ public class FaceTree : MonoBehaviour {
 
     void Start () {
 
-        _HitCollision = GetComponent<Collider>();
+        _HitCollision = GetComponent<CapsuleCollider>();
         _OnHitSounds = SoundManager._pInstance._VOX_FaceTreeDialoglist;
     }
 
@@ -45,15 +45,24 @@ public class FaceTree : MonoBehaviour {
 
     public void OnHit() {
 
-        // Not currently playing a sound
-        if (!_PlayingSound) {
+        // Precautions
+        if (_OnHitSounds.Count > 0) {
 
-            // Get a random sound from the audio list
-            int i = Random.Range(0, _OnHitSounds.Count);
-            _SoundBeingPlayed = _OnHitSounds[i];
-            _SoundBeingPlayed.Play();
-            _PlayingSound = true;
+            // Not currently playing a sound
+            if (!_PlayingSound) {
+
+                // Get a random sound from the audio list
+                int i = Random.Range(0, _OnHitSounds.Count);
+                _SoundBeingPlayed = _OnHitSounds[i];
+                _SoundBeingPlayed.Play();
+                _PlayingSound = true;
+            }
         }
+    }
+
+    public CapsuleCollider GetCollider() {
+
+        return _HitCollision;
     }
 
 }

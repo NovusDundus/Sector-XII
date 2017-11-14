@@ -36,9 +36,9 @@ public class GlowingFloor : MonoBehaviour {
 
             // Colour hasnt completed its lerp
             if (DeviceManager._pInstance._FloorMaterial.GetColor("_GlowColour") != DeviceManager._pInstance._GlowFloorColourMax && _tGlow < 1f) {
-     
+                
                 // Change the colour to max
-				_tGlow += Time.deltaTime * _GlowTime;
+                _tGlow += Time.deltaTime * _GlowTime;
                 DeviceManager._pInstance._FloorMaterial.SetColor("_GlowColour", Color.Lerp(DeviceManager._pInstance._FloorMaterial.GetColor("_GlowColour"), DeviceManager._pInstance._GlowFloorColourMax, _tGlow * _GlowTime * Time.deltaTime));
             }
      

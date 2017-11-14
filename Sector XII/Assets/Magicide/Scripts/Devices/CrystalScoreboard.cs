@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CrystalScoreboard : MonoBehaviour {
 
@@ -15,11 +13,21 @@ public class CrystalScoreboard : MonoBehaviour {
     /// Public (designers)
     public GameObject _Crystal;
     public Light _LightSource;
-    public Material _PlayerAlphaMaterial;
-    public Material _PlayerBravoMaterial;
-    public Material _PlayerCharlieMaterial;
-    public Material _PlayerDeltaMaterial;
+    public Material _PlayerOneCrystalMaterial;
+    public Color _PlayerOneLightColour = Color.red;
+    public Color _PlayerOneAmbientColour = Color.red;
+    public Material _PlayerTwoCrystalMaterial;
+    public Color _PlayerTwoLightColour = Color.blue;
+    public Color _PlayerTwoAmbientColour = Color.blue;
+    public Material _PlayerThreeCrystalMaterial;
+    public Color _PlayerThreeLightColour = Color.green;
+    public Color _PlayerThreeAmbientColour = Color.green;
+    public Material _PlayerFourCrystalMaterial;
+    public Color _PlayerFourLightColour = Color.yellow;
+    public Color _PlayerFourAmbientColour = Color.yellow;
     public Material _DefaultMaterial;
+    public Color _DefaultLightColour = Color.grey;
+    public Color _DefaultAmbientColour = Color.grey;
     public float _LightMinRange = 50f;
     public float _LightMaxRange = 52f;
     public float _LightRangeSpeed = 0.1f;
@@ -32,7 +40,8 @@ public class CrystalScoreboard : MonoBehaviour {
     private int _TopPlayerID = 0;
     private MeshRenderer meshRenderer;
     private Player _HighestPlayer;
-    private Color _ColourTarget;
+    private Color _LightColourTarget;
+    private Color _SceneColourTarget;
     private float _timerColour = 0f;
     private bool _RangeUp = true;
     private bool _IntensityUp = true;
@@ -43,7 +52,7 @@ public class CrystalScoreboard : MonoBehaviour {
     void Start () {
 
         meshRenderer = GetComponent<MeshRenderer>();
-        _ColourTarget = _LightSource.color;
+        _LightColourTarget = _LightSource.color;
     }
 
     //--------------------------------------------------------------
@@ -82,45 +91,51 @@ public class CrystalScoreboard : MonoBehaviour {
 
             case 1:
 
-                meshRenderer.material = _PlayerAlphaMaterial;
-                _ColourTarget = _PlayerAlphaMaterial.color;
+                meshRenderer.material = _PlayerOneCrystalMaterial;
+                _LightColourTarget = _PlayerOneLightColour;
+                _SceneColourTarget = _PlayerOneAmbientColour;
                 _timerColour = 0;
                 break;
 
             case 2:
 
-                meshRenderer.material = _PlayerBravoMaterial;
-                _ColourTarget = _PlayerBravoMaterial.color;
+                meshRenderer.material = _PlayerTwoCrystalMaterial;
+                _LightColourTarget = _PlayerTwoLightColour;
+                _SceneColourTarget = _PlayerTwoAmbientColour;
                 _timerColour = 0;
                 break;
 
             case 3:
 
-                meshRenderer.material = _PlayerCharlieMaterial;
-                _ColourTarget = _PlayerCharlieMaterial.color;
+                meshRenderer.material = _PlayerThreeCrystalMaterial;
+                _LightColourTarget = _PlayerThreeLightColour;
+                _SceneColourTarget = _PlayerThreeAmbientColour;
                 _timerColour = 0;
                 break;
 
             case 4:
                 
-                meshRenderer.material = _PlayerDeltaMaterial;
-                _ColourTarget = _PlayerDeltaMaterial.color;
+                meshRenderer.material = _PlayerFourCrystalMaterial;
+                _LightColourTarget = _PlayerFourLightColour;
+                _SceneColourTarget = _PlayerFourAmbientColour;
                 _timerColour = 0;
                 break;
 
             default:
 
                 meshRenderer.material = _DefaultMaterial;
-                _ColourTarget = _DefaultMaterial.color;
+                _LightColourTarget = _DefaultLightColour;
+                RenderSettings.ambientLight = _LightColourTarget;
                 _timerColour = 0;
                 break;
 
         }
 
-        if (_LightSource.color != _ColourTarget && _timerColour < 1f) {
+        if (_LightSource.color != _LightColourTarget && _timerColour < 1f) {
 
             _timerColour += Time.deltaTime * 2;
-            _LightSource.color = Color.Lerp(_LightSource.color, _ColourTarget, _timerColour);
+            _LightSource.color = Color.Lerp(_LightSource.color, _LightColourTarget, _timerColour);
+            RenderSettings.ambientLight = Color.Lerp(RenderSettings.ambientLight, _SceneColourTarget, _timerColour);
         }     
         
         if (_RangeUp == true) {
@@ -174,14 +189,6 @@ public class CrystalScoreboard : MonoBehaviour {
                 _IntensityUp = true;
             }
         }
-    }
-
-    //--------------------------------------------------------------
-    // *** COLOURING ***
-
-    public void LerpColour(Color a_Colour) {
-
-        _ColourTarget = a_Colour;
     }
 
 }

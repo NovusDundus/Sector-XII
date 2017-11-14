@@ -202,45 +202,31 @@ public class Proj_Fireball : Projectile {
             }
         }
 
-        /*
-        // Check against all Static objects
-        foreach (GameObject Object in LevelManager._pInstance.GetStaticObjects()) {
+        // Check against all faceTrees
+        foreach (FaceTree tree in DeviceManager._pInstance._FaceTrees) {
+            
+            // Precaution
+            if (tree != null) {
 
-            LevelObject staticObject = Object.GetComponent<LevelObject>();
+                // Tree has valid collision
+                if (tree.GetCollider() != null) {
 
-            // If object has valid collision
-            if (staticObject.GetCollision() != null) {
+                    // Has the fireball collided with the tree's collision?
+                    if (_Collision.bounds.Intersects(tree.GetCollider().bounds)) {
 
-                // Has the fireball collided with the object's collision?
-                if (_Collision.bounds.Intersects(staticObject.GetCollision().bounds)) {
+                        tree.OnHit();
+                        print("HIT TREE");
 
-                    // Destroy fireball
-                    FreeProjectile();
-                    break;
+                        // Play impact sound
+                        SoundManager._pInstance.PlayFireballImpact();
+
+                        // Destroy fireball
+                        FreeProjectile();
+                        break;
+                    }
                 }
             }
         }
-
-        // Check against all dynamic objects
-        foreach (GameObject Object in LevelManager._pInstance.GetDynamicObjects()) {
-
-            LevelObject dynamicObject = Object.GetComponent<LevelObject>();
-
-            // If object has valid collision
-            if (dynamicObject.GetCollision() != null) {
-
-                // Has the fireball collided with the object's collision?
-                if (_Collision.bounds.Intersects(dynamicObject.GetCollision().bounds)) {
-
-                    // Damage object
-
-                    // Destroy fireball
-                    FreeProjectile();
-                    break;
-                }
-            }
-        }
-        */
     }
 
     public void OnTriggerEnter(Collider other) {
@@ -250,12 +236,12 @@ public class Proj_Fireball : Projectile {
 
             if (tagComp.ContainsTag("Character")) {
 
-                print(other.tag);
+                ///print(other.tag);
             }
 
             if (tagComp.ContainsTag("Collision")) {
 
-                print(other.tag);
+                ///print(other.tag);
             }
         }
     }
@@ -267,12 +253,12 @@ public class Proj_Fireball : Projectile {
 
             if (tagComp.ContainsTag("Character")) {
 
-                print(collision.gameObject.tag);
+                ///print(collision.gameObject.tag);
             }
 
             if (tagComp.ContainsTag("Collision")) {
 
-                print(collision.gameObject.tag);
+                ///print(collision.gameObject.tag);
             }
         }
     }
