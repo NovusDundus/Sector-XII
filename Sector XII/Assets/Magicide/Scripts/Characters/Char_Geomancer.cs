@@ -404,6 +404,14 @@ public class Char_Geomancer : Character {
         // Get last known alive position and store it
         base.OnDeath(instigator);
 
+        // Destroy all minions in the character's shield
+        Wep_Shield shield = _WeaponSpecial.GetComponent<Wep_Shield>();
+        foreach (var item in shield.GetMeatMinionPool()) {
+
+            Proj_ShieldMinion minion = item.GetComponent<Proj_ShieldMinion>();
+            minion.ForceDeath();
+        }
+
         // Play OnDeath effect
         if (_EffectOnDeath != null)
             Instantiate(_EffectOnDeath, transform.position, Quaternion.identity);

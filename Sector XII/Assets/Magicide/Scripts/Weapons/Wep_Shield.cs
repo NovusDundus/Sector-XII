@@ -137,6 +137,9 @@ public class Wep_Shield : Weapon {
 
                     // Apply new rotation
                     _rotation.y = transform.rotation.y;
+
+                    // Update minion count
+                    _MinionCount = _POOL_Minions.Count;
                 }
             }
         }
@@ -216,6 +219,9 @@ public class Wep_Shield : Weapon {
 
             // Kill it
             minion.ForceDeath();
+
+            // Set new score
+            _Owner._Player.SetScore(_MinionCount);
         }
     }
 

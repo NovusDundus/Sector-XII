@@ -64,6 +64,11 @@ public class SoundManager : MonoBehaviour {
     [Header("")]
     public List<Dialog> _VOX_Dialoglist;
 
+    [Header("---------------------------------------------------------------------------")]
+    [Header("*** FACE TREE DIALOG")]
+    [Header("")]
+    public List<AudioSource> _VOX_FaceTreeDialoglist;
+
     /// Public (internal)
     [HideInInspector]
     public static SoundManager _pInstance;                          // This is a singleton script, Initialized in Startup().
@@ -452,7 +457,6 @@ public class SoundManager : MonoBehaviour {
 
             return null;
         }
-
     }
 
 }

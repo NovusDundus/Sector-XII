@@ -135,11 +135,12 @@ public class Proj_ShieldMinion : Projectile {
 
             // Add movement speed from the player associated to the shield
             wep.GetOwner().SetMovementSpeed(wep.GetOwner().GetMovementSpeed() + WeaponManager._pInstance._MovementSpeedSap);
-
-            Debug.Log(wep.GetMinionCount());
-
+            
             // Remove from weapon pool
             wep.GetMeatMinionPool().Remove(this.gameObject);
+
+            // Set new score
+            wep.GetOwner()._Player.SetScore(wep.GetMinionCount());
         }
     }
 
