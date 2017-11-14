@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}
+  m_AmbientSkyColor: {r: 0.09444655, g: 0.30147058, b: 0.055417385, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 4
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -35,10 +35,10 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 512
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0.5
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 1304660779}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.26572725, g: 0.27143627, b: 0.25494534, a: 0.5}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -7333,6 +7333,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
   m_IsPrefabParent: 0
@@ -9780,6 +9784,10 @@ Prefab:
     - target: {fileID: 1788119984713948, guid: d5959f875f468524099ae4285b18223a, type: 2}
       propertyPath: m_Name
       value: Wall (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
@@ -12655,7 +12663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Crystal: {fileID: 434433096}
-  _LightSource: {fileID: 823535032}
+  _LightSource: {fileID: 2085321581}
   _PlayerAlphaMaterial: {fileID: 2100000, guid: 13f805ab862222540bc2c9c1673ebcc6,
     type: 2}
   _PlayerBravoMaterial: {fileID: 2100000, guid: ffb4e18976a5a1f4fb2eed81b3a9b4ba,
@@ -12665,11 +12673,11 @@ MonoBehaviour:
   _PlayerDeltaMaterial: {fileID: 2100000, guid: e2634aceb032af246867e4217e6e6553,
     type: 2}
   _DefaultMaterial: {fileID: 2100000, guid: 02de6cac97d14d246885353c3fec574f, type: 2}
-  _LightMinRange: 25
-  _LightMaxRange: 27
+  _LightMinRange: 73.5
+  _LightMaxRange: 73.5
   _LightRangeSpeed: 0.5
-  _LightMinIntensity: 20
-  _LightMaxIntensity: 26
+  _LightMinIntensity: 4.5
+  _LightMaxIntensity: 5.5
   _LightIntensitySpeed: 0.5
 --- !u!4 &434433100 stripped
 Transform:
@@ -14702,7 +14710,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh211854
+  m_Name: pb_Mesh19564
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -15003,6 +15011,10 @@ Prefab:
     - target: {fileID: 1788119984713948, guid: d5959f875f468524099ae4285b18223a, type: 2}
       propertyPath: m_Name
       value: Wall (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
@@ -15774,6 +15786,10 @@ Prefab:
     - target: {fileID: 1788119984713948, guid: d5959f875f468524099ae4285b18223a, type: 2}
       propertyPath: m_Name
       value: Wall (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
@@ -16876,7 +16892,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh208910
+  m_Name: pb_Mesh16606
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -18007,6 +18023,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
   m_IsPrefabParent: 0
@@ -18493,7 +18513,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh209972
+  m_Name: pb_Mesh17678
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -21726,6 +21746,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
   m_IsPrefabParent: 0
@@ -23122,6 +23146,10 @@ Prefab:
     - target: {fileID: 1788119984713948, guid: d5959f875f468524099ae4285b18223a, type: 2}
       propertyPath: m_Name
       value: Wall (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
@@ -24777,6 +24805,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
   m_IsPrefabParent: 0
@@ -24785,85 +24817,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4158799478000722, guid: d5959f875f468524099ae4285b18223a,
     type: 2}
   m_PrefabInternal: {fileID: 819299196}
---- !u!1 &823535031
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 823535033}
-  - component: {fileID: 823535032}
-  m_Layer: 0
-  m_Name: Crystal Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!108 &823535032
-Light:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 823535031}
-  m_Enabled: 1
-  serializedVersion: 8
-  m_Type: 2
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 10
-  m_Range: 20
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 2
-    m_Resolution: 3
-    m_CustomResolution: -1
-    m_Strength: 0.85
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294950911
-  m_Lightmapping: 4
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &823535033
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 823535031}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 33.27, y: 5.93, z: 21.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1028876829}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &824046062
 GameObject:
   m_ObjectHideFlags: 0
@@ -27178,85 +27131,6 @@ Transform:
   m_Father: {fileID: 826508017}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &885768934
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 885768935}
-  - component: {fileID: 885768936}
-  m_Layer: 0
-  m_Name: CentreCrystalLightInside (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &885768935
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 885768934}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 33.19, y: 34.2, z: 21.39}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1028876829}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!108 &885768936
-Light:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 885768934}
-  m_Enabled: 1
-  serializedVersion: 8
-  m_Type: 2
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 5.31
-  m_Range: 50
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: 3
-    m_CustomResolution: -1
-    m_Strength: 0.85
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294950911
-  m_Lightmapping: 4
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
 --- !u!4 &886731902 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4346210095588318, guid: 51435ec51f36d7f4baa3048c8331bf93,
@@ -27399,6 +27273,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
   m_IsPrefabParent: 0
@@ -27461,6 +27339,10 @@ Prefab:
     - target: {fileID: 1788119984713948, guid: d5959f875f468524099ae4285b18223a, type: 2}
       propertyPath: m_Name
       value: Wall (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
@@ -29604,7 +29486,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh209470
+  m_Name: pb_Mesh17176
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -30934,6 +30816,10 @@ Prefab:
     - target: {fileID: 1788119984713948, guid: d5959f875f468524099ae4285b18223a, type: 2}
       propertyPath: m_Name
       value: Wall (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
@@ -32450,9 +32336,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1304660780}
-  - {fileID: 823535033}
-  - {fileID: 885768935}
+  - {fileID: 2085321582}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -34766,6 +34650,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
   m_IsPrefabParent: 0
@@ -35535,6 +35423,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
   m_IsPrefabParent: 0
@@ -35915,7 +35807,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh211618
+  m_Name: pb_Mesh19328
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -36833,6 +36725,10 @@ Prefab:
     - target: {fileID: 1788119984713948, guid: d5959f875f468524099ae4285b18223a, type: 2}
       propertyPath: m_Name
       value: Wall (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
@@ -37871,7 +37767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Crystal: {fileID: 1201687349}
-  _LightSource: {fileID: 823535032}
+  _LightSource: {fileID: 0}
   _PlayerAlphaMaterial: {fileID: 2100000, guid: 13f805ab862222540bc2c9c1673ebcc6,
     type: 2}
   _PlayerBravoMaterial: {fileID: 2100000, guid: b87abc6f8f2c2a94c9b583e7c20faa0b,
@@ -38691,7 +38587,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh211156
+  m_Name: pb_Mesh18866
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -40948,6 +40844,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
   m_IsPrefabParent: 0
@@ -41312,6 +41212,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
   m_IsPrefabParent: 0
@@ -41663,85 +41567,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 521e0fcf622fedb439ecac5a9c57299e, type: 3}
   m_IsPrefabParent: 0
---- !u!1 &1304660778
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1304660780}
-  - component: {fileID: 1304660779}
-  m_Layer: 0
-  m_Name: CentreCrystalLightInside
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!108 &1304660779
-Light:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1304660778}
-  m_Enabled: 1
-  serializedVersion: 8
-  m_Type: 2
-  m_Color: {r: 0.83823526, g: 0.91298175, b: 1, a: 1}
-  m_Intensity: 5.3
-  m_Range: 50
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 2
-    m_Resolution: 3
-    m_CustomResolution: -1
-    m_Strength: 0.85
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294950911
-  m_Lightmapping: 4
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &1304660780
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1304660778}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 33.19, y: 11.2, z: 21.39}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1028876829}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1306033028
 Transform:
   m_ObjectHideFlags: 0
@@ -42002,7 +41827,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh211116
+  m_Name: pb_Mesh18826
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -42344,6 +42169,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
   m_IsPrefabParent: 0
@@ -42517,7 +42346,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh211890
+  m_Name: pb_Mesh19600
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -43009,6 +42838,10 @@ Prefab:
         type: 2}
       propertyPath: m_Color.b
       value: 0.7400668
+      objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
@@ -43950,6 +43783,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
   m_IsPrefabParent: 0
@@ -44167,7 +44004,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh207740
+  m_Name: pb_Mesh15428
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -44707,6 +44544,10 @@ Prefab:
     - target: {fileID: 1788119984713948, guid: d5959f875f468524099ae4285b18223a, type: 2}
       propertyPath: m_Name
       value: Wall (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
@@ -48817,6 +48658,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
   m_IsPrefabParent: 0
@@ -49789,7 +49634,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh210390
+  m_Name: pb_Mesh18096
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -50614,7 +50459,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh211464
+  m_Name: pb_Mesh19174
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -54156,7 +54001,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh207506
+  m_Name: pb_Mesh15190
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -54584,6 +54429,10 @@ Prefab:
     - target: {fileID: 1788119984713948, guid: d5959f875f468524099ae4285b18223a, type: 2}
       propertyPath: m_Name
       value: Wall (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
@@ -58323,6 +58172,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
   m_IsPrefabParent: 0
@@ -59314,7 +59167,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh208958
+  m_Name: pb_Mesh16654
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -59519,7 +59372,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh207120
+  m_Name: pb_Mesh14804
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -59851,7 +59704,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh210622
+  m_Name: pb_Mesh18328
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -60194,7 +60047,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh210978
+  m_Name: pb_Mesh18684
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -62141,6 +61994,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1902424513160258, guid: d5959f875f468524099ae4285b18223a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5959f875f468524099ae4285b18223a, type: 2}
   m_IsPrefabParent: 0
@@ -62991,7 +62848,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh208410
+  m_Name: pb_Mesh16106
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -63119,7 +62976,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh208738
+  m_Name: pb_Mesh16434
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -65407,6 +65264,85 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2081246521}
   m_Mesh: {fileID: 4300002, guid: 13ffd37c0dbb44048805f4b66b8e6e94, type: 3}
+--- !u!1 &2085321580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2085321582}
+  - component: {fileID: 2085321581}
+  m_Layer: 0
+  m_Name: Crystal Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &2085321581
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2085321580}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 0.42155063, g: 0.72925514, b: 0.8308824, a: 1}
+  m_Intensity: 5
+  m_Range: 73.5
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: 3
+    m_CustomResolution: -1
+    m_Strength: 0.5
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294950911
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_FalloffTable:
+    m_Table[0]: 0
+    m_Table[1]: 0
+    m_Table[2]: 0
+    m_Table[3]: 0
+    m_Table[4]: 0
+    m_Table[5]: 0
+    m_Table[6]: 0
+    m_Table[7]: 0
+    m_Table[8]: 0
+    m_Table[9]: 0
+    m_Table[10]: 0
+    m_Table[11]: 0
+    m_Table[12]: 0
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &2085321582
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2085321580}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 33.27, y: 8.69, z: 21.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1028876829}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &2088379686
 Mesh:
   m_ObjectHideFlags: 0
@@ -66610,7 +66546,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh211172
+  m_Name: pb_Mesh18882
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2

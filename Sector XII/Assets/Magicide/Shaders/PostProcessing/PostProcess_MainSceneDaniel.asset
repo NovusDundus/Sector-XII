@@ -42,13 +42,13 @@ MonoBehaviour:
   ambientOcclusion:
     m_Enabled: 1
     m_Settings:
-      intensity: 1.67
-      radius: 1
-      sampleCount: 16
-      downsampling: 0
+      intensity: 4
+      radius: 0.3
+      sampleCount: 10
+      downsampling: 1
       forceForwardCompatibility: 0
       ambientOnly: 0
-      highPrecision: 1
+      highPrecision: 0
   screenSpaceReflection:
     m_Enabled: 0
     m_Settings:
@@ -100,19 +100,19 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.9
-        threshold: 115.8
-        softKnee: 1
-        radius: 6.7
-        antiFlicker: 1
+        intensity: 0.1
+        threshold: 1.1
+        softKnee: 0.5
+        radius: 4
+        antiFlicker: 0
       lensDirt:
         texture: {fileID: 0}
-        intensity: 100
+        intensity: 3
   colorGrading:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       tonemapping:
-        tonemapper: 1
+        tonemapper: 2
         neutralBlackIn: 0.02
         neutralWhiteIn: 10
         neutralBlackOut: 0
@@ -296,7 +296,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       mode: 0
-      color: {r: 0, g: 0, b: 0, a: 1}
+      color: {r: 0.21323532, g: 0.21323532, b: 0.21323532, a: 1}
       center: {x: 0.5, y: 0.5}
       intensity: 0.201
       smoothness: 0.809
