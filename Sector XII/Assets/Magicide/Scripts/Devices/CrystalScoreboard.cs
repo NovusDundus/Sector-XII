@@ -53,6 +53,7 @@ public class CrystalScoreboard : MonoBehaviour {
 
         meshRenderer = GetComponent<MeshRenderer>();
         _LightColourTarget = _LightSource.color;
+        _SceneColourTarget = RenderSettings.ambientLight;
     }
 
     //--------------------------------------------------------------
@@ -125,7 +126,7 @@ public class CrystalScoreboard : MonoBehaviour {
 
                 meshRenderer.material = _DefaultMaterial;
                 _LightColourTarget = _DefaultLightColour;
-                RenderSettings.ambientLight = _LightColourTarget;
+                RenderSettings.ambientLight = _DefaultAmbientColour;
                 _timerColour = 0;
                 break;
 
