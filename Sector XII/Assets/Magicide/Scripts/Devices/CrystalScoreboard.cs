@@ -64,6 +64,8 @@ public class CrystalScoreboard : MonoBehaviour {
             }
         }
 
+        _CurrentHighest = 0;
+
         foreach (Character plyr in PlayerManager._pInstance.GetActiveNecromancers())
         {
             Player p = plyr.GetComponent<Player>();
@@ -73,7 +75,6 @@ public class CrystalScoreboard : MonoBehaviour {
                 _CurrentHighest = p.GetScore();
                 _TopPlayerID = p._pPlayerID;
                 _HighestPlayer = p;
-                break;
             }
         }
 
