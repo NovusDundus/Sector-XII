@@ -45,7 +45,7 @@ public class TeleportGate : MonoBehaviour {
     //--------------------------------------------------------------
     // *** FRAME ***
     
-    public void FixedUpdate () {
+    public void Update () {
 		
         // Cooldown not complete
         if (_Cooldown > 0f) {
