@@ -2439,7 +2439,6 @@ GameObject:
   - component: {fileID: 65991251028659802}
   - component: {fileID: 23526058554374198}
   - component: {fileID: 65969102298019508}
-  - component: {fileID: 114052920962403248}
   m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Untagged
@@ -2494,7 +2493,6 @@ GameObject:
   - component: {fileID: 65725237152837534}
   - component: {fileID: 23491809502477144}
   - component: {fileID: 65496115714715828}
-  - component: {fileID: 114441845056946864}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -3759,7 +3757,6 @@ GameObject:
   - component: {fileID: 65823469417140248}
   - component: {fileID: 23360363358312572}
   - component: {fileID: 65569432140922482}
-  - component: {fileID: 114417650231801128}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -4330,7 +4327,6 @@ GameObject:
   - component: {fileID: 65134455704151484}
   - component: {fileID: 23228840021904822}
   - component: {fileID: 65238250094445408}
-  - component: {fileID: 114193332564100230}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -22018,17 +22014,6 @@ MonoBehaviour:
   m_selectedFaces: 
   m_SelectedEdges: []
   m_selectedTriangles: 
---- !u!114 &114052920962403248
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1488508550359644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cded3c65a3208834684dfe38f5854b55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114060772669592866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22626,15 +22611,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Crystal: {fileID: 1439366082767534}
   _LightSource: {fileID: 0}
-  _PlayerAlphaMaterial: {fileID: 2100000, guid: 506f34469a62561439ff884478103461,
-    type: 2}
-  _PlayerBravoMaterial: {fileID: 2100000, guid: 6fe7112223dea0848bfd449bdf7ac40c,
-    type: 2}
-  _PlayerCharlieMaterial: {fileID: 2100000, guid: c6dac0585a711e048b61f08012d468f8,
-    type: 2}
-  _PlayerDeltaMaterial: {fileID: 2100000, guid: 27d364094eae9bb4d8b5bcc18c873433,
-    type: 2}
+  _PlayerOneCrystalMaterial: {fileID: 0}
+  _PlayerOneLightColour: {r: 1, g: 0, b: 0, a: 1}
+  _PlayerOneAmbientColour: {r: 1, g: 0, b: 0, a: 1}
+  _PlayerTwoCrystalMaterial: {fileID: 0}
+  _PlayerTwoLightColour: {r: 0, g: 0, b: 1, a: 1}
+  _PlayerTwoAmbientColour: {r: 0, g: 0, b: 1, a: 1}
+  _PlayerThreeCrystalMaterial: {fileID: 0}
+  _PlayerThreeLightColour: {r: 0, g: 1, b: 0, a: 1}
+  _PlayerThreeAmbientColour: {r: 0, g: 1, b: 0, a: 1}
+  _PlayerFourCrystalMaterial: {fileID: 0}
+  _PlayerFourLightColour: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _PlayerFourAmbientColour: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   _DefaultMaterial: {fileID: 2100000, guid: 6d8dc825e245c3b428839a7ef70996c0, type: 2}
+  _DefaultLightColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  _DefaultAmbientColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  _LightMinRange: 50
+  _LightMaxRange: 52
+  _LightRangeSpeed: 0.1
+  _LightMinIntensity: 10
+  _LightMaxIntensity: 12
+  _LightIntensitySpeed: 0.1
 --- !u!114 &114103587192944542
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24399,17 +24396,6 @@ MonoBehaviour:
   m_selectedFaces: 
   m_SelectedEdges: []
   m_selectedTriangles: 
---- !u!114 &114193332564100230
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1825613562069906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cded3c65a3208834684dfe38f5854b55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114207481436722678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27740,17 +27726,6 @@ MonoBehaviour:
   m_selectedFaces: 
   m_SelectedEdges: []
   m_selectedTriangles: 
---- !u!114 &114417650231801128
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1692745075531606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cded3c65a3208834684dfe38f5854b55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114421448751197500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28347,17 +28322,6 @@ MonoBehaviour:
   m_selectedFaces: 
   m_SelectedEdges: []
   m_selectedTriangles: 
---- !u!114 &114441845056946864
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1493996775370604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cded3c65a3208834684dfe38f5854b55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114446181907032170
 MonoBehaviour:
   m_ObjectHideFlags: 1
