@@ -44,7 +44,7 @@ public class HUD_HealthBar : MonoBehaviour {
             if (_DeadCross != null) {
 
                 // If the player's character is dead & out of lives
-                if (_CharacterAssociated.GetHealth() <= 0 && _CharacterAssociated._Player.GetRespawnsLeft() <= 0) {
+                if (_CharacterAssociated.GetHealth() <= 0 && _CharacterAssociated._Player.GetRespawnsLeft() < 0) {
 
                     _DeadCross.enabled = true;
                 }
