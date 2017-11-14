@@ -14,6 +14,7 @@ public class Char_Geomancer : Character {
 
     /// Public
     public Transform _RespawnPoint;
+    public LayerMask _DashLayer;
 
     /// Private
     private bool _DashEnabled;
@@ -573,12 +574,14 @@ public class Char_Geomancer : Character {
                 // Raycast to determine how far the character can teleport
                 Vector3 DashPos = transform.position;
                 Vector3 DashDirection = _Player.GetMovementInput;
-                RaycastHit hit;
+                DashDirection.Normalize();
 
+                RaycastHit hit;
                 // Raycast hit an object
-                if (Physics.Raycast(DashPos, DashDirection, out hit, _DashDistance)) {
+                if (Physics.Raycast(DashPos, DashDirection.normalized, out hit, _DashDistance, _DashLayer)) {
 
                     DashPos = hit.point;
+                    Debug.DrawLine(DashPos, hit.point, Color.red);
                 }
 
                 // Raycast did not hit 
