@@ -12,19 +12,32 @@ public class FaceTree : MonoBehaviour {
     //---------------------------------------------------------------------------------
     // *** VARIABLES ***
 
+    /// Public
+    public bool _NorthTree;
+
     /// Private
     private List<AudioSource> _OnHitSounds;
     private CapsuleCollider _HitCollision;
     private bool _PlayingSound = false;
     private AudioSource _SoundBeingPlayed;
+    private int _LastSoundPlayed;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
 
-    void Start () {
+    void Start() {
 
         _HitCollision = GetComponent<CapsuleCollider>();
-        _OnHitSounds = SoundManager._pInstance._VOX_FaceTreeDialoglist;
+
+        if (_NorthTree == true) {
+
+            _OnHitSounds = SoundManager._pInstance._VOX_FaceTreeNorthDialoglist;
+        }
+
+        else { /// _NorthTree == false
+
+            _OnHitSounds = SoundManager._pInstance._VOX_FaceTreeSouthDialoglist;
+        }
     }
 
     //--------------------------------------------------------------
@@ -35,10 +48,11 @@ public class FaceTree : MonoBehaviour {
         if (_PlayingSound == true) {
 
             // Sound has finished playing
-            if (_SoundBeingPlayed.isPlaying == false) {
+            if (_SoundBeingPlayed.isPlaying == false && SoundManager._pInstance.GetFaceTreeSoundIsPlaying() == false) {
 
                 // Reset
                 _PlayingSound = false;
+                SoundManager._pInstance.SetFaceTreeSoundPlaying(false);
             }
         }
     }
@@ -51,11 +65,22 @@ public class FaceTree : MonoBehaviour {
             // Not currently playing a sound
             if (!_PlayingSound) {
 
-                // Get a random sound from the audio list
-                int i = Random.Range(0, _OnHitSounds.Count);
-                _SoundBeingPlayed = _OnHitSounds[i];
-                _SoundBeingPlayed.Play();
-                _PlayingSound = true;
+                bool _FoundSound = false;
+                while (!_FoundSound) {
+
+                    // Get a random sound from the audio list
+                    int i = Random.Range(0, _OnHitSounds.Count);
+
+                    if (_LastSoundPlayed != i) {
+
+                        _SoundBeingPlayed = _OnHitSounds[i];
+                        _SoundBeingPlayed.Play();
+                        _LastSoundPlayed = i;
+                        _FoundSound = true;
+                        _PlayingSound = true;
+                        SoundManager._pInstance.SetFaceTreeSoundPlaying(true);
+                    }
+                }
             }
         }
     }

@@ -25,7 +25,7 @@ public class CreditsReel : MonoBehaviour {
     public void ResetReel() {
 
         // Move the credits reel's rect transform back to the starting position
-        _Panel.localPosition = new Vector3(50, -300);
+        _Panel.localPosition = new Vector3(50, -600);
 
         if (MainMenu._pInstance._GameTitleImage != null) {
 

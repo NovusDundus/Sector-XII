@@ -279,7 +279,7 @@ public class MatchManager : MonoBehaviour {
             
             // Unpause the game
             _GamePaused = false;
-            Time.timeScale = 1;
+            Time.timeScale = 1f;
 
             // Exit cinematic bars
             ///CinematicBars._pInstance.StartAnimation(CinematicBars.BarDirection.Exit, 4f);
@@ -290,7 +290,7 @@ public class MatchManager : MonoBehaviour {
 
             // Pause the game
             _GamePaused = true;
-            Time.timeScale = 0;
+            Time.timeScale = 0.000001f;
 
             // Show cinematic bars
             ///CinematicBars._pInstance.StartAnimation(CinematicBars.BarDirection.Enter, 4f);

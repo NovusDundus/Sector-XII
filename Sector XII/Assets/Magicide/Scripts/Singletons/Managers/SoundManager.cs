@@ -67,7 +67,8 @@ public class SoundManager : MonoBehaviour {
     [Header("---------------------------------------------------------------------------")]
     [Header("*** FACE TREE DIALOG")]
     [Header("")]
-    public List<AudioSource> _VOX_FaceTreeDialoglist;
+    public List<AudioSource> _VOX_FaceTreeNorthDialoglist;
+    public List<AudioSource> _VOX_FaceTreeSouthDialoglist;
 
     /// Public (internal)
     [HideInInspector]
@@ -78,7 +79,7 @@ public class SoundManager : MonoBehaviour {
     private List<AudioSource> _VoxelWaitingList;
     private float _TimeSinceLastVoxel = 0f;
     private List<bool> _DialogsUse;
-
+    private bool _FaceTreeSoundIsPlaying = false;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -458,5 +459,12 @@ public class SoundManager : MonoBehaviour {
             return null;
         }
     }
+
+    public void SetFaceTreeSoundPlaying(bool value) {
+
+        _FaceTreeSoundIsPlaying = value;
+    }
+
+    public bool GetFaceTreeSoundIsPlaying() { return _FaceTreeSoundIsPlaying; }
 
 }
