@@ -17,7 +17,7 @@ public class Phase_Text : MonoBehaviour {
     public MatchManager.GameState ShowInState;
 
     /// Private
-    private Text _TitleText;
+    private Image _TitleText;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS *** 
@@ -25,7 +25,7 @@ public class Phase_Text : MonoBehaviour {
     public void Start() {
         
         // Get reference to text component
-        _TitleText = GetComponent<Text>();
+        _TitleText = GetComponent<Image>();
     }   
 
     //--------------------------------------------------------------
