@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 43bb96733868a6648a16887e8b1a524f
-timeCreated: 1510628715
+guid: 224ba14b29096d74bb9395554130eeba
+timeCreated: 1510630779
 licenseType: Pro
 ModelImporter:
   serializedVersion: 21
@@ -9,8 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: nat_tREE2
-    4300002: NAT_TREE2
+    4300000: NAT_TREE2
   materials:
     importMaterials: 1
     materialName: 0
