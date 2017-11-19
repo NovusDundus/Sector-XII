@@ -215,7 +215,6 @@ public class Proj_Fireball : Projectile {
                     if (_Collision.bounds.Intersects(tree.GetCollider().bounds)) {
 
                         tree.OnHit();
-                        print("HIT TREE");
 
                         // Play impact sound
                         SoundManager._pInstance.PlayFireballImpact();

@@ -61,6 +61,12 @@ public class Character : MonoBehaviour {
 
     public virtual void Update() {
 
+        DamageFlashChecks();
+    }
+
+    public void DamageFlashChecks() {
+
+        // Flash momentarilty when receiving damage
         if (_ReceivingDamage == true) {
 
             if (_ImpactFlashTimer > 0f) {
@@ -73,8 +79,11 @@ public class Character : MonoBehaviour {
                 _ReceivingDamage = false;
             }
         }
-        else {
 
+        // Has been at least 1 second since the last registered damage
+        else { /// _ReceivingDamage == false
+
+            // Revert back to original material
             _MeshRenderer.material = _OriginalMaterial;
         }
     }

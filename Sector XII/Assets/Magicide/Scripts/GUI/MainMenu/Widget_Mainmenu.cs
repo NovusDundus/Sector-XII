@@ -65,6 +65,9 @@ public class Widget_Mainmenu : MonoBehaviour {
                     _ButtonIndex = 2;
                     _ResetUpInput = true;
                 }
+
+                // Play button hover sound
+                SoundManager._pInstance.PlayButtonHover();
             }
         }
 
@@ -101,6 +104,9 @@ public class Widget_Mainmenu : MonoBehaviour {
                     _ButtonIndex = 0;
                     _ResetDownInput = true;
                 }
+
+                // Play button hover sound
+                SoundManager._pInstance.PlayButtonHover();
             }
         }
 
@@ -125,8 +131,10 @@ public class Widget_Mainmenu : MonoBehaviour {
             if (_PlayerController.GetFaceRightInput) {
 
                 // Show EXIT GAME widget
-
                 _ResetFaceRightInput = true;
+
+                // Play button go back sound
+                SoundManager._pInstance.PlayButtonGoBack();
             }
         }
 
@@ -182,6 +190,9 @@ public class Widget_Mainmenu : MonoBehaviour {
                         break;
                     }
                 }
+
+                // Play button click sound
+                SoundManager._pInstance.PlayButtonClick();
             }
         }
 

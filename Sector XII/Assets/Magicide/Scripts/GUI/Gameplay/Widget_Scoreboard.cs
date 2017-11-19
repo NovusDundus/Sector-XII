@@ -62,6 +62,9 @@ public class Widget_Scoreboard : MonoBehaviour {
                     _ButtonIndex = 1;
                     _ResetUpInput = true;
                 }
+
+                // Play button hover sound
+                SoundManager._pInstance.PlayButtonHover();
             }
         }
 
@@ -98,6 +101,9 @@ public class Widget_Scoreboard : MonoBehaviour {
                     _ButtonIndex = 0;
                     _ResetDownInput = true;
                 }
+
+                // Play button hover sound
+                SoundManager._pInstance.PlayButtonHover();
             }
         }
 
@@ -145,6 +151,9 @@ public class Widget_Scoreboard : MonoBehaviour {
                             break;
                         }
                 }
+
+                // Play button click sound
+                SoundManager._pInstance.PlayButtonClick();
             }
         }
 

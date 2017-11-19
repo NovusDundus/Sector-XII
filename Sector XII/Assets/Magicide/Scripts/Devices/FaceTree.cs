@@ -14,6 +14,7 @@ public class FaceTree : MonoBehaviour {
 
     /// Public
     public bool _NorthTree;
+    public Material _DamagedMaterial;                               // The material that is shown on the character when receiving damage.
 
     /// Private
     private List<AudioSource> _OnHitSounds;
@@ -21,21 +22,34 @@ public class FaceTree : MonoBehaviour {
     private bool _PlayingSound = false;
     private AudioSource _SoundBeingPlayed;
     private int _LastSoundPlayed;
+    private float _ImpactFlashTimer = 0f;
+    private bool _ReceivingDamage = false;
+    private MeshRenderer _MeshRenderer;                             // Reference to the objects's mesh renderer.
+    private Material _OriginalMaterial;                             // Reference to the mesh renderer's original material.
+
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
 
     void Start() {
 
+        // Get reference to the object's collision
         _HitCollision = GetComponent<CapsuleCollider>();
 
+        // Store the original material so it can be reverted back on the mesh renderer later
+        _MeshRenderer = GetComponentInChildren<MeshRenderer>();
+        _OriginalMaterial = _MeshRenderer.material;
+
+        // The tree positioned in the northern area of the map
         if (_NorthTree == true) {
 
+            // Assign dialog sound list
             _OnHitSounds = SoundManager._pInstance._VOX_FaceTreeNorthDialoglist;
         }
-
+        // The tree positioned in the southern area of the map
         else { /// _NorthTree == false
 
+            // Assign dialog sound list
             _OnHitSounds = SoundManager._pInstance._VOX_FaceTreeSouthDialoglist;
         }
     }
@@ -54,6 +68,32 @@ public class FaceTree : MonoBehaviour {
                 _PlayingSound = false;
                 SoundManager._pInstance.SetFaceTreeSoundPlaying(false);
             }
+        }
+        
+        DamageFlashChecks();
+    }
+
+    public void DamageFlashChecks() {
+
+        // Flash momentarilty when receiving damage
+        if (_ReceivingDamage == true) {
+
+            if (_ImpactFlashTimer > 0f) {
+
+                _ImpactFlashTimer -= Time.deltaTime * 100;
+            }
+
+            else {
+
+                _ReceivingDamage = false;
+            }
+        }
+
+        // Has been at least 1 second since the last registered damage
+        else { /// _ReceivingDamage == false
+
+            // Revert back to original material
+            _MeshRenderer.material = _OriginalMaterial;
         }
     }
 
@@ -82,6 +122,14 @@ public class FaceTree : MonoBehaviour {
                     }
                 }
             }
+        }
+        
+        // Material change for feedback on impact
+        if (_DamagedMaterial != null) {
+
+            _MeshRenderer.material = _DamagedMaterial;
+            _ReceivingDamage = true;
+            _ImpactFlashTimer = 1f;
         }
     }
 

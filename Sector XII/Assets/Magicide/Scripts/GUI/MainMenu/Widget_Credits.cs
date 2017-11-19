@@ -49,6 +49,9 @@ public class Widget_Credits : MonoBehaviour {
 
                     _ButtonClicks.OnClick_bGoBack_Credits();
                 }
+                
+                // Play button go back sound
+                SoundManager._pInstance.PlayButtonGoBack();
             }
         }
 

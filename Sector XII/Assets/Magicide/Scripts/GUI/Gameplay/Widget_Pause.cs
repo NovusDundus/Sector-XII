@@ -64,6 +64,9 @@ public class Widget_Pause : MonoBehaviour {
                     _ButtonIndex = 2;
                     _ResetUpInput = true;
                 }
+
+                // Play button hover sound
+                SoundManager._pInstance.PlayButtonHover();
             }
         }
 
@@ -100,6 +103,9 @@ public class Widget_Pause : MonoBehaviour {
                     _ButtonIndex = 0;
                     _ResetDownInput = true;
                 }
+
+                // Play button hover sound
+                SoundManager._pInstance.PlayButtonHover();
             }
         }
 
@@ -126,6 +132,9 @@ public class Widget_Pause : MonoBehaviour {
                 // Resume gameplay
                 _ButtonClicks.OnClick_Resume();
                 _ResetFaceRightInput = true;
+
+                // Play button go back sound
+                SoundManager._pInstance.PlayButtonGoBack();
             }
         }
 
@@ -180,6 +189,9 @@ public class Widget_Pause : MonoBehaviour {
                             break;
                         }
                 }
+
+                // Play button click sound
+                SoundManager._pInstance.PlayButtonClick();
             }
         }
 
