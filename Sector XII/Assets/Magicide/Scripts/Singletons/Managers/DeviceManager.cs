@@ -30,11 +30,18 @@ public class DeviceManager : MonoBehaviour {
     public float _SpeedBoostTime = 5f;
 
     [Header("- Health Pack Variant")]
-    public Material _mHealthpackTypeMaterial;
+    public Material _HealthpackTypeMaterial;
     public float _HealthpackRotationSpeed = 3f;
     public float _HealthpackBobHeight = 1f;
     public float _HealthpackBobSpeed = 2f;
     public int _HealthAddAmount = 50;
+
+    [Header("- Invincibility Pack Variant")]
+    public Material _InvincibilityTypeMaterial;
+    public float _InvincibilityRotationSpeed = 3f;
+    public float _InvincibilityBobHeight = 1f;
+    public float _InvincibilityBobSpeed = 2f;
+    public float _InvincibilityTime = 5f;
 
     [Header("---------------------------------------------------------------------------")]
     [Header("*** Teleporters ***")]

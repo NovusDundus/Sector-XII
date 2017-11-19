@@ -29,7 +29,7 @@ public class Character : MonoBehaviour {
     protected Vector3 _DeathPosition;                               // World location point of where the character was killed.
     protected Vector3 _CurrentRotationInput;                        // Current Vector in the world that is stored by the gamepad axis.
     protected Collider _Collision;                                  // The collision associated with the character.
-    protected MeshRenderer _MeshRenderer;                           // Reference to the character's mesh renderer.
+    protected SkinnedMeshRenderer _MeshRenderer;                           // Reference to the character's mesh renderer.
     protected Material _OriginalMaterial;                           // Reference to the mesh renderer's original material.
     protected float _ImpactFlashTimer = 0f;
     protected bool _ReceivingDamage = false;
@@ -49,7 +49,7 @@ public class Character : MonoBehaviour {
         _Collision = GetComponent<Collider>();
 
         // Store the original material so it can be reverted back on the mesh renderer later
-        _MeshRenderer = GetComponentInChildren<MeshRenderer>();
+        _MeshRenderer = GetComponent<SkinnedMeshRenderer>();
         _OriginalMaterial = _MeshRenderer.material;
 
         // Get reference to the tags

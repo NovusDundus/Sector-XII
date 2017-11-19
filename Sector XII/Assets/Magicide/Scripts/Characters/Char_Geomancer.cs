@@ -45,6 +45,10 @@ public class Char_Geomancer : Character {
     private Rigidbody _RigidBody;
     private bool _Burning = false;
     private float _BurnTimer = 0f;
+    private bool _Invincible = false;
+    private float _InvincibleTimer = 0f;
+    private float _InvincibleTime;
+    private Material _InvincibleMaterial;
 
     /// Delegates / Events
     private delegate void CharacterAbility();
@@ -84,6 +88,10 @@ public class Char_Geomancer : Character {
         _KnockbackForceNormal = PlayerManager._pInstance._KnockbackForceNormal;
         _KnockbackForceDash = PlayerManager._pInstance.KnockbackForceDash;
         _KnockbackCooldown = PlayerManager._pInstance._KnockbackCooldown;
+
+        // Set invincibility properties
+        _InvincibleTime = DeviceManager._pInstance._InvincibilityTime;
+        _InvincibleMaterial = PlayerManager._pInstance._InvincibleMaterial;
 
         // Set tabbing weapon input
         _TabInputButton = PlayerManager._pInstance._WeaponSwapButton;
@@ -319,8 +327,7 @@ public class Char_Geomancer : Character {
                         _TauntTimer += Time.deltaTime;
                     }
 
-                }
-                
+                }                
             }
 
             // Movement controller is disabled for the character
@@ -372,6 +379,29 @@ public class Char_Geomancer : Character {
                     _BurnTimer = 0f;
                 }
             }
+
+            // If character is in an invincibility state
+            if (_Invincible == true) {
+
+                // Set material
+                if (_InvincibleMaterial != null)
+                    _MeshRenderer.material = _InvincibleMaterial;
+
+                // Add to timer
+                if (_InvincibleTimer < _InvincibleTime) {
+
+                    _InvincibleTimer += Time.deltaTime;
+                }
+
+                // Timer is complete
+                else { /// _InvincibleTimer >= _InvincibleTime
+
+                    // Return to normal
+                    _Invincible = false;
+                    _InvincibleTimer = 0f;
+                    _MeshRenderer.material = _OriginalMaterial;
+                }
+            }
         }
     }
 
@@ -389,7 +419,8 @@ public class Char_Geomancer : Character {
         // Only damage character if match is in phase2
         if (MatchManager._pInstance.GetGameState() == MatchManager.GameState.Phase2) {
 
-            if (_Active == true) {
+            // Can only damage an actively controller player character & if its NOT currently invincible
+            if (_Active == true && !_Invincible) {
 
                 base.Damage(instigator, amount);
 
@@ -683,10 +714,7 @@ public class Char_Geomancer : Character {
         _SpeedBoostActive = true;
     }
 
-    public bool IsSpeedBoost() {
-
-        return _SpeedBoostActive;
-    }
+    public bool IsSpeedBoost() { return _SpeedBoostActive; }
 
     public void AddHealth(int amount) {
 
@@ -699,6 +727,15 @@ public class Char_Geomancer : Character {
             _Health = _StartingHealth;
         }
     }
+
+    public void ActivateInvincibility() {
+
+        // Reset the invincibility
+        _InvincibleTimer = 0f;
+        _Invincible = true;
+    }
+
+    public bool IsInvincible() { return _Invincible; }
 
     //--------------------------------------------------------------
     // *** SOUND ***

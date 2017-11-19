@@ -17,7 +17,8 @@ public class KillTag : MonoBehaviour {
 
         AddToShield,
         Healthpack,
-        SpeedBoost
+        SpeedBoost,
+        Invincibility
     }
 
     /// Private
@@ -71,12 +72,21 @@ public class KillTag : MonoBehaviour {
 
             case PickupType.Healthpack: {
 
-                    GetComponent<MeshRenderer>().material = DeviceManager._pInstance._mHealthpackTypeMaterial;
+                    GetComponent<MeshRenderer>().material = DeviceManager._pInstance._HealthpackTypeMaterial;
                     _RotationSpeed = DeviceManager._pInstance._HealthpackRotationSpeed;
                     _BobHeight = DeviceManager._pInstance._HealthpackBobHeight;
                     _BobSpeed = DeviceManager._pInstance._HealthpackBobSpeed;
                     break;
-                }        
+                }
+
+            case PickupType.Invincibility: {
+
+                    GetComponent<MeshRenderer>().material = DeviceManager._pInstance._InvincibilityTypeMaterial;
+                    _RotationSpeed = DeviceManager._pInstance._InvincibilityRotationSpeed;
+                    _BobHeight = DeviceManager._pInstance._InvincibilityRotationSpeed;
+                    _BobSpeed = DeviceManager._pInstance._InvincibilityBobSpeed;
+                    break;
+                }
 
             default: {
 
@@ -209,85 +219,98 @@ public class KillTag : MonoBehaviour {
     //--------------------------------------------------------------
     // *** PICKUP ***
 
-    public void OnPickup(Char_Geomancer Necromancer) {
+    public void OnPickup(Char_Geomancer necromancer) {
 
         switch (_Type) {
 
             // MINION SHIELD
             case PickupType.AddToShield: {
 
-                    AddToShield(Necromancer);
-                    break;
-                }
+                AddToShield(necromancer);
+                break;
+            }
 
             // HEALTHPACK
             case PickupType.Healthpack: {
 
-                    Healthpack(Necromancer);
-                    break;
-                }
+                Healthpack(necromancer);
+                break;
+            }
             
             // SPEED BOOST
             case PickupType.SpeedBoost: {
 
-                    SpeedBoost(Necromancer);
-                    break;
-                }
+                SpeedBoost(necromancer);
+                break;
+            }
+
+            // INVINCIBILITY
+            case PickupType.Invincibility: {
+
+                Invincibility(necromancer);
+                break;
+            }
 
             default: {
 
                     break;
-                }
+            }
         }
-
-        // Destroy tag
-        ///Destroy(gameObject);
     }
 
-    public void AddToShield(Char_Geomancer Geomancer) {
+    public void AddToShield(Char_Geomancer geomancer) {
 
     // Determine if whether the necromancer can be picked up or not
     // Get minion count
-    int minionCount = Geomancer.GetSpecialWeapon().GetComponent<Wep_Shield>().GetMinionCount();
+    int minionCount = geomancer.GetSpecialWeapon().GetComponent<Wep_Shield>().GetMinionCount();
 
     // Check against max size
-    float MaxSize = Geomancer.GetSpecialWeapon().GetComponent<Wep_Shield>().GetMaxMinions() * 0.65f;
+    float MaxSize = geomancer.GetSpecialWeapon().GetComponent<Wep_Shield>().GetMaxMinions() * 0.65f;
         if (minionCount < MaxSize) {
 
             // Add to meat shield
-            Geomancer.GetSpecialWeapon().GetComponent<Wep_Shield>().AddMinion(_Crystal);
+            geomancer.GetSpecialWeapon().GetComponent<Wep_Shield>().AddMinion(_Crystal);
 
             // Destroy tag
             Destroy(gameObject);
         }
     }
 
-    public void Healthpack(Char_Geomancer Geomancer) {
+    public void Healthpack(Char_Geomancer geomancer) {
 
         // Determine if whether the tag can be picked up or not
         // Check if there's any missing health
-        if (Geomancer.GetHealth() < Geomancer.GetStartingHealth()) {
+        if (geomancer.GetHealth() < geomancer.GetStartingHealth()) {
 
             // Add health to necromancer
-            Geomancer.AddHealth(DeviceManager._pInstance._HealthAddAmount);
+            geomancer.AddHealth(DeviceManager._pInstance._HealthAddAmount);
 
             // Destroy tag
             Destroy(gameObject);
         }
     }
 
-    public void SpeedBoost(Char_Geomancer Geomancer) {
+    public void SpeedBoost(Char_Geomancer geomancer) {
 
         // Determine if whether the tag can be picked up or not.
         // Check if character is already using a speed boost
-        if (Geomancer.IsSpeedBoost() != true) {
+        if (geomancer.IsSpeedBoost() != true) {
 
             // Activate speed boost
-            Geomancer.ActivateSpeedBoost(DeviceManager._pInstance._SpeedBoostModifier, DeviceManager._pInstance._SpeedBoostTime);
+            geomancer.ActivateSpeedBoost(DeviceManager._pInstance._SpeedBoostModifier, DeviceManager._pInstance._SpeedBoostTime);
 
             // Destroy tag
             Destroy(gameObject);
         }
+    }
+
+    public void Invincibility(Char_Geomancer geomancer) {
+        
+        // Activate invincibility (or reset the timer if already invincible)
+        geomancer.ActivateInvincibility();
+
+        // Destroy tag
+        Destroy(gameObject);        
     }
 
 }

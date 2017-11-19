@@ -71,6 +71,8 @@ public class WeaponManager : MonoBehaviour {
     [Tooltip("The amount of spacing that spans out the corpses from the center.")]
     [Range(0f, 4f)]
     public float _MinionSpacing = 1.5f;
+    [Tooltip("")]
+    public float _ShieldDivider = 2f;
     [Header("- Movement")]
     [Tooltip("The rate of rotation that the each individual minion will rotate locally within the shield.")]
     public float _MinionSpinSpeed = 4f;

@@ -63,7 +63,7 @@ public class Wep_Shield : Weapon {
                     // Determine the position of the minion in the pool
                     ///Quaternion rot = new Quaternion(transform.rotation.x, transform.rotation.y + _rotation.y, transform.rotation.z, transform.rotation.w);
                     
-                    float angle = i * (Mathf.PI * 2f / (float)GetMaxMinions()) + transform.rotation.y;
+                    float angle = i * (Mathf.PI * WeaponManager._pInstance._ShieldDivider / (float)GetMaxMinions()) + transform.rotation.y;
                     Vector3 pos = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * _MinionSpacing;
                     pos += new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
                     
