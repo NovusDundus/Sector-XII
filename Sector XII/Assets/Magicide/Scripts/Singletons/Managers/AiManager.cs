@@ -170,7 +170,7 @@ public class AiManager : MonoBehaviour {
             else {
 
                 // Remove the minion from the arena
-                ai.GetComponent<MeshRenderer>().enabled = false;
+                ai.GetComponent<SkinnedMeshRenderer>().enabled = false;
                 ai.transform.position = new Vector3(1000, 1, 1000);
 
                 // Disable ALL behaviours
@@ -560,7 +560,7 @@ public class AiManager : MonoBehaviour {
             if (randAi.GetComponent<Char_Crystal>().GetVariantType() == Char_Crystal.CrystalType.Minor) {
 
                 // Currently inactive ai
-                if (randAi.GetComponent<MeshRenderer>().enabled == false) {
+                if (randAi.GetComponent<SkinnedMeshRenderer>().enabled == false) {
 
                     // Spawn at random position in the arena
                     // Get random int (min = 0, max = vector array.size -1)
@@ -591,7 +591,7 @@ public class AiManager : MonoBehaviour {
             if (randAi.GetComponent<Char_Crystal>().GetVariantType() == Char_Crystal.CrystalType.Major) {
 
                 // Currently inactive ai
-                if (randAi.GetComponent<MeshRenderer>().enabled == false) {
+                if (randAi.GetComponent<SkinnedMeshRenderer>().enabled == false) {
 
                     // Spawn at random position in the arena
                     // Get random int (min = 0, max = vector array.size -1)
@@ -622,7 +622,7 @@ public class AiManager : MonoBehaviour {
             if (randAi.GetComponent<Char_Crystal>().GetVariantType() == Char_Crystal.CrystalType.Cursed) {
 
                 // Currently inactive ai
-                if (randAi.GetComponent<MeshRenderer>().enabled == false) {
+                if (randAi.GetComponent<SkinnedMeshRenderer>().enabled == false) {
 
                     // Spawn at random position in the arena
                     // Get random int (min = 0, max = vector array.size -1)
@@ -653,7 +653,7 @@ public class AiManager : MonoBehaviour {
             if (randAi.GetComponent<Char_Crystal>().GetVariantType() == Char_Crystal.CrystalType.Minor) {
 
                 // Currently inactive ai
-                if (randAi.GetComponent<MeshRenderer>().enabled == false) {
+                if (randAi.GetComponent<SkinnedMeshRenderer>().enabled == false) {
 
                     // Spawn at random position in the arena
                     // Get random int (min = 0, max = vector array.size -1)
@@ -687,7 +687,7 @@ public class AiManager : MonoBehaviour {
             if (randAi.GetComponent<Char_Crystal>().GetVariantType() == Char_Crystal.CrystalType.Major) {
 
                 // Currently inactive ai
-                if (randAi.GetComponent<MeshRenderer>().enabled == false) {
+                if (randAi.GetComponent<SkinnedMeshRenderer>().enabled == false) {
 
                     // Spawn at random position in the arena
                     // Get random int (min = 0, max = vector array.size -1)
@@ -721,7 +721,7 @@ public class AiManager : MonoBehaviour {
             if (randAi.GetComponent<Char_Crystal>().GetVariantType() == Char_Crystal.CrystalType.Cursed) {
 
                 // Currently inactive ai
-                if (randAi.GetComponent<MeshRenderer>().enabled == false) {
+                if (randAi.GetComponent<SkinnedMeshRenderer>().enabled == false) {
 
                     // Spawn at random position in the arena
                     // Get random int (min = 0, max = vector array.size -1)

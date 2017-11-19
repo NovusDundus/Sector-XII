@@ -178,8 +178,6 @@ public class Char_Crystal : Character {
 
         // Store the new material that has been applied to the character
         _OriginalMaterial = _MeshRenderer.material;
-
-        ///AiManager._pInstance.Init();
     }
 
     //--------------------------------------------------------------
