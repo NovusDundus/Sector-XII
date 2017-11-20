@@ -180,7 +180,7 @@ public class Widget_Mainmenu : MonoBehaviour {
                     // Exit game popup screen
                     case 2: {
 
-                        _ButtonClicks.OnClick_ExitGame();
+                        _ButtonClicks.OnClick_bConfirmExitGame();
                         enabled = false;
                         break;
                     }
