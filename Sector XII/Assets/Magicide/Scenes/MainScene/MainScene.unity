@@ -1938,6 +1938,11 @@ Prefab:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 108839038026857300, guid: 1b288ebbadb3ac2478452a25fefb3068,
+        type: 2}
+      propertyPath: m_Intensity
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1b288ebbadb3ac2478452a25fefb3068, type: 2}
   m_IsPrefabParent: 0
@@ -9006,7 +9011,7 @@ Prefab:
     - target: {fileID: 114157945126146578, guid: aa42a22ea9d697f4abb43b7e82ccb986,
         type: 2}
       propertyPath: _CrystalCursedLives
-      value: 25
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 114157945126146578, guid: aa42a22ea9d697f4abb43b7e82ccb986,
         type: 2}
@@ -9063,6 +9068,11 @@ Prefab:
       propertyPath: _VOX_Dialoglist.Array.data[5]
       value: 
       objectReference: {fileID: 1704045853}
+    - target: {fileID: 114025385545714628, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _MinionHealth
+      value: 75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa42a22ea9d697f4abb43b7e82ccb986, type: 2}
   m_IsPrefabParent: 0
@@ -28666,7 +28676,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0, g: 0.8308824, b: 0.074492894, a: 1}
-  m_Intensity: 5
+  m_Intensity: 10
   m_Range: 10
   m_SpotAngle: 88.9
   m_CookieSize: 10
@@ -34506,7 +34516,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh170286
+  m_Name: pb_Mesh215486
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -58049,7 +58059,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 0.76551723, b: 0, a: 1}
-  m_Intensity: 5
+  m_Intensity: 10
   m_Range: 10
   m_SpotAngle: 88.9
   m_CookieSize: 10
@@ -71952,7 +71962,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0, g: 1, b: 0.7103448, a: 1}
-  m_Intensity: 5
+  m_Intensity: 10
   m_Range: 10
   m_SpotAngle: 88.9
   m_CookieSize: 10
