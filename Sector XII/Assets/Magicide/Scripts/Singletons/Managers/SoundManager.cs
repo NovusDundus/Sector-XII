@@ -115,7 +115,7 @@ public class SoundManager : MonoBehaviour {
     public void Update() {
 
         // If there are voxel sounds waiting to be played
-        if (_VoxelWaitingList.Count > 0) {
+        if (_VoxelWaitingList.Count > 1) {
 
             if (_IsPlayingVoxel == true) {
 
@@ -153,7 +153,7 @@ public class SoundManager : MonoBehaviour {
         }
 
         // No more voxels are left in the playing queue
-        else { /// _VoxelWaitingList.Count == 0
+        else { /// _VoxelWaitingList.Count < 1
 
             // Add to timer
             _TimeSinceLastVoxel += Time.deltaTime;

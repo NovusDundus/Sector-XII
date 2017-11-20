@@ -71,6 +71,9 @@ public class LinearGoToTarget : MonoBehaviour {
                         // Enable player controller input
                         GetComponent<Char_Geomancer>().SetActive(true);
 
+                        // Spawn invincible momentarily
+                        GetComponent<Char_Geomancer>().ActivateInvincibility();
+
                         // Disable manual seek
                         this.enabled = false;
                         break;

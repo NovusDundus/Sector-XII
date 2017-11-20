@@ -97,6 +97,7 @@ public class Wep_Orb : Weapon {
             foreach (var projectile in _POOL_FIREBALL_INACTIVE) {
 
                 projectile.GetComponent<Renderer>().enabled = false;
+                projectile.transform.position = new Vector3(1000, 1, 1000);
             }
         }
 
@@ -207,6 +208,9 @@ public class Wep_Orb : Weapon {
                 _CurrentFireDelay += _FireRateGain;
             }
             ///_FiringDelay = _CurrentFireDelay;
+
+            // Create fireball effect
+            ///Instantiate(WeaponManager._pInstance._FireballEffect, transform.position, _Owner.transform.rotation);
 
             // Play firing sound
             SoundManager._pInstance.PlayFireballAttack();

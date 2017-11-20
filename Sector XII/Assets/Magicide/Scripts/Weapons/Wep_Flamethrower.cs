@@ -29,6 +29,8 @@ public class Wep_Flamethrower : Weapon {
     List<GameObject> _POOL_FIREBALL_INACTIVE;                       // Object pool of all inactive projectiles.
     List<GameObject> _POOL_FIREBALL_ACTIVE;                         // Object pool of all active projectiles in the world.
     private bool _FiredFromLeftMuzzle = false;                      // Returns TRUE if the last projectile was fired from the LEFT muzzle launch point.
+    private bool _Firing = false;
+    private ParticleSystem _FiringEffect;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -46,6 +48,9 @@ public class Wep_Flamethrower : Weapon {
         _FiringHeatCost = WeaponManager._pInstance._FlameHeatCost;
         _CooldownRateStable = WeaponManager._pInstance._FlameCooldownRateStable;
         _CooldownRateOverheated = WeaponManager._pInstance._FlameCooldownRateOverheated;
+
+        // Set firing effect
+        _FiringEffect = WeaponManager._pInstance._FlamethrowerEffect;
     }
 
     public override void Init() {
@@ -69,6 +74,7 @@ public class Wep_Flamethrower : Weapon {
                 _POOL_FIREBALL_INACTIVE.Add(proj);
             }
         }
+        Instantiate(_FiringEffect, transform.position, _Owner.transform.rotation);
     }
 
     //--------------------------------------------------------------
@@ -104,6 +110,22 @@ public class Wep_Flamethrower : Weapon {
                 projectile.gameObject.GetComponent<Renderer>().enabled = true;
             }
         }
+
+        // Play the flamethrower particle effect
+        if (_Firing == true) {
+                        
+            // Set the flamethrower particle system to match the transform of the owner that is firing it
+            _FiringEffect.gameObject.transform.position = _Owner.transform.position;
+            _FiringEffect.gameObject.transform.rotation = _Owner.transform.rotation;
+            
+            _FiringEffect.Play();
+        }
+
+        else { /// _Firing == false
+
+            _FiringEffect.Stop();
+        }
+
     }
 
     // -------------------------------------------------------------
@@ -200,6 +222,7 @@ public class Wep_Flamethrower : Weapon {
 
             // Play firing sound
             SoundManager._pInstance.PlayFlamethrowerAttack();
+            _Firing = true;            
         }
     }
 
@@ -232,6 +255,11 @@ public class Wep_Flamethrower : Weapon {
             ////Debug.DrawLine(rayStart, rayEnd, Color.red, 10);
         }
         return hit;
+    }
+
+    public void SetFiring(bool value) {
+
+        _Firing = value;
     }
 
     //--------------------------------------------------------------

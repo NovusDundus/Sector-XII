@@ -34,6 +34,8 @@ public class WeaponManager : MonoBehaviour {
     public float _FireballSpeed = 20f;
     [Tooltip("Maximum distance a fireball can travel (will detonate when range is hit).")]
     public float _FireballRange = 50f;
+    [Tooltip("")]
+    public ParticleSystem _FireballEffect;
 
     [Header("---------------------------------------------------------------------------")]
     [Header(" *** FLAMETHROWER ***")]
@@ -60,6 +62,8 @@ public class WeaponManager : MonoBehaviour {
     public float _FlameSpeed = 10f;
     [Tooltip("Maximum distance a fireball can travel (will detonate when range is hit).")]
     public float _FlameRange = 20f;
+    [Tooltip("")]
+    public ParticleSystem _FlamethrowerEffect;
 
     [Header("---------------------------------------------------------------------------")]
     [Header(" *** SHIELD MINIONS ***")]
@@ -108,17 +112,6 @@ public class WeaponManager : MonoBehaviour {
 
         // Set singleton
         _pInstance = this;
-    }
-
-    //--------------------------------------------------------------
-    // FRAME
-
-    public void Update() {
-
-    }
-
-    public void FixedUpdate() {
-
     }
 
 }

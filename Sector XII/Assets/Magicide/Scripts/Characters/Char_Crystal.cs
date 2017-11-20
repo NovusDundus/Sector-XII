@@ -226,9 +226,7 @@ public class Char_Crystal : Character {
         killTag.GetComponent<KillTag>().Init(this, _PickupType);
 
         // Play OnDeath sound
-        SoundManager._pInstance.PlayCrystalDeath();       
-        
-        // Set LinearGoToTarget behaviour to be active
+        SoundManager._pInstance.PlayCrystalDeath();
     }
 
     public AiManager.AiSpawningTime GetSpawningTime() {

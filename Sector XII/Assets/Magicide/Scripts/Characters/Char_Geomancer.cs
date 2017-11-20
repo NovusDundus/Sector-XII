@@ -100,6 +100,9 @@ public class Char_Geomancer : Character {
         // Set tabbing weapon input
         _TabInputButton = PlayerManager._pInstance._WeaponSwapButton;
 
+        // Get random dialog
+        _CharacterDialog = SoundManager._pInstance.GetRandomDialog();
+
         // Set's either the orb or the flamethrower as the primary depending on whats specified in the player manager
         switch (PlayerManager._pInstance._PrimaryWeapon) {
 
@@ -199,7 +202,7 @@ public class Char_Geomancer : Character {
                     // Get directional input (movement ONLY)
                     Vector3 vec = _Player.GetMovementInput.normalized;
                     transform.SetPositionAndRotation(transform.position + vec * (_MovementSpeed * _SpeedBoostModifier * _MovementSpeedModifier) * Time.deltaTime, transform.rotation);
-                }
+                }           
 
                 // Used for animation blending
                 _Animator.SetFloat("Forward", _Player.GetMovementInput.x);
@@ -224,6 +227,12 @@ public class Char_Geomancer : Character {
                         // Fire secondary weapon (flamethrower?)
                         _WeaponSecondary.Fire();
                     }
+                }
+
+                else { ///_Player.GetFireInput == false
+
+                    // Stop flamethrower from firing stream
+                    _WeaponSecondary.GetComponent<Wep_Flamethrower>().SetFiring(false);
                 }
 
                 // ************************
@@ -327,15 +336,14 @@ public class Char_Geomancer : Character {
                         // Play taunt sequence
                         Taunt();
                     }
+                }
 
-                    // Taunt cooldown is NOT complete
-                    else { /// _TauntTimer < _TauntCooldown
+                // Taunt cooldown is NOT complete
+                else if (_TauntTimer < _TauntCooldown) { 
 
-                        // Add to timer
-                        _TauntTimer += Time.deltaTime;
-                    }
-
-                }                
+                    // Add to timer
+                    _TauntTimer += Time.deltaTime;                    
+                }
             }
 
             // Movement controller is disabled for the character
@@ -503,8 +511,8 @@ public class Char_Geomancer : Character {
         }
 
         // Instigator plays a taunt
-        if (instigator.GetComponent<Char_Geomancer>().GetDialog() != null)
-            instigator.GetComponent<Char_Geomancer>().GetDialog().PlayTaunt();
+        ///if (instigator.GetComponent<Char_Geomancer>().GetDialog() != null)
+        ///    instigator.GetComponent<Char_Geomancer>().GetDialog().PlayTaunt();
 
         // Play death sound
         if (_CharacterDialog != null)

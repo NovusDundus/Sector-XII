@@ -47,6 +47,9 @@ public class Proj_Fireball : Projectile {
         // Reset properties
         _Active = false;
         distanceTraveled = 0f;
+
+        // Move out of the scene
+        transform.position = new Vector3(1000, 1, 000);
         
         // Find reference to self in active projectile pool
         int i = 0;

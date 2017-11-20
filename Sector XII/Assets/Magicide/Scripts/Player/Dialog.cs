@@ -148,7 +148,7 @@ public class Dialog : MonoBehaviour {
                 // Queue the sound to the voxel waiting list
                 SoundManager._pInstance.GetVoxelWaitingList().Add(sound);
                 _TauntPlaying = true;
-                SoundManager._pInstance.StartingPlayingVoxels();
+                ///SoundManager._pInstance.StartingPlayingVoxels();
             }
         }
     }
