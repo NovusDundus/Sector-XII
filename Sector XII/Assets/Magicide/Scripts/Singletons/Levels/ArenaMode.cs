@@ -32,11 +32,4 @@ public class ArenaMode : MonoBehaviour {
         _pInstance = this;
     }
 
-    public void Start() {
-
-    }
-
-    //--------------------------------------------------------------
-    // *** FRAME ***
-
 }

@@ -12,7 +12,7 @@ public class Char_Geomancer : Character {
     //----------------------------------------------------------------------------------
     // *** VARIABLES ***
 
-    /// Public
+    /// Public (Exposed)
     public Transform _RespawnPoint;
     public LayerMask _DashLayer;
 
@@ -519,15 +519,9 @@ public class Char_Geomancer : Character {
             _CharacterDialog.PlayOnDeath();
     }
 
-    public bool GetActive() {
-
-        return _Active;
-    }
+    public bool GetActive() { return _Active; }
     
-    public void SetBurnState(bool value) {
-
-        _Burning = value;
-    }
+    public void SetBurnState(bool value) { _Burning = value; }
 
     //--------------------------------------------------------------
     // *** ABILITIES ***
@@ -756,9 +750,6 @@ public class Char_Geomancer : Character {
     //--------------------------------------------------------------
     // *** SOUND ***
 
-    public Dialog GetDialog() {
-
-        return _CharacterDialog;
-    }
+    public Dialog GetDialog() { return _CharacterDialog; }
 
 }

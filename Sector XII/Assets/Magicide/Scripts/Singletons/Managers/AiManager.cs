@@ -12,17 +12,19 @@ public class AiManager : MonoBehaviour {
     //----------------------------------------------------------------------------------
     // VARIABLES
 
-    /// Public (Designers)
+    /// Public (Exposed)
     [Header("---------------------------------------------------------------------------")]
     [Header(" *** MINOR VARIANT ***")]
     [Header("- Behaviour")]
     public AiBehaviourType _CrystalMinorBehaviourType = AiBehaviourType.Wander;
     [Header("- Movement")]
     [Tooltip("Movement speed of the minor crystal variant.")]
-    public float _CrystalMinorMovementSpeed = 5f;                   // Movement speed of the minor crystal variant.
+    public float _CrystalMinorMovementSpeed = 5f;                   
     [Header("- Spawning")]
+    [Tooltip("")]
+    public bool _UnlimitedLivesMinor = false;
     [Tooltip("The amount of respawns allowed for the minor crystal variant.")]
-    public int _CrystalMinorLives = 10;                             // The amount of respawns allowed for the minor crystal variant.
+    public int _CrystalMinorLives = 10;                             
     [Tooltip("")]
     public AiSpawningTime _CrystalMinorSpawningTime = AiSpawningTime.MatchStart;
     [Tooltip("")]
@@ -30,7 +32,7 @@ public class AiManager : MonoBehaviour {
     [Tooltip("The amount of time into the game on when the spawning for this variant should occur. (SPAWNING BEHAVIOUR MUST BE SET TO 'AtSpecificTiime'")]
     public int _CrystalMinorSpawnTime = 50;
     [Tooltip("Starting health of the minor crystal variant when spawning.")]
-    public int _CrystalMinorStartingHealth = 100;                   // Starting health of the minor crystal variant when spawning.
+    public int _CrystalMinorStartingHealth = 100;                    
     public KillTag.PickupType _CrystalMinorTagType = KillTag.PickupType.AddToShield;
     [Header("- Appearance")]
     [Tooltip("The material to be placed on the mesh attached to the minor variant.")]
@@ -44,10 +46,12 @@ public class AiManager : MonoBehaviour {
     public AiBehaviourType _CrystalMajorBehaviourType = AiBehaviourType.Flee;
     [Header("- Movement")]
     [Tooltip("Movement speed of the major crystal variant.")]
-    public float _CrystalMajorMovementSpeed = 5f;                   // Movement speed of the major crystal variant.
+    public float _CrystalMajorMovementSpeed = 5f;                   
     [Header("- Spawning")]
+    [Tooltip("")]
+    public bool _UnlimitedLivesMajor = false;
     [Tooltip("The amount of respawns allowed for the major crystal variant.")]
-    public int _CrystalMajorLives = 5;                              // The amount of respawns allowed for the major crystal variant.
+    public int _CrystalMajorLives = 5;                              
     [Tooltip("")]
     public AiSpawningTime _CrystalMajorSpawningTime = AiSpawningTime.Phase2Start;
     [Tooltip("")]
@@ -55,7 +59,7 @@ public class AiManager : MonoBehaviour {
     [Tooltip("The amount of time into the game on when the spawning for this variant should occur. (SPAWNING BEHAVIOUR MUST BE SET TO 'AtSpecificTiime'")]
     public int _CrystalMajorSpawnTime = 50;
     [Tooltip("Starting health of the major crystal variant when spawning.")]
-    public int _CrystalMajorStartingHealth = 100;                   // Starting health of the major crystal variant when spawning.
+    public int _CrystalMajorStartingHealth = 100;                   
     public KillTag.PickupType _CrystalMajorTagType = KillTag.PickupType.SpeedBoost;
     [Header("- Appearance")]
     [Tooltip("The material to be placed on the mesh attached to the major variant.")]
@@ -69,10 +73,12 @@ public class AiManager : MonoBehaviour {
     public AiBehaviourType _CrystalCursedBehaviourType = AiBehaviourType.Seek;
     [Header("- Movement")]
     [Tooltip("Movement speed of the cursed crystal variant.")]
-    public float _CrystalCursedMovementSpeed = 5f;                  // Movement speed of the cursed crystal variant.
+    public float _CrystalCursedMovementSpeed = 5f;                  
     [Header("- Spawning")]
+    [Tooltip("")]
+    public bool _UnlimitedLivesCursed = false;
     [Tooltip("The amount of respawns allowed for the cursed crystal variant.")]
-    public int _CrystalCursedLives = 2;                             // The amount of respawns allowed for the cursed crystal variant.
+    public int _CrystalCursedLives = 2;                             
     [Tooltip("")]
     public AiSpawningTime _CrystalCursedSpawningTime = AiSpawningTime.AtSpecificTime;
     [Tooltip("")]
@@ -80,7 +86,7 @@ public class AiManager : MonoBehaviour {
     [Tooltip("The amount of time into the game on when the spawning for this variant should occur. (SPAWNING BEHAVIOUR MUST BE SET TO 'AtSpecificTiime'")]
     public int _CrystalCursedSpawnTime = 50;
     [Tooltip("Starting health of the cursed crystal variant when spawning.")]
-    public int _CrystalCursedStartingHealth = 100;                  // Starting health of the cursed crystal variant when spawning.
+    public int _CrystalCursedStartingHealth = 100;                  
     public KillTag.PickupType _CrystalCursedTagType = KillTag.PickupType.Healthpack;
     [Header("- Appearance")]
     [Tooltip("The material to be placed on the mesh attached to the cursed variant.")]
@@ -92,14 +98,15 @@ public class AiManager : MonoBehaviour {
     [Header(" *** RESPAWN POINTS ***")]
     [Header("")]
     [Tooltip("Array of spawn points inside the arena bounds.")]
-    public List<Transform> _RandomSpawnPositions;                   // Array of spawn points inside the arena bounds.
+    public List<Transform> _RandomSpawnPositions;                   
     [Tooltip("Array of spawn points positioned behind the gates.")]
-    public List<Transform> _TeleportingGateSpawnPositions;          // Array of spawn points positioned behind the gates.
+    public List<Transform> _TeleportingGateSpawnPositions;          
     public List<Collider> _AgentTriggers;
 
     /// Public (internal)
     [HideInInspector]
-    public static AiManager _pInstance;                             // This is a singleton script, Initialized in Startup().
+    public static AiManager _pInstance;     
+    
     public enum AiBehaviourType {
 
         Wander,
@@ -114,11 +121,11 @@ public class AiManager : MonoBehaviour {
         AtSpecificTime
     }
     public enum AiSpawningBehaviour {
-        
+
         RandomSpawning,
         TeleportingGates
     }
-    
+
     /// Private
     private List<GameObject> _POOL_ALIVE_MINIONS;                   // Object pool of all ALIVE minions in the scene
     private List<GameObject> _POOL_DEAD_MINIONS;                    // Object pool of all DEAD minions in the scene
@@ -126,7 +133,7 @@ public class AiManager : MonoBehaviour {
     private List<GameObject> _POOL_MAJOR_MINIONS;
     private List<GameObject> _POOL_CURSED_MINIONS;
     private float _GameTime = 0f;
-
+    
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
 
@@ -274,7 +281,7 @@ public class AiManager : MonoBehaviour {
     }
 
     //--------------------------------------------------------------
-    // *** SPAWNING ***
+    // *** INITIAL SPAWNING ***
 
     public void OnPhase2Start() {
 
@@ -335,225 +342,6 @@ public class AiManager : MonoBehaviour {
                     // Spawn behind a teleporter gate and move into the gameplay area
                     SpawnCursedTeleporter();
                 }
-            }
-        }
-    }
-
-    public void OnRespawnMinorRandom() {
-
-        if (_POOL_DEAD_MINIONS.Count > 0 && _CrystalMinorLives > 0) {
-
-            // Get the character from the end of the dead array
-            GameObject newAi = _POOL_DEAD_MINIONS[_POOL_DEAD_MINIONS.Count - 1].gameObject;
-
-            if (newAi.GetComponent<Char_Crystal>().GetVariantType() == Char_Crystal.CrystalType.Minor) {
-
-                // Get random int (min = 0, max = vector array.size -1)
-                int randIndex = Random.Range(0, _RandomSpawnPositions.Count - 1);
-
-                // Get spawn position from spawnPoints [ randIndex ].position (newAI)
-                // Set ai transform's to the random spawn's position
-                newAi.transform.position = _RandomSpawnPositions[randIndex].position;
-
-                // Show the ai's mesh renderer
-                newAi.gameObject.GetComponentInChildren<Renderer>().enabled = true;
-
-                // Add ai (newAI variable) to active minion array
-                _POOL_ALIVE_MINIONS.Add(newAi.gameObject);
-
-                // Remove ai (new AI variable) from dead minion array
-                _POOL_DEAD_MINIONS.RemoveAt(_POOL_DEAD_MINIONS.Count - 1);
-
-                // -1 from ai lives cap
-                _CrystalMinorLives -= 1;
-
-                // Enable agency
-                newAi.GetComponent<NavMeshAgent>().enabled = true;
-            }
-        }
-    }
-
-    public void OnRespawnMajorRandom() {
-
-        if (_POOL_DEAD_MINIONS.Count > 0 && _CrystalMajorLives > 0) {
-
-            // Get the character from the end of the dead array
-            GameObject newAi = _POOL_DEAD_MINIONS[_POOL_DEAD_MINIONS.Count - 1].gameObject;
-
-            if (newAi.GetComponent<Char_Crystal>().GetVariantType() == Char_Crystal.CrystalType.Major) {
-
-                // Get random int (min = 0, max = vector array.size -1)
-                int randIndex = Random.Range(0, _RandomSpawnPositions.Count - 1);
-
-                // Get spawn position from spawnPoints [ randIndex ].position (newAI)
-                // Set ai transform's to the random spawn's position
-                newAi.transform.position = _RandomSpawnPositions[randIndex].position;
-
-                // Show the ai's mesh renderer
-                newAi.gameObject.GetComponentInChildren<Renderer>().enabled = true;
-
-                // Add ai (newAI variable) to active minion array
-                _POOL_ALIVE_MINIONS.Add(newAi.gameObject);
-
-                // Remove ai (new AI variable) from dead minion array
-                _POOL_DEAD_MINIONS.RemoveAt(_POOL_DEAD_MINIONS.Count - 1);
-
-                // -1 from ai lives cap
-                _CrystalMajorLives -= 1;
-
-                // Enable agency
-                newAi.GetComponent<NavMeshAgent>().enabled = true;
-            }
-        }
-    }
-
-    public void OnRespawnCursedRandom() {
-
-        if (_POOL_DEAD_MINIONS.Count > 0 && _CrystalCursedLives > 0) {
-
-            // Get the character from the end of the dead array
-            GameObject newAi = _POOL_DEAD_MINIONS[_POOL_DEAD_MINIONS.Count - 1].gameObject;
-
-            if (newAi.GetComponent<Char_Crystal>().GetVariantType() == Char_Crystal.CrystalType.Cursed) {
-
-                // Get random int (min = 0, max = vector array.size -1)
-                int randIndex = Random.Range(0, _RandomSpawnPositions.Count - 1);
-
-                // Get spawn position from spawnPoints [ randIndex ].position (newAI)
-                // Set ai transform's to the random spawn's position
-                newAi.transform.position = _RandomSpawnPositions[randIndex].position;
-
-                // Show the ai's mesh renderer
-                newAi.gameObject.GetComponentInChildren<Renderer>().enabled = true;
-
-                // Add ai (newAI variable) to active minion array
-                _POOL_ALIVE_MINIONS.Add(newAi.gameObject);
-
-                // Remove ai (new AI variable) from dead minion array
-                _POOL_DEAD_MINIONS.RemoveAt(_POOL_DEAD_MINIONS.Count - 1);
-
-                // -1 from ai lives cap
-                _CrystalCursedLives -= 1;
-
-                // Enable agency
-                newAi.GetComponent<NavMeshAgent>().enabled = true;
-            }
-        }
-    }
-
-    public void OnRespawnMinorTeleporter() {
-
-        if (_POOL_DEAD_MINIONS.Count > 0 && _CrystalMinorLives > 0) {
-
-            // Get the character from the end of the dead array
-            GameObject newAi = _POOL_DEAD_MINIONS[_POOL_DEAD_MINIONS.Count - 1].gameObject;
-
-            if (newAi.GetComponent<Char_Crystal>().GetVariantType() == Char_Crystal.CrystalType.Minor) {
-
-                // Get random int (min = 0, max = vector array.size -1)
-                int randIndex = Random.Range(0, _TeleportingGateSpawnPositions.Count - 1);
-
-                // Get spawn position from spawnPoints [ randIndex ].position (newAI)
-                // Set ai transform's to the random spawn's position
-                newAi.transform.position = _TeleportingGateSpawnPositions[randIndex].position;
-
-                // Show the ai's mesh renderer
-                newAi.gameObject.GetComponentInChildren<Renderer>().enabled = true;
-
-                // Add ai (newAI variable) to active minion array
-                _POOL_ALIVE_MINIONS.Add(newAi.gameObject);
-
-                // Remove ai (new AI variable) from dead minion array
-                _POOL_DEAD_MINIONS.RemoveAt(_POOL_DEAD_MINIONS.Count - 1);
-
-                // -1 from ai lives cap
-                _CrystalMinorLives -= 1;
-
-                // Set LinearGoToTarget behaviour to be active
-                newAi.GetComponent<LinearGoToTarget>().enabled = true;
-
-                // Disable agency
-                newAi.GetComponent<NavMeshAgent>().enabled = false;
-            }
-        }
-    }
-
-    public void OnRespawnMajorTeleporter() {
-
-        if (_POOL_DEAD_MINIONS.Count > 0 && _CrystalMajorLives > 0) {
-
-            // Get the character from the end of the dead array
-            GameObject newAi = _POOL_DEAD_MINIONS[_POOL_DEAD_MINIONS.Count - 1].gameObject;
-            Char_Crystal crystal = newAi.GetComponent<Char_Crystal>();
-
-            if (crystal.GetVariantType() == Char_Crystal.CrystalType.Major) {
-                
-                // Get random int (min = 0, max = vector array.size -1)
-                int randIndex = Random.Range(0, _TeleportingGateSpawnPositions.Count - 1);
-
-                // Get spawn position from spawnPoints [ randIndex ].position (newAI)
-                // Set ai transform's to the random spawn's position
-                crystal.transform.position = _TeleportingGateSpawnPositions[randIndex].position;
-
-                // Show the ai's mesh renderer
-                crystal.gameObject.GetComponentInChildren<Renderer>().enabled = true;
-
-                // Add ai (newAI variable) to active minion array
-                _POOL_ALIVE_MINIONS.Add(newAi.gameObject);
-
-                // Remove ai (new AI variable) from dead minion array
-                _POOL_DEAD_MINIONS.RemoveAt(_POOL_DEAD_MINIONS.Count - 1);
-
-                // -1 from ai lives cap
-                _CrystalMajorLives -= 1;
-
-                // Set LinearGoToTarget behaviour to be active
-                crystal.GetComponent<LinearGoToTarget>().enabled = true;
-
-                // Disable agency
-                crystal.GetComponent<NavMeshAgent>().enabled = false;
-
-                // Disable all behaviours
-                crystal.SetWanderEnable(false);
-                crystal.SetFleeEnable(false);
-                crystal.SetSeekEnable(false);
-            }
-        }
-    }
-
-    public void OnRespawnCursedTeleporter() {
-
-        if (_POOL_DEAD_MINIONS.Count > 0 && _CrystalCursedLives > 0) {
-
-            // Get the character from the end of the dead array
-            GameObject newAi = _POOL_DEAD_MINIONS[_POOL_DEAD_MINIONS.Count - 1].gameObject;
-
-            if (newAi.GetComponent<Char_Crystal>().GetVariantType() == Char_Crystal.CrystalType.Cursed) {
-
-                // Get random int (min = 0, max = vector array.size -1)
-                int randIndex = Random.Range(0, _TeleportingGateSpawnPositions.Count - 1);
-
-                // Get spawn position from spawnPoints [ randIndex ].position (newAI)
-                // Set ai transform's to the random spawn's position
-                newAi.transform.position = _TeleportingGateSpawnPositions[randIndex].position;
-
-                // Show the ai's mesh renderer
-                newAi.gameObject.GetComponentInChildren<Renderer>().enabled = true;
-
-                // Add ai (newAI variable) to active minion array
-                _POOL_ALIVE_MINIONS.Add(newAi.gameObject);
-
-                // Remove ai (new AI variable) from dead minion array
-                _POOL_DEAD_MINIONS.RemoveAt(_POOL_DEAD_MINIONS.Count - 1);
-
-                // -1 from ai lives cap
-                _CrystalCursedLives -= 1;
-
-                // Set LinearGoToTarget behaviour to be active
-                newAi.GetComponent<LinearGoToTarget>().enabled = true;
-
-                // Disable agency
-                newAi.GetComponent<NavMeshAgent>().enabled = false;
             }
         }
     }
@@ -754,18 +542,192 @@ public class AiManager : MonoBehaviour {
     }
 
     //--------------------------------------------------------------
+    // *** RESPAWNING ***
+
+    public void RespawnCrystal(Char_Crystal crystal, Vector3 position) {
+
+        // Show the ai's mesh renderer
+        crystal.gameObject.GetComponentInChildren<Renderer>().enabled = true;
+
+        // Add ai (newAI variable) to active minion array
+        _POOL_ALIVE_MINIONS.Add(crystal.gameObject);
+
+        // Remove ai (new AI variable) from dead minion array
+        _POOL_DEAD_MINIONS.RemoveAt(_POOL_DEAD_MINIONS.Count - 1);
+
+        // Set LinearGoToTarget behaviour to be active
+        crystal.GetComponent<LinearGoToTarget>().enabled = true;
+
+        // Disable agency
+        crystal.GetComponent<NavMeshAgent>().enabled = false;
+
+        // Disable all behaviours
+        crystal.SetWanderEnable(false);
+        crystal.SetFleeEnable(false);
+        crystal.SetSeekEnable(false);
+    }
+    
+    public void OnRespawnMinorRandom() {
+
+        if (_POOL_DEAD_MINIONS.Count > 0 && _CrystalMinorLives > 0) {
+
+            // Get the character from the end of the dead array
+            GameObject aiObj = _POOL_DEAD_MINIONS[_POOL_DEAD_MINIONS.Count - 1].gameObject;
+            Char_Crystal crystal = aiObj.GetComponent<Char_Crystal>();
+
+            // Precaution
+            if (crystal.GetVariantType() == Char_Crystal.CrystalType.Minor) {
+
+                // Get random int (min = 0, max = vector array.size -1)
+                int randIndex = Random.Range(0, _RandomSpawnPositions.Count - 1);
+
+                // Set crystal's transform to a random spawn position
+                RespawnCrystal(crystal, _RandomSpawnPositions[randIndex].position);
+
+                // Deduct 1 from respawn lives counter
+                if (_UnlimitedLivesMinor == false) {
+
+                    _CrystalMinorLives -= 1;
+                }
+            }
+        }
+    }
+
+    public void OnRespawnMajorRandom() {
+
+        if (_POOL_DEAD_MINIONS.Count > 0 && _CrystalMajorLives > 0) {
+
+            // Get the character from the end of the dead array
+            GameObject aiObj = _POOL_DEAD_MINIONS[_POOL_DEAD_MINIONS.Count - 1].gameObject;
+            Char_Crystal crystal = aiObj.GetComponent<Char_Crystal>();
+
+            // Precaution
+            if (crystal.GetVariantType() == Char_Crystal.CrystalType.Major) {
+
+                // Get random int (min = 0, max = vector array.size -1)
+                int randIndex = Random.Range(0, _RandomSpawnPositions.Count - 1);
+
+                // Set crystal's transform to a random spawn position
+                RespawnCrystal(crystal, _RandomSpawnPositions[randIndex].position);
+
+                // Deduct 1 from respawn lives counter
+                if (_UnlimitedLivesMajor == false) {
+
+                    _CrystalMajorLives -= 1;
+                }
+            }
+        }
+    }
+
+    public void OnRespawnCursedRandom() {
+
+        if (_POOL_DEAD_MINIONS.Count > 0 && _CrystalCursedLives > 0) {
+
+            // Get the character from the end of the dead array
+            GameObject aiObj = _POOL_DEAD_MINIONS[_POOL_DEAD_MINIONS.Count - 1].gameObject;
+            Char_Crystal crystal = aiObj.GetComponent<Char_Crystal>();
+
+            // Precaution
+            if (crystal.GetVariantType() == Char_Crystal.CrystalType.Cursed) {
+
+                // Get random int (min = 0, max = vector array.size -1)
+                int randIndex = Random.Range(0, _RandomSpawnPositions.Count - 1);
+
+                // Set crystal's transform to a random spawn position
+                RespawnCrystal(crystal, _RandomSpawnPositions[randIndex].position);
+
+                // Deduct 1 from respawn lives counter
+                if (_UnlimitedLivesCursed == false) {
+
+                    _CrystalCursedLives -= 1;
+                }
+            }
+        }
+    }
+
+    public void OnRespawnMinorTeleporter() {
+
+        if (_POOL_DEAD_MINIONS.Count > 0 && _CrystalMinorLives > 0) {
+
+            // Get the character from the end of the dead array
+            GameObject aiObj = _POOL_DEAD_MINIONS[_POOL_DEAD_MINIONS.Count - 1].gameObject;
+            Char_Crystal crystal = aiObj.GetComponent<Char_Crystal>();
+
+            // Precaution
+            if (crystal.GetVariantType() == Char_Crystal.CrystalType.Minor) {
+
+                // Get random int (min = 0, max = vector array.size -1)
+                int randIndex = Random.Range(0, _TeleportingGateSpawnPositions.Count - 1);
+
+                // Set crystal's transform to a random spawn position
+                RespawnCrystal(crystal, _TeleportingGateSpawnPositions[randIndex].position);
+
+                // Deduct 1 from respawn lives counter
+                if (_UnlimitedLivesMinor == false) {
+
+                    _CrystalMinorLives -= 1;
+                }
+            }
+        }
+    }
+
+    public void OnRespawnMajorTeleporter() {
+
+        if (_POOL_DEAD_MINIONS.Count > 0 && _CrystalMajorLives > 0) {
+
+            // Get the character from the end of the dead array
+            GameObject aiObj = _POOL_DEAD_MINIONS[_POOL_DEAD_MINIONS.Count - 1].gameObject;
+            Char_Crystal crystal = aiObj.GetComponent<Char_Crystal>();
+
+            // Precaution
+            if (crystal.GetVariantType() == Char_Crystal.CrystalType.Major) {
+
+                // Get random int (min = 0, max = vector array.size -1)
+                int randIndex = Random.Range(0, _TeleportingGateSpawnPositions.Count - 1);
+
+                // Set crystal's transform to a random spawn position
+                RespawnCrystal(crystal, _TeleportingGateSpawnPositions[randIndex].position);
+
+                // Deduct 1 from respawn lives counter
+                if (_UnlimitedLivesMajor == false) {
+
+                    _CrystalMajorLives -= 1;
+                }
+            }
+        }
+    }
+    
+    public void OnRespawnCursedTeleporter() {
+
+        if (_POOL_DEAD_MINIONS.Count > 0 && _CrystalCursedLives > 0) {
+
+            // Get the character from the end of the dead array
+            GameObject aiObj = _POOL_DEAD_MINIONS[_POOL_DEAD_MINIONS.Count - 1].gameObject;
+            Char_Crystal crystal = aiObj.GetComponent<Char_Crystal>();
+
+            // Precaution
+            if (crystal.GetVariantType() == Char_Crystal.CrystalType.Cursed) {
+
+                // Get random int (min = 0, max = vector array.size -1)
+                int randIndex = Random.Range(0, _TeleportingGateSpawnPositions.Count - 1);
+
+                // Set crystal's transform to a random spawn position
+                RespawnCrystal(crystal, _TeleportingGateSpawnPositions[randIndex].position);
+
+                // Deduct 1 from respawn lives counter
+                if (_UnlimitedLivesCursed == false) {
+
+                    _CrystalCursedLives -= 1;
+                }
+            }
+        }
+    }
+
+    //--------------------------------------------------------------
     // *** OBJECT POOLS ***
 
-    public List<GameObject> GetActiveMinions() {
+    public List<GameObject> GetActiveMinions() { return _POOL_ALIVE_MINIONS; }
 
-        // Returns the contiguous array of all alive minions
-        return _POOL_ALIVE_MINIONS;
-    }
-
-    public List<GameObject> GetInactiveMinions() {
-
-        // Returns the contiguous array of all dead/despawned minions
-        return _POOL_DEAD_MINIONS;
-    }
+    public List<GameObject> GetInactiveMinions() { return _POOL_DEAD_MINIONS; }
 
 }

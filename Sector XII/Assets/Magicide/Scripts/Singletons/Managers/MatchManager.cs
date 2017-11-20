@@ -297,36 +297,16 @@ public class MatchManager : MonoBehaviour {
         }
     }
 
-    public bool GetPaused() {
+    public bool GetPaused() { return _GamePaused; }
 
-        // Returns TRUE if the game is paused
-        return _GamePaused;
-    }
+    public bool GetGameplay() { return _Gameplay; }
 
-    public bool GetGameplay() {
+    public GameState GetGameState() { return _GameState; }
 
-        // Gameplay is true if the game isnt paused AND NOT playing a cinematic
-        return _Gameplay;
-    }
+    public float GetPhase1Timer() { return _TimerPhase1; }
 
-    public GameState GetGameState() {
+    public float GetPhase2Timer() { return _TimerPhase2; }
 
-        return _GameState;
-    }
-
-    public float GetPhase1Timer() {
-
-        return _TimerPhase1;
-    }
-
-    public float GetPhase2Timer() {
-
-        return _TimerPhase2;
-    }
-
-    public bool GetMaxMatchTime() {
-
-        return _MaxMatchTimer;
-    }
+    public bool GetMaxMatchTime() { return _MaxMatchTimer; }
 
 }

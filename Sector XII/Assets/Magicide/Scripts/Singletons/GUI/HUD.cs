@@ -13,7 +13,7 @@ public class HUD : MonoBehaviour {
     //----------------------------------------------------------------------------------
     // VARIABLES
 
-    /// Public (designers)
+    /// Public (Exposed)
     [Header("---------------------------------------------------------------------------")]
     [Header("*** MATCH USER INTERFACE ***")]
     [Tooltip("Reference to the match timer text that is displayed in the HUD.")]
@@ -31,26 +31,7 @@ public class HUD : MonoBehaviour {
     [Tooltip("Reference to the gui HUD panel.")]
     public GameObject _UIHud;                                       // Reference to the gui HUD panel.
 
-    [Header("---------------------------------------------------------------------------")]
-    [Header(" *** PLAYERS ***")]
-    [Tooltip("Reference to player 1's character.")]
-    public Char_Geomancer PlayerOne;                                // Reference to player 1's character.
-    [Tooltip("Player 1's HUD colour pallet.")]
-    public Color _PlayerOneColour = Color.blue;                     // Player 1's HUD colour pallet.
-    [Tooltip("Reference to player 2's character.")]
-    public Char_Geomancer PlayerTwoCharacter;                       // Reference to player 2's character.
-    [Tooltip("Player 2's HUD colour pallet.")]
-    public Color _PlayerTwoColour = Color.green;                    // Player 2's HUD colour pallet.
-    [Tooltip("Reference to player 3's character.")]
-    public Char_Geomancer PlayerThree;                              // Reference to player 3's character.
-    [Tooltip("Player 3's HUD colour pallet.")]
-    public Color _PlayerThreeColour = Color.magenta;                // Player 3's HUD colour pallet.
-    [Tooltip("Reference to player 4's character.")]
-    public Char_Geomancer PlayerFour;                               // Reference to player 4's character.
-    [Tooltip("Player 4's HUD colour pallet.")]
-    public Color _PlayerFourColour = Color.yellow;                  // Player 4's HUD colour pallet.
-
-    /// Public (internal)
+    /// Public (Internal)
     [HideInInspector]
     public static HUD _pInstance;                                   // This is a singleton script, Initialized in Startup().
     [HideInInspector]
@@ -145,10 +126,6 @@ public class HUD : MonoBehaviour {
     //--------------------------------------------------------------
     // *** HUD ***
 
-    public void ShowHUD(bool display) {
-
-        // Show or hide the hud
-        _DisplayHUD = display;
-    }
+    public void ShowHUD(bool value) { _DisplayHUD = value; }
 
 }

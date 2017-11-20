@@ -12,7 +12,7 @@ public class Wep_Flamethrower : Weapon {
     //---------------------------------------------------------------------------------
     // *** VARIABLES ***
 
-    /// Public (designers)
+    /// Public (Exposed)
     [Tooltip("Empty gameObject placed where the left muzzle launch point will be")]
     public Transform _MuzzlePointLeft;
     [Tooltip("Empty gameObject placed where the right muzzle launch point will be")]
@@ -20,7 +20,7 @@ public class Wep_Flamethrower : Weapon {
     [Tooltip("gameobject that contains the Flamethrower projectile script")]
     public GameObject _ProjectilePrefab;
 
-    /// Public (internal)
+    /// Public (Internal)
     [HideInInspector]
     public int _ActiveProjectiles = 0;
 
@@ -55,7 +55,7 @@ public class Wep_Flamethrower : Weapon {
 
     public override void Init() {
 
-        // Create object pools
+        // Create object pool for projectiles
         _POOL_FIREBALL_INACTIVE = new List<GameObject>();
         _POOL_FIREBALL_ACTIVE = new List<GameObject>();
 
@@ -74,7 +74,10 @@ public class Wep_Flamethrower : Weapon {
                 _POOL_FIREBALL_INACTIVE.Add(proj);
             }
         }
-        Instantiate(_FiringEffect, transform.position, _Owner.transform.rotation);
+
+        // Create flamethrower stream effect
+        if (_FiringEffect != null)
+            Instantiate(_FiringEffect, transform.position, _Owner.transform.rotation);
     }
 
     //--------------------------------------------------------------
@@ -111,21 +114,23 @@ public class Wep_Flamethrower : Weapon {
             }
         }
 
-        // Play the flamethrower particle effect
-        if (_Firing == true) {
-                        
-            // Set the flamethrower particle system to match the transform of the owner that is firing it
-            _FiringEffect.gameObject.transform.position = _Owner.transform.position;
-            _FiringEffect.gameObject.transform.rotation = _Owner.transform.rotation;
-            
-            _FiringEffect.Play();
+        // Play the flamethrower particle effect when firing
+        if (_FiringEffect != null) {
+
+            if (_Firing == true) {
+
+                // Set the flamethrower particle system to match the transform of the owner that is firing it
+                _FiringEffect.gameObject.transform.position = _Owner.transform.position;
+                _FiringEffect.gameObject.transform.rotation = _Owner.transform.rotation;
+
+                _FiringEffect.Play();
+            }
+
+            else { /// _Firing == false
+
+                _FiringEffect.Stop();
+            }
         }
-
-        else { /// _Firing == false
-
-            _FiringEffect.Stop();
-        }
-
     }
 
     // -------------------------------------------------------------
@@ -246,7 +251,7 @@ public class Wep_Flamethrower : Weapon {
         if (Physics.Raycast(rayStart, rayEnd, out hit, Mathf.Infinity, mask)) {
 
             // Successful hit
-            Debug.DrawLine(rayStart, hit.point, Color.green, 10);
+            ///Debug.DrawLine(rayStart, hit.point, Color.green, 10);
         }
 
         else {
@@ -299,29 +304,14 @@ public class Wep_Flamethrower : Weapon {
         }
     }
 
-    public int GetPoolSize() {
+    public int GetPoolSize() { return _POOL_SIZE; }
 
-        return _POOL_SIZE;
-    }
+    public int GetPoolInactiveCount() { return _POOL_FIREBALL_INACTIVE.Count; }
 
-    public int GetPoolInactiveCount() {
+    public int GetPoolActiveCount() { return _POOL_FIREBALL_ACTIVE.Count; }
 
-        return _POOL_FIREBALL_INACTIVE.Count;
-    }
+    public List<GameObject> GetActivePool() { return _POOL_FIREBALL_ACTIVE; }
 
-    public int GetPoolActiveCount() {
-
-        return _POOL_FIREBALL_ACTIVE.Count;
-    }
-
-    public List<GameObject> GetActivePool() {
-
-        return _POOL_FIREBALL_ACTIVE;
-    }
-
-    public List<GameObject> GetInactivePool() {
-
-        return _POOL_FIREBALL_INACTIVE;
-    }
+    public List<GameObject> GetInactivePool() { return _POOL_FIREBALL_INACTIVE; }
 
 }

@@ -91,47 +91,16 @@ public class Character : MonoBehaviour {
     // -------------------------------------------------------------
     // *** INPUT ***
 
-    public void SetActive(bool active) {
+    public void SetActive(bool active) { _Active = active; }
 
-        // Set the character's active state based on the parameter
-        _Active = active;
-    }
+    public void SetController(Player controller) { _Player = controller; }
 
-    public void SetController(Player controller) {
+    public float GetMovementSpeed() { return _MovementSpeed; }
 
-        // Set the character's controller based on the parameter
-        _Player = controller;
-    }
-
-    public float GetMovementSpeed() {
-
-        return _MovementSpeed;
-    }
-
-    public void SetMovementSpeed(float speed) {
-
-        _MovementSpeed = speed;
-    }
+    public void SetMovementSpeed(float speed) { _MovementSpeed = speed; }
 
     // -------------------------------------------------------------
     // *** HEALTH & DAMAGE ***
-
-    public int GetStartingHealth() {
-
-        // Returns the starting health associated with the character
-        return _StartingHealth;
-    }
-
-    public int GetHealth() {
-
-        // Returns the current amount of health associated with the character
-        return _Health;
-    }
-
-    public bool GetTakingDamage() {
-
-        return _ReceivingDamage;
-    }
 
     public virtual void Damage(Character instigator, float amount) {
 
@@ -160,27 +129,21 @@ public class Character : MonoBehaviour {
         _DeathPosition = transform.position;
     }
 
-    public Collider GetCollider() {
+    public int GetStartingHealth() { return _StartingHealth; }
 
-        return _Collision;
-    }
+    public int GetHealth() { return _Health; }
+
+    public bool GetTakingDamage() { return _ReceivingDamage; }
+
+    public Collider GetCollider() { return _Collision; }
 
     // -------------------------------------------------------------
     // *** COMBAT ***
 
-    public Weapon GetPrimaryWeapon() {
+    public Weapon GetPrimaryWeapon() { return _WeaponPrimary; }
 
-        return _WeaponPrimary;
-    }
+    public Weapon GetSecondaryWeapon() { return _WeaponSecondary; }
 
-    public Weapon GetSecondaryWeapon() {
-
-        return _WeaponSecondary;
-    }
-
-    public Weapon GetSpecialWeapon() {
-
-        return _WeaponSpecial;
-    }
+    public Weapon GetSpecialWeapon() { return _WeaponSpecial; }
 
 }

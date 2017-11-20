@@ -70,23 +70,19 @@ public class LinearGoToTarget : MonoBehaviour {
 
                         // Enable player controller input
                         GetComponent<Char_Geomancer>().SetActive(true);
-
-                        // Spawn invincible momentarily
-                        GetComponent<Char_Geomancer>().ActivateInvincibility();
-
-                        // Disable manual seek
+                        
+                        // Disable this script component
                         this.enabled = false;
                         break;
                     }
+
+                    // Activate geomancer invincibility whilst this script component is enabled
+                    GetComponent<Char_Geomancer>().ActivateInvincibility();
                 }
             }
         }
     }
 
-    public void SetTarget(GameObject target) {
-
-        // Set the gameObject target to move towards
-        _target = target;
-    }
+    public void SetTarget(GameObject target) { _target = target; }
 
 }

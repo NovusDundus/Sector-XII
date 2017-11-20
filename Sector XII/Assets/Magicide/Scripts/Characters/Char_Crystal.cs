@@ -10,11 +10,12 @@ public class Char_Crystal : Character {
     //----------------------------------------------------------------------------------
     // *** VARIABLES ***
 
-    /// Public (designers)    
+    /// Public (Exposed)    
     public CrystalType _Type;
     
-    /// Public (internal)
+    /// Public (Internal)
     [HideInInspector]
+
     public enum CrystalType {
 
         Minor,
@@ -179,15 +180,7 @@ public class Char_Crystal : Character {
         // Store the new material that has been applied to the character
         _OriginalMaterial = _MeshRenderer.material;
     }
-
-    //--------------------------------------------------------------
-    // *** FRAME ***
     
-    public override void Update() {
-
-        base.Update();
-    }
-
     //--------------------------------------------------------------
     // *** HEALTH & DAMAGE ***
 
@@ -234,32 +227,17 @@ public class Char_Crystal : Character {
         return _SpawningTime;
     }
     
-    public CrystalType GetVariantType() {
-
-        return _Type;
-    }
+    public CrystalType GetVariantType() { return _Type; }
     
     //--------------------------------------------------------------
     // *** BEHAVIOURS ***
 
-    public void SetWanderEnable(bool enable) {
+    public void SetWanderEnable(bool enable) { _BehaviourWander.enabled = enable; }
 
-        _BehaviourWander.enabled = enable;
-    }
+    public void SetFleeEnable(bool enable) { _BehaviourFlee.enabled = enable; }
 
-    public void SetFleeEnable(bool enable) {
+    public void SetSeekEnable(bool enable) { _BehaviourSeek.enabled = enable; }
 
-        _BehaviourFlee.enabled = enable;
-    }
-
-    public void SetSeekEnable(bool enable) {
-
-        _BehaviourSeek.enabled = enable;
-    }
-
-    public void SetLinearSeekEnable(bool enable) {
-
-        _LinearSeek.enabled = enable;
-    }
+    public void SetLinearSeekEnable(bool enable) { _LinearSeek.enabled = enable; }
 
 }

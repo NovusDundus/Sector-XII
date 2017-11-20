@@ -12,7 +12,7 @@ public class FaceTree : MonoBehaviour {
     //---------------------------------------------------------------------------------
     // *** VARIABLES ***
 
-    /// Public
+    /// Public (Exposed)
     public bool _NorthTree;
     public Material _DamagedMaterial;                               // The material that is shown on the character when receiving damage.
 

@@ -155,9 +155,6 @@ public class Fade : MonoBehaviour {
         }
     }
 
-    public bool IsFadeComplete() {
-
-        return !_Fading;
-    }
+    public bool IsFadeComplete() { return !_Fading; }
 
 }

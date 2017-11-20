@@ -18,7 +18,8 @@ public class KillTag : MonoBehaviour {
         AddToShield,
         Healthpack,
         SpeedBoost,
-        Invincibility
+        Invincibility,
+        Random
     }
 
     /// Private
@@ -48,53 +49,69 @@ public class KillTag : MonoBehaviour {
 
     public void Init(Char_Crystal Char, PickupType type) {
 
+        // Check if random
+        int i = (int)type;
+        if (type == PickupType.Random) {
+
+            // Generate a random pickup type (EXCEPT random!)
+            i = Random.Range(0, System.Enum.GetValues(typeof(PickupType)).Length - 1);
+        }
+
         // Set OnPickupType
-        _Type = type;
+        _Type = (PickupType)i;
         switch (_Type) {
 
+            // SHIELD MINION PICKUP
             case PickupType.AddToShield: {
 
-                    GetComponent<MeshRenderer>().material = DeviceManager._pInstance._AddShieldTypeMaterial;
-                    _RotationSpeed = DeviceManager._pInstance._AddShieldRotationSpeed;
-                    _BobHeight = DeviceManager._pInstance._AddShieldBobHeight;
-                    _BobSpeed = DeviceManager._pInstance._AddShieldBobSpeed;
-                    break;                                     
-                }                                              
+                // Set movement speed and apply material
+                GetComponent<MeshRenderer>().material = DeviceManager._pInstance._AddShieldTypeMaterial;
+                _RotationSpeed = DeviceManager._pInstance._AddShieldRotationSpeed;
+                _BobHeight = DeviceManager._pInstance._AddShieldBobHeight;
+                _BobSpeed = DeviceManager._pInstance._AddShieldBobSpeed;
+                break;                                     
+            }                                              
 
-            case PickupType.SpeedBoost: { 
+            // SPEED BOOST
+            case PickupType.SpeedBoost: {
 
-                    GetComponent<MeshRenderer>().material = DeviceManager._pInstance._SpeedBoostTypeMaterial;
-                    _RotationSpeed = DeviceManager._pInstance._SpeedBoostRotationSpeed;
-                    _BobHeight = DeviceManager._pInstance._SpeedBoostBobHeight;
-                    _BobSpeed = DeviceManager._pInstance._SpeedBoostBobSpeed;
-                    break;
-                }          
+                // Set movement speed and apply material
+                GetComponent<MeshRenderer>().material = DeviceManager._pInstance._SpeedBoostTypeMaterial;
+                _RotationSpeed = DeviceManager._pInstance._SpeedBoostRotationSpeed;
+                _BobHeight = DeviceManager._pInstance._SpeedBoostBobHeight;
+                _BobSpeed = DeviceManager._pInstance._SpeedBoostBobSpeed;
+                break;
+            }          
 
+            // HEALTHPACK
             case PickupType.Healthpack: {
 
-                    GetComponent<MeshRenderer>().material = DeviceManager._pInstance._HealthpackTypeMaterial;
-                    _RotationSpeed = DeviceManager._pInstance._HealthpackRotationSpeed;
-                    _BobHeight = DeviceManager._pInstance._HealthpackBobHeight;
-                    _BobSpeed = DeviceManager._pInstance._HealthpackBobSpeed;
-                    break;
-                }
+                // Set movement speed and apply material
+                GetComponent<MeshRenderer>().material = DeviceManager._pInstance._HealthpackTypeMaterial;
+                _RotationSpeed = DeviceManager._pInstance._HealthpackRotationSpeed;
+                _BobHeight = DeviceManager._pInstance._HealthpackBobHeight;
+                _BobSpeed = DeviceManager._pInstance._HealthpackBobSpeed;
+                break;
+            }
 
+            // INVINCIBILITY
             case PickupType.Invincibility: {
 
-                    GetComponent<MeshRenderer>().material = DeviceManager._pInstance._InvincibilityTypeMaterial;
-                    _RotationSpeed = DeviceManager._pInstance._InvincibilityRotationSpeed;
-                    _BobHeight = DeviceManager._pInstance._InvincibilityRotationSpeed;
-                    _BobSpeed = DeviceManager._pInstance._InvincibilityBobSpeed;
-                    break;
-                }
+                // Set movement speed and apply material
+                GetComponent<MeshRenderer>().material = DeviceManager._pInstance._InvincibilityTypeMaterial;
+                _RotationSpeed = DeviceManager._pInstance._InvincibilityRotationSpeed;
+                _BobHeight = DeviceManager._pInstance._InvincibilityRotationSpeed;
+                _BobSpeed = DeviceManager._pInstance._InvincibilityBobSpeed;
+                break;
+            }
 
             default: {
 
                     break;
-                }
+            }
         }
 
-        // Set reference to the wyrm to be used in the meat shield
+        // Set reference to the crystal to be used in the meat shield
         _Crystal = Char;
         
         // Tag is now active in the world
@@ -176,6 +193,7 @@ public class KillTag : MonoBehaviour {
 
                                 break;
                             }
+
                         case Char_Crystal.CrystalType.Major: {
 
                                 if (AiManager._pInstance._CrystalMajorSpawningBehaviour == AiManager.AiSpawningBehaviour.RandomSpawning) {
@@ -191,6 +209,7 @@ public class KillTag : MonoBehaviour {
                                 }
                                 break;
                             }
+
                         case Char_Crystal.CrystalType.Cursed: {
 
                                 if (AiManager._pInstance._CrystalCursedSpawningBehaviour == AiManager.AiSpawningBehaviour.RandomSpawning) {
@@ -206,6 +225,7 @@ public class KillTag : MonoBehaviour {
                                 }
                                 break;
                             }
+
                         default: {
                                 break;
                             }

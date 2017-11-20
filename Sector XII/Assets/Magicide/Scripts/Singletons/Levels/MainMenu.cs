@@ -44,11 +44,4 @@ public class MainMenu : MonoBehaviour {
         CinematicBars._pInstance.StartAnimation(CinematicBars.BarDirection.Exit, 4f);
     }
 
-    //--------------------------------------------------------------
-    // *** FRAME ***
-
-    public void Update() {
-
-    }
-
 }

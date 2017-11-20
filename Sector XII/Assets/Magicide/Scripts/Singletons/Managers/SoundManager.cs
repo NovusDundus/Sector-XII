@@ -428,7 +428,7 @@ public class SoundManager : MonoBehaviour {
 
     /// -------------------------------------------
     ///     
-    ///     DIALOG
+    ///     CHARACTER DIALOG
     /// 
     /// -------------------------------------------
 
@@ -459,11 +459,14 @@ public class SoundManager : MonoBehaviour {
             return null;
         }
     }
+    
+    /// -------------------------------------------
+    ///     
+    ///     FACE TREE DIALOG
+    /// 
+    /// -------------------------------------------
 
-    public void SetFaceTreeSoundPlaying(bool value) {
-
-        _FaceTreeSoundIsPlaying = value;
-    }
+    public void SetFaceTreeSoundPlaying(bool value) { _FaceTreeSoundIsPlaying = value; }
 
     public bool GetFaceTreeSoundIsPlaying() { return _FaceTreeSoundIsPlaying; }
 

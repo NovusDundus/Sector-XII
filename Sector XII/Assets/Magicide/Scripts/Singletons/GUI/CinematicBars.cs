@@ -110,9 +110,6 @@ public class CinematicBars : MonoBehaviour {
         _AnimationComplete = false;
     }
 
-    public bool IsPlayingAnimation() {
-
-        return _AnimationComplete;
-    } 
+    public bool IsPlayingAnimation() { return _AnimationComplete;  } 
 
 }

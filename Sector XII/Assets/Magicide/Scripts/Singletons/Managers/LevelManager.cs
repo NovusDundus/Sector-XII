@@ -39,28 +39,11 @@ public class LevelManager : MonoBehaviour {
         _StaticObjects = new List<GameObject>();
         _DynamicObjects = new List<GameObject>();
     }
-
-    //--------------------------------------------------------------
-    // *** FRAME ***
-
-    void Update () {
-		
-	}
-
-    public void FixedUpdate() {
-
-    }
-
+    
     //--------------------------------------------------------------
     // *** OBJECT POOLS ***
 
-    public List<GameObject> GetStaticObjects() {
+    public List<GameObject> GetStaticObjects() { return _StaticObjects; }
 
-        return _StaticObjects;
-    }
-
-    public List<GameObject> GetDynamicObjects() {
-
-        return _DynamicObjects;
-    }
+    public List<GameObject> GetDynamicObjects() { return _DynamicObjects; }
 }
