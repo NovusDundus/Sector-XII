@@ -484,18 +484,19 @@ public class AiManager : MonoBehaviour {
 
             // Get the character from the end of the dead array
             GameObject newAi = _POOL_DEAD_MINIONS[_POOL_DEAD_MINIONS.Count - 1].gameObject;
+            Char_Crystal crystal = newAi.GetComponent<Char_Crystal>();
 
-            if (newAi.GetComponent<Char_Crystal>().GetVariantType() == Char_Crystal.CrystalType.Major) {
-
+            if (crystal.GetVariantType() == Char_Crystal.CrystalType.Major) {
+                
                 // Get random int (min = 0, max = vector array.size -1)
                 int randIndex = Random.Range(0, _TeleportingGateSpawnPositions.Count - 1);
 
                 // Get spawn position from spawnPoints [ randIndex ].position (newAI)
                 // Set ai transform's to the random spawn's position
-                newAi.transform.position = _TeleportingGateSpawnPositions[randIndex].position;
+                crystal.transform.position = _TeleportingGateSpawnPositions[randIndex].position;
 
                 // Show the ai's mesh renderer
-                newAi.gameObject.GetComponentInChildren<Renderer>().enabled = true;
+                crystal.gameObject.GetComponentInChildren<Renderer>().enabled = true;
 
                 // Add ai (newAI variable) to active minion array
                 _POOL_ALIVE_MINIONS.Add(newAi.gameObject);
@@ -507,10 +508,15 @@ public class AiManager : MonoBehaviour {
                 _CrystalMajorLives -= 1;
 
                 // Set LinearGoToTarget behaviour to be active
-                newAi.GetComponent<LinearGoToTarget>().enabled = true;
+                crystal.GetComponent<LinearGoToTarget>().enabled = true;
 
                 // Disable agency
-                newAi.GetComponent<NavMeshAgent>().enabled = false;
+                crystal.GetComponent<NavMeshAgent>().enabled = false;
+
+                // Disable all behaviours
+                crystal.SetWanderEnable(false);
+                crystal.SetFleeEnable(false);
+                crystal.SetSeekEnable(false);
             }
         }
     }
