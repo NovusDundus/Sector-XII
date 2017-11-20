@@ -71,75 +71,31 @@ public class Player : MonoBehaviour {
     //--------------------------------------------------------------
     // *** SCORE ***
 
-    public void SetScore(int amount) {
+    public void SetScore(int amount) { _Score = amount; }
 
-        // set the player's score to match the parameter
-        _Score = amount;
-    }
+    public void AddScore(int amount) { _Score += amount; }
 
-    public void AddScore(int amount) {
+    public int GetScore() { return _Score; }
 
-        // Add 'x' points to the player's score
-        _Score += amount;
-    }
+    public void AddKillCount() { _KillCount += 1; }
 
-    public int GetScore() {
+    public int GetKillCount() { return _KillCount; }
 
-        // Returns the current score of the player
-        return _Score;
-    }
+    public void AddTimeAlive(float amount) { _TimeAlive += amount; }
 
-    public void AddKillCount() {
+    public int GetMinutesAlive() { return (int)_TimeAlive / 60; }
 
-        // Add 1 point to the player's kill count
-        _KillCount += 1;
-    }
+    public int GetSecondsAlive() { return (int)_TimeAlive % 60; }
 
-    public int GetKillCount() {
+    public int GetPlacement() { return _Placement; }
 
-        // Returns the current kill count of the player
-        return _KillCount;
-    }
+    public void SetPlacement(int place) { _Placement = place; }
 
-    public void AddTimeAlive(float amount) {
+    public int GetRespawnsLeft() { return _RespawnsLeft; }
 
-        // Add time to the player's alive counter (1 second per second)
-        _TimeAlive += amount;
-    }
+    public void SetRespawnsLeft(int value) { _RespawnsLeft = value; }
 
-    public int GetMinutesAlive() {
-
-        return (int)_TimeAlive / 60;
-    }
-
-    public int GetSecondsAlive() {
-
-        return (int)_TimeAlive % 60;
-    }
-
-    public int GetPlacement() {
-
-        // Returns the current placement of the player
-        return _Placement;
-    }
-
-    public void SetPlacement(int place) {
-
-        // Set the player's placement to match the parameter
-        _Placement = place;
-    }
-
-    public int GetRespawnsLeft() {
-
-        // Returns the amount of lives associated with the player
-        return _RespawnsLeft;
-    }
-
-    public void DeductRespawn() {
-
-        // Deduct 1 life from the player
-        _RespawnsLeft -= 1;
-    }
+    public void DeductRespawn() { _RespawnsLeft -= 1; }
 
     //--------------------------------------------------------------
     // *** INPUT ***

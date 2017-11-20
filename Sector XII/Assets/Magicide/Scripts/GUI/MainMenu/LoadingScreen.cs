@@ -13,13 +13,20 @@ public class LoadingScreen : MonoBehaviour {
     //----------------------------------------------------------------------------------
     // *** VARIABLES *** 
     
+    /// Public (exposed)
     public Slider _LoadSlider;                                      // Reference to the "s_ProgressBar" widget.
     public Text _MessageText;                                       // Reference to the "t_Message" text in the panel..
     public RawImage _GamepadContinueIcon;                           // Reference to the "i_GamepadContinue" image widget.
+    public GameObject _LoadingMatchScreen;                          // Reference to the loading screen panel when loading a new match.
+    public string _LoadingMatchText = "LOADING ARENA";
+    public GameObject _MainMenuScreen;                              // Reference to the loading screen panel when returning to the main menu.
+    public string _LoadingMainmenuText = "RETURNING TO MAIN MENU";
 
+    /// Private
     private int _LevelIndex;                                        // Build level index for the level to load.
     private eState _currentState = eState.Intro;                    // Current state of the UI.
     private float _LoadingTextAlpha = 0f;                           // Current alpha colour for "t_Loading" text.
+    private bool _LoadingMatch = true;
 
     private enum eState {
 
@@ -33,16 +40,25 @@ public class LoadingScreen : MonoBehaviour {
 
     public void Start() {
 
-        if (_MessageText != null) {
+        if (_MessageText != null) 
 
             // Set the text's colour to full transparency
-            _MessageText.color = Color.clear;
-        }
-        if (_GamepadContinueIcon != null) {
+            _MessageText.color = Color.clear;        
+
+        if (_GamepadContinueIcon != null) 
 
             // Hide the gamepad icon
             _GamepadContinueIcon.color = Color.clear;
-        }
+
+        if (_LoadingMatchScreen != null)
+
+            // Hide the loading match screen
+            _LoadingMatchScreen.SetActive(false);
+
+        if (_MainMenuScreen != null)
+
+            // Hide the loading main menu screen
+            _MainMenuScreen.SetActive(false);
     }
 
     //--------------------------------------------------------------
@@ -55,6 +71,21 @@ public class LoadingScreen : MonoBehaviour {
             switch (_currentState) {
 
                 case eState.Intro: {
+
+                        // Set text to reflect if its loading a new match or returning to main menu
+                        if (_LoadingMatch == true) {
+
+                            _MessageText.text = _LoadingMatchText;
+                            _LoadingMatchScreen.SetActive(true);
+                            _MainMenuScreen.SetActive(false);
+                        }
+
+                        else { /// _LoadingMatch == false
+
+                            _MessageText.text = _LoadingMainmenuText;
+                            _MainMenuScreen.SetActive(true);
+                            _LoadingMatchScreen.SetActive(false);
+                        }
 
                         // Fade in "t_Loading" text from transparent.
                         if (_MessageText.color.a < 1f) {

@@ -25,6 +25,8 @@ public class MatchManager : MonoBehaviour {
     [Tooltip("Time in seconds to complete the second phase of the match.(Kill players)")]
     [Range(1, 600)]
     public int _Phase2Length = 120;
+    [Tooltip("When there are 2 player's left in the match, remove all lives so that the one who survives for the longest wins.")]
+    public bool _SuddenDeath = false;
 
     /// Public (internal)
     [HideInInspector]
@@ -159,9 +161,12 @@ public class MatchManager : MonoBehaviour {
                         // Phase 2 has no time limit
                         else { /// _MaxMatchTimer == false
 
-                        // Check for premature game over
+                            // Check for premature game over
                             LastManStandingChecks();
                         }
+
+                        // Check for sudden death event
+                        SuddenDeathChecks();
                     }
                     break;
                 }
@@ -194,6 +199,23 @@ public class MatchManager : MonoBehaviour {
 
             // Match completed
             MatchCompleted();
+        }
+    }
+
+    public void SuddenDeathChecks() {
+
+        // Only check if sudden death is enabled
+        if (_SuddenDeath == true) {
+
+            // If there are only 2 players left in the match
+            if (PlayerManager._pInstance.GetActiveNecromancers().Count == 2) {
+
+                // Destroy all their respawns so that both players only have 1 life left
+                foreach (Character charPlyr in PlayerManager._pInstance.GetActiveNecromancers()) {
+
+                    charPlyr._Player.SetRespawnsLeft(0);
+                }
+            }
         }
     }
 
