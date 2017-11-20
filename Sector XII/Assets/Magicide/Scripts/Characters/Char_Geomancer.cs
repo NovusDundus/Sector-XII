@@ -49,6 +49,7 @@ public class Char_Geomancer : Character {
     private float _InvincibleTimer = 0f;
     private float _InvincibleTime;
     private Material _InvincibleMaterial;
+    private Animator _Animator;
 
     /// Delegates / Events
     private delegate void CharacterAbility();
@@ -65,6 +66,9 @@ public class Char_Geomancer : Character {
 
         // Store rigidbody reference
         _RigidBody = GetComponent<Rigidbody>();
+
+        // Store animator controller reference
+        _Animator = GetComponent<Animator>();
 
         // Set character's health & get collision reference
         _StartingHealth = PlayerManager._pInstance._GeomancerStartingHealth;
@@ -196,6 +200,10 @@ public class Char_Geomancer : Character {
                     Vector3 vec = _Player.GetMovementInput.normalized;
                     transform.SetPositionAndRotation(transform.position + vec * (_MovementSpeed * _SpeedBoostModifier * _MovementSpeedModifier) * Time.deltaTime, transform.rotation);
                 }
+
+                // Used for animation blending
+                _Animator.SetFloat("Forward", _Player.GetMovementInput.x);
+                _Animator.SetFloat("Right", _Player.GetMovementInput.z);
 
                 // ************************
                 //    FIRING CONTROLLER   

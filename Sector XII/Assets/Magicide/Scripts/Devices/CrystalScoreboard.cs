@@ -3,7 +3,7 @@
 public class CrystalScoreboard : MonoBehaviour {
 
     ///--------------------------------------///
-    /// Created by: Christos Nicolas
+    /// Created by: Christos Nicolas & Daniel Marton
     /// Created on: 09/10/2017
     ///--------------------------------------///
 
@@ -59,14 +59,17 @@ public class CrystalScoreboard : MonoBehaviour {
     //--------------------------------------------------------------
     // *** FRAME ***
 
-    private void Update()
-    {
-        foreach (Character plyr in PlayerManager._pInstance.GetEliminatedNecromancers())
-        {
+    private void Update() {
+
+        // Checks to see if the winning player is currently eliminated
+        foreach (Character plyr in PlayerManager._pInstance.GetEliminatedNecromancers()) {
+
+            // Get reference to the player
             Player p = plyr.GetComponent<Player>();
 
             if (p == _HighestPlayer)
             {
+                // Reset whose the leading player
                 _HighestPlayer = null;
                 _CurrentHighest = 0;
                 _TopPlayerID = 0;
@@ -76,10 +79,13 @@ public class CrystalScoreboard : MonoBehaviour {
 
         _CurrentHighest = 0;
 
-        foreach (Character plyr in PlayerManager._pInstance.GetActiveNecromancers())
-        {
+        // Check to see who is currently winning out of the alive player list
+        foreach (Character plyr in PlayerManager._pInstance.GetActiveNecromancers()) {
+
+            // Get reference to the player
             Player p = plyr.GetComponent<Player>();
 
+            // Found new winning player
             if (p.GetScore() > _CurrentHighest)
             {
                 _CurrentHighest = p.GetScore();
@@ -88,8 +94,10 @@ public class CrystalScoreboard : MonoBehaviour {
             }
         }
 
+        // Swap the colours based off who is currently winning
         switch (_TopPlayerID) {
 
+            // Player one is currently winning
             case 1:
 
                 meshRenderer.material = _PlayerOneCrystalMaterial;
@@ -98,6 +106,7 @@ public class CrystalScoreboard : MonoBehaviour {
                 _timerColour = 0;
                 break;
 
+            // Player two is currently winning
             case 2:
 
                 meshRenderer.material = _PlayerTwoCrystalMaterial;
@@ -106,6 +115,7 @@ public class CrystalScoreboard : MonoBehaviour {
                 _timerColour = 0;
                 break;
 
+            // Player three is currently winning
             case 3:
 
                 meshRenderer.material = _PlayerThreeCrystalMaterial;
@@ -113,7 +123,8 @@ public class CrystalScoreboard : MonoBehaviour {
                 _SceneColourTarget = _PlayerThreeAmbientColour;
                 _timerColour = 0;
                 break;
-
+            
+            // Player four is currently winning
             case 4:
                 
                 meshRenderer.material = _PlayerFourCrystalMaterial;
@@ -122,6 +133,7 @@ public class CrystalScoreboard : MonoBehaviour {
                 _timerColour = 0;
                 break;
 
+            // No one is currently winning
             default:
 
                 meshRenderer.material = _DefaultMaterial;
@@ -132,6 +144,7 @@ public class CrystalScoreboard : MonoBehaviour {
 
         }
 
+        // Smoothly lerp through the current colours to the new target players
         if (_LightSource.color != _LightColourTarget && _timerColour < 1f) {
 
             _timerColour += Time.deltaTime * 2;
@@ -139,52 +152,64 @@ public class CrystalScoreboard : MonoBehaviour {
             RenderSettings.ambientLight = Color.Lerp(RenderSettings.ambientLight, _SceneColourTarget, _timerColour);
         }     
         
+        // Light is breathing upwards
         if (_RangeUp == true) {
 
             if (_LightSource.range < _LightMaxRange) {
 
+                // Increase light range
                 _LightSource.range += _LightRangeSpeed * Time.deltaTime;
             }
 
+            // Has reached maximum threshold
             else { ///_LightSource.range >= _LightMaxRange
 
                 _RangeUp = false;
             }
         }
 
+        // Light is breathing inwards
         else { /// _RangeUp == false
 
             if (_LightSource.range > _LightMinRange) {
 
+                // Decrease light range
                 _LightSource.range -= _LightRangeSpeed * Time.deltaTime;
             }
 
+            // Has reached minimum threshold
             else { ///_LightSource.range < _LightMinRange
 
                 _RangeUp = true;
             }
         }
 
+        // Light is breathing the intensity upwards
         if (_IntensityUp == true) {
 
             if (_LightSource.intensity < _LightMaxIntensity) {
 
+                // Increase intensity
                 _LightSource.intensity += _LightIntensitySpeed * Time.deltaTime;
             }
 
+            // Has reached maximum threshold
             else { ///_LightSource.intensity >= _LightMaxRange
 
                 _IntensityUp = false;
             }
         }
 
+        // Light is breathing the intensity inwards
         else { /// _IntensityUp == false
 
             if (_LightSource.intensity > _LightMinIntensity) {
 
+                // Decrease intensity
                 _LightSource.intensity -= _LightIntensitySpeed * Time.deltaTime;
             }
 
+            // Has reached minimum threshold
             else { ///_LightSource.intensity < _LightMinIntensity
 
                 _IntensityUp = true;

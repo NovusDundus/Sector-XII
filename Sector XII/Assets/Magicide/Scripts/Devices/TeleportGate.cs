@@ -79,6 +79,8 @@ public class TeleportGate : MonoBehaviour {
 
                     // Active teleport
                     meshRenderer.material = _ActiveMaterial;
+
+                    // Lerp to active teleport
                 }
 
                 else { /// MatchManager._pInstance.GetGameState() != MatchManager.GameState.Phase2
@@ -87,7 +89,6 @@ public class TeleportGate : MonoBehaviour {
                     meshRenderer.material = _InactiveMaterial;
                 }
             }
-
         }
 
         else { /// _CanUse == false
@@ -110,6 +111,7 @@ public class TeleportGate : MonoBehaviour {
                     // If cooldown is complete
                     if (_CanUse == true) {
 
+                        // Teleport character
                         Teleport(other);
                     }
                 }
@@ -120,9 +122,9 @@ public class TeleportGate : MonoBehaviour {
                 // If cooldown is complete
                 if (_CanUse == true) {
 
+                    // Teleport character
                     Teleport(other);
                 }
-
             }
         }        
     }
