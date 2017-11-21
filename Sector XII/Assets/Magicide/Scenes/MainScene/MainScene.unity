@@ -10562,6 +10562,11 @@ Prefab:
       propertyPath: _PlayerEliminatedText
       value: 
       objectReference: {fileID: 1535408600}
+    - target: {fileID: 114157945126146578, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _CrystalMajorLives
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114977905998677262, guid: aa42a22ea9d697f4abb43b7e82ccb986, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: aa42a22ea9d697f4abb43b7e82ccb986, type: 2}
