@@ -10425,7 +10425,7 @@ Prefab:
     - target: {fileID: 114157945126146578, guid: aa42a22ea9d697f4abb43b7e82ccb986,
         type: 2}
       propertyPath: _UnlimitedLivesCursed
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114025385545714628, guid: aa42a22ea9d697f4abb43b7e82ccb986,
         type: 2}
@@ -28008,7 +28008,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 732797689}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 55.7, y: 2.1, z: 35.8}
+  m_LocalPosition: {x: 48.1, y: 2.1, z: 33.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1189335883}

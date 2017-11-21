@@ -304,17 +304,13 @@ public class MatchManager : MonoBehaviour {
             // Set text
             _PlayerEliminatedText.text = string.Concat("Player " + plyr._pPlayerID + " Eliminated!");
             _PlayerEliminatedText.color = plyr._PlayerColour;
+            
+            // Wasnt the 2nd last player that was removed from the game
+            if (PlayerManager._pInstance.GetActiveNecromancers().Count > 2) {
 
-            // If animation isnt currently playing
-            if (_PlayerEliminatedPanel.GetIsActive() == false ) {
-
-                // Wasnt the 2nd last player that was removed from the game
-                if (PlayerManager._pInstance.GetActiveNecromancers().Count > 2) {
-
-                    // Start popup animation
-                    _PlayerEliminatedPanel.StartPopup();
-                }
-            }
+                // Start popup animation
+                _PlayerEliminatedPanel.StartPopup();
+            }            
         }
     }
 
