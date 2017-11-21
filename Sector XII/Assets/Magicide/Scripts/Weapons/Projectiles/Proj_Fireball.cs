@@ -11,10 +11,7 @@ public class Proj_Fireball : Projectile {
 
     //---------------------------------------------------------------------------------
     // *** VARIABLES ***
-
-    /// Public (Exposed)
-    public LayerMask _ProjectileCollisionLayer;
-
+    
     /// Private
     private int _ImpactDamage;                                      // Amount of damage inflicted to any object that collides with this projectile.
     private float _TravelSpeed;                                     // Movement speed of the projectile.

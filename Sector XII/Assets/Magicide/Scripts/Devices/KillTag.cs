@@ -50,15 +50,22 @@ public class KillTag : MonoBehaviour {
     public void Init(Char_Crystal Char, PickupType type) {
 
         // Check if random
-        int i = (int)type;
-        if (type == PickupType.Random) {
+        if (type == PickupType.Random && DeviceManager._pInstance.GetRandomKilltagList().Count > 1) {
 
-            // Generate a random pickup type (EXCEPT random!)
-            i = Random.Range(0, System.Enum.GetValues(typeof(PickupType)).Length - 1);
+            // Generate a random pickup type
+            int i;
+            ///i = Random.Range(0, System.Enum.GetValues(typeof(PickupType)).Length - 1);
+            i = Random.Range(0, DeviceManager._pInstance.GetRandomKilltagList().Count);
+            _Type = DeviceManager._pInstance.GetRandomKilltagList()[i];
+        }
+
+        else if (DeviceManager._pInstance.GetRandomKilltagList().Count == 0) {
+
+            // Default to the first in the enum list
+            _Type = (PickupType)0;
         }
 
         // Set OnPickupType
-        _Type = (PickupType)i;
         switch (_Type) {
 
             // SHIELD MINION PICKUP
@@ -314,14 +321,14 @@ public class KillTag : MonoBehaviour {
 
         // Determine if whether the tag can be picked up or not.
         // Check if character is already using a speed boost
-        if (geomancer.IsSpeedBoost() != true) {
+        ///if (geomancer.IsSpeedBoost() != true) {
 
             // Activate speed boost
             geomancer.ActivateSpeedBoost(DeviceManager._pInstance._SpeedBoostModifier, DeviceManager._pInstance._SpeedBoostTime);
 
             // Destroy tag
             Destroy(gameObject);
-        }
+        ///}
     }
 
     public void Invincibility(Char_Geomancer geomancer) {

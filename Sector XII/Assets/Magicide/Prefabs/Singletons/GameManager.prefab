@@ -27,7 +27,6 @@ GameObject:
   - component: {fileID: 114188143390799446}
   - component: {fileID: 114481876437901886}
   - component: {fileID: 114342767189424728}
-  - component: {fileID: 114977905998677262}
   - component: {fileID: 114885749551304172}
   m_Layer: 0
   m_Name: GameManager
@@ -67,16 +66,22 @@ MonoBehaviour:
   _FireballImpactDamage: 25
   _FireballSpeed: 25
   _FireballRange: 50
+  _FireballEffect: {fileID: 0}
+  _FireballImpactEffect: {fileID: 0}
   _FlameFireDelay: 0.045
-  _FlameHeatCost: 0.05
+  _FlameHeatCost: 0.04
   _FlameCooldownRateStable: 0.0035
   _FlameCooldownRateOverheated: 0.006
-  _FlameDamage: 10
+  _FlameDamage: 3
+  _BurnDamage: 1
+  _BurnTime: 0.2
   _FlameSpeed: 45
   _FlameRange: 10
-  _MinionHealth: 100
+  _FlamethrowerEffect: {fileID: 0}
+  _MinionHealth: 75
   _MaxSize: 10
   _MinionSpacing: 1.85
+  _ShieldDivider: 3
   _MinionSpinSpeed: 3.75
   _MinionBobHeight: 0.7
   _MinionBobSpeed: 0.425
@@ -97,7 +102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _CrystalMinorBehaviourType: 0
   _CrystalMinorMovementSpeed: 4
-  _CrystalMinorLives: 15
+  _UnlimitedLivesMinor: 0
+  _CrystalMinorLives: 25
   _CrystalMinorSpawningTime: 0
   _CrystalMinorSpawningBehaviour: 0
   _CrystalMinorSpawnTime: 0
@@ -105,25 +111,33 @@ MonoBehaviour:
   _CrystalMinorTagType: 0
   _CrystalMinorTypeMaterial: {fileID: 2100000, guid: 409aa8057c1e26943b47215c7e507c51,
     type: 2}
+  _MinorOnDeathEffect: {fileID: 1842462935185376, guid: eec1dcba59b3c8b43be1021f1b70328d,
+    type: 2}
   _CrystalMajorBehaviourType: 1
   _CrystalMajorMovementSpeed: 6
+  _UnlimitedLivesMajor: 0
   _CrystalMajorLives: 7
   _CrystalMajorSpawningTime: 2
   _CrystalMajorSpawningBehaviour: 1
   _CrystalMajorSpawnTime: 20
   _CrystalMajorStartingHealth: 75
-  _CrystalMajorTagType: 1
+  _CrystalMajorTagType: 4
   _CrystalMajorTypeMaterial: {fileID: 2100000, guid: 9a99602ad7c91b54f92b48b76889219b,
     type: 2}
-  _CrystalCursedBehaviourType: 2
-  _CrystalCursedMovementSpeed: 5
-  _CrystalCursedLives: 0
+  _MajorOnDeathEffect: {fileID: 1842462935185376, guid: eec1dcba59b3c8b43be1021f1b70328d,
+    type: 2}
+  _CrystalCursedBehaviourType: 0
+  _CrystalCursedMovementSpeed: 4
+  _UnlimitedLivesCursed: 1
+  _CrystalCursedLives: 200
   _CrystalCursedSpawningTime: 2
   _CrystalCursedSpawningBehaviour: 1
-  _CrystalCursedSpawnTime: 99999999
-  _CrystalCursedStartingHealth: 250
-  _CrystalCursedTagType: 1
-  _CrystalCursedTypeMaterial: {fileID: 2100000, guid: 092728b289935f2409b48959798ec969,
+  _CrystalCursedSpawnTime: 40
+  _CrystalCursedStartingHealth: 50
+  _CrystalCursedTagType: 0
+  _CrystalCursedTypeMaterial: {fileID: 2100000, guid: 409aa8057c1e26943b47215c7e507c51,
+    type: 2}
+  _CursedOnDeathEffect: {fileID: 1842462935185376, guid: eec1dcba59b3c8b43be1021f1b70328d,
     type: 2}
   _RandomSpawnPositions:
   - {fileID: 0}
@@ -194,14 +208,6 @@ MonoBehaviour:
   _UIPause: {fileID: 0}
   _UIScoreboard: {fileID: 0}
   _UIHud: {fileID: 0}
-  PlayerOne: {fileID: 0}
-  _PlayerOneColour: {r: 0, g: 0, b: 1, a: 1}
-  PlayerTwoCharacter: {fileID: 0}
-  _PlayerTwoColour: {r: 0, g: 1, b: 0, a: 1}
-  PlayerThree: {fileID: 0}
-  _PlayerThreeColour: {r: 1, g: 0, b: 1, a: 1}
-  PlayerFour: {fileID: 0}
-  _PlayerFourColour: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   _DisplayHUD: 0
 --- !u!114 &114188143390799446
 MonoBehaviour:
@@ -214,26 +220,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bcc39189bd07774d97dba80046d91a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _AddShieldTypeMaterial: {fileID: 2100000, guid: 409aa8057c1e26943b47215c7e507c51,
+  _AddShieldTypeMaterial: {fileID: 2100000, guid: 29af295d11704e0488ec368533e95fb0,
     type: 2}
   _AddShieldRotationSpeed: 2
   _AddShieldBobHeight: 1
   _AddShieldBobSpeed: 1
-  _SpeedBoostTypeMaterial: {fileID: 2100000, guid: 9a99602ad7c91b54f92b48b76889219b,
+  _SpeedBoostTypeMaterial: {fileID: 2100000, guid: d5ccb81dbada3244caab7c2896cdc141,
     type: 2}
   _SpeedBoostRotationSpeed: 1
   _SpeedBoostBobHeight: 1
   _SpeedBoostBobSpeed: 0.5
-  _SpeedBoostModifier: 1.5
-  _SpeedBoostTime: 5
-  _HealthpackTypeMaterial: {fileID: 2100000, guid: 092728b289935f2409b48959798ec969,
+  _SpeedBoostModifier: 1.75
+  _SpeedBoostTime: 8
+  _HealthpackTypeMaterial: {fileID: 2100000, guid: f00073a582537ac478363afcd83e5409,
     type: 2}
   _HealthpackRotationSpeed: 3
   _HealthpackBobHeight: 1
   _HealthpackBobSpeed: 2
-  _AddHealthAmount: 50
-  _CanBeUsedInPhase1: 0
-  _TeleportCooldownTime: 8
+  _HealthAddAmount: 50
+  _InvincibilityTypeMaterial: {fileID: 2100000, guid: 8874a6caec2e0f74d86b7be2fde5ac81,
+    type: 2}
+  _InvincibilityRotationSpeed: 3
+  _InvincibilityBobHeight: 1
+  _InvincibilityBobSpeed: 2
+  _InvincibilityTime: 4
+  _AddShield: 0
+  _SpeedBoost: 1
+  _Healthpack: 1
+  _Invincibility: 1
+  _UsedInPhase1: 1
+  _TeleportCooldownTime: 1
+  _GlowTime: 1
+  _FloorMaterial: {fileID: 2100000, guid: aee5128887603414fb3c6bbce69286cc, type: 2}
+  _GlowFloorColourMin: {r: 0.03652954, g: 0, b: 1, a: 0}
+  _GlowFloorColourMax: {r: 0.8666667, g: 0.4392157, b: 0.8392157, a: 0}
+  _FaceTrees:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114342767189424728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -258,9 +281,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d54dd93656b2f2940a229b11df00f869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Phase1Length: 3
+  _Phase1Length: 2
   _Phase2Timer: 0
   _Phase2Length: 120
+  _SuddenDeath: 1
 --- !u!114 &114481876437901886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -291,11 +315,14 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _GeomancerStartingHealth: 100
+  _OnDeathEffect: {fileID: 1652434071881524, guid: 05ad624f0740fc14d9abf1c0c7f8e9ca,
+    type: 2}
+  _InvincibleMaterial: {fileID: 2100000, guid: 938152868a4b95549b1f1bbd0253ac42, type: 2}
   _GeomancerMovementSpeed: 12
   _DashEnabled: 1
   _DashButton: 8
   _DashDistance: 7
-  DashCooldown: 3
+  DashCooldown: 2
   _KnockbackEnabled: 0
   _KnockbackButton: 3
   _KnockbackForceNormal: 15000
@@ -316,48 +343,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _SFX_ButtonClick: {fileID: 0}
-  _DB_ButtonClick: 0
   _SFX_ButtonHover: {fileID: 0}
-  _DB_ButtonHover: 0
   _SFX_ButtonGoBack: {fileID: 0}
-  _DB_ButtonGoBack: 0
-  _SFX_Dash: []
-  _DB_Dash: []
-  _SFX_FireballAttack: []
-  _DB_FireballAttack: []
-  _SFX_FireballImpact: []
-  _DB_FireballImpact: []
+  _SFX_Dash:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _SFX_FireballAttack:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _SFX_FireballImpact:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _SFX_FlamethrowerAttack: []
-  _DB_FlamethrowerAttack: []
-  _SFX_OnTeleport: []
-  _DB_OnTeleport: []
+  _SFX_OnTeleport:
+  - {fileID: 0}
   _SFX_OnTagPickupMinion: []
-  _DB_OnTagPickupMinion: []
   _SFX_OnTagPickupSpeed: []
-  _DB_OnPickupSpeed: []
   _SFX_OnTagPickupHealth: []
-  _DB_OnPickupHealth: []
   _SFX_CrystalHit: []
-  _DB_CrystalHit: []
-  _SFX_CrystalDeath: []
-  _DB_CrystalDeath: []
+  _SFX_CrystalDeath:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _MUSIC_MainMenu: {fileID: 0}
-  _DB_MUSIC_MainMenu: 0
   _MUSIC_Gameplay: {fileID: 0}
-  _DB_MUSIC_Gameplay: 0
   _AMBIENCE_MainMenu: {fileID: 0}
-  _DB_AMBIENCE_MainMenu: 0
   _AMBIENCE_Gameplay: {fileID: 0}
-  _DB_AMBIENCE_Gameplay: 0
---- !u!114 &114977905998677262
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1254212357002398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92dc5851382412f4caea55f2041cd30d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _PlayerAttachedTo: {fileID: 0}
+  _VOX_Dialoglist:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _VOX_FaceTreeNorthDialoglist: []
+  _VOX_FaceTreeSouthDialoglist: []

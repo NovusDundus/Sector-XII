@@ -270,7 +270,7 @@ public class Char_Geomancer : Character {
                 }
 
                 // DASH ABILITY 
-                if (_DashEnabled == true) {
+                if (_DashEnabled == true && _Player.GetMovementInput != new Vector3(0,0,0)) {
 
                     // Dash ability cooldown in progress
                     if (_CurrentDashCooldown > 0f) {

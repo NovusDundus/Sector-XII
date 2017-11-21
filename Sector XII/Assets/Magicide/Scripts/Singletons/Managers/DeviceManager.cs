@@ -12,7 +12,7 @@ public class DeviceManager : MonoBehaviour {
     //----------------------------------------------------------------------------------
     // *** VARIABLES ***
 
-    /// Public (designers)
+    /// Public (Exposed)
     [Header("---------------------------------------------------------------------------")]
     [Header("*** Kill Tags ***")]
     [Header("- Add Shield Variant")]
@@ -36,12 +36,18 @@ public class DeviceManager : MonoBehaviour {
     public float _HealthpackBobSpeed = 2f;
     public int _HealthAddAmount = 50;
 
-    [Header("- Invincibility Pack Variant")]
+    [Header("- Invincibility Variant")]
     public Material _InvincibilityTypeMaterial;
     public float _InvincibilityRotationSpeed = 3f;
     public float _InvincibilityBobHeight = 1f;
     public float _InvincibilityBobSpeed = 2f;
     public float _InvincibilityTime = 5f;
+
+    [Header("- Random Variant")]
+    public bool _AddShield = false;
+    public bool _SpeedBoost = false;
+    public bool _Healthpack = false;
+    public bool _Invincibility = false;
 
     [Header("---------------------------------------------------------------------------")]
     [Header("*** Teleporters ***")]
@@ -64,7 +70,10 @@ public class DeviceManager : MonoBehaviour {
 
     /// Public (internal)
     [HideInInspector]
-    public static DeviceManager _pInstance;                         // This is a singleton script, Initialized in Awake().
+    public static DeviceManager _pInstance;
+
+    /// Private
+    private List<KillTag.PickupType> _RandomKilltagPool;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -81,5 +90,31 @@ public class DeviceManager : MonoBehaviour {
         // Set singleton
         _pInstance = this;
     }
+
+    public void Start() {
+
+        _RandomKilltagPool = new List<KillTag.PickupType>();
+
+        // If minion shield variant is enabled - add it to the pool
+        if (_AddShield == true) 
+            _RandomKilltagPool.Add(KillTag.PickupType.AddToShield);
+
+        // If speed boost variant is enabled - add it to the pool
+        if (_SpeedBoost == true)
+            _RandomKilltagPool.Add(KillTag.PickupType.SpeedBoost);
+
+        // If health pack variant is enabled - add it to the pool
+        if (_Healthpack == true)
+            _RandomKilltagPool.Add(KillTag.PickupType.Healthpack);
+
+        // If invincibility variant is enabled - add it to the pool
+        if (_Invincibility == true)
+            _RandomKilltagPool.Add(KillTag.PickupType.Invincibility);
+    }
+
+    //--------------------------------------------------------------
+    // *** GETTERS ***
+
+    public List<KillTag.PickupType> GetRandomKilltagList() { return _RandomKilltagPool; }
 
 }
