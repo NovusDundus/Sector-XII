@@ -2169,6 +2169,21 @@ Prefab:
       propertyPath: m_Intensity
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114363833860706628, guid: 1b288ebbadb3ac2478452a25fefb3068,
+        type: 2}
+      propertyPath: _PlayerColour.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114363833860706628, guid: 1b288ebbadb3ac2478452a25fefb3068,
+        type: 2}
+      propertyPath: _PlayerColour.g
+      value: 0.096291065
+      objectReference: {fileID: 0}
+    - target: {fileID: 114363833860706628, guid: 1b288ebbadb3ac2478452a25fefb3068,
+        type: 2}
+      propertyPath: _PlayerColour.b
+      value: 0.096291065
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1b288ebbadb3ac2478452a25fefb3068, type: 2}
   m_IsPrefabParent: 0
@@ -23582,7 +23597,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   _Controller: 3
-  _PlayerColour: {r: 1, g: 1, b: 1, a: 1}
+  _PlayerColour: {r: 0.25735295, g: 1, b: 0.2624746, a: 1}
 --- !u!114 &622889037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28681,7 +28696,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   _Controller: 4
-  _PlayerColour: {r: 1, g: 1, b: 1, a: 1}
+  _PlayerColour: {r: 0.9558824, g: 0.865917, b: 0.14057095, a: 1}
 --- !u!114 &755100252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34629,7 +34644,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _Controller: 2
-  _PlayerColour: {r: 1, g: 1, b: 1, a: 1}
+  _PlayerColour: {r: 0, g: 0.5034485, b: 1, a: 1}
 --- !u!114 &856780466
 MonoBehaviour:
   m_ObjectHideFlags: 0
