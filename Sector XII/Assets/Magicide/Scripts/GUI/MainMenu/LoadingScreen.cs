@@ -66,6 +66,7 @@ public class LoadingScreen : MonoBehaviour {
 
     public void Update () {
 
+        // Precautions
         if (_LoadSlider != null && _MessageText != null && _GamepadContinueIcon != null) {
 
             switch (_currentState) {
@@ -178,14 +179,13 @@ public class LoadingScreen : MonoBehaviour {
             }
         }
     }
-    
+
     //--------------------------------------------------------------
     // *** LOADING *** 
 
-    public void SetLevelIndex(int index) {
+    /// Set the level index for scene loading
+    public void SetLevelIndex(int index) {  _LevelIndex = index; }
 
-        // Set the level index for the loading
-        _LevelIndex = index;
-    }
+    public void SetLoadingMatch(bool value) { _LoadingMatch = value; }
 
 }

@@ -45,23 +45,24 @@ public class Player : MonoBehaviour {
             // If in gameplay
             if (MatchManager._pInstance.GetGameplay() == true) {
 
-                // Detect pause input
+                // Detect pause input against indiviual player
                 if (GetSpecialRightButton == true) {
 
-                    // Game is currently in a PAUSED state
-                    if (MatchManager._pInstance.GetPaused() == true) {
+                    if (_Controller != XboxController.All) {
 
-                        // Unpause game
-                        MatchManager._pInstance.SetPause(false);
-                        Time.timeScale = 1;
-                    }
+                        // Game is currently in a PAUSED state
+                        if (MatchManager._pInstance.GetPaused() == true) {
 
-                    // Game is currently in an UNPAUSED state
-                    else { /// MatchManager._pInstance.GetPaused() == true
+                            // Unpause game
+                            MatchManager._pInstance.SetPause(false);
+                        }
 
-                        // Pause game
-                        MatchManager._pInstance.SetPause(true);
-                        Time.timeScale = 0;
+                        // Game is currently in an UNPAUSED state
+                        else { /// MatchManager._pInstance.GetPaused() == true
+
+                            // Pause game
+                            MatchManager._pInstance.SetPause(true);
+                        }
                     }
                 }
             }
@@ -162,7 +163,7 @@ public class Player : MonoBehaviour {
         get
         {
             ///return Input.GetButton("SpecialRight");
-            return XCI.GetButton(XboxButton.Start, _Controller);
+            return XCI.GetButtonDown(XboxButton.Start, _Controller);
         }
     }
 

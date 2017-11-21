@@ -15,7 +15,6 @@ public class ButtonClicksArenaMode : MonoBehaviour {
     /// Public (designers)
     [Header("LOADING SCREENS")]
     public GameObject _LoadingScreen;
-    public GameObject _RestartScreen;
 
     //--------------------------------------------------------------
     // *** BUTTON CLICKS *** 
@@ -30,7 +29,10 @@ public class ButtonClicksArenaMode : MonoBehaviour {
 
         // Show loading screen panel
         _LoadingScreen.SetActive(true);
-        _RestartScreen.SetActive(true);
+        _LoadingScreen.GetComponent<LoadingScreen>().SetLoadingMatch(true);
+
+        // Reset time scale
+        Time.timeScale = 1f;
     }
 
     public void OnClick_MainMenu() {
@@ -40,6 +42,10 @@ public class ButtonClicksArenaMode : MonoBehaviour {
 
         // Show loading screen panel
         _LoadingScreen.SetActive(true);
+        _LoadingScreen.GetComponent<LoadingScreen>().SetLoadingMatch(false);
+
+        // Reset time scale
+        Time.timeScale = 1f;
     }
 
     public void OnClick_Resume() {
@@ -50,12 +56,5 @@ public class ButtonClicksArenaMode : MonoBehaviour {
         // Resume gameplay
         MatchManager._pInstance.SetPause(false);
     }
-
-    //--------------------------------------------------------------
-    // *** FRAME *** 
-
-    void Update () {
-		
-	}
 
 }

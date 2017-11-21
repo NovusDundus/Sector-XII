@@ -12,6 +12,9 @@ public class Proj_Fireball : Projectile {
     //---------------------------------------------------------------------------------
     // *** VARIABLES ***
 
+    /// Public (Exposed)
+    public LayerMask _ProjectileCollisionLayer;
+
     /// Private
     private int _ImpactDamage;                                      // Amount of damage inflicted to any object that collides with this projectile.
     private float _TravelSpeed;                                     // Movement speed of the projectile.
@@ -137,6 +140,7 @@ public class Proj_Fireball : Projectile {
             }
         }
 
+        // Check against enemy player character
         if (MatchManager._pInstance.GetGameState() == MatchManager.GameState.Phase2) {
 
             // Check against all alive players
@@ -233,35 +237,9 @@ public class Proj_Fireball : Projectile {
 
     public void OnTriggerEnter(Collider other) {
 
-        Tags tagComp = other.gameObject.GetComponent<Tags>();
-        if (tagComp != null) {
+        if (other.gameObject.tag == "Collision") {
 
-            if (tagComp.ContainsTag("Character")) {
-
-                ///print(other.tag);
-            }
-
-            if (tagComp.ContainsTag("Collision")) {
-
-                ///print(other.tag);
-            }
-        }
-    }
-
-    public void OnCollisionEnter(Collision collision) {
-
-        Tags tagComp = collision.gameObject.GetComponent<Tags>();
-        if (tagComp != null) {
-
-            if (tagComp.ContainsTag("Character")) {
-
-                ///print(collision.gameObject.tag);
-            }
-
-            if (tagComp.ContainsTag("Collision")) {
-
-                ///print(collision.gameObject.tag);
-            }
+            FreeProjectile();
         }
     }
     

@@ -304,10 +304,10 @@ public class KillTag : MonoBehaviour {
 
             // Add health to necromancer
             geomancer.AddHealth(DeviceManager._pInstance._HealthAddAmount);
-
-            // Destroy tag
-            Destroy(gameObject);
         }
+
+        // Destroy tag
+        Destroy(gameObject);
     }
 
     public void SpeedBoost(Char_Geomancer geomancer) {

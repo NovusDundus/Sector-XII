@@ -25,6 +25,7 @@ public class Widget_Pause : MonoBehaviour {
     private bool _ResetUpInput = false;
     private bool _ResetFaceRightInput = false;
     private bool _ResetFaceDownInput = false;
+    private bool _ResetSpecialDownInput = false;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -35,6 +36,8 @@ public class Widget_Pause : MonoBehaviour {
         _PlayerController = ArenaMode._pInstance.GetComponent<Player>();
         _ButtonClicks = GetComponentInParent<ButtonClicksArenaMode>();
     }
+
+    public void SetButtonIndex(int value) { _ButtonIndex = value; }
 
     //--------------------------------------------------------------
     // *** FRAME ***
@@ -206,6 +209,34 @@ public class Widget_Pause : MonoBehaviour {
 
         /// ***************************
         /// 
+        ///    Special button RIGHT
+        /// 
+        /// ***************************        
+        if (_ResetSpecialDownInput == false) {
+
+            // On button down
+            if (_PlayerController.GetSpecialRightButton) {
+
+                // Resume gameplay
+                _ButtonClicks.OnClick_Resume();
+                _ResetSpecialDownInput = true;
+
+                // Play button go back sound
+                SoundManager._pInstance.PlayButtonGoBack();
+            }
+        }
+
+        else { /// _ResetSpecialDownInput == true
+
+            // On button release
+            if (_PlayerController.GetSpecialRightButton == false) {
+
+                _ResetSpecialDownInput = false;
+            }
+        }
+
+        /// ***************************
+        /// 
         ///    Button highlights
         /// 
         /// ***************************      
@@ -214,40 +245,40 @@ public class Widget_Pause : MonoBehaviour {
             // Resume gameplay
             case 0: {
 
-                    if (_ResumeButton != null) {
+                if (_ResumeButton != null) {
 
-                        // Highlight
-                        _ResumeButton.Select();
-                    }
-                    break;
+                    // Highlight
+                    _ResumeButton.Select();
                 }
+                break;
+            }
 
             // Restart match
             case 1: {
 
-                    if (_RestartButton != null) {
-
-                        // Highlight
-                        _RestartButton.Select();
-                    }
-                    break;
+                if (_RestartButton != null) {
+                
+                    // Highlight
+                    _RestartButton.Select();
                 }
+                break;
+            }
 
             // Exit match
             case 2: {
 
-                    if (_ExitMatchButton != null) {
+                if (_ExitMatchButton != null) {
 
-                        // Highlight
-                        _ExitMatchButton.Select();
-                    }
-                    break;
+                    // Highlight
+                    _ExitMatchButton.Select();
                 }
+                break;
+            }
 
             default: {
 
-                    break;
-                }
+                break;
+            }
         }
     }
 

@@ -140,7 +140,6 @@ public class MatchManager : MonoBehaviour {
                             // Deduct from timer 1 second per second
                             _TimerPhase2 -= Time.deltaTime;
 
-
                             foreach (var player in PlayerManager._pInstance.GetActiveNecromancers()) {
 
                                 // Add 1 second per second to the alive time
@@ -215,6 +214,8 @@ public class MatchManager : MonoBehaviour {
 
                     charPlyr._Player.SetRespawnsLeft(0);
                 }
+
+                _SuddenDeath = false;
             }
         }
     }
@@ -303,6 +304,9 @@ public class MatchManager : MonoBehaviour {
             _GamePaused = false;
             Time.timeScale = 1f;
 
+            // Hide pause screen
+            HUD._pInstance._UIPause.SetActive(false);
+
             // Exit cinematic bars
             ///CinematicBars._pInstance.StartAnimation(CinematicBars.BarDirection.Exit, 4f);
         }
@@ -313,6 +317,10 @@ public class MatchManager : MonoBehaviour {
             // Pause the game
             _GamePaused = true;
             Time.timeScale = 0.000001f;
+
+            // Show pause screen
+            HUD._pInstance._UIPause.SetActive(true);
+            HUD._pInstance._UIPause.GetComponent<Widget_Pause>().SetButtonIndex(0);
 
             // Show cinematic bars
             ///CinematicBars._pInstance.StartAnimation(CinematicBars.BarDirection.Enter, 4f);

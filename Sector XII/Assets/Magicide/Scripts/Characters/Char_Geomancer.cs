@@ -621,8 +621,7 @@ public class Char_Geomancer : Character {
                 // Raycast hit an object
                 if (Physics.Raycast(DashPos, DashDirection.normalized, out hit, _DashDistance, _DashLayer)) {
 
-                    DashPos = hit.point;
-                    Debug.DrawLine(DashPos, hit.point, Color.red);
+                    DashPos = hit.point;                    
                 }
 
                 // Raycast did not hit 
@@ -647,10 +646,7 @@ public class Char_Geomancer : Character {
         }
     }
 
-    public float GetDashCooldown() {
-
-        return _CurrentDashCooldown;
-    }
+    public float GetDashCooldown() { return _CurrentDashCooldown; }
 
     private void Knockback() {
 
