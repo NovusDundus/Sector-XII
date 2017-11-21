@@ -20,14 +20,16 @@ public class Proj_Fireball : Projectile {
     private float _TravelSpeed;                                     // Movement speed of the projectile.
     private bool _Active = false;                                   // Returns TRUE if the projectile is active in the world.
     private float distanceTraveled = 0f;                            // Used to test if max range has been reached.
+    private ParticleSystem _ParticleEffect;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
 
     public override void Start() {
 
-        // Get referenece to projectile collision
+        // Get referenece to projectile collision & particle effect
         base.Start();
+        _ParticleEffect = GetComponentInChildren<ParticleSystem>();
 
         // Set fireball impact damage
         _ImpactDamage = WeaponManager._pInstance._FireballImpactDamage;
@@ -43,6 +45,10 @@ public class Proj_Fireball : Projectile {
 
         // Projectile is now an active gameObject in the scene
         _Active = true;
+
+        // Restart the firing effect
+        _ParticleEffect.Stop();
+        _ParticleEffect.Play();
     }
 
     public void FreeProjectile() {
@@ -122,9 +128,6 @@ public class Proj_Fireball : Projectile {
                         // Damage minion
                         crystal.Damage(_Owner.GetOwner(), _ImpactDamage);
 
-                        // Play impact sound
-                        SoundManager._pInstance.PlayFireballImpact();
-
                         // Check if minion has been killed
                         if (crystal.GetHealth() <= 0) {
 
@@ -132,8 +135,14 @@ public class Proj_Fireball : Projectile {
                             _Owner.GetOwner()._Player.AddKillCount();
                         }
 
+                        // Play impact effect
+                        Instantiate(WeaponManager._pInstance._FireballImpactEffect, gameObject.transform.position, Quaternion.identity);
+
                         // Destroy fireball
                         FreeProjectile();
+
+                        // Play impact sound
+                        SoundManager._pInstance.PlayFireballImpact();
                         break;
                     }
                 }
@@ -171,11 +180,10 @@ public class Proj_Fireball : Projectile {
 
                                     // Add to instigator's kill count
                                     _Owner.GetOwner()._Player.AddKillCount();
-
-                                    // Remove minion from the shield count (-1)
-                                    ///meatMinion.GetOwner().GetOwner().GetComponentInChildren<Wep_Shield>().SetMinionCount(meatMinion.getowner)
-                                    ///meatMinion.GetOwner().GetComponent<Wep_Shield>().SetMinionCount(meatMinion.GetOwner().GetComponent<Wep_Shield>().GetMinionCount() - 1);
                                 }
+
+                                // Play impact effect
+                                Instantiate(WeaponManager._pInstance._FireballImpactEffect, gameObject.transform.position, Quaternion.identity);
 
                                 // Destroy fireball
                                 FreeProjectile();
@@ -200,6 +208,9 @@ public class Proj_Fireball : Projectile {
                                 _Owner.GetOwner()._Player.AddKillCount();
                             }
 
+                            // Play impact effect
+                            Instantiate(WeaponManager._pInstance._FireballImpactEffect, gameObject.transform.position, Quaternion.identity);
+
                             // Destroy fireball
                             FreeProjectile();
                             break;
@@ -223,11 +234,14 @@ public class Proj_Fireball : Projectile {
 
                         tree.OnHit();
 
-                        // Play impact sound
-                        SoundManager._pInstance.PlayFireballImpact();
+                        // Play impact effect
+                        Instantiate(WeaponManager._pInstance._FireballImpactEffect, gameObject.transform.position, Quaternion.identity);
 
                         // Destroy fireball
                         FreeProjectile();
+
+                        // Play impact sound
+                        SoundManager._pInstance.PlayFireballImpact();
                         break;
                     }
                 }
@@ -237,9 +251,17 @@ public class Proj_Fireball : Projectile {
 
     public void OnTriggerEnter(Collider other) {
 
-        if (other.gameObject.tag == "Collision") {
+        if (_Active == true) {
 
-            FreeProjectile();
+            // Check against the static collisions
+            if (other.gameObject.tag == "Collision") {
+
+                // Play impact effect
+                Instantiate(WeaponManager._pInstance._FireballImpactEffect, gameObject.transform.position, Quaternion.identity);
+
+                // Destroy projectile
+                FreeProjectile();
+            }
         }
     }
     

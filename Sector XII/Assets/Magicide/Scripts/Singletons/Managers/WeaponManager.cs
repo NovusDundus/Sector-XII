@@ -36,6 +36,8 @@ public class WeaponManager : MonoBehaviour {
     public float _FireballRange = 50f;
     [Tooltip("")]
     public ParticleSystem _FireballEffect;
+    [Tooltip("")]
+    public ParticleSystem _FireballImpactEffect;
 
     [Header("---------------------------------------------------------------------------")]
     [Header(" *** FLAMETHROWER ***")]

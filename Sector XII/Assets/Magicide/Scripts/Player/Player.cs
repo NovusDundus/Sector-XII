@@ -13,7 +13,7 @@ public class Player : MonoBehaviour {
     //----------------------------------------------------------------------------------
     // *** VARIABLES ***
 
-    /// Public (designers)
+    /// Public (Exposed)
     public int _pPlayerID = 0;                                      // ID Reference of the individual player.
     public LayerMask Layers;                                        // Layers associated with the player.
     public XboxController _Controller;                              // The xbox gamepad associated with the player.
@@ -155,6 +155,28 @@ public class Player : MonoBehaviour {
         }
     }
 
+    // Bumpers
+
+    public bool GetLeftBumperInput {
+
+        // Returns if the xbox LEFT bumper button has been pressed
+        get
+        {
+            ///return Input.GetButton("FaceLeft");
+            return XCI.GetButton(XboxButton.LeftBumper, _Controller);
+        }
+    }
+
+    public bool GetRightBumperInput {
+
+        // Returns if the xbox RIGHT bumper button has been pressed
+        get
+        {
+            ///return Input.GetButton("FaceRight");
+            return XCI.GetButton(XboxButton.RightBumper, _Controller);
+        }
+    }
+
     // Specials
 
     public bool GetSpecialRightButton {
@@ -195,7 +217,7 @@ public class Player : MonoBehaviour {
         get
         {
             ///return Input.GetButton("FaceTop");
-            return XCI.GetButton(XboxButton.Y, _Controller);
+            return XCI.GetButtonDown(XboxButton.Y, _Controller);
         }
     }
 
@@ -205,7 +227,7 @@ public class Player : MonoBehaviour {
         get
         {
             ///return Input.GetButton("FaceLeft");
-            return XCI.GetButton(XboxButton.X, _Controller);
+            return XCI.GetButtonDown(XboxButton.X, _Controller);
         }
     }
 
@@ -215,29 +237,11 @@ public class Player : MonoBehaviour {
         get
         {
             ///return Input.GetButton("FaceRight");
-            return XCI.GetButton(XboxButton.B, _Controller);
+            return XCI.GetButtonDown(XboxButton.B, _Controller);
         }
     }
 
-    public bool GetLeftBumperInput {
-
-        // Returns if the xbox LEFT bumper button has been pressed
-        get
-        {
-            ///return Input.GetButton("FaceLeft");
-            return XCI.GetButton(XboxButton.LeftBumper, _Controller);
-        }
-    }
-
-    public bool GetRightBumperInput {
-
-        // Returns if the xbox RIGHT bumper button has been pressed
-        get
-        {
-            ///return Input.GetButton("FaceRight");
-            return XCI.GetButton(XboxButton.RightBumper, _Controller);
-        }
-    }
+    // Misc
 
     public bool GetLeftAxisUpInput {
 
@@ -257,4 +261,5 @@ public class Player : MonoBehaviour {
             return XCI.GetAxisRaw(XboxAxis.LeftStickY, _Controller) < 0f;
         }
     }
+
 }

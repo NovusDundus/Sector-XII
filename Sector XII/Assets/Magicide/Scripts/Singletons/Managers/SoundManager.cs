@@ -76,7 +76,7 @@ public class SoundManager : MonoBehaviour {
 
     /// Private 
     private bool _IsPlayingVoxel = false;
-    private List<AudioSource> _VoxelWaitingList;
+    private List<AudioWrapper> _VoxelWaitingList;
     private float _TimeSinceLastVoxel = 0f;
     private List<bool> _DialogsUse;
     private bool _FaceTreeSoundIsPlaying = false;
@@ -99,7 +99,7 @@ public class SoundManager : MonoBehaviour {
 
     public void Start() {
 
-        _VoxelWaitingList = new List<AudioSource>();
+        _VoxelWaitingList = new List<AudioWrapper>();
         _DialogsUse = new List<bool>();
 
         for (int i = 0; i < _VOX_Dialoglist.Count; i++) {
@@ -115,21 +115,24 @@ public class SoundManager : MonoBehaviour {
     public void Update() {
 
         // If there are voxel sounds waiting to be played
-        if (_VoxelWaitingList.Count > 1) {
+        if (_VoxelWaitingList.Count > 0) {
 
             if (_IsPlayingVoxel == true) {
 
                 // Find the voxel sound that is current playing
-                AudioSource vox = null;
+                AudioWrapper vox = null;
                 foreach (var sound in _VoxelWaitingList) {
 
+                    AudioSource source = sound._SoundSource;
+
                     // If a sound from the voxel list is playing
-                    if (sound.isPlaying == true) {
+                    if (source.isPlaying == true) {
 
                         // Then a voxel is playing
                         vox = sound;
-                        break;
+                        vox._Owner.GetComponent<Char_Geomancer>().GetDialog().SetIsTaunting(true);
                     }
+                        break;
                 }
 
                 _IsPlayingVoxel = vox != null;
@@ -138,14 +141,21 @@ public class SoundManager : MonoBehaviour {
             // A vox has finished playing
             else { /// _IsPlayingVoxel == false
 
-                // Get the last voxel that was playing (should be at the front of the list) & remove it from the queue
-                _VoxelWaitingList.RemoveAt(0);
+                // Character is no longer taunting
+                _VoxelWaitingList[0]._Owner.GetComponent<Char_Geomancer>().GetDialog().SetIsTaunting(false);
+
+                ///if (_VoxelWaitingList[0]._SoundSource.isPlaying == false) {
+
+                    // Get the last voxel that was playing (should be at the front of the list) & remove it from the queue
+                    _VoxelWaitingList.RemoveAt(0);
+                ///}
 
                 // If there are still voxels in the queue
                 if (_VoxelWaitingList.Count > 0) {
 
                     // Play the next vox sound in the queue
-                    _VoxelWaitingList[0].Play();
+                    _VoxelWaitingList[0]._SoundSource.Play();
+                    _VoxelWaitingList[0]._Owner.GetComponent<Char_Geomancer>().GetDialog().SetIsTaunting(true);
                     _IsPlayingVoxel = true;
                     _TimeSinceLastVoxel = 0f;
                 }
@@ -153,7 +163,7 @@ public class SoundManager : MonoBehaviour {
         }
 
         // No more voxels are left in the playing queue
-        else { /// _VoxelWaitingList.Count < 1
+        else if (_VoxelWaitingList.Count == 0) {
 
             // Add to timer
             _TimeSinceLastVoxel += Time.deltaTime;
@@ -170,30 +180,11 @@ public class SoundManager : MonoBehaviour {
         return i;
     }
 
-    public Dialog GetDialog() {
+    public List<AudioWrapper> GetVoxelWaitingList() { return _VoxelWaitingList; }
 
-        int i = 0;
-        foreach (var dialog in _VOX_Dialoglist) {
+    public void StartingPlayingVoxels() { _IsPlayingVoxel = true; }
 
-            if (_DialogsUse[i] == false) {
-
-                _DialogsUse[i] = true;
-                return dialog;
-            }
-            ++i;
-        }
-        return null;
-    }
-
-    public List<AudioSource> GetVoxelWaitingList() {
-
-        return _VoxelWaitingList;
-    }
-
-    public void StartingPlayingVoxels() {
-
-        _IsPlayingVoxel = true;
-    }
+    public bool GetIsPlayingVoxel() { return _IsPlayingVoxel; }
 
     /// -------------------------------------------
     /// 
@@ -435,10 +426,11 @@ public class SoundManager : MonoBehaviour {
     public Dialog GetRandomDialog() {
 
         // Precautions
-        if (_VOX_Dialoglist.Count > 0) {
+        if (_VOX_Dialoglist.Count > 0 && _DialogsUse.Count == _VOX_Dialoglist.Count) {
 
             // Loop until we find a valid dialog
             Dialog dialog = null;
+            int use = 0;
             for (int i = 0; i < _VOX_Dialoglist.Count; ++i) {
 
                 dialog = _VOX_Dialoglist[i];
@@ -448,9 +440,17 @@ public class SoundManager : MonoBehaviour {
 
                     dialog = null;
                 }
+
+                // Dialog hasnt been used yet
+                else {
+
+                    use = i;
+                    break;
+                }
             }
 
             // A dialog reference has been successfully found
+            _DialogsUse[use] = true;
             return dialog;
         }
 

@@ -190,7 +190,6 @@ public class Wep_Orb : Weapon {
 
                             _ActiveProjectiles += 1;
 
-
                             // Set last muzzle used to LEFT
                             _FiredFromLeftMuzzle = true;
                         }
@@ -208,10 +207,7 @@ public class Wep_Orb : Weapon {
                 _CurrentFireDelay += _FireRateGain;
             }
             ///_FiringDelay = _CurrentFireDelay;
-
-            // Create fireball effect
-            ///Instantiate(WeaponManager._pInstance._FireballEffect, transform.position, _Owner.transform.rotation);
-
+            
             // Play firing sound
             SoundManager._pInstance.PlayFireballAttack();
         }
@@ -285,29 +281,14 @@ public class Wep_Orb : Weapon {
         }
     }
 
-    public int GetPoolSize() {
+    public int GetPoolSize() { return _POOL_SIZE; }
 
-        return _POOL_SIZE;
-    }
+    public int GetPoolInactiveCount() { return _POOL_FIREBALL_INACTIVE.Count; }
 
-    public int GetPoolInactiveCount() {
-        
-        return _POOL_FIREBALL_INACTIVE.Count;
-    }
+    public int GetPoolActiveCount() { return _POOL_FIREBALL_ACTIVE.Count; }
 
-    public int GetPoolActiveCount() {
-        
-        return _POOL_FIREBALL_ACTIVE.Count;
-    }
+    public List<GameObject> GetActivePool() { return _POOL_FIREBALL_ACTIVE; }
 
-    public List<GameObject> GetActivePool() {
-
-        return _POOL_FIREBALL_ACTIVE;
-    }
-
-    public List<GameObject> GetInactivePool() {
-
-        return _POOL_FIREBALL_INACTIVE;
-    }
+    public List<GameObject> GetInactivePool() { return _POOL_FIREBALL_INACTIVE; }
 
 }

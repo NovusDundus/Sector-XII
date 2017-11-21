@@ -39,7 +39,7 @@ public class Char_Geomancer : Character {
     private LinearGoToTarget _LinearGoTo;
     private bool _WaitingToRespawn = false;
     private float _RespawnTimer = 0f;
-    private float _TauntCooldown = 5f;
+    private float _TauntCooldown = 2f;
     private float _TauntTimer = 0f;
     private Dialog _CharacterDialog;
     private Rigidbody _RigidBody;
@@ -100,8 +100,15 @@ public class Char_Geomancer : Character {
         // Set tabbing weapon input
         _TabInputButton = PlayerManager._pInstance._WeaponSwapButton;
 
-        // Get random dialog
+        // Get random dialog and assign it to the player
         _CharacterDialog = SoundManager._pInstance.GetRandomDialog();
+        _CharacterDialog.SetPlayer(_Player);
+
+        // Set the owner for the voxel sounds
+        foreach (var tauntSound in _CharacterDialog._TauntSounds) {
+
+            tauntSound._Owner = this;
+        }
 
         // Set's either the orb or the flamethrower as the primary depending on whats specified in the player manager
         switch (PlayerManager._pInstance._PrimaryWeapon) {

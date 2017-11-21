@@ -19,12 +19,13 @@ public class Dialog : MonoBehaviour {
     public List<AudioSource> _OnDeathSounds;
     [Header("*** SOUND VOX")]
     [Header("")]
-    public List<AudioSource> _TauntSounds;
+    public List<AudioWrapper> _TauntSounds;
 
     /// Private
+    private Player _PlayerAssociated;
     private bool _OnHitPlaying = false;
     private bool _OnDeathPlaying = false;
-    private bool _TauntPlaying = false;
+    private bool _IsTauntPlaying = false;
 
     //--------------------------------------------------------------
     // *** FRAME ***
@@ -66,22 +67,35 @@ public class Dialog : MonoBehaviour {
         }
 
         // Check for Taunt sounds
-        if (_TauntPlaying == true) {
+        if (_IsTauntPlaying == true) {
 
             bool soundPlaying = false;
 
             // Check if all sounds in the list have stopped playing
             foreach (var sound in _TauntSounds) {
 
-                if (sound.isPlaying == true) {
+                AudioSource source = sound._SoundSource;
+
+                if (source.isPlaying == true) {
 
                     soundPlaying = true;
                     break;
                 }
             }
-            _TauntPlaying = soundPlaying;
+            _IsTauntPlaying = soundPlaying;
         }
     }
+
+    //--------------------------------------------------------------
+    // *** PLAYER ***
+
+    public void SetPlayer(Player value) { _PlayerAssociated = value; }
+
+    public Player GetPlayerAssociated() { return _PlayerAssociated; }
+
+    public void SetIsTaunting(bool value) { _IsTauntPlaying = value; }
+
+    public bool IsTaunting() { return _IsTauntPlaying; }
 
     //--------------------------------------------------------------
     // *** SOUNDS ***
@@ -90,6 +104,13 @@ public class Dialog : MonoBehaviour {
 
         // Returns a random integer between 0 & the size of the audio source list
         int i = Random.Range(0, SoundList.Count);
+        return i;
+    }
+
+    public int RandomSoundVoxInt(List<AudioWrapper> VoxList) {
+
+        // Returns a random integer between 0 & the size of the audio source list
+        int i = Random.Range(0, VoxList.Count);
         return i;
     }
 
@@ -139,16 +160,23 @@ public class Dialog : MonoBehaviour {
         // Precautions
         if (_TauntSounds.Count > 0) {
 
-            // If a sound isnt current being played
-            if (_TauntPlaying == false) {
+            // Get random sound from list
+            AudioWrapper sound = _TauntSounds[RandomSoundVoxInt(_TauntSounds)];
 
-                // Get random sound from list
-                AudioSource sound = _TauntSounds[RandomSoundInt(_TauntSounds)];
+            // Queue the sound to the voxel waiting list
+            SoundManager._pInstance.GetVoxelWaitingList().Add(sound);
 
-                // Queue the sound to the voxel waiting list
-                SoundManager._pInstance.GetVoxelWaitingList().Add(sound);
-                _TauntPlaying = true;
-                ///SoundManager._pInstance.StartingPlayingVoxels();
+            // If the sound is the only one in the list
+            if (SoundManager._pInstance.GetVoxelWaitingList().Count == 1) {
+
+                // And the sound belongs to us
+                if (SoundManager._pInstance.GetVoxelWaitingList()[0]._Owner._Player == this.GetComponent<Dialog>().GetPlayerAssociated()) {
+
+                    // Play the sound
+                    SoundManager._pInstance.GetVoxelWaitingList()[0]._SoundSource.Play();
+                    SoundManager._pInstance.StartingPlayingVoxels();
+                    _IsTauntPlaying = true;
+                }
             }
         }
     }
