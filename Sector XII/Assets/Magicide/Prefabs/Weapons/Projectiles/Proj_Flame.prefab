@@ -19,8 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4614506930102364}
-  - component: {fileID: 33170238496711482}
   - component: {fileID: 135088317016154720}
+  - component: {fileID: 33936944114993724}
   - component: {fileID: 23106388057955318}
   - component: {fileID: 114096727738350242}
   m_Layer: 0
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1135201954539692}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1000, y: 1.79, z: 1000.769}
+  m_LocalPosition: {x: 1000, y: 1.79, z: 1001.77}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,7 +75,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33170238496711482
+--- !u!33 &33936944114993724
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
