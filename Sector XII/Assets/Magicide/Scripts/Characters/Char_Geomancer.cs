@@ -515,6 +515,9 @@ public class Char_Geomancer : Character {
 
             // Disable controller input
             _Active = false;
+
+            // Show popup that a player has been eliminated
+            MatchManager._pInstance.OnPlayerEliminated(_Player);
         }
 
         // Instigator plays a taunt

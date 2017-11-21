@@ -27,6 +27,10 @@ public class MatchManager : MonoBehaviour {
     public int _Phase2Length = 120;
     [Tooltip("When there are 2 player's left in the match, remove all lives so that the one who survives for the longest wins.")]
     public bool _SuddenDeath = false;
+    [Tooltip("")]
+    public EliminatedPlayerBanner _PlayerEliminatedPanel;
+    [Tooltip("")]
+    public Text _PlayerEliminatedText;
 
     /// Public (internal)
     [HideInInspector]
@@ -290,6 +294,28 @@ public class MatchManager : MonoBehaviour {
 
         // Show cinematic bars
         CinematicBars._pInstance.StartAnimation(CinematicBars.BarDirection.Enter, 4f);
+    }
+
+    public void OnPlayerEliminated(Player plyr) {
+
+        // Precautions
+        if (_PlayerEliminatedPanel != null && _PlayerEliminatedText != null) {
+
+            // Set text
+            _PlayerEliminatedText.text = string.Concat("Player " + plyr._pPlayerID + " Eliminated!");
+            _PlayerEliminatedText.color = plyr._PlayerColour;
+
+            // If animation isnt currently playing
+            if (_PlayerEliminatedPanel.GetIsActive() == false ) {
+
+                // Wasnt the 2nd last player that was removed from the game
+                if (PlayerManager._pInstance.GetActiveNecromancers().Count > 2) {
+
+                    // Start popup animation
+                    _PlayerEliminatedPanel.StartPopup();
+                }
+            }
+        }
     }
 
     //--------------------------------------------------------------

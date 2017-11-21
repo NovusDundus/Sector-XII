@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
     public int _pPlayerID = 0;                                      // ID Reference of the individual player.
     public LayerMask Layers;                                        // Layers associated with the player.
     public XboxController _Controller;                              // The xbox gamepad associated with the player.
+    public Color _PlayerColour = Color.white;
 
     /// Private
     private int _Score = 0;                                         // The player's individual score for the match.
