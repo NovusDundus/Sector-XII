@@ -17,6 +17,7 @@ public class LoadingScreen : MonoBehaviour {
     public Slider _LoadSlider;                                      // Reference to the "s_ProgressBar" widget.
     public Text _MessageText;                                       // Reference to the "t_Message" text in the panel..
     public RawImage _GamepadContinueIcon;                           // Reference to the "i_GamepadContinue" image widget.
+    public Image _ProgressBarImage;
     public GameObject _LoadingMatchScreen;                          // Reference to the loading screen panel when loading a new match.
     public string _LoadingMatchText = "LOADING ARENA";
     public GameObject _MainMenuScreen;                              // Reference to the loading screen panel when returning to the main menu.
@@ -74,14 +75,15 @@ public class LoadingScreen : MonoBehaviour {
                 case eState.Intro: {
 
                         // Set text to reflect if its loading a new match or returning to main menu
-                        if (_LoadingMatch == true) {
+                        if (_LoadingMatch == true && _LoadingMatchScreen != null && _MainMenuScreen != null) {
 
                             _MessageText.text = _LoadingMatchText;
                             _LoadingMatchScreen.SetActive(true);
                             _MainMenuScreen.SetActive(false);
                         }
 
-                        else { /// _LoadingMatch == false
+                        // Precautions
+                        else if (_LoadingMatchScreen != null && _MainMenuScreen != null) { /// _LoadingMatch == false
 
                             _MessageText.text = _LoadingMainmenuText;
                             _MainMenuScreen.SetActive(true);
@@ -112,8 +114,12 @@ public class LoadingScreen : MonoBehaviour {
                         // Once scene loading is complete (last 0.1 represents the level activation)
                         if (Loading._pInstance.Async.progress >= 0.9f) {
 
-                            // Prompt the user to continue to the next level
-                            _LoadSlider.value = 1f;
+                            ///_LoadSlider.value = 1f;
+                            if (_ProgressBarImage != null) {
+
+                                // completely fill the image slider
+                                _ProgressBarImage.fillAmount = 1f;
+                            }
                             _MessageText.text = "PRESS      TO CONTINUE";
                             _GamepadContinueIcon.color = Color.white;
 
@@ -143,7 +149,14 @@ public class LoadingScreen : MonoBehaviour {
                         else { // Loading._pInstance.Async.progress < 0.9f
 
                             // Track the level loading progress
-                            _LoadSlider.value = Loading._pInstance.GetSceneLoadProgress();
+                            ///_LoadSlider.value = Loading._pInstance.GetSceneLoadProgress();
+
+                            if (_ProgressBarImage != null) {
+
+                                // Track the scene load & show its progress in the crystal image fill
+                                float percent = Loading._pInstance.GetSceneLoadProgress();
+                                _ProgressBarImage.fillAmount = percent;
+                            }
                             _GamepadContinueIcon.color = Color.clear;
                         }
 
