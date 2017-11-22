@@ -496,6 +496,9 @@ public class Char_Geomancer : Character {
             GetComponentInChildren<Renderer>().enabled = false;
             transform.position = new Vector3(1000, 0, 1000);
 
+            // Show popup that a player has been eliminated
+            MatchManager._pInstance.OnPlayerEliminated(_Player);
+
             // Find self in active pool
             foreach (var necromancer in PlayerManager._pInstance.GetActiveNecromancers()) {
 
@@ -515,9 +518,6 @@ public class Char_Geomancer : Character {
 
             // Disable controller input
             _Active = false;
-
-            // Show popup that a player has been eliminated
-            MatchManager._pInstance.OnPlayerEliminated(_Player);
         }
 
         // Instigator plays a taunt

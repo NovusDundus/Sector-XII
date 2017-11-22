@@ -46,6 +46,11 @@ public class EliminatedPlayerBanner : MonoBehaviour {
 
     public bool GetIsActive() { return _Active; }
 
+    public void ResetPopopTimer() {
+
+        _Timer = 0f;
+    }
+
     //--------------------------------------------------------------
     // *** FRAME ***
 
@@ -85,6 +90,7 @@ public class EliminatedPlayerBanner : MonoBehaviour {
                     else { /// _Timer => _ShowTime
 
                         _CurrentState = States.Exit;
+                        ///_Active = false;
                     }
                     break;
                 }
@@ -108,7 +114,7 @@ public class EliminatedPlayerBanner : MonoBehaviour {
                 default: {
 
                         break;
-                    }
+                }
             }
         }
 
