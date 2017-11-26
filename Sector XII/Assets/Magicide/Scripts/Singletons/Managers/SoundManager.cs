@@ -11,7 +11,13 @@ public class SoundManager : MonoBehaviour {
     //----------------------------------------------------------------------------------
     // *** VARIABLES ***
 
-    /// Public (designers) 
+    /// Public (Exposed) 
+    [Header("---------------------------------------------------------------------------")]
+    [Header("*** MATCH ANNOUNCER")]
+    [Header("")]
+    public bool _EnableAnnouncer = false;
+    public GameAnnouncer _Announcer;
+
     [Header("---------------------------------------------------------------------------")]
     [Header("*** BUTTON SFX")]
     [Header("")]
@@ -72,7 +78,7 @@ public class SoundManager : MonoBehaviour {
 
     /// Public (internal)
     [HideInInspector]
-    public static SoundManager _pInstance;                          // This is a singleton script, Initialized in Startup().
+    public static SoundManager _pInstance;                          
 
     /// Private 
     private bool _IsPlayingVoxel = false;
@@ -84,7 +90,7 @@ public class SoundManager : MonoBehaviour {
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
 
-    public void Awake() {
+    private void Awake() {
 
         // if the singleton hasn't been initialized yet
         if (_pInstance != null && _pInstance != this) {
@@ -97,7 +103,7 @@ public class SoundManager : MonoBehaviour {
         _pInstance = this;
     }
 
-    public void Start() {
+    private void Start() {
 
         _VoxelWaitingList = new List<AudioWrapper>();
         _DialogsUse = new List<bool>();
@@ -112,7 +118,7 @@ public class SoundManager : MonoBehaviour {
     //--------------------------------------------------------------
     // *** FRAME ***
 
-    public void Update() {
+    private void Update() {
 
         // If there are voxel sounds waiting to be played
         if (_VoxelWaitingList.Count > 0) {
@@ -130,7 +136,9 @@ public class SoundManager : MonoBehaviour {
 
                         // Then a voxel is playing
                         vox = sound;
-                        vox._Owner.GetComponent<Char_Geomancer>().GetDialog().SetIsTaunting(true);
+
+                        if (vox._Owner != null)
+                            vox._Owner.GetComponent<Char_Geomancer>().GetDialog().SetIsTaunting(true);
                     }
                         break;
                 }
@@ -142,20 +150,21 @@ public class SoundManager : MonoBehaviour {
             else { /// _IsPlayingVoxel == false
 
                 // Character is no longer taunting
-                _VoxelWaitingList[0]._Owner.GetComponent<Char_Geomancer>().GetDialog().SetIsTaunting(false);
-
-                ///if (_VoxelWaitingList[0]._SoundSource.isPlaying == false) {
-
-                    // Get the last voxel that was playing (should be at the front of the list) & remove it from the queue
-                    _VoxelWaitingList.RemoveAt(0);
-                ///}
+                if (_VoxelWaitingList[0]._Owner != null)
+                    _VoxelWaitingList[0]._Owner.GetComponent<Char_Geomancer>().GetDialog().SetIsTaunting(false);
+                
+                // Get the last voxel that was playing (should be at the front of the list) & remove it from the queue
+                _VoxelWaitingList.RemoveAt(0);
 
                 // If there are still voxels in the queue
                 if (_VoxelWaitingList.Count > 0) {
 
                     // Play the next vox sound in the queue
                     _VoxelWaitingList[0]._SoundSource.Play();
-                    _VoxelWaitingList[0]._Owner.GetComponent<Char_Geomancer>().GetDialog().SetIsTaunting(true);
+
+                    if (_VoxelWaitingList[0]._Owner != null)
+                        _VoxelWaitingList[0]._Owner.GetComponent<Char_Geomancer>().GetDialog().SetIsTaunting(true);
+
                     _IsPlayingVoxel = true;
                     _TimeSinceLastVoxel = 0f;
                 }

@@ -35,10 +35,10 @@ public class HUD_Flamethrower : MonoBehaviour {
 
         if (_FlamethrowerAssociated != null && _FlamethrowerBar != null) {
 
-            // Set the flamethrower bar fill to match the
-            float percent = ((float)_FlamethrowerAssociated.GetCurrentHeat() / 1f);
+            // Set the flamethrower bar fill percentage
+            ///float percent = ((float)_FlamethrowerAssociated.GetCurrentHeat() / 1f);
+            float percent = (1f - (float)_FlamethrowerAssociated.GetCurrentHeat());
             _FlamethrowerBar.fillAmount = percent;
-
         }
     }
 

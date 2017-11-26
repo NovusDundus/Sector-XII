@@ -172,7 +172,7 @@ public class Dialog : MonoBehaviour {
                 // And the sound belongs to us
                 if (SoundManager._pInstance.GetVoxelWaitingList()[0]._Owner._Player == this.GetComponent<Dialog>().GetPlayerAssociated()) {
 
-                    // Play the sound
+                    // Play the sound 
                     SoundManager._pInstance.GetVoxelWaitingList()[0]._SoundSource.Play();
                     SoundManager._pInstance.StartingPlayingVoxels();
                     _IsTauntPlaying = true;

@@ -38,7 +38,7 @@ public class HUD_HealthBar : MonoBehaviour {
 
             // Set the health bar fill to match the player's current health / starting health (0.0 - 1.0)
             float percent = ((float)_CharacterAssociated.GetHealth() / (float)_CharacterAssociated.GetStartingHealth());
-            _HealthBar.fillAmount = 1f - percent;
+            _HealthBar.fillAmount = /*1f -*/ percent;
 
             // Valid dead image?
             if (_DeadCross != null) {

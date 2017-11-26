@@ -37,10 +37,10 @@ public class HUD_Dash : MonoBehaviour {
 
         if (_CharacterAssociated != null && _DashBar != null) {
 
-            // Set the flamethrower bar fill to match the
-            float percent = ((float)_CharacterAssociated.GetDashCooldown() / _DashMaxCooldown);
+            // Set the dash cooldown fill progress
+            ///float percent = ((float)_CharacterAssociated.GetDashCooldown() / _DashMaxCooldown);
+            float percent = (1f - (float)_CharacterAssociated.GetDashCooldown() / _DashMaxCooldown);
             _DashBar.fillAmount = percent;
-
         }
     }
 

@@ -125,6 +125,12 @@ public class MatchManager : MonoBehaviour {
                             // Initiate phase2
                             _GameState = GameState.Phase2;
                             AiManager._pInstance.OnPhase2Start();
+
+                            // Play announcer sound
+                            if (SoundManager._pInstance._EnableAnnouncer == true) {
+
+                                SoundManager._pInstance._Announcer.PlayPhaseTwoStart();
+                            }
                         }
                     }
                     break;
@@ -219,6 +225,13 @@ public class MatchManager : MonoBehaviour {
                     charPlyr._Player.SetRespawnsLeft(0);
                 }
 
+                // Play announcer sound
+                if (SoundManager._pInstance._EnableAnnouncer == true) {
+
+                    SoundManager._pInstance._Announcer.PlaySuddenDeath();
+                }
+
+                // Set sudden death to false to avoid having the function being called the next frame
                 _SuddenDeath = false;
             }
         }
@@ -237,12 +250,15 @@ public class MatchManager : MonoBehaviour {
 
         // Fade in from black
         Fade._pInstance.StartFade(Fade.FadeStates.fadeOut, Color.black, 0.005f);
+
+        // Play announcer sound
+        if (SoundManager._pInstance._EnableAnnouncer == true) {
+
+            SoundManager._pInstance._Announcer.PlayGetReady();
+        }
     }
 
     public void MatchSetup() {
-
-        // Determine how many controllers are connected
-        ///int size = Input.GetJoystickNames().Length / 2;
 
         // Set phase1 time
         _TimerPhase1 = _Phase1Length;
@@ -278,6 +294,12 @@ public class MatchManager : MonoBehaviour {
 
         // Initiate phase1
         _GameState = GameState.Phase1;
+
+        // Play announcer sound
+        if (SoundManager._pInstance._EnableAnnouncer == true) {
+
+            SoundManager._pInstance._Announcer.PlayPhaseOneStart();
+        }
     }
 
     public void MatchCompleted() {
@@ -294,6 +316,12 @@ public class MatchManager : MonoBehaviour {
 
         // Show cinematic bars
         CinematicBars._pInstance.StartAnimation(CinematicBars.BarDirection.Enter, 4f);
+
+        // Play announcer sound
+        if (SoundManager._pInstance._EnableAnnouncer == true) {
+
+            SoundManager._pInstance._Announcer.PlayGameOver();
+        }
     }
 
     public void OnPlayerEliminated(Player plyr) {
@@ -312,7 +340,13 @@ public class MatchManager : MonoBehaviour {
 
                 // Start popup animation
                 _PlayerEliminatedPanel.StartPopup();
-            }            
+            }
+            
+            // Play announcer sound
+            if (SoundManager._pInstance._EnableAnnouncer == true) {
+
+                SoundManager._pInstance._Announcer.PlayPlayerEliminated();
+            }
         }
     }
 
