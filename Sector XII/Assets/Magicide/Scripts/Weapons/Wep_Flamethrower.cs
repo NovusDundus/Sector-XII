@@ -31,6 +31,7 @@ public class Wep_Flamethrower : Weapon {
     private bool _FiredFromLeftMuzzle = false;                      // Returns TRUE if the last projectile was fired from the LEFT muzzle launch point.
     private bool _Firing;
     private ParticleSystem _FiringEffect;
+    private bool _DrainFuel = false;
 
     //--------------------------------------------------------------
     // *** CONSTRUCTORS ***
@@ -124,6 +125,22 @@ public class Wep_Flamethrower : Weapon {
                 _FiringEffect.transform.position = _FiringEffect.transform.position + _FiringEffect.transform.forward * 1;
                 _FiringEffect.gameObject.transform.rotation = _Owner.transform.rotation;
             }
+        }
+
+        // Continuously drain fuel from the weapon once it is fired
+        if (_DrainFuel == true) {
+
+            // Keep shooting
+            if (_CurrentHeat < 1f) {
+
+                Fire();
+            }
+        }
+
+        // Stop trying to fire the weapon now that it is overheated
+        if (_Overheated == true) {
+
+            _DrainFuel = false;
         }
     }
 
@@ -220,6 +237,8 @@ public class Wep_Flamethrower : Weapon {
                     ///mainModule.loop = true;
                 }                
             }
+
+            _DrainFuel = true;
 
             // Play firing sound
             SoundManager._pInstance.PlayFlamethrowerAttack();          

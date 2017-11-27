@@ -298,6 +298,9 @@ public class KillTag : MonoBehaviour {
             // Add to meat shield
             geomancer.GetSpecialWeapon().GetComponent<Wep_Shield>().AddMinion(_Crystal);
 
+            // Play pickup sound
+            SoundManager._pInstance.PlayPickupMinion();
+
             // Destroy tag
             Destroy(gameObject);
         }
@@ -311,6 +314,9 @@ public class KillTag : MonoBehaviour {
 
             // Add health to necromancer
             geomancer.AddHealth(DeviceManager._pInstance._HealthAddAmount);
+
+            // Play pickup sound
+            SoundManager._pInstance.PlayPickupHealthpack();
         }
 
         // Destroy tag
@@ -318,23 +324,23 @@ public class KillTag : MonoBehaviour {
     }
 
     public void SpeedBoost(Char_Geomancer geomancer) {
+        
+        geomancer.ActivateSpeedBoost(DeviceManager._pInstance._SpeedBoostModifier, DeviceManager._pInstance._SpeedBoostTime);
 
-        // Determine if whether the tag can be picked up or not.
-        // Check if character is already using a speed boost
-        ///if (geomancer.IsSpeedBoost() != true) {
+        // Play pickup sound
+        SoundManager._pInstance.PlayPickupSpeedBoost();
 
-            // Activate speed boost
-            geomancer.ActivateSpeedBoost(DeviceManager._pInstance._SpeedBoostModifier, DeviceManager._pInstance._SpeedBoostTime);
-
-            // Destroy tag
-            Destroy(gameObject);
-        ///}
+        // Destroy tag
+        Destroy(gameObject);
     }
 
     public void Invincibility(Char_Geomancer geomancer) {
         
         // Activate invincibility (or reset the timer if already invincible)
         geomancer.ActivateInvincibility();
+
+        // Play pickup sound
+        SoundManager._pInstance.PlayPickupInvincibility();
 
         // Destroy tag
         Destroy(gameObject);        

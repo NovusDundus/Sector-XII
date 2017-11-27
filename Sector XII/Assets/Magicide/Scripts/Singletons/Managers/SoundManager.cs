@@ -49,6 +49,7 @@ public class SoundManager : MonoBehaviour {
     public List<AudioSource> _SFX_OnTagPickupMinion;
     public List<AudioSource> _SFX_OnTagPickupSpeed;
     public List<AudioSource> _SFX_OnTagPickupHealth;
+    public List<AudioSource> _SFX_OnTagPickupInvincibility;
 
     [Header("---------------------------------------------------------------------------")]
     [Header("*** CRYSTAL SFX")]
@@ -358,6 +359,19 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
+    public void PlayPickupInvincibility() {
+
+        // Precautions
+        if (_SFX_OnTagPickupInvincibility.Count > 0) {
+
+            // Get random sound from list
+            int i = RandomSoundInt(_SFX_OnTagPickupInvincibility);
+            AudioSource sound = _SFX_OnTagPickupInvincibility[i];
+
+            // Play the sound
+            sound.Play();
+        }
+    }
     /// -------------------------------------------
     ///     
     ///     CRYSTAL SFX 

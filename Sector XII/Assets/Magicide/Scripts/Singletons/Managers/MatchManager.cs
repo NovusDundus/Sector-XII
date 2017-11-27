@@ -76,6 +76,10 @@ public class MatchManager : MonoBehaviour {
 
         // Start match intro cinematic
         Introduction();
+
+        // Start gameplay music & ambience
+        SoundManager._pInstance.PlayMusicGameplay();
+        SoundManager._pInstance.PlayAmbienceGameplay();
     }
 
     //--------------------------------------------------------------
