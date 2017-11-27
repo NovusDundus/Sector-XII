@@ -16,7 +16,8 @@ public class FadingMessage : MonoBehaviour {
     /// Public (Exposed)
     public Image _Outline;
     public Image _Text;
-    public float _FadeRate = 1f;
+    public float _FadeInRate = 1f;
+    public float _FadeOutRate = 1f;
     public float _ShowTime = 2f;
 
     /// Private
@@ -43,7 +44,7 @@ public class FadingMessage : MonoBehaviour {
             if (_FadingIn == true) {
 
                 // Lerp alpha till its fully visible
-                _Alpha += _FadeRate * Time.deltaTime;
+                _Alpha += _FadeInRate * Time.deltaTime;
                 _Outline.color = new Color(_Outline.color.r, _Outline.color.g, _Outline.color.b, _Alpha);
                 _Text.color = new Color(_Outline.color.r, _Outline.color.g, _Outline.color.b, _Alpha);
 
@@ -67,7 +68,7 @@ public class FadingMessage : MonoBehaviour {
             else { /// _FadingIn == false
 
                 // Lerp alpha till its not visible anymore
-                _Alpha -= _FadeRate * Time.deltaTime;
+                _Alpha -= _FadeOutRate * Time.deltaTime;
                 _Outline.color = new Color(_Outline.color.r, _Outline.color.g, _Outline.color.b, _Alpha);
                 _Text.color = new Color(_Outline.color.r, _Outline.color.g, _Outline.color.b, _Alpha);
 
