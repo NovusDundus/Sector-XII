@@ -126,6 +126,9 @@ public class MatchManager : MonoBehaviour {
                             _GameState = GameState.Phase2;
                             AiManager._pInstance.OnPhase2Start();
 
+                            // Fade in message widget
+                            HUD._pInstance._EliminatePlayersWidget.GetComponent<FadingMessage>().Enter();
+
                             // Play announcer sound
                             if (SoundManager._pInstance._EnableAnnouncer == true) {
 
@@ -248,9 +251,12 @@ public class MatchManager : MonoBehaviour {
         // Hide hud
         HUD._pInstance.ShowHUD(false);
 
+        // Fade in message widget
+        HUD._pInstance._GetReadyWidget.GetComponent<FadingMessage>().Enter();
+
         // Fade in from black
         Fade._pInstance.StartFade(Fade.FadeStates.fadeOut, Color.black, 0.005f);
-
+        
         // Play announcer sound
         if (SoundManager._pInstance._EnableAnnouncer == true) {
 
@@ -294,6 +300,9 @@ public class MatchManager : MonoBehaviour {
 
         // Initiate phase1
         _GameState = GameState.Phase1;
+
+        // Fade in message widget
+        HUD._pInstance._CollectCrystalsWidget.GetComponent<FadingMessage>().Enter();
 
         // Play announcer sound
         if (SoundManager._pInstance._EnableAnnouncer == true) {

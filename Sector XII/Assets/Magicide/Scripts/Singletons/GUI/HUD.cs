@@ -31,6 +31,12 @@ public class HUD : MonoBehaviour {
     [Tooltip("Reference to the gui HUD panel.")]
     public GameObject _UIHud;                                       // Reference to the gui HUD panel.
 
+    [Header("---------------------------------------------------------------------------")]
+    [Header("*** MESSAGE WIDGETS ***")]
+    public GameObject _GetReadyWidget;
+    public GameObject _CollectCrystalsWidget;
+    public GameObject _EliminatePlayersWidget;
+
     /// Public (Internal)
     [HideInInspector]
     public static HUD _pInstance;                                   // This is a singleton script, Initialized in Startup().
