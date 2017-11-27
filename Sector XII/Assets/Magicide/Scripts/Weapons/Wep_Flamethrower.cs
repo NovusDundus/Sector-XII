@@ -29,7 +29,7 @@ public class Wep_Flamethrower : Weapon {
     List<GameObject> _POOL_FIREBALL_INACTIVE;                       // Object pool of all inactive projectiles.
     List<GameObject> _POOL_FIREBALL_ACTIVE;                         // Object pool of all active projectiles in the world.
     private bool _FiredFromLeftMuzzle = false;                      // Returns TRUE if the last projectile was fired from the LEFT muzzle launch point.
-    private bool _Firing = false;
+    private bool _Firing;
     private ParticleSystem _FiringEffect;
 
     //--------------------------------------------------------------
@@ -120,15 +120,9 @@ public class Wep_Flamethrower : Weapon {
             if (_Firing == true) {
 
                 // Set the flamethrower particle system to match the transform of the owner that is firing it
-                _FiringEffect.gameObject.transform.position = _Owner.transform.position;
+                _FiringEffect.gameObject.transform.position = new Vector3(_Owner.transform.position.x, _Owner.transform.position.y + 2f, _Owner.transform.position.z);
+                _FiringEffect.transform.position = _FiringEffect.transform.position + _FiringEffect.transform.forward * 1;
                 _FiringEffect.gameObject.transform.rotation = _Owner.transform.rotation;
-
-                _FiringEffect.Play();
-            }
-
-            else { /// _Firing == false
-
-                _FiringEffect.Stop();
             }
         }
     }
@@ -166,12 +160,6 @@ public class Wep_Flamethrower : Weapon {
 
                             if (proj != null) {
 
-                                // Get a target for aim assist
-                                if (FindTarget().point != new Vector3(0, 0, 0)) {
-
-                                    proj.transform.LookAt(FindTarget().point);
-                                }
-
                                 _ActiveProjectiles += 1;
 
                                 // Set last muzzle used to RIGHT
@@ -204,12 +192,6 @@ public class Wep_Flamethrower : Weapon {
 
                         if (proj != null) {
 
-                            // Get a target for aim assist
-                            if (FindTarget().point != new Vector3(0, 0, 0)) {
-
-                                proj.transform.LookAt(FindTarget().point);
-                            }
-
                             _ActiveProjectiles += 1;
 
                             // Set last muzzle used to LEFT
@@ -224,44 +206,26 @@ public class Wep_Flamethrower : Weapon {
 
             // Reset firing delay
             base.Fire();
+            _Firing = true;
+
+            // Play flamethrower firing effect
+            if (_FiringEffect != null) {
+                
+                if (_FiringEffect.isPlaying == false) {
+
+                    _FiringEffect.Play();
+
+                    // Set looping to true
+                    ///ParticleSystem.MainModule mainModule = _FiringEffect.main;
+                    ///mainModule.loop = true;
+                }                
+            }
 
             // Play firing sound
-            SoundManager._pInstance.PlayFlamethrowerAttack();
-            _Firing = true;            
+            SoundManager._pInstance.PlayFlamethrowerAttack();          
         }
     }
-
-    public RaycastHit FindTarget() {
-
-        RaycastHit hit;
-
-        // Start hitscan from weapon's position
-        var rayStart = transform.position;
-
-        // End hitscan from weapon's facing forward direction
-        var rayEnd = transform.forward * 1000/*WeaponManager._pInstance._FireballRange*/;
-
-        // Ignore layer list
-        ///LayerMask mask = _Owner._Player._pPlayerID;
-        LayerMask mask = new LayerMask();
-        ///mask |= Physics.AllLayers;
-        mask |= (1 << LayerMask.NameToLayer(string.Concat("Player" + _Owner._Player.Layers)));                             // Ignore Player's layer
-
-        // Fire line trace from weapon's position going forward
-        if (Physics.Raycast(rayStart, rayEnd, out hit, Mathf.Infinity, mask)) {
-
-            // Successful hit
-            ///Debug.DrawLine(rayStart, hit.point, Color.green, 10);
-        }
-
-        else {
-
-            // Unsuccessful hit
-            ////Debug.DrawLine(rayStart, rayEnd, Color.red, 10);
-        }
-        return hit;
-    }
-
+    
     public void SetFiring(bool value) {
 
         _Firing = value;

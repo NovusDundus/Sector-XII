@@ -133,7 +133,8 @@ public class Proj_Fireball : Projectile {
                         }
 
                         // Play impact effect
-                        Instantiate(WeaponManager._pInstance._FireballImpactEffect, gameObject.transform.position, Quaternion.identity);
+                        ParticleSystem effect = Instantiate(WeaponManager._pInstance._FireballImpactEffect, gameObject.transform.position, Quaternion.identity);
+                        effect.gameObject.GetComponent<DestroyAfterTime>().enabled = true;
 
                         // Destroy fireball
                         FreeProjectile();
@@ -180,7 +181,8 @@ public class Proj_Fireball : Projectile {
                                 }
 
                                 // Play impact effect
-                                Instantiate(WeaponManager._pInstance._FireballImpactEffect, gameObject.transform.position, Quaternion.identity);
+                                ParticleSystem effect = Instantiate(WeaponManager._pInstance._FireballImpactEffect, gameObject.transform.position, Quaternion.identity);
+                                effect.gameObject.GetComponent<DestroyAfterTime>().enabled = true;
 
                                 // Destroy fireball
                                 FreeProjectile();
@@ -206,7 +208,8 @@ public class Proj_Fireball : Projectile {
                             }
 
                             // Play impact effect
-                            Instantiate(WeaponManager._pInstance._FireballImpactEffect, gameObject.transform.position, Quaternion.identity);
+                            ParticleSystem effect = Instantiate(WeaponManager._pInstance._FireballImpactEffect, gameObject.transform.position, Quaternion.identity);
+                            effect.gameObject.GetComponent<DestroyAfterTime>().enabled = true;
 
                             // Destroy fireball
                             FreeProjectile();
@@ -232,7 +235,8 @@ public class Proj_Fireball : Projectile {
                         tree.OnHit();
 
                         // Play impact effect
-                        Instantiate(WeaponManager._pInstance._FireballImpactEffect, gameObject.transform.position, Quaternion.identity);
+                        ParticleSystem effect = Instantiate(WeaponManager._pInstance._FireballImpactEffect, gameObject.transform.position, Quaternion.identity);
+                        effect.gameObject.GetComponent<DestroyAfterTime>().enabled = true;
 
                         // Destroy fireball
                         FreeProjectile();
@@ -254,7 +258,8 @@ public class Proj_Fireball : Projectile {
             if (other.gameObject.tag == "Collision") {
 
                 // Play impact effect
-                Instantiate(WeaponManager._pInstance._FireballImpactEffect, gameObject.transform.position, Quaternion.identity);
+                ParticleSystem effect = Instantiate(WeaponManager._pInstance._FireballImpactEffect, gameObject.transform.position, Quaternion.identity);
+                effect.gameObject.GetComponent<DestroyAfterTime>().enabled = true;
 
                 // Destroy projectile
                 FreeProjectile();

@@ -211,7 +211,7 @@ public class Char_Geomancer : Character {
                     transform.SetPositionAndRotation(transform.position + vec * (_MovementSpeed * _SpeedBoostModifier * _MovementSpeedModifier) * Time.deltaTime, transform.rotation);
                 }           
 
-                // Used for animation blending
+                // Used for animation blend
                 _Animator.SetFloat("Forward", _Player.GetMovementInput.x);
                 _Animator.SetFloat("Right", _Player.GetMovementInput.z);
 
@@ -227,6 +227,8 @@ public class Char_Geomancer : Character {
                         // Fire primary weapon (orb?)
                         _WeaponPrimary.Fire();
 
+                        // Stop flamethrower from firing stream
+                        _WeaponSecondary.GetComponent<Wep_Flamethrower>().SetFiring(false);
                     }
 
                     else { /// _PrimaryWeaponActive == false

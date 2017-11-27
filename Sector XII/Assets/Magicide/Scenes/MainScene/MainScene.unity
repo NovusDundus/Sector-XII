@@ -7592,6 +7592,23 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 198407739174178480, guid: db1f156d8ea9ec14d9739960b41f1730,
     type: 2}
   m_PrefabInternal: {fileID: 188741094}
+--- !u!1 &188741097 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1211861173116510, guid: db1f156d8ea9ec14d9739960b41f1730,
+    type: 2}
+  m_PrefabInternal: {fileID: 188741094}
+--- !u!114 &188741098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 188741097}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce150d4805eea3a41bf543f091e4b603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DestroyAfter: 1
 --- !u!1 &190849446
 GameObject:
   m_ObjectHideFlags: 0
@@ -56003,6 +56020,16 @@ Prefab:
         type: 2}
       propertyPath: randomSeed
       value: 2042917648
+      objectReference: {fileID: 0}
+    - target: {fileID: 198407739174178480, guid: 28a2a85ab6243f24e93a3eba52a7896a,
+        type: 2}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198407739174178480, guid: 28a2a85ab6243f24e93a3eba52a7896a,
+        type: 2}
+      propertyPath: simulationSpeed
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 28a2a85ab6243f24e93a3eba52a7896a, type: 2}

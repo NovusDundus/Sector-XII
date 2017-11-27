@@ -140,7 +140,7 @@ public class SoundManager : MonoBehaviour {
                         if (vox._Owner != null)
                             vox._Owner.GetComponent<Char_Geomancer>().GetDialog().SetIsTaunting(true);
                     }
-                        break;
+                    break;
                 }
 
                 _IsPlayingVoxel = vox != null;
