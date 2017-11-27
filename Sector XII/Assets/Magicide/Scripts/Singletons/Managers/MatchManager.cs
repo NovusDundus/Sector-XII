@@ -138,6 +138,9 @@ public class MatchManager : MonoBehaviour {
 
                                 SoundManager._pInstance._Announcer.PlayPhaseTwoStart();
                             }
+
+                            // Play phase transition sound
+                            SoundManager._pInstance.PlayPhaseTransition();
                         }
                     }
                     break;
@@ -313,6 +316,9 @@ public class MatchManager : MonoBehaviour {
 
             SoundManager._pInstance._Announcer.PlayPhaseOneStart();
         }
+
+        // Play phase transition sound
+        SoundManager._pInstance.PlayPhaseTransition();
     }
 
     public void MatchCompleted() {

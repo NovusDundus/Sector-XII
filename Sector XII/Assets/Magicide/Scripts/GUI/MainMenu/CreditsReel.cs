@@ -31,7 +31,7 @@ public class CreditsReel : MonoBehaviour {
     public void ResetReel() {
 
         // Move the credits reel's rect transform back to the starting position     
-        _Panel.localPosition = new Vector3(50, -Screen.height);
+        _Panel.localPosition = new Vector3(0, /*-Screen.height*/-600);
     
         // Reset timer
         _ReturnMenuTimer = 0f;

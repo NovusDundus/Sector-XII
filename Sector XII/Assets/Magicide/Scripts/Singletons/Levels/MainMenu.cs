@@ -42,6 +42,9 @@ public class MainMenu : MonoBehaviour {
 
         // Cinematic bars EXIT
         CinematicBars._pInstance.StartAnimation(CinematicBars.BarDirection.Exit, 4f);
+
+        // Play music
+        SoundManager._pInstance.PlayMusicMainMenu();
     }
 
 }

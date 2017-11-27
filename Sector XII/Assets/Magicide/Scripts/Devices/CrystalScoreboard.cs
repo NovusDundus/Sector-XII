@@ -91,6 +91,9 @@ public class CrystalScoreboard : MonoBehaviour {
                 _CurrentHighest = p.GetScore();
                 _TopPlayerID = p._pPlayerID;
                 _HighestPlayer = p;
+
+                // Play sound
+                SoundManager._pInstance.PlayCrystalUpdate();
             }
         }
 

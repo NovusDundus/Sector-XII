@@ -40,6 +40,8 @@ public class SoundManager : MonoBehaviour {
     [Header("*** FLAMETHROWER SFX")]
     [Header("")]
     public List<AudioSource> _SFX_FlamethrowerAttack;
+    [Header("")]
+    public List<AudioSource> _SFX_WeaponTabbing;
 
     [Header("---------------------------------------------------------------------------")]
     [Header("*** DEVICE SFX")]
@@ -56,6 +58,7 @@ public class SoundManager : MonoBehaviour {
     [Header("")]
     public List<AudioSource> _SFX_CrystalHit;
     public List<AudioSource> _SFX_CrystalDeath;
+    public List<AudioSource> _SFX_CrystalUpdate;
 
     [Header("---------------------------------------------------------------------------")]
     [Header("*** MUSIC & AMBIENCE")]
@@ -65,6 +68,8 @@ public class SoundManager : MonoBehaviour {
     [Header("")]
     public AudioSource _AMBIENCE_MainMenu;
     public AudioSource _AMBIENCE_Gameplay;
+    [Header("")]
+    public AudioSource _SFX_PhaseTransition;
 
     [Header("---------------------------------------------------------------------------")]
     [Header("*** CHARACTER DIALOG")]
@@ -297,6 +302,19 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
+    public void PlayTabbing() {
+
+        // Precautions
+        if (_SFX_WeaponTabbing.Count > 0) {
+
+            // Get random sound from list
+            int i = RandomSoundInt(_SFX_WeaponTabbing);
+            AudioSource sound = _SFX_WeaponTabbing[i];
+
+            // Play the sound
+            sound.Play();
+        }
+    }
     /// -------------------------------------------
     /// 
     ///     DEVICE SFX 
@@ -406,6 +424,20 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
+    public void PlayCrystalUpdate() {
+
+        // Precautions
+        if (_SFX_CrystalUpdate.Count > 0) {
+
+            // Get random sound from list
+            int i = RandomSoundInt(_SFX_CrystalUpdate);
+            AudioSource sound = _SFX_CrystalUpdate[i];
+
+            // Play the sound
+            sound.Play();
+        }
+    }
+
     /// -------------------------------------------
     ///     
     ///     MUSIC & AMBIENCE SFX
@@ -438,6 +470,13 @@ public class SoundManager : MonoBehaviour {
         // Precautions
         if (_AMBIENCE_Gameplay != null)
             _AMBIENCE_Gameplay.Play();
+    }
+
+    public void PlayPhaseTransition() {
+
+        // Precautions
+        if (_SFX_PhaseTransition != null)
+            _SFX_PhaseTransition.Play();
     }
 
     /// -------------------------------------------

@@ -742,6 +742,9 @@ public class Char_Geomancer : Character {
                 _PrimaryWeaponActive = true;
             }
             _TabbingWeapon = true;
+
+            // Play sound
+            SoundManager._pInstance.PlayTabbing();
         }
     }
 

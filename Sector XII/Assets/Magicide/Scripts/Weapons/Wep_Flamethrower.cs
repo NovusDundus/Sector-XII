@@ -118,13 +118,10 @@ public class Wep_Flamethrower : Weapon {
         // Play the flamethrower particle effect when firing
         if (_FiringEffect != null) {
 
-            if (_Firing == true) {
-
-                // Set the flamethrower particle system to match the transform of the owner that is firing it
-                _FiringEffect.gameObject.transform.position = new Vector3(_Owner.transform.position.x, _Owner.transform.position.y + 2f, _Owner.transform.position.z);
-                _FiringEffect.transform.position = _FiringEffect.transform.position + _FiringEffect.transform.forward * 1;
-                _FiringEffect.gameObject.transform.rotation = _Owner.transform.rotation;
-            }
+            // Set the flamethrower particle system to match the transform of the owner that is firing it
+            _FiringEffect.gameObject.transform.position = new Vector3(_Owner.transform.position.x, _Owner.transform.position.y + 2f, _Owner.transform.position.z);
+            _FiringEffect.transform.position = _FiringEffect.transform.position + _FiringEffect.transform.forward * 1;
+            _FiringEffect.gameObject.transform.rotation = _Owner.transform.rotation;
         }
 
         // Continuously drain fuel from the weapon once it is fired
