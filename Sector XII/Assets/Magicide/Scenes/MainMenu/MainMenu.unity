@@ -696,7 +696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9264706, g: 0.9264706, b: 0.9264706, a: 0.984}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2626,6 +2626,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cbcfc139f93d9740bdaf99a6cbb2567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _EnableAnnouncer: 0
+  _Announcer: {fileID: 0}
   _SFX_ButtonClick: {fileID: 440284888}
   _SFX_ButtonHover: {fileID: 898187719}
   _SFX_ButtonGoBack: {fileID: 514442328}
