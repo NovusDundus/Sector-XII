@@ -120,7 +120,7 @@ public class LoadingScreen : MonoBehaviour {
                                 // completely fill the image slider
                                 _ProgressBarImage.fillAmount = 1f;
                             }
-                            _MessageText.text = "PRESS      TO CONTINUE";
+                            _MessageText.text = "Press      To Continue";
                             _GamepadContinueIcon.color = Color.white;
 
                             // Main menu to arena

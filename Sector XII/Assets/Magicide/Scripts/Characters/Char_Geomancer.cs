@@ -183,6 +183,9 @@ public class Char_Geomancer : Character {
 
         base.Update();
 
+        // Used for animation blending
+        UpdateBlend();
+
         // If in gameplay
         if (MatchManager._pInstance.GetGameplay() == true) {
 
@@ -209,12 +212,8 @@ public class Char_Geomancer : Character {
                     // Get directional input (movement ONLY)
                     Vector3 vec = _Player.GetMovementInput.normalized;
                     transform.SetPositionAndRotation(transform.position + vec * (_MovementSpeed * _SpeedBoostModifier * _MovementSpeedModifier) * Time.deltaTime, transform.rotation);
-                }           
-
-                // Used for animation blend
-                _Animator.SetFloat("Forward", _Player.GetMovementInput.x);
-                _Animator.SetFloat("Right", _Player.GetMovementInput.z);
-
+                }
+                
                 // ************************
                 //    FIRING CONTROLLER   
                 // ************************
@@ -434,6 +433,41 @@ public class Char_Geomancer : Character {
 
         // Attempting to fix the weird physics glitch
         _RigidBody.maxAngularVelocity = 0f;
+    }
+
+    public void UpdateBlend() {
+
+        // Facing north to north east
+        if (transform.rotation.y >= 0f && transform.rotation.y <= 0.7f && transform.rotation.w >= 0.7f && transform.rotation.w <= 1f) {
+
+            // Used for animation blend
+            _Animator.SetFloat("Forward", _Player.GetMovementInput.x);
+            _Animator.SetFloat("Right", _Player.GetMovementInput.z);
+        }
+
+        // Facing north to north west
+        if (transform.rotation.y >= -0.7f && transform.rotation.y <= 0f && transform.rotation.w >= 0.7f && transform.rotation.w <= 1f) {
+
+            // Used for animation blend
+            _Animator.SetFloat("Forward", _Player.GetMovementInput.x);
+            _Animator.SetFloat("Right", _Player.GetMovementInput.z);
+        }
+
+        // Facing south to south east
+        if (transform.rotation.y >= 0.7f && transform.rotation.y <= 1f && transform.rotation.w >= 0f && transform.rotation.w <= 0.7f) {
+
+            // Used for animation blend
+            _Animator.SetFloat("Forward", _Player.GetMovementInput.x);
+            _Animator.SetFloat("Right", -_Player.GetMovementInput.z);
+        }
+
+        // Facing south to south west
+        if (transform.rotation.y >= 0.7f && transform.rotation.y <= 1f && transform.rotation.w <= 0f && transform.rotation.w >= -0.7f) {
+
+            // Used for animation blend
+            _Animator.SetFloat("Forward", _Player.GetMovementInput.x);
+            _Animator.SetFloat("Right", -_Player.GetMovementInput.z);
+        }
     }
 
     //--------------------------------------------------------------
