@@ -50,7 +50,7 @@ public class KillTag : MonoBehaviour {
     public void Init(Char_Crystal Char, PickupType type) {
 
         // Check if random
-        if (type == PickupType.Random && DeviceManager._pInstance.GetRandomKilltagList().Count > 1) {
+        if (type == PickupType.Random && DeviceManager._pInstance.GetRandomKilltagList().Count >= 1) {
 
             // Generate a random pickup type
             int i;
@@ -59,7 +59,7 @@ public class KillTag : MonoBehaviour {
             _Type = DeviceManager._pInstance.GetRandomKilltagList()[i];
         }
 
-        else if (DeviceManager._pInstance.GetRandomKilltagList().Count == 0) {
+        else if (type == PickupType.Random && DeviceManager._pInstance.GetRandomKilltagList().Count < 1) {
 
             // Default to the first in the enum list
             _Type = (PickupType)0;
