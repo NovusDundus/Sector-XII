@@ -338,11 +338,11 @@ public class SoundManager : MonoBehaviour {
     public void PlayPickupMinion() {
 
         // Precautions
-        if (_SFX_OnTagPickupSpeed.Count > 0) {
+        if (_SFX_OnTagPickupMinion.Count > 0) {
 
             // Get random sound from list
-            int i = RandomSoundInt(_SFX_OnTagPickupSpeed);
-            AudioSource sound = _SFX_OnTagPickupSpeed[i];
+            int i = RandomSoundInt(_SFX_OnTagPickupMinion);
+            AudioSource sound = _SFX_OnTagPickupMinion[i];
 
             // Play the sound
             sound.Play();
@@ -352,11 +352,11 @@ public class SoundManager : MonoBehaviour {
     public void PlayPickupSpeedBoost() {
 
         // Precautions
-        if (_SFX_OnTagPickupMinion.Count > 0) {
+        if (_SFX_OnTagPickupSpeed.Count > 0) {
 
             // Get random sound from list
-            int i = RandomSoundInt(_SFX_OnTagPickupMinion);
-            AudioSource sound = _SFX_OnTagPickupMinion[i];
+            int i = RandomSoundInt(_SFX_OnTagPickupSpeed);
+            AudioSource sound = _SFX_OnTagPickupSpeed[i];
 
             // Play the sound
             sound.Play();
