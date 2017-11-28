@@ -183,6 +183,8 @@ public class SoundManager : MonoBehaviour {
             // Add to timer
             _TimeSinceLastVoxel += Time.deltaTime;
         }
+        
+        print(_VoxelWaitingList.Count);
     }
 
     //--------------------------------------------------------------

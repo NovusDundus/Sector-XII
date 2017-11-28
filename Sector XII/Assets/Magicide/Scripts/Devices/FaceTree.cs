@@ -58,11 +58,11 @@ public class FaceTree : MonoBehaviour {
     // *** HIT ***
 
     public void Update() {
-
+         
         if (_PlayingSound == true) {
 
             // Sound has finished playing
-            if (_SoundBeingPlayed.isPlaying == false && SoundManager._pInstance.GetFaceTreeSoundIsPlaying() == false) {
+            if (_SoundBeingPlayed.isPlaying == false/* && SoundManager._pInstance.GetFaceTreeSoundIsPlaying() == false*/) {
 
                 // Reset
                 _PlayingSound = false;
