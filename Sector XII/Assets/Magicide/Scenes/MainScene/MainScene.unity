@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.5
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2085321581}
-  m_IndirectSpecularColor: {r: 0.26572707, g: 0.27143615, b: 0.25494504, a: 0.5}
+  m_IndirectSpecularColor: {r: 0.26572725, g: 0.27143627, b: 0.25494534, a: 0.5}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1066,9 +1066,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4de372e587842449aab983a0a4f6cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeTillKill: 4.2
+  timeTillKill: 8
   lt: {fileID: 9142119}
-  timeForEffect: 4
+  timeForEffect: 8
   fadeIntensity: 1
 --- !u!1 &14861836
 GameObject:
@@ -3981,7 +3981,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 100980536}
   m_LocalRotation: {x: 0.49999985, y: -0.5000002, z: 0.5000002, w: 0.49999985}
-  m_LocalPosition: {x: -0.030000864, y: 18, z: -0.000000023706393}
+  m_LocalPosition: {x: -0, y: 17.7, z: 0.6}
   m_LocalScale: {x: 1.8181821, y: 1.8181827, z: 1.8181825}
   m_Children: []
   m_Father: {fileID: 161749459}
@@ -4048,9 +4048,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4de372e587842449aab983a0a4f6cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeTillKill: 4.2
+  timeTillKill: 8
   lt: {fileID: 100980538}
-  timeForEffect: 4
+  timeForEffect: 8
   fadeIntensity: 1
 --- !u!1 &104234667
 GameObject:
@@ -4569,7 +4569,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh20500
+  m_Name: pb_Mesh43886
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -5456,7 +5456,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh16820
+  m_Name: pb_Mesh40138
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -8648,7 +8648,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh15728
+  m_Name: pb_Mesh38994
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -9903,6 +9903,76 @@ Prefab:
       propertyPath: _SFX_FireballImpact.Array.data[7]
       value: 
       objectReference: {fileID: 1601918960}
+    - target: {fileID: 114025385545714628, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _FlameCooldownRateStable
+      value: 0.007
+      objectReference: {fileID: 0}
+    - target: {fileID: 114025385545714628, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _FlameCooldownRateOverheated
+      value: 0.007
+      objectReference: {fileID: 0}
+    - target: {fileID: 114025385545714628, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _FlameHeatCost
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 114025385545714628, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _FlameDamage
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114025385545714628, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _BurnDamage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114025385545714628, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _BurnTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114025385545714628, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _MinionHealth
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 114157945126146578, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _CrystalMajorTagType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114188143390799446, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _Invincibility
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114188143390799446, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _Healthpack
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114188143390799446, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _SpeedBoost
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114188143390799446, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _AddShield
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114188143390799446, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _InvincibilityTypeMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: f00073a582537ac478363afcd83e5409, type: 2}
+    - target: {fileID: 114403142367840752, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _Phase1Length
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa42a22ea9d697f4abb43b7e82ccb986, type: 2}
   m_IsPrefabParent: 0
@@ -11189,7 +11259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &274776087
 Transform:
   m_ObjectHideFlags: 0
@@ -17025,7 +17095,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh19738
+  m_Name: pb_Mesh43160
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -19486,9 +19556,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4de372e587842449aab983a0a4f6cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeTillKill: 4.2
+  timeTillKill: 8
   lt: {fileID: 537823363}
-  timeForEffect: 4
+  timeForEffect: 8
   fadeIntensity: 1
 --- !u!1 &538838061
 GameObject:
@@ -21561,7 +21631,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh17356
+  m_Name: pb_Mesh40710
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -21783,7 +21853,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh19080
+  m_Name: pb_Mesh42470
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -23064,7 +23134,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh122268
+  m_Name: pb_Mesh41730
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -25823,7 +25893,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh17184
+  m_Name: pb_Mesh40532
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -26717,7 +26787,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh124490
+  m_Name: pb_Mesh43952
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -31381,7 +31451,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh15820
+  m_Name: pb_Mesh39090
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -34338,7 +34408,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh19692
+  m_Name: pb_Mesh43108
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -34471,7 +34541,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh17912
+  m_Name: pb_Mesh41302
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -37416,7 +37486,7 @@ Camera:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294959103
-  m_RenderingPath: -1
+  m_RenderingPath: 3
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
@@ -39945,7 +40015,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh20250
+  m_Name: pb_Mesh43646
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -41885,6 +41955,10 @@ Prefab:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 46cc356776bdbc64593ae9848b233007, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 46cc356776bdbc64593ae9848b233007, type: 3}
   m_IsPrefabParent: 0
@@ -41912,7 +41986,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh19534
+  m_Name: pb_Mesh42922
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -43155,7 +43229,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-1108530
+  m_Name: pb_Mesh40490
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -48812,9 +48886,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4de372e587842449aab983a0a4f6cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeTillKill: 4.2
+  timeTillKill: 8
   lt: {fileID: 1388110037}
-  timeForEffect: 4
+  timeForEffect: 8
   fadeIntensity: 1
 --- !u!4 &1389121253 stripped
 Transform:
@@ -49653,7 +49727,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh16096
+  m_Name: pb_Mesh39408
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -54815,7 +54889,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh20112
+  m_Name: pb_Mesh43542
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -55694,7 +55768,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh18814
+  m_Name: pb_Mesh42202
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -61026,7 +61100,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh15994
+  m_Name: pb_Mesh39280
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -66680,7 +66754,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh17384
+  m_Name: pb_Mesh40740
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -66985,7 +67059,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh15242
+  m_Name: pb_Mesh38566
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -67903,7 +67977,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 16384
+    m_Bits: 4294967295
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -70103,7 +70177,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh17162
+  m_Name: pb_Mesh40504
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -73280,7 +73354,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh19754
+  m_Name: pb_Mesh43176
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
