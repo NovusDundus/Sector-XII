@@ -526,7 +526,7 @@ public class SoundManager : MonoBehaviour {
     ///     
     ///     FACE TREE DIALOG
     /// 
-    /// -------------------------------------------
+    /// ------------------------------------------- ///
 
     public void SetFaceTreeSoundPlaying(bool value) { _FaceTreeSoundIsPlaying = value; }
 
