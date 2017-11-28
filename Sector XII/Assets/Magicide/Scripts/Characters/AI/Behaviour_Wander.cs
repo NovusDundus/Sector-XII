@@ -76,9 +76,7 @@ public class Behaviour_Wander : MonoBehaviour {
             {
                 hasTarget = false;
             }
-
-            //Debug.Log("Has Target: " + targetDestination);
-            //hasTarget = false;
+            
         }
 
     }

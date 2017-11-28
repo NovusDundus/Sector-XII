@@ -51,7 +51,7 @@ public class Wep_Flamethrower : Weapon {
         _CooldownRateOverheated = WeaponManager._pInstance._FlameCooldownRateOverheated;
 
         // Set firing effect
-        _FiringEffect = WeaponManager._pInstance._FlamethrowerEffect;
+        _FiringEffect = Instantiate(WeaponManager._pInstance._FlamethrowerEffect, transform.position, transform.rotation);
     }
 
     public override void Init() {
@@ -75,10 +75,6 @@ public class Wep_Flamethrower : Weapon {
                 _POOL_FIREBALL_INACTIVE.Add(proj);
             }
         }
-
-        // Create flamethrower stream effect
-        if (_FiringEffect != null)
-            Instantiate(_FiringEffect, transform.position, _Owner.transform.rotation);
     }
 
     //--------------------------------------------------------------
@@ -119,9 +115,9 @@ public class Wep_Flamethrower : Weapon {
         if (_FiringEffect != null) {
 
             // Set the flamethrower particle system to match the transform of the owner that is firing it
-            _FiringEffect.gameObject.transform.position = new Vector3(_Owner.transform.position.x, _Owner.transform.position.y + 2f, _Owner.transform.position.z);
+            _FiringEffect.transform.position = new Vector3(GetOwner().transform.position.x, GetOwner().transform.position.y + 2f, GetOwner().transform.position.z);
             _FiringEffect.transform.position = _FiringEffect.transform.position + _FiringEffect.transform.forward * 1;
-            _FiringEffect.gameObject.transform.rotation = _Owner.transform.rotation;
+            _FiringEffect.transform.rotation = GetOwner().transform.rotation;
         }
 
         // Continuously drain fuel from the weapon once it is fired
