@@ -555,6 +555,9 @@ public class AiManager : MonoBehaviour {
         // Remove ai (new AI variable) from dead minion array
         _POOL_DEAD_MINIONS.RemoveAt(_POOL_DEAD_MINIONS.Count - 1);
 
+        // Set position
+        crystal.transform.position = position;
+
         // Set LinearGoToTarget behaviour to be active
         crystal.GetComponent<LinearGoToTarget>().enabled = true;
 

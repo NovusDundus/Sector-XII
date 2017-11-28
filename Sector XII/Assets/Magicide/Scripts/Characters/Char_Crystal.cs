@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 public class Char_Crystal : Character {
 
@@ -196,6 +197,12 @@ public class Char_Crystal : Character {
 
         // Play OnDeath effect
         Instantiate(_EffectOnDeath, transform.position, Quaternion.identity);
+
+        // Disable any behaviours
+        GetComponent<NavMeshAgent>().enabled = false;
+        _BehaviourWander.enabled = false;
+        _BehaviourFlee.enabled = false;
+        _BehaviourSeek.enabled = false;
 
         // hide THIS character & move out of playable space
         gameObject.GetComponentInChildren<Renderer>().enabled = false;
