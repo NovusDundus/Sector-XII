@@ -109,7 +109,7 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-  m_NavMeshData: {fileID: 23800000, guid: c7abf76cdf421f8468d5dea998fe7916, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 918fa82401d5d3044b3bcf52c6c39254, type: 2}
 --- !u!1 &1277567
 GameObject:
   m_ObjectHideFlags: 0
