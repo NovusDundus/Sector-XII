@@ -342,7 +342,7 @@ public class Char_Geomancer : Character {
                     if (_TauntTimer >= _TauntCooldown) {
 
                         // Play taunt sequence
-                        Taunt();
+                        ///Taunt();
                     }
                 }
 
@@ -557,8 +557,8 @@ public class Char_Geomancer : Character {
         }
 
         // Instigator plays a taunt
-        ///if (instigator.GetComponent<Char_Geomancer>().GetDialog() != null)
-        ///    instigator.GetComponent<Char_Geomancer>().GetDialog().PlayTaunt();
+        if (instigator.GetComponent<Char_Geomancer>().GetDialog() != null)
+            instigator.GetComponent<Char_Geomancer>().GetDialog().PlayTaunt();
 
         // Play death sound
         if (_CharacterDialog != null)

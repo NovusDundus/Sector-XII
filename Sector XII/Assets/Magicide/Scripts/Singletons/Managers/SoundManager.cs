@@ -107,9 +107,6 @@ public class SoundManager : MonoBehaviour {
 
         // Set singleton
         _pInstance = this;
-    }
-
-    private void Start() {
 
         _VoxelWaitingList = new List<AudioWrapper>();
         _DialogsUse = new List<bool>();
@@ -119,6 +116,10 @@ public class SoundManager : MonoBehaviour {
             // Dialog isnt used by default
             _DialogsUse.Add(false);
         }
+    }
+
+    private void Start() {
+
     }
 
     //--------------------------------------------------------------
@@ -183,8 +184,6 @@ public class SoundManager : MonoBehaviour {
             // Add to timer
             _TimeSinceLastVoxel += Time.deltaTime;
         }
-        
-        print(_VoxelWaitingList.Count);
     }
 
     //--------------------------------------------------------------

@@ -31,5 +31,14 @@ public class ArenaMode : MonoBehaviour {
         // Set singleton
         _pInstance = this;
     }
+    
+    //--------------------------------------------------------------
+    // *** FRAME ***
+
+    public void Update() {
+
+        // Hide the mouse cursor
+        Cursor.visible = false;
+    }
 
 }

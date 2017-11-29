@@ -194,9 +194,6 @@ public class MatchManager : MonoBehaviour {
             case GameState.Gameover: {
 
                     _CinematicPlaying = true;
-
-                    // Disable pausing (and force unpause)
-                    SetPause(false);
                     MatchCompleted();
                     break;
                 }
@@ -326,6 +323,9 @@ public class MatchManager : MonoBehaviour {
         // Set gamestate
         _GameState = GameState.Gameover;
 
+        // Force pause
+        SetPause(true);
+        
         // Show scoreboard
         if (HUD._pInstance._UIScoreboard != null) {
 

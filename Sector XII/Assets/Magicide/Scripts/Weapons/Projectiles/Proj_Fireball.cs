@@ -84,7 +84,7 @@ public class Proj_Fireball : Projectile {
         if (_Active == true) {
 
             // Check for any collision against all potential targets
-            CollisionChecks();
+            ///CollisionChecks();
 
             // If max range hasnt been reached yet
             if (distanceTraveled < WeaponManager._pInstance._FireballRange) {
@@ -263,6 +263,110 @@ public class Proj_Fireball : Projectile {
 
                 // Destroy projectile
                 FreeProjectile();
+            }
+
+            // Check against players
+            if (other.gameObject.tag == "P1_Character" || other.gameObject.tag == "P2_Character" || other.gameObject.tag == "P3_Character" || other.gameObject.tag == "P4_Character") {
+
+                var character = other.gameObject.GetComponent<Character>();
+
+                // If it isnt the instigator who is being tested against
+                if (character != _Owner.GetOwner()) {
+
+                    // Damage necromancer
+                    character.Damage(_Owner.GetOwner(), _ImpactDamage /*+ (_ImpactDamage * _DamageMultiplier)*/);
+
+                    // Play impact sound
+                    SoundManager._pInstance.PlayFireballImpact();
+
+                    // Check if necromancer has been killed
+                    if (character.GetHealth() <= 0) {
+
+                        // Add to instigator's kill count
+                        _Owner.GetOwner()._Player.AddKillCount();
+                    }
+
+                    // Play impact effect
+                    ParticleSystem effect = Instantiate(WeaponManager._pInstance._FireballImpactEffect, gameObject.transform.position, Quaternion.identity);
+                    effect.gameObject.GetComponent<DestroyAfterTime>().enabled = true;
+
+                    // Destroy fireball
+                    FreeProjectile();
+                }
+            }
+
+            // Check against shield minions
+            if (other.gameObject.tag == "ShieldMinion") {
+                                
+                Proj_ShieldMinion minion = other.gameObject.GetComponent<Proj_ShieldMinion>();
+
+                // Has the fireball collided with the minions's collision?
+                if (_Collision.bounds.Intersects(minion.GetCollision().bounds)) {
+
+                    // Damage minion
+                    minion.Damage(_Owner.GetOwner(), _ImpactDamage);
+
+                    // Play impact sound
+                    SoundManager._pInstance.PlayFireballImpact();
+
+                    // Check if minion has been killed
+                    if (minion.GetHealth() <= 0) {
+
+                        // Add to instigator's kill count
+                        _Owner.GetOwner()._Player.AddKillCount();
+                    }
+
+                    // Play impact effect
+                    ParticleSystem effect = Instantiate(WeaponManager._pInstance._FireballImpactEffect, gameObject.transform.position, Quaternion.identity);
+                    effect.gameObject.GetComponent<DestroyAfterTime>().enabled = true;
+
+                    // Destroy fireball
+                    FreeProjectile();
+                    _Active = false;
+                }                
+            }
+
+            // Has the fireball collided with the minion's collision?
+            if (other.gameObject.tag == "Enemy") {
+
+                Char_Crystal crystal = other.gameObject.GetComponent<Char_Crystal>();
+
+                // Damage minion
+                crystal.Damage(_Owner.GetOwner(), _ImpactDamage);
+
+                // Check if minion has been killed
+                if (crystal.GetHealth() <= 0) {
+
+                    // Add to instigator's kill count
+                    _Owner.GetOwner()._Player.AddKillCount();
+                }
+
+                // Play impact effect
+                ParticleSystem effect = Instantiate(WeaponManager._pInstance._FireballImpactEffect, gameObject.transform.position, Quaternion.identity);
+                effect.gameObject.GetComponent<DestroyAfterTime>().enabled = true;
+
+                // Destroy fireball
+                FreeProjectile();
+
+                // Play impact sound
+                SoundManager._pInstance.PlayFireballImpact();
+            }
+
+            // Check against face tree
+            if (other.gameObject.tag == "FaceTree") {
+
+                FaceTree tree = other.gameObject.GetComponent<FaceTree>();
+                tree.OnHit();
+
+                // Play impact effect
+                ParticleSystem effect = Instantiate(WeaponManager._pInstance._FireballImpactEffect, gameObject.transform.position, Quaternion.identity);
+                effect.gameObject.GetComponent<DestroyAfterTime>().enabled = true;
+
+                // Destroy fireball
+                FreeProjectile();
+
+                // Play impact sound
+                SoundManager._pInstance.PlayFireballImpact();
             }
         }
     }

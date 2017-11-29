@@ -47,4 +47,13 @@ public class MainMenu : MonoBehaviour {
         SoundManager._pInstance.PlayMusicMainMenu();
     }
 
+    //--------------------------------------------------------------
+    // *** FRAME ***
+
+    public void Update() {
+
+        // Hide the mouse cursor
+        Cursor.visible = false;
+    }
+
 }
