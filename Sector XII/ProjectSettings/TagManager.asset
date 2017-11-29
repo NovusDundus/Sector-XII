@@ -26,6 +26,8 @@ TagManager:
   - P4_FlamethrowerWeapon
   - P4_ShieldWeapon
   - P4_Ethereal
+  - ShieldMinion
+  - FaceTree
   layers:
   - Default
   - TransparentFX
