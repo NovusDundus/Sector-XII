@@ -107,35 +107,64 @@ public class Proj_Fireball : Projectile {
     }
     
     public void GeomancerCollisionChecks() {
-        
+
         // Check against enemy player character
         if (MatchManager._pInstance.GetGameState() == MatchManager.GameState.Phase2) {
 
-            // Check against all alive players
-            foreach (var necromancer in PlayerManager._pInstance.GetActiveNecromancers()) {
+            if (PlayerManager._pInstance.GetActiveNecromancers().Count > 0) {
 
-                // If necromancer has valid collision reference set
-                if (necromancer.GetCollider() != null) {
+                // Check against all alive players
+                foreach (var necromancer in PlayerManager._pInstance.GetActiveNecromancers()) {
 
-                    // If it isnt the instigator who is being tested against
-                    if (necromancer != _Owner.GetOwner()) {
+                    // If necromancer has valid collision reference set
+                    if (necromancer.GetCollider() != null) {
 
-                        // Check against all meat shield minions associated to the player
-                        foreach (GameObject meatMinion in necromancer.GetSpecialWeapon().GetComponent<Wep_Shield>().GetMeatMinionPool()) {
+                        // If it isnt the instigator who is being tested against
+                        if (necromancer != _Owner.GetOwner()) {
 
-                            Proj_ShieldMinion minion = meatMinion.GetComponent<Proj_ShieldMinion>();
+                            // Check against all meat shield minions associated to the player
+                            foreach (GameObject meatMinion in necromancer.GetSpecialWeapon().GetComponent<Wep_Shield>().GetMeatMinionPool()) {
 
-                            // Has the fireball collided with the minions's collision?
-                            if (_Collision.bounds.Intersects(minion.GetCollision().bounds)) {
+                                Proj_ShieldMinion minion = meatMinion.GetComponent<Proj_ShieldMinion>();
 
-                                // Damage minion
-                                minion.Damage(_Owner.GetOwner(), _ImpactDamage);
+                                // Has the fireball collided with the minions's collision?
+                                if (_Collision.bounds.Intersects(minion.GetCollision().bounds)) {
+
+                                    // Damage minion
+                                    minion.Damage(_Owner.GetOwner(), _ImpactDamage);
+
+                                    // Play impact sound
+                                    SoundManager._pInstance.PlayFireballImpact();
+
+                                    // Check if minion has been killed
+                                    if (minion.GetHealth() <= 0) {
+
+                                        // Add to instigator's kill count
+                                        _Owner.GetOwner()._Player.AddKillCount();
+                                    }
+
+                                    // Play impact effect
+                                    ParticleSystem effect = Instantiate(WeaponManager._pInstance._FireballImpactEffect, gameObject.transform.position, Quaternion.identity);
+                                    effect.gameObject.GetComponent<DestroyAfterTime>().enabled = true;
+
+                                    // Destroy fireball
+                                    FreeProjectile();
+                                    _Active = false;
+                                    break;
+                                }
+                            }
+
+                            // Has the fireball collided with the necromancer's collision?
+                            if (_Collision.bounds.Intersects(necromancer.GetCollider().bounds) && _Active) {
+
+                                // Damage necromancer
+                                necromancer.Damage(_Owner.GetOwner(), _ImpactDamage /*+ (_ImpactDamage * _DamageMultiplier)*/);
 
                                 // Play impact sound
                                 SoundManager._pInstance.PlayFireballImpact();
 
-                                // Check if minion has been killed
-                                if (minion.GetHealth() <= 0) {
+                                // Check if necromancer has been killed
+                                if (necromancer.GetHealth() <= 0) {
 
                                     // Add to instigator's kill count
                                     _Owner.GetOwner()._Player.AddKillCount();
@@ -147,34 +176,8 @@ public class Proj_Fireball : Projectile {
 
                                 // Destroy fireball
                                 FreeProjectile();
-                                _Active = false;
                                 break;
                             }
-                        }
-
-                        // Has the fireball collided with the necromancer's collision?
-                        if (_Collision.bounds.Intersects(necromancer.GetCollider().bounds) && _Active) {
-
-                            // Damage necromancer
-                            necromancer.Damage(_Owner.GetOwner(), _ImpactDamage /*+ (_ImpactDamage * _DamageMultiplier)*/);
-                            
-                            // Play impact sound
-                            SoundManager._pInstance.PlayFireballImpact();
-
-                            // Check if necromancer has been killed
-                            if (necromancer.GetHealth() <= 0) {
-
-                                // Add to instigator's kill count
-                                _Owner.GetOwner()._Player.AddKillCount();
-                            }
-
-                            // Play impact effect
-                            ParticleSystem effect = Instantiate(WeaponManager._pInstance._FireballImpactEffect, gameObject.transform.position, Quaternion.identity);
-                            effect.gameObject.GetComponent<DestroyAfterTime>().enabled = true;
-
-                            // Destroy fireball
-                            FreeProjectile();
-                            break;
                         }
                     }
                 }

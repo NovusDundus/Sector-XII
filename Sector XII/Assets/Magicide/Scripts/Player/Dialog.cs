@@ -103,14 +103,14 @@ public class Dialog : MonoBehaviour {
     public int RandomSoundInt(List<AudioSource> SoundList) {
 
         // Returns a random integer between 0 & the size of the audio source list
-        int i = Random.Range(0, SoundList.Count);
+        int i = Random.Range(0, SoundList.Count -1);
         return i;
     }
 
     public int RandomSoundVoxInt(List<AudioWrapper> VoxList) {
 
         // Returns a random integer between 0 & the size of the audio source list
-        int i = Random.Range(0, VoxList.Count);
+        int i = Random.Range(0, VoxList.Count -1);
         return i;
     }
 

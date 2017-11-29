@@ -21,6 +21,9 @@ public class ButtonClicksArenaMode : MonoBehaviour {
 
     public void OnClick_Restart() {
 
+        // Force unpause
+        MatchManager._pInstance.SetPause(false);
+
         // Hide scoreboard panel
         HUD._pInstance._UIScoreboard.SetActive(false);
 
@@ -30,9 +33,11 @@ public class ButtonClicksArenaMode : MonoBehaviour {
         // Show loading screen panel
         _LoadingScreen.SetActive(true);
         _LoadingScreen.GetComponent<LoadingScreen>().SetLoadingMatch(true);
+        ///_LoadingScreen.GetComponent<LoadingScreen>().SetLoadState(LoadingScreen.eState.Intro);
 
         // Reset time scale
         Time.timeScale = 1f;
+
     }
 
     public void OnClick_MainMenu() {
@@ -56,5 +61,5 @@ public class ButtonClicksArenaMode : MonoBehaviour {
         // Resume gameplay
         MatchManager._pInstance.SetPause(false);
     }
-
+    
 }

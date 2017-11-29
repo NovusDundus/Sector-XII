@@ -29,7 +29,7 @@ public class LoadingScreen : MonoBehaviour {
     private float _LoadingTextAlpha = 0f;                           // Current alpha colour for "t_Loading" text.
     private bool _LoadingMatch = true;
 
-    private enum eState {
+    public enum eState {
 
         Intro,
         Loading,
@@ -69,6 +69,9 @@ public class LoadingScreen : MonoBehaviour {
 
         // Precautions
         if (_LoadSlider != null && _MessageText != null && _GamepadContinueIcon != null) {
+
+            // Reset time scale
+            Time.timeScale = 1f;
 
             switch (_currentState) {
 
@@ -200,5 +203,7 @@ public class LoadingScreen : MonoBehaviour {
     public void SetLevelIndex(int index) {  _LevelIndex = index; }
 
     public void SetLoadingMatch(bool value) { _LoadingMatch = value; }
+
+    public void SetLoadState(eState state) { _currentState = state; }
 
 }
