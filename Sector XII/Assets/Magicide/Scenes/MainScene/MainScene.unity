@@ -3294,13 +3294,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 40c10d50e4c744d40a17aae361934b4c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 100
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -9478,6 +9478,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114188143390799446, guid: aa42a22ea9d697f4abb43b7e82ccb986,
+        type: 2}
+      propertyPath: _FaceTrees.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114157945126146578, guid: aa42a22ea9d697f4abb43b7e82ccb986,
         type: 2}
       propertyPath: _AgentTriggers.Array.size
@@ -9506,12 +9511,12 @@ Prefab:
     - target: {fileID: 114885749551304172, guid: aa42a22ea9d697f4abb43b7e82ccb986,
         type: 2}
       propertyPath: _VOX_FaceTreeSouthDialoglist.Array.size
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114885749551304172, guid: aa42a22ea9d697f4abb43b7e82ccb986,
         type: 2}
       propertyPath: _VOX_FaceTreeNorthDialoglist.Array.size
-      value: 16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114885749551304172, guid: aa42a22ea9d697f4abb43b7e82ccb986,
         type: 2}
@@ -19687,13 +19692,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 620df68ac1b17c7468a61c1c245700f3, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 100
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -27158,13 +27163,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e1023300f794d2840913c143dc0edfa9, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.45
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 100
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -29284,13 +29289,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6d0a75c2d8d0ba44d91b49bf3f926683, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 100
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -30955,13 +30960,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 569534a31d94f324c8fcbb49d06f5f6e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.4
   m_Pitch: 0.5
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 115
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -52899,13 +52904,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 068ee62e798cc13469f679911be4862f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 100
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -65529,13 +65534,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4c8e948fe7f8c904098f42139382be4b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 100
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -66811,8 +66816,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9b11f691c0381b446843bf03d9537e4f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
-  m_Pitch: 0.5
+  m_Volume: 0.6
+  m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0

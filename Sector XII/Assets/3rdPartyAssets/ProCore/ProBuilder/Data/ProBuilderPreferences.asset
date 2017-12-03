@@ -14,6 +14,10 @@ MonoBehaviour:
   m_Bool_keys:
   - pbExportAsGroup
   - pbCheckForProBuilderUpdates
+  - pbStripProBuilderOnBuild
+  - pbDisableAutoUV2Generation
+  - pbForceConvex
+  - pbMeshesAreAssets
   m_Int_keys:
   - pbHandleAlignment
   - pbDefaultEditLevel
@@ -21,6 +25,9 @@ MonoBehaviour:
   - pb_GIWorkflowMode
   - pbExtrudeMethod
   - pbVertexColorTool
+  - pbDefaultEntity
+  - pbDefaultCollider
+  - pbShadowCastingMode
   m_Float_keys:
   - pbEditorScroll.x
   - pbEditorScroll.y
@@ -33,9 +40,10 @@ MonoBehaviour:
   - pbVertexColorPrefs7
   - pbVertexColorPrefs2
   m_Color_keys: []
-  m_Material_keys: []
-  m_Bool_values: 0101
-  m_Int_values: 000000000000000001000000010000000000000000000000
+  m_Material_keys:
+  - pbDefaultMaterial
+  m_Bool_values: 010101000000
+  m_Int_values: 000000000100000001000000010000000000000000000000000000000200000002000000
   m_Float_values:
   - 0
   - 0
@@ -48,4 +56,5 @@ MonoBehaviour:
   - RGBA(1.000, 0.463, 1.000, 1.000)
   - RGBA(0.463, 0.619, 1.000, 1.000)
   m_Color_values: []
-  m_Material_values: []
+  m_Material_values:
+  - {fileID: 2100000, guid: 55296d1b6ee54e14e8eb4648d4b448ee, type: 2}
